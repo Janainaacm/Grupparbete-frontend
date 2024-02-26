@@ -5,7 +5,8 @@ const hej = () => {
     <div>hej
     <h1>hej</h1>
     <p>salam</p>
-    <p>tjenare</p>
+    <p>Hallå</p>
+    <p>tjenarere</p>
     </div>
   )
 }
