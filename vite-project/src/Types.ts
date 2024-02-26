@@ -1,11 +1,12 @@
 export interface RecipeInterface {
     title: string
     description: string
-    ratings: [number]
+    ratings?: [number]
     imageUrl: string
     timeInMins: number
     categories: [string]
     instructions: [string]
+    password?: string
     ingredients: [IngredientInterface: {
         name: string
         amount: number
