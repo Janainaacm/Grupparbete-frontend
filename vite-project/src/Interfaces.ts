@@ -10,9 +10,10 @@ export interface RecipeInterface {
         name: string
         amount: number
         unit: string
-         }]
+        }]
     }
 
+    
 export interface IngredientInterface {
     name: string
     amount:	number
