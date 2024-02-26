@@ -7,7 +7,7 @@ const hej = () => {
     <p>salam</p>
     <p>tjenare</p>
     <p>hallå</p>
-    <h1>hej</h1>
+    <h1>heja</h1>
     <button>hej</button>
     </div>
   )
