@@ -8,6 +8,7 @@ const hej = () => {
     <p>tjenare</p>
     <p>hallå</p>
     <h1>hej</h1>
+    <button>hej</button>
     </div>
   )
 }
