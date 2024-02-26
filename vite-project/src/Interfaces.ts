@@ -13,7 +13,6 @@ export interface RecipeInterface {
         }]
     }
 
-    
 export interface IngredientInterface {
     name: string
     amount:	number
