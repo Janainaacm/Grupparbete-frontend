@@ -7,6 +7,7 @@ const hej = () => {
     <p>salam</p>
     <p>tjenare</p>
     <p>hallå</p>
+    <h1>hej</h1>
     </div>
   )
 }
