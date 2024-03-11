@@ -2,6 +2,8 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Header from './global_components/header'
+import Footer from './global_components/footer'
 
 // test commitdd
 function App() {
@@ -9,6 +11,7 @@ function App() {
 
   return (
     <>
+    <Header></Header>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -29,6 +32,7 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more test
       </p>
+      <Footer></Footer>
     </>
   )
 }
