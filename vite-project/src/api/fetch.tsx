@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { useState } from 'react'
+import { API_URL } from '../config'
 
-const URL = "https://sti-java-grupp5-wjfjet.reky.se"
+
 
 function setRecipes() {
 
@@ -9,7 +10,7 @@ function setRecipes() {
 
 async function fetchAllRecipes() {
     try {
-        const response = await axios.get(`${URL}/recipes`)
+        const response = await axios.get(`${API_URL}/recipes`)
 
     if (response.status === 200) {
         setRecipes(response.data)

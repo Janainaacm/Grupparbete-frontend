@@ -1,0 +1,1 @@
+export const API_URL = "https://sti-java-grupp5-wjfjet.reky.se";
