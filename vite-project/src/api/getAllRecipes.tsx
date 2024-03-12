@@ -1,16 +1,16 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { API_URL } from '../config'
+import { RecipeInterface } from '../Types'
 
 
+function useGetAllRecipes() {
 
-function allRecipes() {
-
-    const [recipes, setRecipes] = useState([])
+    const [recipes, setRecipes] = useState<RecipeInterface[]>([])
 
 async function getAllRecipes() {
     try {
-        const response = await axios.get(`${API_URL}/recipes`)
+        const response = await axios.get<RecipeInterface[]>(`${API_URL}/recipes`)
 
     if (response.status === 200) {
         setRecipes(response.data)
@@ -28,4 +28,4 @@ async function getAllRecipes() {
   
 } 
 
-export default allRecipes
+export default useGetAllRecipes

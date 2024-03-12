@@ -1,10 +1,16 @@
 import './App.css'
-import allRecipes from './api/getAllRecipes'
 
-// test commitdd
+
+
 function App() {
-  allRecipes()
-  
+
+  return (
+    <div>
+      Hej
+    </div>
+  );
 }
+  
+
 
 export default App
