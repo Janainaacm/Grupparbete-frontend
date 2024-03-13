@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Header from './global_components/header'
 import Footer from './global_components/footer'
+import Home from './pages/home/home'
 
 // test commitdd
 function App() {
@@ -11,6 +12,7 @@ function App() {
 
   return (
     <>
+    <Home></Home>
     <Header></Header>
       <div>
         <a href="https://vitejs.dev" target="_blank">
