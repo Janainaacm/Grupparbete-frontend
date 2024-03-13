@@ -8,8 +8,10 @@ function AppTest() {
 const recipes = useGetAllRecipes()
 const navigate = useNavigate()
 
+
 const handleRecipeClick = async(recipe: RecipeInterface) => {
-    navigate("/recipes", { state: { recipe } });
+    const encodedTitle = encodeURIComponent(recipe.title);
+    navigate(`/recipes/${encodedTitle}`, { state: { recipe } });
     };
 
   return (

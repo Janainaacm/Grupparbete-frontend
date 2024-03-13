@@ -4,7 +4,7 @@ import { useNavigate, useLocation, } from "react-router";
 
 function SelectedRecipe() {
     const { recipe } = useLocation().state;
- 
+    
     const navigate = useNavigate()
 
   useEffect(() => {
@@ -15,7 +15,7 @@ function SelectedRecipe() {
   return (
     <div>
       <h2>{recipe.title}</h2>
-      <img src={recipe.imageUrl} alt={recipe.title} style={{ width: '100px', height: '100px', marginBottom: '5px' }} />
+      <img src={recipe.imageUrl} alt={recipe.title} style={{ width: '200px', height: '200px', marginBottom: '5px' }} />
       <p>Description: {recipe.description}</p>
       <p>ID: {recipe._id}</p>
       <p>Time: {recipe.timeInMins} minutes</p>
