@@ -5,6 +5,7 @@ import './App.css'
 import Header from './global_components/header'
 import Footer from './global_components/footer'
 import Home from './pages/home/home'
+import RecipePage from './pages/recipes/RecipePage'
 
 // test commitdd
 function App() {
@@ -14,6 +15,7 @@ function App() {
     <>
     <Home></Home>
     <Header></Header>
+    <RecipePage></RecipePage>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
