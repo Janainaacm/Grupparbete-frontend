@@ -9,6 +9,7 @@ function App() {
   const searchBar = SearchBarComponent
 
   return (
+    
     searchBar()
   );
   
