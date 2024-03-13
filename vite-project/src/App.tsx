@@ -4,6 +4,7 @@ import useGetAllRecipes from './api/getAllRecipes';
 
 
 function App() {
+  useGetAllRecipes()
   return (
     <div>
       Hej
