@@ -14,4 +14,4 @@ async function deleteRecipe(recipeId:string) {
     console.log('Error deleting recipe', error)
 }
 
-}export default deleteRecipe
+} export default deleteRecipe
