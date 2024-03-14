@@ -83,6 +83,7 @@ const PostRecipe = () => {
   return (
     <div> 
 
+        <br /><br />
         <input type='text' value={recipeName} onChange={(event) => setRecipeName(event.target.value)} placeholder='Recipe name'></input>
         <input type="text" value={recipeDescription} onChange={(event) => setDescription(event.target.value)} placeholder='Description' />
         <input type="number" value={timeInMins} onChange={(event) => setTimeInMinutes(event.target.valueAsNumber)} placeholder='Time in minutes'/>
