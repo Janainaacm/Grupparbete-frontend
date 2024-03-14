@@ -10,6 +10,7 @@ import RecipePage from "./pages/recipes/RecipePage.tsx";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
+    
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/Home" element={<Home />} />
