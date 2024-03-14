@@ -14,6 +14,9 @@ const PostRecipe = () => {
     const [imageURL, setImageURL] = useState("");
     const [rating, setRating] = useState("");
 
+    //instructions
+    //categories
+
 
     const [ingredient, setIngredient] = useState<IngredientInterface[]>([]);
     const [ingredientName, setIngredientName] = useState("");
