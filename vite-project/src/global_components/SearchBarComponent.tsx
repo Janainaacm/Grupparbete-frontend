@@ -1,19 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { RiSearchLine } from 'react-icons/ri';
 import { IoCloseOutline } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
+import useGetAllRecipes from "../api/getAllRecipes"
+import { RecipeInterface } from '../Types';
 
 const SearchBarComponent = () => {
-    const navigate = useNavigate();
     const [search, setSearch] = useState("");
+    const [recipes, setRecipes] = useState<RecipeInterface[]>(useGetAllRecipes())
+    const [searchResults, setSearchResults] = useState<RecipeInterface[]>([])
 
     const clearSearch = () => {
         setSearch("");
+        setSearchResults([]);
     };
 
-    const searchForRecipe = () => {
-        navigate("/searchResult", { state: search })
-    };
+    const getSearchResult = () => {
+        const result = recipes.filter(recipe => {
+            return recipe.title.includes(search) || recipe.categories.includes(search);
+        });
+        setSearchResults(result);
+        clearSearch();
+        return searchResults;
+    }
+
 
     return (
         <div className="search-box">
@@ -24,7 +33,7 @@ const SearchBarComponent = () => {
                     onChange={(e) => setSearch(e.target.value)}
                 />
                 <button onClick={clearSearch}><IoCloseOutline className="search-bar-x-icon"/></button>
-                <button onClick={searchForRecipe}><RiSearchLine className="search-bar-search-icon"/></button>
+                <button onClick={() => getSearchResult()}><RiSearchLine className="search-bar-search-icon"/></button>
             </div>
         </div>
     );
