@@ -1,16 +1,10 @@
 import './App.css'
-import SearchBarComponent from './global_components/SearchBarComponent';
-
 
 
 function App() {
   
-
-
- 
-
   return (
-    
+    <p>hej</p>
   );
 
 }

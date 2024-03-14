@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { RiSearchLine } from 'react-icons/ri';
 import { IoCloseOutline } from "react-icons/io5";
 import useGetAllRecipes from "../api/getAllRecipes"
@@ -6,7 +6,7 @@ import { RecipeInterface } from '../Types';
 
 const SearchBarComponent = () => {
     const [search, setSearch] = useState("");
-    const [recipes, setRecipes] = useState<RecipeInterface[]>(useGetAllRecipes())
+    const [recipes] = useState<RecipeInterface[]>(useGetAllRecipes())
     const [searchResults, setSearchResults] = useState<RecipeInterface[]>([])
 
     const clearSearch = () => {
