@@ -108,9 +108,9 @@ const PostRecipe = () => {
         </div>
 
 
-        <button onClick={addIngredient}>Lägg till ingridient</button>
+        <button onClick={addIngredient}>Add ingredient</button>
         <br /><br />
-        <button onClick={addRecipe}>Lägg till recept</button>
+        <button onClick={addRecipe}>Add recipe</button>
         
       </div>
   );

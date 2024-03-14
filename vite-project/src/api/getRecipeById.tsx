@@ -3,7 +3,7 @@ import { API_URL } from '../config';
 import { RecipeInterface } from '../Types';
 
 
-interface SelectedRecipeData {
+export interface SelectedRecipeData {
     [recipeId: string]: RecipeInterface;
   }
   
