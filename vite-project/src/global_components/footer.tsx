@@ -3,7 +3,8 @@ import React from 'react'
 const Footer = () => {
   return (
     <div style={{backgroundColor: 'red'}}>
-      <p>Copyright </p>
+      <button onClick={() => window.location.href = "https://github.com/Janainaacm/Grupparbete-frontend/branches"}></button>
+      <p>Om oss </p>
     </div>
   )
 }
