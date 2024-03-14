@@ -24,16 +24,16 @@ const PostRecipe = () => {
 
         const newIngredient = {
 
-        name: ingredientName,
-        amount: ingredientAmount,
-        unit: ingredientUnit
+            name: ingredientName,
+            amount: ingredientAmount,
+            unit: ingredientUnit
 
         };
 
-    setIngredient([...ingredient, newIngredient]);
-    setIngredientName("");
-    setIngredientAmount(0);
-    setIngredientUnit("");
+        setIngredient([...ingredient, newIngredient]);
+        setIngredientName("");
+        setIngredientAmount(0);
+        setIngredientUnit("");
 
     };
 
@@ -49,10 +49,12 @@ const PostRecipe = () => {
             ingredients: ingredient
         };
 
-        const response = await axios.post(`${API_URL}/recipes`, newRecipe)
+        const response = await axios.post(`${API_URL}/recipes`, newRecipe);
 
         if (response.status === 200) {
-            setRecipes([...recipes, response.data])
+            setRecipes([...recipes, response.data]);
+            alert("Recept tillagt!");
+
             setRecipeName("");
             setIngredientName("");
             setIngredientAmount(0);
@@ -61,9 +63,12 @@ const PostRecipe = () => {
             setTimeInMinutes(0);
             setImageURL("");
             setRating("");
-        }
+        } else {
+            alert("Error")
+        };
         
     };
+
 
 
   return (
@@ -78,19 +83,22 @@ const PostRecipe = () => {
         
         <input type='number' onChange={(event) => setRating(event.target.value)} min={1} max={5} placeholder='Rating'/>
 
-
         <br /><br />
-        <input type='text' value={ingredientName} onChange={(event) => setIngredientName(event.target.value)} placeholder='Ingredient'></input>
-        <input type="number" value={ingredientAmount} onChange={(event) => setIngredientAmount(event.target.valueAsNumber)} placeholder='Amount'/>
-        <input type="text" value={ingredientUnit} onChange={(event) => setIngredientUnit(event.target.value)} placeholder='Unit' />
 
+        <div id='ingredientFields'>
+            <input type='text' value={ingredientName} onChange={(event) => setIngredientName(event.target.value)} placeholder='Ingredient'/>
+            <input type="number" value={ingredientAmount} onChange={(event) => setIngredientAmount(event.target.valueAsNumber)} placeholder='Amount'/>
+            <input type="text" value={ingredientUnit} onChange={(event) => setIngredientUnit(event.target.value)} placeholder='Unit' />
+        </div>
+
+        {/* <button onClick={addIngredientFields}>Lägg till ingredientfält</button> */}
 
         <button onClick={addIngredient}>Lägg till ingredient</button>
         <br /><br />
         <button onClick={addRecipe}>Lägg till recept</button>
         
       </div>
-  )
-}
+  );
+};
 
 export default PostRecipe
