@@ -1,4 +1,3 @@
-import React from 'react';
 import deleteRecipe from '../api/deleteRecipe'; // Importing the deleteRecipe function
 import { useNavigate } from 'react-router-dom';
 

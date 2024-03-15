@@ -1,4 +1,3 @@
-import React from 'react';
 import DeleteButton from '../../global_components/DeleteButton';
 
 const RecipeDetails = ({ recipe, navigate }) => {

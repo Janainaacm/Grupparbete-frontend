@@ -5,7 +5,7 @@ import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/home/homeTest.tsx";
 import RecipePage from "./pages/recipes/RecipePageTest.tsx";
-import AddRecipePage from "./pages/recipes/RecipePageAddRecipeTest.tsx";
+import AddRecipePage from "./pages/recipes/AddRecipePage.tsx";
 
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

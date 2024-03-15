@@ -1,11 +1,6 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useLocation, } from "react-router";
 import Header from "../../global_components/header";
 import NavBar from "../../global_components/NavBar/NavBar";
 import Footer from "../../global_components/footer";
-import SearchBarComponent from '../../global_components/SearchBarComponent';
-import RecipesComponent from "../../global_components/";
-import RecipeDetails from "./RecipeDetails";
 import PostRecipe from "../../api/postRecipe";
 
 const AddRecipePage = () => {
@@ -20,7 +15,7 @@ const AddRecipePage = () => {
         <NavBar/>
       </div>
       <div style={{textAlign: "center"}}>
-        
+       Lägg till recept
       </div>
       <div>
         <PostRecipe/>       
