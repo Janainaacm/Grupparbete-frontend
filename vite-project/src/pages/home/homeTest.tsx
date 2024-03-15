@@ -9,7 +9,7 @@ const Home = () => {
   const navigate = useNavigate()
   return (
     <div>
-      <div>
+      <div style={{textAlign: "center"}}>
         <Header/>
       </div>
       <div>
@@ -22,7 +22,7 @@ const Home = () => {
       <div>
         <DisplayRecipes/>
       </div>
-      <div style={{position: "fixed", bottom: "0", justifyContent: "center", width:"100%", padding: "10px",height:"50px"}}>
+      <div style={{position: "fixed", bottom: "0", justifyContent: "center", width:"100%", padding: "10px",height:"50px", textAlign: "center",}}>
         <Footer />
       </div>
     </div>
