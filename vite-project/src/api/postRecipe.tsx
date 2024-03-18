@@ -104,14 +104,15 @@ const PostRecipe = () => {
         
         {ingredient.map((singleIngredient, index) => (
             <div key={index}>
-            <input value={singleIngredient.name} onChange={(e) => handleIngredientChange(e, index)} name='name' type="text" placeholder='Ingredient'/> 
-            <input value={singleIngredient.amount} onChange={(e) => handleIngredientChange(e, index)} name='amount' type="number" placeholder='Amount'/> 
 
-            <input value={singleIngredient.unit} onChange={(e) => handleIngredientChange(e, index)} name='unit' type="text" placeholder='Unit'/> 
-            {ingredient.length > 1 && (<button type='button' onClick={() => handleIngredientRemove(index)}>Remove</button>)}
+                <input value={singleIngredient.name} onChange={(e) => handleIngredientChange(e, index)} name='name' type="text" placeholder='Ingredient'/> 
+                <input value={singleIngredient.amount} onChange={(e) => handleIngredientChange(e, index)} name='amount' type="number" placeholder='Amount'/> 
+                <input value={singleIngredient.unit} onChange={(e) => handleIngredientChange(e, index)} name='unit' type="text" placeholder='Unit'/> 
+
+                {ingredient.length > 1 && (<button type='button' onClick={() => handleIngredientRemove(index)}>Remove</button>)}
             
-            <br />
-            {ingredient.length - 1 === index && (<div> <br /><button type='button' onClick={handleIngredientAdd} >Add Ingredient?</button></div>) }
+                <br />
+                {ingredient.length - 1 === index && (<div> <br /><button type='button' onClick={handleIngredientAdd} >Add Ingredient?</button></div>) }
             
             </div>
         ))}
