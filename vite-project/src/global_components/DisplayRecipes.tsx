@@ -1,9 +1,7 @@
-import React from "react";
 import { RecipeInterface } from "../Types";
-import PostRecipe from "../api/postRecipe";
 import useGetAllRecipes from "../api/getAllRecipes";
-import getRecipeById, { SelectedRecipeData } from "../api/getRecipeById";
-import { useNavigate, useLocation } from "react-router";
+import getRecipeById from "../api/getRecipeById";
+import { useNavigate} from "react-router";
 
 const useRecipes = () => {
   
@@ -12,8 +10,8 @@ const useRecipes = () => {
 
   const handleClick = async (recipeId: string) => {
     try {
-      const selectedRecipeById: SelectedRecipeData = await getRecipeById(recipeId);
-      const selectedRecipe = selectedRecipeById[recipeId];
+      const recipes: RecipeInterface[] = await getRecipeById(recipeId);
+      const selectedRecipe = recipes[0]; // Extract the first recipe
       const encodedTitle = encodeURIComponent(selectedRecipe.title);
       navigate(`/Recept/${encodedTitle}`, {
         state: { recipe: selectedRecipe },
