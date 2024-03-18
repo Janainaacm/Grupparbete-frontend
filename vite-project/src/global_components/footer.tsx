@@ -3,11 +3,12 @@ import { useHref } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <div style={{backgroundColor: ''}}>
-       <button onClickCapture={() => window.location.href = "https://github.com/Janainaacm/Grupparbete-frontend/branches"}>
-        Om oss</button>
+    <footer style={{backgroundColor: "blue"}}>
+      <h1>footer<button onClickCapture={() => window.location.href = "https://github.com/Janainaacm/Grupparbete-frontend/branches"}>
+        Om oss</button></h1>
+       
      
-    </div>
+    </footer>
   )
 }
 

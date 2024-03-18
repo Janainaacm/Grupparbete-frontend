@@ -17,11 +17,12 @@ function NavBar() {
                 <div style={{ textAlign: 'center' }}>
                     <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'inline-block' }}>
                         <li style={{ display: 'inline-block', margin: '0 10px' }}>
-                            <Link to="/Home" style={{ textDecoration: 'none', color: 'rgb(210,105,30)' }}>Home</Link>
+                            <Link to="/" style={{ textDecoration: 'none', color: 'rgb(210,105,30)' }}>Home</Link>
                         </li>
                         <li style={{ display: 'inline-block', margin: '0 10px' }}>
                             <Link to="/Recept" style={{ textDecoration: 'none', color: 'rgb(210,105,30)' }}>Recept</Link>
                         </li>
+                        
                     </ul>
                 </div>
                 {location.pathname !== '/' ? (

@@ -119,7 +119,7 @@ const PostRecipe = () => {
 
 
         <br /><br />
-        <button onClick={addRecipe}>Lägg till recept</button>
+        <button onClick={addRecipe}>Add recipe</button>
         
       </div>
   );
