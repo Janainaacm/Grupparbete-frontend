@@ -3,11 +3,13 @@ import { RiSearchLine } from "react-icons/ri";
 import { IoCloseOutline } from "react-icons/io5";
 import useGetAllRecipes from "../api/getAllRecipes";
 import { RecipeInterface } from "../Types";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const SearchBarComponent = () => {
   const [search, setSearch] = useState("");
   const recipes = useGetAllRecipes();
   const [searchResults, setSearchResults] = useState<RecipeInterface[]>([]);
+  const navigate = useNavigate();
 
   const clearSearch = () => {
     setSearch("");
@@ -21,8 +23,10 @@ const SearchBarComponent = () => {
             recipe.categories.some(category => category.toLowerCase().includes(lowerCaseSearch))
         );
     });
-    setSearchResults(results);
     clearSearch();
+    navigate("/Recept", {
+      state: results,
+    })
 };
 
   useEffect(() => {
