@@ -22,6 +22,10 @@ function NavBar() {
                         <li style={{ display: 'inline-block', margin: '0 10px' }}>
                             <Link to="/Recept" style={{ textDecoration: 'none', color: 'rgb(210,105,30)' }}>Recept</Link>
                         </li>
+
+                        <li style={{ display: 'inline-block', margin: '0 10px' }}>
+                            <Link to="/Drinks" style={{ textDecoration: 'none', color: 'rgb(210,105,30)' }}>Drinks</Link>
+                        </li>
                         
                     </ul>
                 </div>

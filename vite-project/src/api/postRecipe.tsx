@@ -63,13 +63,13 @@ const PostRecipe = () => {
     
       };
     
-      const handleIngredientRemove = (index:number) => {
+    const handleIngredientRemove = (index:number) => {
         const list = [...ingredient];
         list.splice(index, 1);
         setIngredient(list);
       };
     
-      const handleIngredientChange = (e:any, index:any) => {
+    const handleIngredientChange = (e:any, index:any) => {
         const {name, value} = e.target
         const list:IngredientInterface[] = [...ingredient];
         list[index][name] = value;
@@ -80,9 +80,6 @@ const PostRecipe = () => {
 
   return (
     <div> 
-
-        
-
         <br /><br />
         <input type='text' value={recipeName} onChange={(event) => setRecipeName(event.target.value)} placeholder='Recipe name'></input>
         <input type="text" value={recipeDescription} onChange={(event) => setDescription(event.target.value)} placeholder='Description' />
