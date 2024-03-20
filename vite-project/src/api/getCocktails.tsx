@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 
 interface CocktailInterface {
@@ -10,12 +11,39 @@ interface CocktailInterface {
 
 };
 
+
+
+const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
+const URL2 = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic";
+const URL3 = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="
+
+const getCocktailById = async (idDrink: string): Promise<CocktailInterface[]> => {
+
+  const response = await axios.get(`${URL3+idDrink}`);
+  const cocktail = response.data;
+
+  return [cocktail];
+
+};
+
+/* const handleClick = async (idDrink: string) => {
+
+  const navigate = useNavigate();
+  const cocktails = await getCocktailById(idDrink);
+  const selectedCocktail = cocktails[0];
+  const encodedTitle = encodeURIComponent(selectedCocktail.strDrink);
+  navigate(`/Drinks/${encodedTitle}`, {
+    state: {cocktail: selectedCocktail},
+  })
+
+}; */
+
+
 const AllCocktails = () => {
   
   const [cocktails, setCocktails] = useState<CocktailInterface[]>([]);
 
-  const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
-  const URL2 = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic";
+  
 
   const getCocktails = async () => {
 
