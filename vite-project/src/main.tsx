@@ -11,6 +11,8 @@ import DrinkPage from "./pages/DrinkPage.tsx";
 
 
 
+
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
