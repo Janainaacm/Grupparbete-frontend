@@ -58,17 +58,24 @@ const AllCocktails = () => {
 
   const seeCocktailDetails = async (idDrink: string) => {
 
-      const response = await axios.get(`${URL3+idDrink}`);
+    const response = await axios.get(`${URL3+idDrink}`);
+
+    if (response.status === 200) {
+      
       const cocktail = response.data.drinks;
       const selectedCocktail = cocktail[0];
       const encodedCocktail = encodeURIComponent(selectedCocktail.strDrink);
-      
+        
       navigate(`/Drinks/${encodedCocktail}`, {
         state: { cocktail: selectedCocktail},
       });
 
       console.log("cocktails",cocktails);
       console.log("selectedCocktail.strDrink",selectedCocktail.strDrink);
+
+    };
+
+    
 
   };
   
