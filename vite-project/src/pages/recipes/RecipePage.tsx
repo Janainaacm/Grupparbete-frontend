@@ -1,41 +1,37 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useLocation, } from "react-router";
-import Header from "../../global_components/header";
-import NavBar from "../../global_components/NavBar/NavBar";
-import Footer from "../../global_components/footer";
-import RecipeDetails from "./RecipeDetails";
-
+import React from 'react';
+import NavBar from '../../global_components/NavBar/NavBar';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { RecipeInterface } from '../../Types';
+import RecipeDetails from './RecipeDetails';
 
 const RecipePage = () => {
-  const { recipe } = useLocation().state;
-    
-    const navigate = useNavigate()
-
-  useEffect(() => {
-     console.log(recipe)
-  }, []);
-
+  const navigate = useNavigate();
+  const location = useLocation();
  
-  return (
-    <div>
-      <div>
-        <Header/>
-      </div>
-      <div>
-        <NavBar/>
-      </div>
-      <div style={{textAlign: "center"}}>
-        
-      </div>
-      <div>
-        <RecipeDetails recipe={recipe} navigate={navigate}/>
-        <Footer />
-      </div>
-      <div style={{ justifyContent: "center", width:"100%", padding: "10px",height:"50px"}}>
-        
-      </div>
-    </div>
-  );
-}
 
-export default RecipePage
+  // Extract recipes from location state
+  const showRecipes = location.state as RecipeInterface[];
+
+  // Function to render all recipes
+  const showAll = () => {
+    return (
+      <ul>
+        {showRecipes.map((recipe, index) => (
+          <li key={index}>{recipe.title}</li>
+        ))}         
+      </ul>
+      
+    );
+  };
+
+  return (
+    <>
+      <NavBar />
+      <div style={{ backgroundColor: 'orange' }}>
+        {showAll()} {/* Call the showAll function to render the list */}
+      </div>
+    </>
+  );
+};
+
+export default RecipePage;
