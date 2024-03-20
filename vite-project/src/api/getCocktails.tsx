@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router";
+//import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 
 export interface CocktailInterface {
@@ -66,7 +67,7 @@ const AllCocktails = () => {
       const selectedCocktail = cocktail[0];
       const encodedCocktail = encodeURIComponent(selectedCocktail.strDrink);
         
-      navigate(`/Drinks/${encodedCocktail}`, {
+      navigate(`/Cocktails/${encodedCocktail}`, {
         state: { cocktail: selectedCocktail},
       });
 

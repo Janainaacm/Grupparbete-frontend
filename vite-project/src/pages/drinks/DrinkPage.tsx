@@ -1,7 +1,7 @@
 //import React from 'react'
 import NavBar from '../../global_components/NavBar/NavBar'
 import AllCocktails from '../../api/getCocktails'
-import Header from '../../global_components/header'
+//import Header from '../../global_components/header'
 //import SearchBarComponent from '../../global_components/SearchBarComponent'
 import Footer from '../../global_components/footer'
 
@@ -12,7 +12,7 @@ const DrinkPage = () => {
     <div>
       <p>Drink Page</p>
       <div>
-        <Header/>
+        {/* <Header/> */}
       </div>
       <div>
         <NavBar/>

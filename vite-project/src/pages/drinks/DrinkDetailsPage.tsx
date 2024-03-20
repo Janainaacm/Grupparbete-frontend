@@ -1,7 +1,7 @@
-import Header from "../../global_components/header"
+//import Header from "../../global_components/header"
 import NavBar from "../../global_components/NavBar/NavBar"
 import Footer from "../../global_components/footer"
-import { useLocation, useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router-dom";
 import DrinkDetails from "./DrinkDetails";
 
 
@@ -14,7 +14,7 @@ const DrinkDetailsPage = () => {
         <div>
             <p>DrinkDetailsPage</p>
             <div>
-            <Header/>
+            {/* <Header/> */}
             </div>
 
             <div>

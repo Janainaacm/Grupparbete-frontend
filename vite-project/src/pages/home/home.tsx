@@ -2,7 +2,7 @@ import NavBar from '../../global_components/NavBar/NavBar';
 import Footer from '../../global_components/footer';
 import SearchBarComponent from '../../global_components/SearchBarComponent';
 import DisplayRecipes from '../../global_components/DisplayRecipes';
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import "./HomeStyles.css"
 
 const Home = () => { 

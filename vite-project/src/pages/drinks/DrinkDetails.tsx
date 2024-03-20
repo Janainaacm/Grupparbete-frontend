@@ -1,5 +1,6 @@
-import { NavigateFunction } from "react-router";
+//import { NavigateFunction } from "react-router";
 import { CocktailInterface } from "../../api/getCocktails";
+import { NavigateFunction } from "react-router-dom";
 
 interface DrinkDetailsProps {
     drinks: CocktailInterface,
@@ -12,7 +13,7 @@ const DrinkDetails = ( { drinks, navigate}: DrinkDetailsProps,  ) => {
 
         <div>
             <p>DrinkDetails</p>
-            <button onClick={() => navigate("/Drinks")}>Tillbaka</button>
+            <button onClick={() => navigate("/Cocktails")}>Tillbaka</button>
 
             <div>
                 <h2>{drinks.strDrink}</h2>

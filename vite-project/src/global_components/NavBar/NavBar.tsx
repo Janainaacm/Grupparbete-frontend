@@ -21,7 +21,7 @@ function NavBar() {
             <Nav>
                 <NavLink to="/home" className="nav-link">Hem</NavLink>
                 <NavLink to="/Recept" className="nav-link">Recept</NavLink>
-                <Nav.Link>Cocktails</Nav.Link>
+                <NavLink to="/Cocktails" className="nav-link">Cocktails</NavLink>
                 <Nav.Link>Login</Nav.Link>
             </Nav>
 

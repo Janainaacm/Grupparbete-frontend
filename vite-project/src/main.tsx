@@ -23,8 +23,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Route path="/Recept/:title" element={<RecipePage />} />
         <Route path="/Recept" element={<RecipePage />} />
         <Route path="/AddRecept" element={<AddRecipePage/>} />
-        <Route path="/Drinks" element={<DrinkPage/>} />
-        <Route path="/Drinks/:title" element={<DrinkDetailsPage/>} />
+        <Route path="/Cocktails" element={<DrinkPage/>} />
+        <Route path="/Cocktails/:title" element={<DrinkDetailsPage/>} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
