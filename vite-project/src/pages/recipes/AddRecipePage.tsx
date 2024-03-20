@@ -1,4 +1,3 @@
-import Header from "../../global_components/header";
 import NavBar from "../../global_components/NavBar/NavBar";
 import Footer from "../../global_components/footer";
 import PostRecipe from "../../api/postRecipe";
@@ -8,9 +7,6 @@ const AddRecipePage = () => {
  
   return (
     <div>
-      <div>
-        <Header/>
-      </div>
       <div>
         <NavBar/>
       </div>
