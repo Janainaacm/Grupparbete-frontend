@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation, } from "react-router";
-import Header from "../../global_components/header";
 import NavBar from "../../global_components/NavBar/NavBar";
 import Footer from "../../global_components/footer";
 import RecipeDetails from "./RecipeDetails";
@@ -18,9 +17,6 @@ const RecipePage = () => {
  
   return (
     <div>
-      <div>
-        <Header/>
-      </div>
       <div>
         <NavBar/>
       </div>
