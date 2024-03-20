@@ -1,15 +1,16 @@
-import React from 'react'
-import NavBar from '../global_components/NavBar/NavBar'
-import Drinks from '../api/getDrinks'
-import AllCocktails from '../api/getCocktails'
-import Header from '../global_components/header'
-import SearchBarComponent from '../global_components/SearchBarComponent'
-import Footer from '../global_components/footer'
+//import React from 'react'
+import NavBar from '../../global_components/NavBar/NavBar'
+import AllCocktails from '../../api/getCocktails'
+import Header from '../../global_components/header'
+//import SearchBarComponent from '../../global_components/SearchBarComponent'
+import Footer from '../../global_components/footer'
 
 const DrinkPage = () => {
+  
   return (
 
     <div>
+      <p>Drink Page</p>
       <div>
         <Header/>
       </div>
@@ -18,8 +19,6 @@ const DrinkPage = () => {
       </div>
       <div style={{textAlign: "center"}}>
         <br />
-        {/* <SearchBarComponent />
-        <button onClick={()=>navigate("/AddRecept")}>Lägg Till recept</button> */}
       </div>
       <div>
         <AllCocktails></AllCocktails>

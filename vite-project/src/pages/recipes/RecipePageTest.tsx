@@ -12,7 +12,7 @@ const RecipePage = () => {
     const navigate = useNavigate()
 
   useEffect(() => {
-     console.log(recipe)
+     console.log("recipe",recipe)
   }, []);
 
  
