@@ -31,7 +31,7 @@ const RecipePage = () => {
         <RecipeDetails recipe={recipe} navigate={navigate}/>
         <Footer />
       </div>
-      <div style={{position: "fixed", bottom: "0", justifyContent: "center", width:"100%", padding: "10px",height:"50px"}}>
+      <div style={{ justifyContent: "center", width:"100%", padding: "10px",height:"50px"}}>
         
       </div>
     </div>
