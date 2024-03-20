@@ -1,14 +1,38 @@
 import DeleteButton from '../../global_components/DeleteButton';
+import './RecipeDetails.css'
 
 const RecipeDetails = ({ recipe, navigate }) => {
   return (
-    <div>
-      <h2>{recipe.title}</h2>
-      <img src={recipe.imageUrl} alt={recipe.title} style={{ width: '200px', height: '200px', marginBottom: '5px' }} />
-      <p>Description: {recipe.description}</p>
-      <p>ID: {recipe._id}</p>
-      <p>Time: {recipe.timeInMins} minutes</p>
-      <p>Categories: {recipe.categories.join(', ')}</p>
+<div className="flex-container">
+  <div className="recipe-card">
+    <div className="recipe-section">
+      <div className="recipe-image-container">
+        <img
+          src={recipe.imageUrl}
+          alt={recipe.title}
+          className="recipe-image"
+        />
+      </div>
+      <div className="recipe-details-container">
+        <h1>{recipe.title}</h1>
+        <p><strong>Description:</strong> <br />{recipe.description}</p>
+        <p><strong>Time:</strong> {recipe.timeInMins} minutes</p>
+        <p><strong>Categories:</strong> {recipe.categories.join(', ')}</p>
+        <p><strong>Rating:</strong> {recipe.avgRating}</p>
+        <button className="add-to-cart-button">Add to cart</button>
+      </div>
+    </div>
+  </div>
+  <div className="card-separator">
+    <div className="instructions-container">
+      <h3>Instructions:</h3>
+      <ol style={{ paddingLeft: '1px', whiteSpace: 'pre-wrap' }}>
+        {recipe.instructions && recipe.instructions.map((instruction, index) => (
+          <ul key={index}>{instruction}</ul>
+        ))}
+      </ol>
+    </div>
+    <div className="ingredients-container">
       <h3>Ingredients:</h3>
       <ul>
         {recipe.ingredients.map((ingredient, index) => (
@@ -17,15 +41,11 @@ const RecipeDetails = ({ recipe, navigate }) => {
           </li>
         ))}
       </ul>
-      <h3>Instructions:</h3>
-      <ol>
-        {recipe.instructions.map((instruction, index) => (
-          <li key={index}>{instruction}</li>
-        ))}
-      </ol>
-      <DeleteButton recipeId={recipe._id}/>
-      <button onClick={() => navigate("/")}>Tillbaka</button>
-    </div>
+    </div>    
+  </div>
+  <DeleteButton recipeId={recipe._id}/>
+  <button onClick={() => navigate("/")}>Tillbaka</button>
+</div>
   );
 };
 
