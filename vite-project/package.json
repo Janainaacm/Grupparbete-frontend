@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-navigation/native": "^6.1.17",
     "axios": "^1.6.7",
     "bootstrap": "^5.3.3",
     "icons": "^1.0.0",
