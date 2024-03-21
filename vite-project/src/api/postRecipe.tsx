@@ -77,9 +77,21 @@ const PostRecipe = () => {
       };
 
 
+      const array = ["test", "test 2", "test3"]
+
+      const filterArray = () => {
+        console.log("array",array)
+
+        const filteredArray = array.filter((currentArray) => currentArray === "test");
+    
+        console.log("filteredArray",filteredArray)
+    
+    };
 
   return (
     <div> 
+
+        <button onClick={filterArray}>Filtrera Array</button>
         <br /><br />
         <input type='text' value={recipeName} onChange={(event) => setRecipeName(event.target.value)} placeholder='Recipe name'></input>
         <input type="text" value={recipeDescription} onChange={(event) => setDescription(event.target.value)} placeholder='Description' />
