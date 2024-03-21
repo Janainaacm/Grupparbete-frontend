@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./pages/home/homeTest.tsx";
+import Home from "./pages/home/home.tsx";
 import RecipePage from "./pages/recipes/RecipePage.tsx";
 import AddRecipePage from "./pages/recipes/AddRecipePage.tsx";
 

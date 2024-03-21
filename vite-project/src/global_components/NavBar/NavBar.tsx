@@ -10,7 +10,7 @@ function NavBar() {
     return (
         <>
         <Navbar bg='dark' variant='dark'
-        sticky='top' expand="lg" collapseOnSelect>
+        expand="lg" collapseOnSelect>
             <Navbar.Brand>
                 <img src={burger} alt="" style={{ maxWidth: '50px', marginRight: '10px', marginLeft: "10px"}}/>
                 ReceptKungen
@@ -22,7 +22,6 @@ function NavBar() {
                     </div>
                 )}
 
-
             <Navbar.Toggle/>
             <Navbar.Collapse className='justify-content-end' style={{ marginRight: '15px'}}>
             <Nav>
@@ -31,12 +30,6 @@ function NavBar() {
                 <Nav.Link>Cocktails</Nav.Link>
                 <Nav.Link>Login</Nav.Link>
             </Nav>
-
-            
-
-
-            
-
         </Navbar.Collapse>
         </Navbar>
 
