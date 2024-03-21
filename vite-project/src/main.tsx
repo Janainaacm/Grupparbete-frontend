@@ -7,7 +7,7 @@ import RecipePage from "./pages/recipes/RecipePage.tsx";
 import AddRecipePage from "./pages/recipes/AddRecipePage.tsx";
 import DrinkPage from "./pages/drinks/DrinkPage.tsx";
 import DrinkDetailsPage from "./pages/drinks/DrinkDetailsPage.tsx";
-
+import RecipeDetails from "./pages/recipes/RecipeDetails.tsx";
 
 
 
@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Home" element={<Home />} />
-        <Route path="/Recept/:title" element={<RecipePage />} />
+        <Route path="/Recept/:title" element={<RecipeDetails />} />
         <Route path="/Recept" element={<RecipePage />} />
         <Route path="/AddRecept" element={<AddRecipePage/>} />
         <Route path="/Cocktails" element={<DrinkPage/>} />
