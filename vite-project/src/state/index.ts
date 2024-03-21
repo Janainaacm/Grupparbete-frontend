@@ -6,10 +6,10 @@ import { API_URL } from "../config";
 interface RecipeState {
   recipes: RecipeInterface[];
   fetchRecipes: () => Promise<void>;
-  postRecipe: () => Promise<void>;
+  postRecipe: (newRecipe: RecipeInterface) => Promise<number>;
 }
 
-const useRecipeState = create<RecipeState>((set) => ({
+export const useRecipeState = create<RecipeState>((set) => ({
   
   recipes: [],
 
@@ -28,14 +28,18 @@ const useRecipeState = create<RecipeState>((set) => ({
     }
   },
 
-  postRecipe: async () => {
+  postRecipe: async (newRecipe: RecipeInterface) => {
     const {fetchRecipes} = useRecipeState()
+    
     try {
-      const response = await axios.post<RecipeInterface>(`${API_URL}/recipes`);
+      const response = await axios.post(`${API_URL}/recipes`, newRecipe);
 
       if (response.status === 200) {
-        console.log('Success')
+        console.log('Post Success')
         fetchRecipes()
+        return response.status 
+      }else{
+        return response.status
       }
     } catch (error) {
       console.log();
@@ -43,4 +47,4 @@ const useRecipeState = create<RecipeState>((set) => ({
   },
 }));
 
-export default useRecipeState;
+

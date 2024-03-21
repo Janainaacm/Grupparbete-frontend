@@ -2,11 +2,13 @@ import { API_URL } from '../config'
 import { RecipeInterface, IngredientInterface } from '../Types';
 import { useState } from 'react';
 import axios from 'axios';
+import {useRecipeState} from '../state';
 
 
 
 const PostRecipe = () => {
-
+    
+    const {postRecipe} = useRecipeState()
     const [recipes, setRecipes] = useState<RecipeInterface[]>([]);
     const [recipeName, setRecipeName] = useState("");
     const [recipeDescription, setDescription] = useState("");
@@ -22,7 +24,6 @@ const PostRecipe = () => {
 
 
     const addRecipe = async () => {
-
         const categoryArray = categories.split(',').map((category) => category.trim());
         const instructionsArray = instructions.split(",").map((instructions) => instructions.trim());
 
@@ -37,10 +38,11 @@ const PostRecipe = () => {
             ingredients: ingredient
         };
 
-        const response = await axios.post(`${API_URL}/recipes`, newRecipe);
+        const status = await postRecipe(newRecipe)
+        // const response = await axios.post(`${API_URL}/recipes`, newRecipe);
 
-        if (response.status === 200) {
-            setRecipes([...recipes, response.data]);
+        if (status === 200) {
+            //setRecipes([...recipes, response.data]);
             alert("Recept tillagt!");
 
             setRecipeName("");
