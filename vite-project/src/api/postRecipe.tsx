@@ -2,11 +2,11 @@ import { API_URL } from '../config'
 import { RecipeInterface, IngredientInterface } from '../Types';
 import { useState } from 'react';
 import axios from 'axios';
-
+import { useRecipeState } from '../state';
 
 
 const PostRecipe = () => {
-
+    const {postRecipe} = useRecipeState() // NICK
     const [recipes, setRecipes] = useState<RecipeInterface[]>([]);
     const [recipeName, setRecipeName] = useState("");
     const [recipeDescription, setDescription] = useState("");
@@ -36,11 +36,11 @@ const PostRecipe = () => {
             instructions: instructionsArray,
             ingredients: ingredient
         };
-
+       // const response = await postRecipe(newRecipe)
         const response = await axios.post(`${API_URL}/recipes`, newRecipe);
 
-        if (response.status === 200) {
-            setRecipes([...recipes, response.data]);
+        if (response.data === 200) { //(response === 200) 
+           setRecipes([...recipes, response.data]);
             alert("Recept tillagt!");
 
             setRecipeName("");
