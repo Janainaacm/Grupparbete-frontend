@@ -4,6 +4,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import useGetAllRecipes from "../api/getAllRecipes";
 import { RecipeInterface } from "../Types";
 import { Navigate, useNavigate } from "react-router-dom";
+import "./css_components/SearchBarComponent.css"
 
 const SearchBarComponent = () => {
   const [search, setSearch] = useState("");
@@ -39,8 +40,8 @@ const SearchBarComponent = () => {
 
 
   return (
-    <div className="search-box">
-      <div className="search-bar">
+    <div className="search_container">
+      <div className="search__input">
         <input
           value={search}
           placeholder="Search..."
@@ -54,10 +55,10 @@ const SearchBarComponent = () => {
         <button onClick={clearSearch}>
           <IoCloseOutline className="search-bar-x-icon" />
         </button>
-        <button onClick={getSearchResult}>
+        <button className="search-icon" onClick={getSearchResult}>
           <RiSearchLine className="search-bar-search-icon" />
         </button>
-      </div>
+        </div>
     </div>
   );
 };
