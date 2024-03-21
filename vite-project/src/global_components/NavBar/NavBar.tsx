@@ -10,29 +10,27 @@ function NavBar() {
     return (
         <>
         <Navbar bg='dark' variant='dark'
-        sticky='top' expand="lg" collapseOnSelect>
+        expand="lg" collapseOnSelect>
             <Navbar.Brand>
                 <img src={burger} alt="" style={{ maxWidth: '50px', marginRight: '10px', marginLeft: "10px"}}/>
                 ReceptKungen
             </Navbar.Brand>
 
+            {location.pathname !== '/' && location.pathname !== '/home' && (
+                    <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+                        <SearchBarComponent />
+                    </div>
+                )}
+
             <Navbar.Toggle/>
-            <Navbar.Collapse>
+            <Navbar.Collapse className='justify-content-end' style={{ marginRight: '15px'}}>
             <Nav>
                 <NavLink to="/home" className="nav-link">Hem</NavLink>
                 <NavLink to="/Recept" className="nav-link">Recept</NavLink>
                 <Nav.Link>Cocktails</Nav.Link>
                 <Nav.Link>Login</Nav.Link>
             </Nav>
-
-
-            {location.pathname !== '/' && location.pathname !== '/home' && (
-        <div>
-            <SearchBarComponent />
-        </div>
-)}
-
-            </Navbar.Collapse>
+        </Navbar.Collapse>
         </Navbar>
 
         </>
