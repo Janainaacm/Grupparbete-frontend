@@ -19,8 +19,27 @@ const PostRecipe = () => {
     const [categories, setCategories] = useState("");
     const [instructions, setInstructions] = useState("");
 
-    /* const [ingredient, setIngredient] = useState<IngredientInterface[]>([]); */
-    const [ingredient, setIngredient] = useState<IngredientInterface[]>([{ name: "", amount: 0, unit:"" }]);
+    const [ingredient, setIngredient] = useState<IngredientInterface[]>([]);
+    const [ingredientName, setIngredientName] = useState("");
+    const [ingredientAmount, setIngredientAmount] = useState(Number);
+    const [ingredientUnit, setIngredientUnit] = useState("");
+
+    const addIngredient = () => {
+
+        const newIngredient = {
+
+            name: ingredientName,
+            amount: ingredientAmount,
+            unit: ingredientUnit
+
+        };
+
+        setIngredient([...ingredient, newIngredient]);
+        setIngredientName("");
+        setIngredientAmount(0);
+        setIngredientUnit("");
+
+    };
 
 
     const addRecipe = async () => {
@@ -38,52 +57,33 @@ const PostRecipe = () => {
             ingredients: ingredient
         };
 
-        const status = await postRecipe(newRecipe)
+        const response = await postRecipe(newRecipe)
         // const response = await axios.post(`${API_URL}/recipes`, newRecipe);
 
-        if (status === 200) {
+        if (response === 200) {
             //setRecipes([...recipes, response.data]);
             alert("Recept tillagt!");
 
             setRecipeName("");
+            setIngredientName("");
+            setIngredientAmount(0);
+            setIngredient([]);
             setDescription("");
             setTimeInMinutes(0);
             setImageURL("");
             setRating("");
             setCategories("");
             setInstructions("");
-            setIngredient([{name: "", amount: 0, unit: ""}]);
         } else {
             alert("Error")
         };
         
     };
 
-    const handleIngredientAdd = () => {
-
-        setIngredient([...ingredient, { name: "", amount: 0, unit: ""}])
-    
-      };
-    
-      const handleIngredientRemove = (index:number) => {
-        const list = [...ingredient];
-        list.splice(index, 1);
-        setIngredient(list);
-      };
-    
-      const handleIngredientChange = (e:any, index:any) => {
-        const {name, value} = e.target
-        const list:IngredientInterface[] = [...ingredient];
-        list[index][name] = value;
-        setIngredient(list);
-      };
-
 
 
   return (
     <div> 
-
-        
 
         <br /><br />
         <input type='text' value={recipeName} onChange={(event) => setRecipeName(event.target.value)} placeholder='Recipe name'></input>
@@ -103,23 +103,14 @@ const PostRecipe = () => {
         <input type="text" onChange={(event) => setCategories(event.target.value)} placeholder='Categories'/> 
 
         <br /><br />
-        
-        {ingredient.map((singleIngredient, index) => (
-            <div key={index}>
-
-                <input value={singleIngredient.name} onChange={(e) => handleIngredientChange(e, index)} name='name' type="text" placeholder='Ingredient'/> 
-                <input value={singleIngredient.amount} onChange={(e) => handleIngredientChange(e, index)} name='amount' type="number" placeholder='Amount'/> 
-                <input value={singleIngredient.unit} onChange={(e) => handleIngredientChange(e, index)} name='unit' type="text" placeholder='Unit'/> 
-
-                {ingredient.length > 1 && (<button type='button' onClick={() => handleIngredientRemove(index)}>Remove</button>)}
-            
-                <br />
-                {ingredient.length - 1 === index && (<div> <br /><button type='button' onClick={handleIngredientAdd} >Add Ingredient?</button></div>) }
-            
-            </div>
-        ))}
+        <div id='ingredientFields'>
+            <input type='text' value={ingredientName} onChange={(event) => setIngredientName(event.target.value)} placeholder='Ingredient'/>
+            <input type="number" value={ingredientAmount} onChange={(event) => setIngredientAmount(event.target.valueAsNumber)} placeholder='Amount'/>
+            <input type="text" value={ingredientUnit} onChange={(event) => setIngredientUnit(event.target.value)} placeholder='Unit' />
+        </div>
 
 
+        <button onClick={addIngredient}>Add ingredient</button>
         <br /><br />
         <button onClick={addRecipe}>Add recipe</button>
         

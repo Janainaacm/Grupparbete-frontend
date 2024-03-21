@@ -2,7 +2,7 @@ export interface RecipeInterface {
     _id?: string
     title: string
     description: string
-    ratings?: number[]
+    avgRating?: number[]
     imageUrl: string
     timeInMins: number
     categories: string[]

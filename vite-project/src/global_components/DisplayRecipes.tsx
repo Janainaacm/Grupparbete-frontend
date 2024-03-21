@@ -1,36 +1,35 @@
 import { RecipeInterface } from "../Types";
-import useGetAllRecipes from "../api/getAllRecipes";
 import getRecipeById from "../api/getRecipeById";
 import { useNavigate} from "react-router";
-import useRecipeState from "../state";
+import {useRecipeState} from "../state";
 import { useEffect } from "react";
 
 const useRecipes = () => {
-  const {recipes, fetchRecipes} = useRecipeState()
+  const {recipeList, fetchRecipeList} = useRecipeState()
   //const recipes = useRecipeState((state) => state.recipes)
   //const fetch = useRecipeState((state) => state.fetchRecipes)
   const navigate = useNavigate();
   
   useEffect(() => {
-    fetchRecipes()
+    fetchRecipeList()
   },[])
   
-  // const handleClick = async (recipeId: string) => {
-  //   try {
-  //     const recipes: RecipeInterface[] = await getRecipeById(recipeId);
-  //     const selectedRecipe = recipes[0]; // Extract the first recipe
-  //     const encodedTitle = encodeURIComponent(selectedRecipe.title);
-  //     navigate(`/Recept/${encodedTitle}`, {
-  //       state: { recipe: selectedRecipe },
-  //     });
-  //   } catch (error) {
-  //     console.error("Error fetching recipe:", error);
-  //   }
-  // };
+  const handleClick = async (recipeId: string) => {
+    try {
+      const recipes: RecipeInterface[] = await getRecipeById(recipeId);
+      const selectedRecipe = recipes[0]; // Extract the first recipe
+      const encodedTitle = encodeURIComponent(selectedRecipe.title);
+      navigate(`/Recept/${encodedTitle}`, {
+        state: { recipe: selectedRecipe },
+      });
+    } catch (error) {
+      console.error("Error fetching recipe:", error);
+    }
+  };
 
   return (
     <div style={{ display: "flex", flexWrap: "wrap" }}>
-      {recipes.map((recipe) => (
+      {recipeList.map((recipe) => (
         <div
           key={recipe._id}
           style={{
@@ -56,14 +55,15 @@ const useRecipes = () => {
             />
           </button>
           <div>{recipe.title}</div>
+          <div style={{fontSize: "12px"}}>{recipe.categories}</div>
         </div>
       ))}
     </div>
   );
 };
 
-const DisplayRecipes = () => {
-  return <div>{useRecipes()}</div>;
+const DisplayRecipes = ({ recipes }: { recipes: RecipeInterface[] }): JSX.Element => {
+  return <div>{useRecipes(recipes)}</div>;
 };
 
 export default DisplayRecipes;
