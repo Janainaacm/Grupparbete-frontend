@@ -9,7 +9,8 @@ function NavBar() {
 
     return (
         <>
-        <Navbar bg='dark' variant='dark'
+        <Navbar style={{backgroundColor: '#b5b58f'}} 
+        variant='dark'
         expand="lg" collapseOnSelect>
             <Navbar.Brand>
                 <img src={burger} alt="" style={{ maxWidth: '50px', marginRight: '10px', marginLeft: "10px"}}/>
