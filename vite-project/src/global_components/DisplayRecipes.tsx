@@ -10,11 +10,11 @@ const useRecipes = () => {
 
   const handleClick = async (recipeId: string) => {
     try {
-      const recipes: RecipeInterface[] = await getRecipeById(recipeId);
+      const recipes: RecipeInterface[] = await getRecipeById(recipeId); //GET function, store in array
       const selectedRecipe = recipes[0]; // Extract the first recipe
-      const encodedTitle = encodeURIComponent(selectedRecipe.title);
+      const encodedTitle = encodeURIComponent(selectedRecipe.title); // Encode the title of the selected recipe to use in URL
       navigate(`/Recept/${encodedTitle}`, {
-        state: { recipe: selectedRecipe },
+        state: { recipe: selectedRecipe }, // Navigate to next page with state of recipe as the selected recipe and the title in URL
       });
     } catch (error) {
       console.error("Error fetching recipe:", error);
@@ -49,6 +49,7 @@ const useRecipes = () => {
             />
           </button>
           <div>{recipe.title}</div>
+          <div style={{fontSize: "12px"}}>{recipe.categories}</div>
         </div>
       ))}
     </div>

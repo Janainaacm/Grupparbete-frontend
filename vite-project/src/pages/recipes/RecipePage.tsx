@@ -2,10 +2,12 @@ import React from 'react';
 import NavBar from '../../global_components/NavBar/NavBar';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { RecipeInterface } from '../../Types';
+import RecipeDetails from './RecipeDetails';
 
 const RecipePage = () => {
   const navigate = useNavigate();
   const location = useLocation();
+ 
 
   // Extract recipes from location state
   const showRecipes = location.state as RecipeInterface[];
@@ -16,8 +18,9 @@ const RecipePage = () => {
       <ul>
         {showRecipes.map((recipe, index) => (
           <li key={index}>{recipe.title}</li>
-        ))}
+        ))}         
       </ul>
+      
     );
   };
 
