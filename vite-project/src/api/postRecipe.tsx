@@ -55,11 +55,12 @@ const PostRecipe = () => {
             instructions: instructionsArray,
             ingredients: ingredient
         };
-       // const response = await postRecipe(newRecipe)
-        const response = await axios.post(`${API_URL}/recipes`, newRecipe);
 
-        if (response.data === 200) { //(response === 200) 
-           setRecipes([...recipes, response.data]);
+        const response:number = await postRecipe(newRecipe)
+       // const response = await axios.post(`${API_URL}/recipes`, newRecipe);
+        console.log(response)
+        if  (response === 200) {// (response.data === 200)
+        //   setRecipes([...recipes, response.data]);
             alert("Recept tillagt!");
 
             setRecipeName("");

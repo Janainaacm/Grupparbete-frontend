@@ -3,18 +3,6 @@ import { RecipeInterface } from "../Types"
 import axios from "axios"
 import { API_URL } from "../config"
 
-
-
-/*
-  const {recipeList, fetchRecipeList} = useRecipeState()  // bryter ut allt som hämtas från global state, 
-                                                       // i senare komponenter behövs bara {recipe}.
-
-  useEffect(() => {    // kör fetchAllRecipes en gång så tidigt som möjligt, detta fyller listan med recipes via API.
-    fetchRecipeList()  // Behöver bara köras en gång så högt i kod-hierarkin det går.
-  },[fetchRecipeList??]) // 
-*/
-
-
 // interface som definierar struktur och funktionerna för global state
 interface RecipeState {
     recipeList: RecipeInterface[]
@@ -45,10 +33,17 @@ fetchRecipeList: async () => {
 postRecipe: async (newRecipe:RecipeInterface) => {
     const {fetchRecipeList} = useRecipeState()
     try {
+        
         const response = await axios.post(`${API_URL}/recipes`, newRecipe) 
+        if (response.status === 200) {
             console.log("Success!")
             fetchRecipeList()
             return response.status
+        }
+        else {
+            console.log("Error fetching")
+            return response.status
+        }
     } catch (error) {
         console.log ('error', error)
         throw error
