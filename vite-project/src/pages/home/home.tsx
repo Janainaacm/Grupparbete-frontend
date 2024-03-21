@@ -4,9 +4,16 @@ import SearchBarComponent from '../../global_components/SearchBarComponent';
 import DisplayRecipes from '../../global_components/DisplayRecipes';
 import { useNavigate } from "react-router-dom";
 import "./HomeStyles.css"
+import { useEffect } from 'react';
 
 const Home = () => { 
   const navigate = useNavigate()
+
+  useEffect(() => {
+    return () => {      
+    };
+  }, []);
+  
   return (
     <div>
       <div>
@@ -19,7 +26,7 @@ const Home = () => {
       <div>
         <DisplayRecipes/>
       </div>
-      <div style={{position: "fixed", bottom: "0", justifyContent: "center", width:"100%", padding: "10px",height:"50px"}}>
+      <div style={{ justifyContent: "center", width:"100%", padding: "10px",height:"50px", textAlign: "center",}}>
         <Footer />
       </div>
     </div>

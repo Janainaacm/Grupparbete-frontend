@@ -17,8 +17,8 @@ const PostRecipe = () => {
     const [categories, setCategories] = useState("");
     const [instructions, setInstructions] = useState("");
 
-    /* const [ingredient, setIngredient] = useState<IngredientInterface[]>([]); */
     const [ingredient, setIngredient] = useState<IngredientInterface[]>([{ name: "", amount: 0, unit:"" }]);
+
 
 
     const addRecipe = async () => {
@@ -44,13 +44,13 @@ const PostRecipe = () => {
             alert("Recept tillagt!");
 
             setRecipeName("");
+            setIngredient([]);
             setDescription("");
             setTimeInMinutes(0);
             setImageURL("");
             setRating("");
             setCategories("");
             setInstructions("");
-            setIngredient([{name: "", amount: 0, unit: ""}]);
         } else {
             alert("Error")
         };
@@ -91,7 +91,6 @@ const PostRecipe = () => {
   return (
     <div> 
 
-        <button onClick={filterArray}>Filtrera Array</button>
         <br /><br />
         <input type='text' value={recipeName} onChange={(event) => setRecipeName(event.target.value)} placeholder='Recipe name'></input>
         <input type="text" value={recipeDescription} onChange={(event) => setDescription(event.target.value)} placeholder='Description' />
@@ -110,7 +109,7 @@ const PostRecipe = () => {
         <input type="text" onChange={(event) => setCategories(event.target.value)} placeholder='Categories'/> 
 
         <br /><br />
-        
+
         {ingredient.map((singleIngredient, index) => (
             <div key={index}>
 
@@ -125,7 +124,6 @@ const PostRecipe = () => {
             
             </div>
         ))}
-
 
         <br /><br />
         <button onClick={addRecipe}>Add recipe</button>
