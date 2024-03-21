@@ -17,27 +17,8 @@ const PostRecipe = () => {
     const [categories, setCategories] = useState("");
     const [instructions, setInstructions] = useState("");
 
-    const [ingredient, setIngredient] = useState<IngredientInterface[]>([]);
-    const [ingredientName, setIngredientName] = useState("");
-    const [ingredientAmount, setIngredientAmount] = useState(Number);
-    const [ingredientUnit, setIngredientUnit] = useState("");
+    const [ingredient, setIngredient] = useState<IngredientInterface[]>([{ name: "", amount: 0, unit:"" }]);
 
-    const addIngredient = () => {
-
-        const newIngredient = {
-
-            name: ingredientName,
-            amount: ingredientAmount,
-            unit: ingredientUnit
-
-        };
-
-        setIngredient([...ingredient, newIngredient]);
-        setIngredientName("");
-        setIngredientAmount(0);
-        setIngredientUnit("");
-
-    };
 
 
     const addRecipe = async () => {
@@ -64,8 +45,6 @@ const PostRecipe = () => {
             alert("Recept tillagt!");
 
             setRecipeName("");
-            setIngredientName("");
-            setIngredientAmount(0);
             setIngredient([]);
             setDescription("");
             setTimeInMinutes(0);
@@ -79,7 +58,36 @@ const PostRecipe = () => {
         
     };
 
+    const handleIngredientAdd = () => {
 
+        setIngredient([...ingredient, { name: "", amount: 0, unit: ""}])
+    
+      };
+    
+    const handleIngredientRemove = (index:number) => {
+        const list = [...ingredient];
+        list.splice(index, 1);
+        setIngredient(list);
+      };
+    
+    const handleIngredientChange = (e:any, index:any) => {
+        const {name, value} = e.target
+        const list:IngredientInterface[] = [...ingredient];
+        list[index][name] = value;
+        setIngredient(list);
+      };
+
+
+      const array = ["test", "test 2", "test3"]
+
+      const filterArray = () => {
+        console.log("array",array)
+
+        const filteredArray = array.filter((currentArray) => currentArray === "test");
+    
+        console.log("filteredArray",filteredArray)
+    
+    };
 
   return (
     <div> 
@@ -102,14 +110,22 @@ const PostRecipe = () => {
         <input type="text" onChange={(event) => setCategories(event.target.value)} placeholder='Categories'/> 
 
         <br /><br />
-        <div id='ingredientFields'>
-            <input type='text' value={ingredientName} onChange={(event) => setIngredientName(event.target.value)} placeholder='Ingredient'/>
-            <input type="number" value={ingredientAmount} onChange={(event) => setIngredientAmount(event.target.valueAsNumber)} placeholder='Amount'/>
-            <input type="text" value={ingredientUnit} onChange={(event) => setIngredientUnit(event.target.value)} placeholder='Unit' />
-        </div>
 
+        {ingredient.map((singleIngredient, index) => (
+            <div key={index}>
 
-        <button onClick={addIngredient}>Add ingredient</button>
+                <input value={singleIngredient.name} onChange={(e) => handleIngredientChange(e, index)} name='name' type="text" placeholder='Ingredient'/> 
+                <input value={singleIngredient.amount} onChange={(e) => handleIngredientChange(e, index)} name='amount' type="number" placeholder='Amount'/> 
+                <input value={singleIngredient.unit} onChange={(e) => handleIngredientChange(e, index)} name='unit' type="text" placeholder='Unit'/> 
+
+                {ingredient.length > 1 && (<button type='button' onClick={() => handleIngredientRemove(index)}>Remove</button>)}
+            
+                <br />
+                {ingredient.length - 1 === index && (<div> <br /><button type='button' onClick={handleIngredientAdd} >Add Ingredient?</button></div>) }
+            
+            </div>
+        ))}
+
         <br /><br />
         <button onClick={addRecipe}>Add recipe</button>
         
