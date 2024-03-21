@@ -7,7 +7,6 @@ import RecipeDetails from './RecipeDetails';
 const RecipePage = () => {
   const navigate = useNavigate();
   const location = useLocation();
- 
 
   // Extract recipes from location state
   const showRecipes = location.state as RecipeInterface[];
