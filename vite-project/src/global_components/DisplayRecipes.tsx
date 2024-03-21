@@ -6,27 +6,27 @@ import useRecipeState from "../state";
 import { useEffect } from "react";
 
 const useRecipes = () => {
-  
-  const recipes = useRecipeState((state) => state.recipes)
-  const fetch = useRecipeState((state) => state.fetchRecipes)
+  const {recipes, fetchRecipes} = useRecipeState()
+  //const recipes = useRecipeState((state) => state.recipes)
+  //const fetch = useRecipeState((state) => state.fetchRecipes)
   const navigate = useNavigate();
   
   useEffect(() => {
-    fetch()
+    fetchRecipes()
   },[])
-
-  const handleClick = async (recipeId: string) => {
-    try {
-      const recipes: RecipeInterface[] = await getRecipeById(recipeId);
-      const selectedRecipe = recipes[0]; // Extract the first recipe
-      const encodedTitle = encodeURIComponent(selectedRecipe.title);
-      navigate(`/Recept/${encodedTitle}`, {
-        state: { recipe: selectedRecipe },
-      });
-    } catch (error) {
-      console.error("Error fetching recipe:", error);
-    }
-  };
+  
+  // const handleClick = async (recipeId: string) => {
+  //   try {
+  //     const recipes: RecipeInterface[] = await getRecipeById(recipeId);
+  //     const selectedRecipe = recipes[0]; // Extract the first recipe
+  //     const encodedTitle = encodeURIComponent(selectedRecipe.title);
+  //     navigate(`/Recept/${encodedTitle}`, {
+  //       state: { recipe: selectedRecipe },
+  //     });
+  //   } catch (error) {
+  //     console.error("Error fetching recipe:", error);
+  //   }
+  // };
 
   return (
     <div style={{ display: "flex", flexWrap: "wrap" }}>
