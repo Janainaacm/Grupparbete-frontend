@@ -1,5 +1,5 @@
 export interface RecipeInterface {
-    _id: string
+    _id?: string
     title: string
     description: string
     avgRating?: number[]
