@@ -2,11 +2,18 @@ import { RecipeInterface } from "../Types";
 import useGetAllRecipes from "../api/getAllRecipes";
 import getRecipeById from "../api/getRecipeById";
 import { useNavigate} from "react-router";
+import useRecipeState from "../state";
+import { useEffect } from "react";
 
 const useRecipes = () => {
   
-  const recipes = useGetAllRecipes();
+  const recipes = useRecipeState((state) => state.recipes)
+  const fetch = useRecipeState((state) => state.fetchRecipes)
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    fetch()
+  },[])
 
   const handleClick = async (recipeId: string) => {
     try {

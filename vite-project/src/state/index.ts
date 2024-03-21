@@ -19,14 +19,13 @@ const useRecipeState = create<RecipeState>((set) => ({
 
         if (response.status === 200) {
           set((state) => ({
-            ...state,
             recipes: response.data,
           }));
           console.log(response.data);
         }
       } catch (error) {
         console.error("Fel vid hämtning av recept:", error);
-        // Lägg till lämplig felhantering här
+        
       }
   },
 }));
