@@ -1,26 +1,19 @@
 import { RecipeInterface } from "../Types";
+import useGetAllRecipes from "../api/getAllRecipes";
 import getRecipeById from "../api/getRecipeById";
 import { useNavigate} from "react-router";
-import {useRecipeState} from "../state";
-import { useEffect } from "react";
 
-const useRecipes = () => {
-  const {recipeList, fetchRecipeList} = useRecipeState()
-  //const recipes = useRecipeState((state) => state.recipes)
-  //const fetch = useRecipeState((state) => state.fetchRecipes)
+const useRecipes = (recipes: RecipeInterface[]) => {
+
   const navigate = useNavigate();
-  
-  useEffect(() => {
-    fetchRecipeList()
-  },[])
-  
+
   const handleClick = async (recipeId: string) => {
     try {
-      const recipes: RecipeInterface[] = await getRecipeById(recipeId);
+      const recipes: RecipeInterface[] = await getRecipeById(recipeId); //GET function, store in array
       const selectedRecipe = recipes[0]; // Extract the first recipe
-      const encodedTitle = encodeURIComponent(selectedRecipe.title);
+      const encodedTitle = encodeURIComponent(selectedRecipe.title); // Encode the title of the selected recipe to use in URL
       navigate(`/Recept/${encodedTitle}`, {
-        state: { recipe: selectedRecipe },
+        state: selectedRecipe, // Navigate to next page with state of recipe as the selected recipe and the title in URL
       });
     } catch (error) {
       console.error("Error fetching recipe:", error);
@@ -29,7 +22,7 @@ const useRecipes = () => {
 
   return (
     <div style={{ display: "flex", flexWrap: "wrap" }}>
-      {recipeList.map((recipe) => (
+      {recipes.map((recipe) => (
         <div
           key={recipe._id}
           style={{

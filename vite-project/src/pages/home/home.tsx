@@ -12,9 +12,16 @@ import fishImg from './img/fish.png';
 import harvestImg from './img/harvest.png';
 import teaLeafImg from './img/tea-leaf.png';
 import veganImg from './img/vegan.png';
+import { useRecipeState } from '../../state/index.ts';
+import { useEffect } from 'react';
 
 const Home = () => { 
   const navigate = useNavigate()
+  const {fetchRecipeList} = useRecipeState()
+
+  useEffect(() =>{
+    fetchRecipeList()
+  },[])
 
   const categories = [
     {id: 1, title: "Frukt", description: "Välj dina favoritfrukter", image:harvestImg , route:"/recept" },
