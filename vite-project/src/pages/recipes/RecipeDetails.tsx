@@ -1,8 +1,20 @@
 import DeleteButton from '../../global_components/DeleteButton';
 import './RecipeDetails.css'
+import { useLocation, useNavigate,  } from 'react-router-dom';
+import { RecipeInterface } from '../../Types';
+import NavBar from '../../global_components/NavBar/NavBar';
+import { Navbar } from 'react-bootstrap';
 
-const RecipeDetails = ({ recipe, navigate }) => {
+
+
+const RecipeDetails = () => {
+  const recipe = useLocation().state as RecipeInterface
+  const navigate = useNavigate();
+  
+
   return (
+    <div>
+      <NavBar />
 <div className="flex-container">
   <div className="recipe-card">
     <div className="recipe-section">
@@ -45,6 +57,7 @@ const RecipeDetails = ({ recipe, navigate }) => {
   </div>
   <DeleteButton recipeId={recipe._id}/>
   <button onClick={() => navigate("/")}>Tillbaka</button>
+</div>
 </div>
   );
 };

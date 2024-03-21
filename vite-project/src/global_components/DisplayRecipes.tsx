@@ -3,9 +3,8 @@ import useGetAllRecipes from "../api/getAllRecipes";
 import getRecipeById from "../api/getRecipeById";
 import { useNavigate} from "react-router";
 
-const useRecipes = () => {
+const useRecipes = (recipes: RecipeInterface[]) => {
   
-  const recipes = useGetAllRecipes();
   const navigate = useNavigate();
 
   const handleClick = async (recipeId: string) => {
@@ -14,7 +13,7 @@ const useRecipes = () => {
       const selectedRecipe = recipes[0]; // Extract the first recipe
       const encodedTitle = encodeURIComponent(selectedRecipe.title); // Encode the title of the selected recipe to use in URL
       navigate(`/Recept/${encodedTitle}`, {
-        state: { recipe: selectedRecipe }, // Navigate to next page with state of recipe as the selected recipe and the title in URL
+        state: selectedRecipe, // Navigate to next page with state of recipe as the selected recipe and the title in URL
       });
     } catch (error) {
       console.error("Error fetching recipe:", error);
@@ -56,8 +55,8 @@ const useRecipes = () => {
   );
 };
 
-const DisplayRecipes = () => {
-  return <div>{useRecipes()}</div>;
+const DisplayRecipes = ({ recipes }: { recipes: RecipeInterface[] }): JSX.Element => {
+  return <div>{useRecipes(recipes)}</div>;
 };
 
 export default DisplayRecipes;

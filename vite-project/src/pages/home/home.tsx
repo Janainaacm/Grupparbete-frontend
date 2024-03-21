@@ -5,9 +5,11 @@ import DisplayRecipes from '../../global_components/DisplayRecipes';
 import { useNavigate } from "react-router";
 import "./HomeStyles.css"
 import { useEffect } from 'react';
+import useGetAllRecipes from '../../api/getAllRecipes';
 
 const Home = () => { 
   const navigate = useNavigate()
+  const allRecipes = useGetAllRecipes()
 
   useEffect(() => {
     return () => {      
@@ -24,7 +26,7 @@ const Home = () => {
         <button onClick={()=>navigate("/AddRecept")}>Lägg Till recept</button>
       </div>
       <div>
-        <DisplayRecipes/>
+        <DisplayRecipes recipes={allRecipes}/>
       </div>
       <div style={{ justifyContent: "center", width:"100%", padding: "10px",height:"50px", textAlign: "center",}}>
         <Footer />
