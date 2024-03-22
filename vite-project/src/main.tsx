@@ -9,9 +9,6 @@ import DrinkPage from "./pages/drinks/DrinkPage.tsx";
 import DrinkDetailsPage from "./pages/drinks/DrinkDetailsPage.tsx";
 import RecipeDetails from "./pages/recipes/RecipeDetails.tsx";
 
-
-
-
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
