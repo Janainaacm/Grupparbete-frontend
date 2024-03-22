@@ -3,9 +3,6 @@ import './RecipeDetails.css'
 import { useLocation, useNavigate,  } from 'react-router-dom';
 import { RecipeInterface } from '../../Types';
 import NavBar from '../../global_components/NavBar/NavBar';
-import { Navbar } from 'react-bootstrap';
-
-
 
 const RecipeDetails = () => {
   const recipe = useLocation().state as RecipeInterface
@@ -56,7 +53,7 @@ const RecipeDetails = () => {
     </div>    
   </div>
   <DeleteButton recipeId={recipe._id}/>
-  <button onClick={() => navigate("/")}>Tillbaka</button>
+  <button onClick={() => navigate(-1)}>Tillbaka</button>
 </div>
 </div>
   );
