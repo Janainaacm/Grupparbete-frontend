@@ -37,7 +37,7 @@ postRecipe: async (newRecipe:RecipeInterface) => {
         const response = await axios.post(`${API_URL}/recipes`, newRecipe) 
         if (response.status === 200) {
             console.log("Success!")
-            fetchRecipeList()
+            await fetchRecipeList()
             return response.status
         }
         else {
