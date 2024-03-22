@@ -4,7 +4,7 @@ import getRecipeById from "../api/getRecipeById";
 import { useNavigate} from "react-router";
 
 const useRecipes = (recipes: RecipeInterface[]) => {
-  
+
   const navigate = useNavigate();
 
   const handleClick = async (recipeId: string) => {

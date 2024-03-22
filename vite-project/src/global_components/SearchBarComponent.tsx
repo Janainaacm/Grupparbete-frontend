@@ -39,26 +39,43 @@ const SearchBarComponent = () => {
 
 
   return (
-    <div className="search-box">
-      <div className="search-bar">
-        <input
-          value={search}
-          placeholder="Search..."
-          onChange={(e) => setSearch(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              getSearchResult();
-            }
-          }}
-        />
-        <button onClick={clearSearch}>
-          <IoCloseOutline className="search-bar-x-icon" />
-        </button>
-        <button onClick={getSearchResult}>
-          <RiSearchLine className="search-bar-search-icon" />
-        </button>
+    <section className="intro">
+      <div className="bg-image h-100" style={{ backgroundColor: "none" }}>
+        <div className="mask d-flex align-items-center h-100">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                <div className="card mb-2" style={{ borderRadius: "10em", border: '5px solid #dadab2', background: "#ededd3c9" }}>
+                  <div className="card-body p-2">
+                    <div className="input-group input-group-lg">
+                      <input 
+                      id="inputField"
+                        className="form-control form-control-lg rounded bg-transparent text-beige"  
+                        placeholder="Search..." 
+                        aria-label="Type Keywords" 
+                        aria-describedby="basic-addon2" 
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        onKeyDown={(e) => e.key === "Enter" && getSearchResult()}
+                        style={{ border: 'none', boxShadow: 'none'}}                        
+                      />
+                      <span 
+                      className="input-group-text border-0" 
+                      id="basic-addon2"
+                      style={{backgroundColor: 'transparent'}}
+                      >
+                        <i onClick={getSearchResult}
+                        ><RiSearchLine className="search-bar-search-icon" /></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

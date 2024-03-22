@@ -7,11 +7,8 @@ import useGetAllRecipes from '../../api/getAllRecipes';
 import DisplayRecipes from '../../global_components/DisplayRecipes';
 
 const RecipePage = () => {
-  const navigate = useNavigate();
   const location = useLocation();
-  const allRecipes = useGetAllRecipes()
  
-
   // Extract recipes from location state
   let showRecipes = location.state as RecipeInterface[];
   if (!showRecipes){
@@ -22,7 +19,7 @@ const RecipePage = () => {
   const showAll = () => {
     return (
       <div>
-      <DisplayRecipes recipes={allRecipes}/>
+      <DisplayRecipes recipes={showRecipes}/>
       </div>
       
     );
