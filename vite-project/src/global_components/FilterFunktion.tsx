@@ -4,9 +4,10 @@ import axios from 'axios'
 import { API_URL } from '../config';
 import { BiCategory } from 'react-icons/bi';
 import { useState } from 'react';
+import { JSX } from 'react/jsx-runtime';
 
 /* const[categorier, setCategorier] = useState([""]); */
-
+ 
 const FilterFunction = ({...recipes}: RecipeInterface[]): JSX.Element  => {
     
 async function getRecipesByCategory() {
