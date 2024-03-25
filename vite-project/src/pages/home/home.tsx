@@ -17,10 +17,9 @@ import { useEffect } from 'react';
 
 const Home = () => { 
   const navigate = useNavigate()
-  const {fetchRecipeList, fetchRecipe} = useAPIState()
-
+  const {fetchRecipeList} = useAPIState()
   useEffect(() =>{
-    fetchRecipeList(), fetchRecipe("65f32c5239aa131cc703cf01")
+    fetchRecipeList()
   },[])
 
   const categories = [
