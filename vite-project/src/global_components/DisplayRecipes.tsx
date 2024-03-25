@@ -5,6 +5,10 @@ import { useNavigate} from "react-router";
 
 const useRecipes = (recipes: RecipeInterface[]) => {
 
+  
+ 
+  
+
   const navigate = useNavigate();
 
   const handleClick = async (recipeId: string) => {
@@ -22,6 +26,9 @@ const useRecipes = (recipes: RecipeInterface[]) => {
 
   return (
     <div style={{ display: "flex", flexWrap: "wrap" }}>
+      <p>DisplayRecipes</p>
+      
+
       {recipes.map((recipe) => (
         <div
           key={recipe._id}
