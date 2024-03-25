@@ -1,9 +1,9 @@
 import { IngredientInterface } from "../Types";
 import { useState } from "react";
-import { useRecipeState } from "../state";
+import { useAPIState } from "../state";
 
 const PostRecipe = () => {
-  const { postRecipe } = useRecipeState();
+  const { postRecipe } = useAPIState();
   const [recipeName, setRecipeName] = useState("");
   const [recipeDescription, setDescription] = useState("");
   const [timeInMins, setTimeInMinutes] = useState(Number);
