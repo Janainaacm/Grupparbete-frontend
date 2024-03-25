@@ -37,8 +37,23 @@ const Home = () => {
         <NavBar/>
       </div>
       <div style={{textAlign: "center"}} className='content'>
-        <SearchBarComponent />
+          <div className="welcome-title">
+              Välkommen!
+          </div>
+
+          <div>
+            <SearchBarComponent />
+          </div>
+
+          <div className="category-bubbles">
+            <button>Frukt</button>
+            <button>Grönt</button>
+            <button>Kött</button>
+            <button>Fisk</button>
+            <button>Vego</button>
+          </div>
         </div>
+
 
         <Container>
         <Row className="justify-content-between ">
