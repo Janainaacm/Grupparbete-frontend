@@ -33,10 +33,9 @@ export const useRecipeState = create<RecipeState>((set) => ({
       const response = await axios.post(`${API_URL}/recipes`, newRecipe);
       if (response.status === 200) {
         console.log("Success!");
-        await set((state) => ({
-          ...state,
-          fetchRecipeList: state.fetchRecipeList,
-        }));
+        set((state) => ({
+            recipeList: [...state.recipeList, response.data]
+        }))
         return response.status;
       } else {
         console.log("Error fetching");
