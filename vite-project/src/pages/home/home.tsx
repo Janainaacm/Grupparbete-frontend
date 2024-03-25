@@ -18,6 +18,7 @@ import { useEffect } from 'react';
 const Home = () => { 
   const navigate = useNavigate()
   const {fetchRecipeList} = useAPIState()
+
   useEffect(() =>{
     fetchRecipeList()
   },[])
