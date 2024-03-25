@@ -14,6 +14,8 @@ import teaLeafImg from './img/tea-leaf.png';
 import veganImg from './img/vegan.png';
 import { useRecipeState } from '../../state/index.ts';
 import { useEffect } from 'react';
+import FilterFunction from '../../global_components/FilterFunktion.tsx';
+
 
 const Home = () => { 
   const navigate = useNavigate()

@@ -4,6 +4,7 @@ import AllCocktails from '../../api/getCocktails'
 //import Header from '../../global_components/header'
 //import SearchBarComponent from '../../global_components/SearchBarComponent'
 import Footer from '../../global_components/footer'
+import FilterFunction from '../../global_components/FilterFunktion'
 
 const DrinkPage = () => {
   
@@ -11,7 +12,8 @@ const DrinkPage = () => {
 
     <div>
       <p>Drink Page</p>
-      <div>
+{/*       <FilterFunction></FilterFunction>
+ */}      <div>
         {/* <Header/> */}
       </div>
       <div>

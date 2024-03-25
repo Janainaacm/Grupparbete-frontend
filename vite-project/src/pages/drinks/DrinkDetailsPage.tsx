@@ -3,6 +3,7 @@ import NavBar from "../../global_components/NavBar/NavBar"
 import Footer from "../../global_components/footer"
 import { useLocation, useNavigate } from "react-router-dom";
 import DrinkDetails from "./DrinkDetails";
+import FilterFunction from "../../global_components/FilterFunktion";
 
 
 const DrinkDetailsPage = () => {
@@ -13,9 +14,8 @@ const DrinkDetailsPage = () => {
     return (
         <div>
             <p>DrinkDetailsPage</p>
-            <div>
-            {/* <Header/> */}
-            </div>
+           
+            
 
             <div>
             <NavBar/>
