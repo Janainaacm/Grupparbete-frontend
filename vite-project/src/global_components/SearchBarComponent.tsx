@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import { RiSearchLine } from "react-icons/ri";
-import { IoCloseOutline } from "react-icons/io5";
 import useGetAllRecipes from "../api/getAllRecipes";
 import { RecipeInterface } from "../Types";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SearchBarComponent = () => {
   const [search, setSearch] = useState("");
