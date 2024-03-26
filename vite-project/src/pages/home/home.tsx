@@ -46,11 +46,21 @@ const Home = () => {
           </div>
 
           <div className="category-bubbles">
-            <button>Frukt</button>
-            <button>Grönt</button>
-            <button>Kött</button>
-            <button>Fisk</button>
-            <button>Vego</button>
+            <div className="button-one">
+              <button>Frukt</button>
+            </div>
+            <div className="button-two">
+              <button>Grönt</button>
+            </div>
+            <div className="button-three">
+              <button>Kött</button>
+            </div>
+            <div className="button-four">
+              <button>Fisk</button>
+            </div>
+            <div className="button-five">
+              <button>Vego</button>
+            </div>
           </div>
         </div>
 
