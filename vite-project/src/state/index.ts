@@ -12,7 +12,6 @@ interface APIState {
   recipeList: RecipeInterface[];
 
   fetchRecipe: (recipeID: string) => Promise<RecipeInterface>;
-
   fetchRecipeList: () => Promise<void>;
   postRecipe: (newRecipe: RecipeInterface) => Promise<number>;
   deleteRecipe: (recipeId: string) => Promise<void>;
