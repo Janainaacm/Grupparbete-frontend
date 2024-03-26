@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import "./ShoppingCart.css"
@@ -20,8 +20,10 @@ const ShoppingCart = ({
     onQuantityChange,
 }: ShoppingCartProps) => {
 
+    
+
     return (
-        <div className='modal' style={{ display: visibility ? "block" : "none", }}>
+        <div id='modal' style={{ display: visibility ? "block" : "none", }}>
 
             <div className='shoppingCart'>
 
@@ -38,13 +40,22 @@ const ShoppingCart = ({
                         </span>
                     )}
                     {products.map(product => (
-                        <div className='cart-product' key={product.id}>
-                            <img src={product.image} alt={product.name} />
+                        <div className='cart-product' key={product._id}>
+                            
                             <div className='product-info'>
-                                <h3>{product.name}</h3>
-                                <span className='product-price'>{product.price}Sek</span>
-                            </div>
+                                
+                                <h3>{product.title}</h3>
+                                <img className='product-image' src={product.imageUrl} alt={product.title} />
+                                <h5>Ingredienter</h5>
+                                {product.ingredients.map((ingredient, index) => (
+                                    <li key={index}>{ingredient.amount} {ingredient.unit} {ingredient.name}</li>
+                                ))}
+                                
 
+                                <span className='product-price'>Pris i Sek</span>
+                                
+                            </div>
+                            
                             <select
                                 className='count'
                                 value={product.count}
@@ -60,9 +71,14 @@ const ShoppingCart = ({
                             </select>
                             <button className='remove-button' onClick={() => onProductRemove(product)}><RiDeleteBin6Line size={20} /></button>
 
+                            <br /><br />
+
                         </div>
                     ))}
-                    {products.length > 0 && <button className='check-out'>Proceed to checkout</button>}
+                    {products.length > 0 && <div className='checkout-clear'><button className='check-out'>Köp knapp</button>
+                    <button>Fortsätt handla</button> 
+                    <button>Töm varukorg</button></div>
+                    }
                 </div>
 
 
