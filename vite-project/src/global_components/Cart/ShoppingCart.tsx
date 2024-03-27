@@ -3,6 +3,7 @@ import { AiFillCloseCircle } from 'react-icons/ai'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import "./ShoppingCart.css"
 import useGetAllRecipes from '../../api/getAllRecipes'
+import RemoveFromCartButton from './RemoveFromCartButton'
 
 
 interface ShoppingCartProps {
@@ -70,7 +71,8 @@ const ShoppingCart = ({
                                     })
                                 }
                             </select>
-                            <button className='remove-button' onClick={() => onProductRemove(product)}><RiDeleteBin6Line size={20} /></button>
+                            <RemoveFromCartButton recipe={product}></RemoveFromCartButton>
+                            {/* <button className='remove-button' onClick={() => onProductRemove(product)}><RiDeleteBin6Line size={20} /></button> */}
 
                             <br /><br />
 
