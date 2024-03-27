@@ -1,9 +1,13 @@
-import deleteRecipe from '../api/deleteRecipe'; // Importing the deleteRecipe function
+//import deleteRecipe from '../api/deleteRecipe'; // Importing the deleteRecipe function
 import { useNavigate } from 'react-router-dom';
+import { useAPIState } from '../state';
+
+
 
 const DeleteButton = ({ recipeId }) => {
   const navigate = useNavigate();
-
+  const {deleteRecipe} = useAPIState();
+  
   const handleClick = async () => {
     try {
       await deleteRecipe(recipeId);

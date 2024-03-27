@@ -12,14 +12,14 @@ import fishImg from './img/fish.png';
 import harvestImg from './img/harvest.png';
 import teaLeafImg from './img/tea-leaf.png';
 import veganImg from './img/vegan.png';
-import { useRecipeState } from '../../state/index.ts';
+import { useAPIState } from '../../state/index.ts';
 import { useEffect } from 'react';
 import FilterFunction from '../../global_components/FilterFunktion.tsx';
 
 
 const Home = () => { 
   const navigate = useNavigate()
-  const {fetchRecipeList} = useRecipeState()
+  const {fetchRecipeList} = useAPIState()
 
   useEffect(() =>{
     fetchRecipeList()
@@ -48,11 +48,21 @@ const Home = () => {
           </div>
 
           <div className="category-bubbles">
-            <button>Frukt</button>
-            <button>Grönt</button>
-            <button>Kött</button>
-            <button>Fisk</button>
-            <button>Vego</button>
+            <div className="button-one">
+              <button>Frukt</button>
+            </div>
+            <div className="button-two">
+              <button>Grönt</button>
+            </div>
+            <div className="button-three">
+              <button>Kött</button>
+            </div>
+            <div className="button-four">
+              <button>Fisk</button>
+            </div>
+            <div className="button-five">
+              <button>Vego</button>
+            </div>
           </div>
         </div>
 
