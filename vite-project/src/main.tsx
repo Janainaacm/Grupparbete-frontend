@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./pages/home/home.tsx";
+import Home from "./pages/home/Home.tsx";
 import RecipePage from "./pages/recipes/RecipePage.tsx";
 import AddRecipePage from "./pages/addRecipe/AddRecipePage.tsx";
 import CocktailsPage from "./pages/cocktails/CocktailsPage.tsx";
