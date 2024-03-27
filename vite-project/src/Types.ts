@@ -17,3 +17,7 @@ export interface IngredientInterface {
   amount: number;
   unit: string;
 }
+
+export interface CartInterface {
+  recipe: RecipeInterface[]
+}
