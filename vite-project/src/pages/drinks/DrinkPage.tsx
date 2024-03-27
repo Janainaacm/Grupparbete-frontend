@@ -1,5 +1,5 @@
 //import React from 'react'
-import NavBar from '../../globalComponents/NavBar/NavBar'
+import NavBar from '../../globalComponents/NavBar'
 import AllCocktails from '../../api/getCocktails'
 //import Header from '../../global_components/header'
 //import SearchBarComponent from '../../global_components/SearchBarComponent'

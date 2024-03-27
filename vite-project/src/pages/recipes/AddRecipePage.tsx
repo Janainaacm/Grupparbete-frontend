@@ -1,4 +1,4 @@
-import NavBar from "../../globalComponents/NavBar/NavBar";
+import NavBar from "../../globalComponents/NavBar";
 import Footer from "../../globalComponents/footer";
 import PostRecipe from "../../api/postRecipe";
 

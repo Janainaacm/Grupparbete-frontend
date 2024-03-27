@@ -2,7 +2,7 @@ import './App.css'
 import deleteRecipe from './api/deleteRecipe';
 import SearchBarComponent from './globalComponents/SearchBarComponent';
 import useGetAllRecipes from './api/getAllRecipes';
-import NavBar from './globalComponents/NavBar/NavBar';
+import NavBar from './globalComponents/NavBar';
 import Footer from './globalComponents/footer';
 import PostRecipe from './api/postRecipe';
 

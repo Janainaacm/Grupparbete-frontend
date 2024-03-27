@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import NavBar from '../../globalComponents/NavBar/NavBar';
+import NavBar from '../../globalComponents/NavBar';
 import DisplayRecipes from '../../globalComponents/DisplayRecipes';
 import { useAPIState } from '../../store/APIState';
 

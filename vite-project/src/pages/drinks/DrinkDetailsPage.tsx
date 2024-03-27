@@ -1,5 +1,5 @@
 //import Header from "../../global_components/header"
-import NavBar from "../../globalComponents/NavBar/NavBar"
+import NavBar from "../../globalComponents/NavBar"
 import Footer from "../../globalComponents/footer"
 import { useLocation, useNavigate } from "react-router-dom";
 import DrinkDetails from "./DrinkDetails";

@@ -1,4 +1,4 @@
-import NavBar from '../../globalComponents/NavBar/NavBar.tsx';
+import NavBar from '../../globalComponents/NavBar.tsx';
 import Footer from '../../globalComponents/footer.tsx';
 import SearchBarComponent from '../../globalComponents/SearchBarComponent.tsx';
 import DisplayRecipes from '../../globalComponents/DisplayRecipes.tsx';
