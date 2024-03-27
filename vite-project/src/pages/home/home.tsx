@@ -6,12 +6,12 @@ import { useNavigate } from "react-router-dom";
 import "./HomeStyles.css"
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import CustomCard from "./CustomCard.tsx"
-import imgSrc from './img/pexels-ella-olsson-1640773.jpg';
-import barbecueImg from './img/barbecue.png';
-import fishImg from './img/fish.png';
-import harvestImg from './img/harvest.png';
-import teaLeafImg from './img/tea-leaf.png';
-import veganImg from './img/vegan.png';
+import imgSrc from '../../assets/images/pexels-ella-olsson-1640773.jpg';
+import barbecueImg from '../../assets/images/barbecue.png';
+import fishImg from '../../assets/images/fish.png';
+import harvestImg from '../../assets/images/harvest.png';
+import teaLeafImg from '../../assets/images/tea-leaf.png';
+import veganImg from '../../assets/images/vegan.png';
 import { useAPIState } from '../../store/APIState.ts';
 import { useEffect } from 'react';
 
