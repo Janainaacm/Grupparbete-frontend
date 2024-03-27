@@ -1,5 +1,5 @@
 //import { NavigateFunction } from "react-router";
-import { CocktailInterface } from "../../api/getCocktails";
+import { CocktailInterface } from "../../../api/getCocktails";
 import { NavigateFunction } from "react-router-dom";
 
 interface DrinkDetailsProps {

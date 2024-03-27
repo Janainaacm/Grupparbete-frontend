@@ -2,7 +2,7 @@
 import NavBar from "../../globalComponents/NavBar"
 import Footer from "../../globalComponents/Footer"
 import { useLocation, useNavigate } from "react-router-dom";
-import DrinkDetails from "./DrinkDetails";
+import DrinkDetails from "./components/DrinkDetails";
 
 
 const DrinkDetailsPage = () => {
