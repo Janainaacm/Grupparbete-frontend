@@ -1,7 +1,7 @@
-import NavBar from '../../global_components/NavBar/NavBar';
-import Footer from '../../global_components/footer';
-import SearchBarComponent from '../../global_components/SearchBarComponent';
-import DisplayRecipes from '../../global_components/DisplayRecipes';
+import NavBar from '../../globalComponents/NavBar/NavBar.tsx';
+import Footer from '../../globalComponents/footer.tsx';
+import SearchBarComponent from '../../globalComponents/SearchBarComponent.tsx';
+import DisplayRecipes from '../../globalComponents/DisplayRecipes.tsx';
 import { useNavigate } from "react-router-dom";
 import "./HomeStyles.css"
 import { Container, Row, Col, Card } from 'react-bootstrap';

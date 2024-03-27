@@ -1,12 +1,12 @@
 //Joel
-import DeleteButton from '../../global_components/DeleteButton';
+import DeleteButton from '../../globalComponents/DeleteButton';
 import './RecipeDetails.css'
 import { useLocation, useNavigate  } from 'react-router-dom';
-import NavBar from '../../global_components/NavBar/NavBar';
-import AddToCartButton from '../../global_components/Cart/AddToCartButton';
+import NavBar from '../../globalComponents/NavBar/NavBar';
+import AddToCartButton from '../../globalComponents/Cart/AddToCartButton';
 import { useAPIState } from '../../state';
 import { useEffect } from 'react';
-import EmptyCartButton from '../../global_components/Cart/EmptyCartButton';
+import EmptyCartButton from '../../globalComponents/Cart/EmptyCartButton';
 
 const RecipeDetails = () => {
   const { fetchRecipe } = useAPIState();
