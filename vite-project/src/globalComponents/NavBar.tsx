@@ -2,7 +2,7 @@ import { useLocation, NavLink} from 'react-router-dom';
 import SearchBarComponent from './SearchBarComponent'; 
 import "bootstrap/dist/css/bootstrap.css"
 import {Nav, Navbar} from "react-bootstrap"
-import burger from "./img/burger_10531010.png";
+import burger from "../assets/images/burger_10531010.png";
 
 function NavBar() {
     const location = useLocation();
