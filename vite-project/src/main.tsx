@@ -7,7 +7,7 @@ import RecipePage from "./pages/recipes/RecipePage.tsx";
 import AddRecipePage from "./pages/recipes/AddRecipePage.tsx";
 import DrinkPage from "./pages/drinks/DrinkPage.tsx";
 import DrinkDetailsPage from "./pages/drinks/DrinkDetailsPage.tsx";
-import RecipeDetails from "./pages/recipes/RecipeDetails.tsx";
+import RecipeDetails from "./pages/recipeDetail/RecipeDetails.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
