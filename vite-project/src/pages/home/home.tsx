@@ -5,7 +5,7 @@ import DisplayRecipes from '../../globalComponents/DisplayRecipes.tsx';
 import { useNavigate } from "react-router-dom";
 import "./HomeStyles.css"
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import CustomCard from "./CustomCard.tsx"
+import CustomCard from "./components/CustomCard.tsx"
 import imgSrc from '../../assets/images/pexels-ella-olsson-1640773.jpg';
 import barbecueImg from '../../assets/images/barbecue.png';
 import fishImg from '../../assets/images/fish.png';
