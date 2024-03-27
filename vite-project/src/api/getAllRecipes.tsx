@@ -8,24 +8,24 @@ function useGetAllRecipes() {
 
     const [recipes, setRecipes] = useState<RecipeInterface[]>([])
 
-async function getAllRecipes() {
-    try {
-        const response = await axios.get<RecipeInterface[]>(`${API_URL}/recipes`)
+    async function getAllRecipes() {
+        try {
+            const response = await axios.get<RecipeInterface[]>(`${API_URL}/recipes`)
 
-    if (response.status === 200) {
-        setRecipes(response.data)
-        console.log(response.data)
-    } 
-} catch (error) {
-    console.error('Error', error)
+            if (response.status === 200) {
+                setRecipes(response.data)
+                console.log(response.data)
+            }
+        } catch (error) {
+            console.error('Error', error)
+        }
     }
-}
 
- useEffect(()=>{
-    getAllRecipes()
-  },[])
-  return recipes
-  
-} 
+    useEffect(() => {
+        getAllRecipes()
+    }, [])
+    return recipes
+
+}
 
 export default useGetAllRecipes

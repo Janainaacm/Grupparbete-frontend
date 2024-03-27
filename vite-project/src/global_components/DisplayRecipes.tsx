@@ -2,22 +2,19 @@ import { RecipeInterface } from "../Types";
 import useGetAllRecipes from "../api/getAllRecipes";
 import getRecipeById from "../api/getRecipeById";
 import { useNavigate} from "react-router";
+import { useAPIState } from "../state";
 
 const useRecipes = (recipes: RecipeInterface[]) => {
-
-  
- 
-  
-
+  const {fetchRecipe} = useAPIState()
   const navigate = useNavigate();
 
   const handleClick = async (recipeId: string) => {
     try {
-      const recipes: RecipeInterface[] = await getRecipeById(recipeId); //GET function, store in array
-      const selectedRecipe = recipes[0]; // Extract the first recipe
-      const encodedTitle = encodeURIComponent(selectedRecipe.title); // Encode the title of the selected recipe to use in URL
+      const recipes: RecipeInterface = await fetchRecipe(recipeId); //GET function, store in array
+      //const selectedRecipe = recipes[0]; // Extract the first recipe
+      const encodedTitle = encodeURIComponent(recipes.title); // Encode the title of the selected recipe to use in URL
       navigate(`/Recept/${encodedTitle}`, {
-        state: selectedRecipe, // Navigate to next page with state of recipe as the selected recipe and the title in URL
+        state: recipes, // Navigate to next page with state of recipe as the selected recipe and the title in URL
       });
     } catch (error) {
       console.error("Error fetching recipe:", error);
