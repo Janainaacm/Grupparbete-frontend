@@ -1,5 +1,5 @@
 import NavBar from '../../globalComponents/NavBar.tsx';
-import Footer from '../../globalComponents/footer.tsx';
+import Footer from '../../globalComponents/Footer.tsx';
 import SearchBarComponent from '../../globalComponents/SearchBarComponent.tsx';
 import DisplayRecipes from '../../globalComponents/DisplayRecipes.tsx';
 import { useNavigate } from "react-router-dom";

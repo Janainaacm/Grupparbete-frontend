@@ -1,6 +1,6 @@
 //import Header from "../../global_components/header"
 import NavBar from "../../globalComponents/NavBar"
-import Footer from "../../globalComponents/footer"
+import Footer from "../../globalComponents/Footer"
 import { useLocation, useNavigate } from "react-router-dom";
 import DrinkDetails from "./DrinkDetails";
 

@@ -3,7 +3,7 @@ import deleteRecipe from './api/deleteRecipe';
 import SearchBarComponent from './globalComponents/SearchBarComponent';
 import useGetAllRecipes from './api/getAllRecipes';
 import NavBar from './globalComponents/NavBar';
-import Footer from './globalComponents/footer';
+import Footer from './globalComponents/Footer';
 import PostRecipe from './api/postRecipe';
 
 function App() {

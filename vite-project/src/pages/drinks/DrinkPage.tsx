@@ -3,7 +3,7 @@ import NavBar from '../../globalComponents/NavBar'
 import AllCocktails from '../../api/getCocktails'
 //import Header from '../../global_components/header'
 //import SearchBarComponent from '../../global_components/SearchBarComponent'
-import Footer from '../../globalComponents/footer'
+import Footer from '../../globalComponents/Footer'
 
 const DrinkPage = () => {
   
