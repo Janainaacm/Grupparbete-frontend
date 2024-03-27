@@ -39,8 +39,8 @@ const ShoppingCart = ({
                         <span className='empty-text'>Your basket is empty
                         </span>
                     )}
-                    {products.map(product => (
-                        <div className='cart-product' key={product._id}>
+                    {products.map((product, index) => (
+                        <div className='cart-product' key={index}>
                             
                             <div className='product-info'>
                                 
@@ -49,18 +49,20 @@ const ShoppingCart = ({
                                 <h5>Ingredienter</h5>
                                 {product.ingredients.map((ingredient, index) => (
                                     <li key={index}>{ingredient.amount} {ingredient.unit} {ingredient.name}</li>
+                                    
                                 ))}
                                 
 
                                 <span className='product-price'>Pris i Sek</span>
-                                
+{/*                             <button key={index} className='remove-button' onClick={() => onProductRemove(product._id)}><RiDeleteBin6Line size={20} /></button>
+ */}                                
                             </div>
                             
                             <select
                                 className='count'
                                 value={product.count}
                                 onChange={(event) => {
-                                    onQuantityChange(product.id, event.target.value);
+                                    onQuantityChange(product._id, event.target.value);
                                 }}>
                                 {
                                     [...Array(10).keys()].map(number => {
@@ -69,7 +71,7 @@ const ShoppingCart = ({
                                     })
                                 }
                             </select>
-                            <button className='remove-button' onClick={() => onProductRemove(product)}><RiDeleteBin6Line size={20} /></button>
+                            <button key={index} className='remove-button' onClick={() => onProductRemove(product._id)}><RiDeleteBin6Line size={20} /></button>
 
                             <br /><br />
 

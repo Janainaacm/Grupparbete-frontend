@@ -9,6 +9,7 @@ const PostRecipe = () => {
   const [timeInMins, setTimeInMinutes] = useState(Number);
   const [imageURL, setImageURL] = useState("");
   const [rating, setRating] = useState("");
+  const [price, setPrice] = useState(Number);
 
   const [categories, setCategories] = useState("");
   const [instructions, setInstructions] = useState("");
@@ -34,6 +35,7 @@ const PostRecipe = () => {
       categories: categoryArray,
       instructions: instructionsArray,
       ingredients: ingredient,
+      price: price,
     };
 
     const response = await postRecipe(newRecipe);
@@ -125,6 +127,7 @@ const PostRecipe = () => {
       <br />
 
       <textarea
+        value={instructions}
         rows={4}
         cols={30}
         onChange={(event) => setInstructions(event.target.value)}
@@ -133,11 +136,17 @@ const PostRecipe = () => {
       <br />
 
       <input
+        value={categories}
         type="text"
         onChange={(event) => setCategories(event.target.value)}
         placeholder="Categories"
       />
 
+      <input 
+        type="number"
+        onChange={(event) => setPrice(event.target.valueAsNumber)}
+        placeholder="price"
+      />
       <br />
       <br />
 

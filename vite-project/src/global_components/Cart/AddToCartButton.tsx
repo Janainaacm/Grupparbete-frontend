@@ -10,6 +10,8 @@ const AddToCartButton = ({ recipe }) => {
     console.log("Cart Contents:", cart.map(recipe => recipe.title));
   }, [cart]);
 
+    console.log("cart", [cart])
+
   const handleClick = () => {
     addToCart(recipe);
 
