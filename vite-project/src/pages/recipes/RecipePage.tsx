@@ -1,35 +1,21 @@
-import React from 'react';
+import { useEffect } from 'react';
 import NavBar from '../../global_components/NavBar/NavBar';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { RecipeInterface } from '../../Types';
-import RecipeDetails from './RecipeDetails';
-import useGetAllRecipes from '../../api/getAllRecipes';
 import DisplayRecipes from '../../global_components/DisplayRecipes';
+import { useAPIState } from '../../state';
 
-const RecipePage = () => {
-  const location = useLocation();
- 
-  // Extract recipes from location state
-  let showRecipes = location.state as RecipeInterface[];
-  if (!showRecipes){
-    showRecipes = useGetAllRecipes();
-  }
+const RecipePage = (): JSX.Element => {
+  const { recipeList, fetchRecipeList } = useAPIState();
 
-  // Function to render all recipes
-  const showAll = () => {
-    return (
-      <div>
-      <DisplayRecipes recipes={showRecipes}/>
-      </div>
-      
-    );
-  };
+  useEffect(() => {
+    // Fetch recipe list when component mounts
+    fetchRecipeList();
+  }, [fetchRecipeList]);
 
   return (
     <>
       <NavBar />
       <div>
-        {showAll()} {/* Call the showAll function to render the list */}
+      <DisplayRecipes recipes={recipeList} />
       </div>
     </>
   );

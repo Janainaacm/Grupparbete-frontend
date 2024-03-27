@@ -1,9 +1,13 @@
+import { useCartStateInterface } from "../../state/Cart";
 
-const RemoveFromCartButton = ({ recipe, cart, setCart }) => {
+const RemoveFromCartButton = ({ recipe }) => {
+  const removeFromCart = useCartStateInterface(state => state.RemoveFromCart);
+  
+
   const handleClick = () => {
-    setCart(cart.filter(item => item !== recipe));
+    removeFromCart(recipe._id);
   };
-
+  
   return (
     <button onClick={handleClick}>Remove from Cart</button>
   );
@@ -11,4 +15,3 @@ const RemoveFromCartButton = ({ recipe, cart, setCart }) => {
 
 export default RemoveFromCartButton;
 
-//<RemoveFromCartButton recipe={recipe} cart={cart} setCart={setCart} />

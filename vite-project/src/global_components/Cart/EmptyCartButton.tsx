@@ -1,8 +1,12 @@
+import { useCartStateInterface } from "../../state/Cart";
 
-const EmptyCartButton = ({ setCart }) => {
+const EmptyCartButton = () => {
+  const clearCart = useCartStateInterface(state => state.ClearCart);
+
   const handleClick = () => {
-    setCart([]);
+    clearCart();
   };
+
 
   return (
     <button onClick={handleClick}>Empty Cart</button>
@@ -11,4 +15,3 @@ const EmptyCartButton = ({ setCart }) => {
 
 export default EmptyCartButton;
 
-//<EmptyCartButton setCart={setCart} />
