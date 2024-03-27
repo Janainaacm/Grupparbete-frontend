@@ -5,6 +5,7 @@ import { RecipeInterface } from '../../Types';
 import RecipeDetails from './RecipeDetails';
 import useGetAllRecipes from '../../api/getAllRecipes';
 import DisplayRecipes from '../../global_components/DisplayRecipes';
+import FilterComponent from '../../global_components/FilterComponent';
 
 const RecipePage = () => {
   const location = useLocation();
@@ -29,6 +30,8 @@ const RecipePage = () => {
     <>
       <NavBar />
       <div>
+        <FilterComponent></FilterComponent>
+        <br /><br /><br />
         {showAll()} {/* Call the showAll function to render the list */}
       </div>
     </>
