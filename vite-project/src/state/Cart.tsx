@@ -26,7 +26,9 @@ interface CartStateInterface {
         }))
     },
     ClearCart: () => {
-
+        set(() => ({
+            cart: []
+        }))
     }
 
   })) 
