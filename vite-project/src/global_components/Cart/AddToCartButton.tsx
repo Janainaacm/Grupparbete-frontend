@@ -1,7 +1,18 @@
+import { useEffect } from "react";
+import { useCartStateInterface } from "../../state/Cart";
 
-const AddToCartButton = ({ recipe, cart, setCart }) => {
+const AddToCartButton = ({ recipe }) => {
+  const addToCart = useCartStateInterface(state => state.AddToCart);
+  const cart = useCartStateInterface(state => state.cart);
+
+  useEffect(() => {
+    console.log("Updated Cart:", cart);
+    console.log("Cart Contents:", cart.map(recipe => recipe.title));
+  }, [cart]);
+
   const handleClick = () => {
-    setCart([...cart, recipe]);
+    addToCart(recipe);
+
   };
   return (
     <button onClick={handleClick}>Add to Cart</button>
@@ -9,8 +20,3 @@ const AddToCartButton = ({ recipe, cart, setCart }) => {
 }
 
 export default AddToCartButton
-
-// const hej123 = ({ recipeList }) => {
-//   const [cart, setCart] = useState<RecipeInterface[]>([]);
-
-//<AddToCartButton recipe={recipe} cart={cart} setCart={setCart} />

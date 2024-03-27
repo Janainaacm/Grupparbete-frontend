@@ -1,13 +1,21 @@
+//Joel
 import DeleteButton from '../../global_components/DeleteButton';
 import './RecipeDetails.css'
-import { useLocation, useNavigate,  } from 'react-router-dom';
-import { RecipeInterface } from '../../Types';
+import { useLocation, useNavigate  } from 'react-router-dom';
 import NavBar from '../../global_components/NavBar/NavBar';
+import AddToCartButton from '../../global_components/Cart/AddToCartButton';
+import { useAPIState } from '../../state';
+import { useEffect } from 'react';
+import EmptyCartButton from '../../global_components/Cart/EmptyCartButton';
 
 const RecipeDetails = () => {
-  const recipe = useLocation().state as RecipeInterface
+  const { fetchRecipe } = useAPIState();
+  const {state:recipe} = useLocation()
   const navigate = useNavigate();
-  
+  useEffect(() => {
+    // Fetch recipe details when component mounts
+    fetchRecipe(recipe._id);
+  }, [fetchRecipe, recipe._id]);
 
   return (
     <div>
@@ -27,8 +35,9 @@ const RecipeDetails = () => {
         <p><strong>Description:</strong> <br />{recipe.description}</p>
         <p><strong>Time:</strong> {recipe.timeInMins} minutes</p>
         <p><strong>Categories:</strong> {recipe.categories.join(', ')}</p>
-        <p><strong>Rating:</strong> {recipe.avgRating}</p>
-        <button className="add-to-cart-button">Add to cart</button>
+        <p><strong>Rating:</strong> {recipe.avgRating}</p>       
+        <AddToCartButton recipe={recipe}/>
+        <EmptyCartButton/>
       </div>
     </div>
   </div>
