@@ -4,7 +4,7 @@ import './RecipeDetails.css'
 import { useLocation, useNavigate  } from 'react-router-dom';
 import NavBar from '../../globalComponents/NavBar/NavBar';
 import AddToCartButton from '../../globalComponents/Cart/AddToCartButton';
-import { useAPIState } from '../../state';
+import { useAPIState } from '../../store';
 import { useEffect } from 'react';
 import EmptyCartButton from '../../globalComponents/Cart/EmptyCartButton';
 

@@ -1,4 +1,4 @@
-import { useCartStateInterface } from "../../state/Cart";
+import { useCartStateInterface } from "../../store/Cart";
 
 const RemoveFromCartButton = ({ recipe }) => {
   const removeFromCart = useCartStateInterface(state => state.RemoveFromCart);

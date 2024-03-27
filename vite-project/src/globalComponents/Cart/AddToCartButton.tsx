@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useCartStateInterface } from "../../state/Cart";
+import { useCartStateInterface } from "../../store/Cart";
 
 const AddToCartButton = ({ recipe }) => {
   const addToCart = useCartStateInterface(state => state.AddToCart);
