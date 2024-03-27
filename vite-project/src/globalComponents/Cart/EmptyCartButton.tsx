@@ -1,4 +1,4 @@
-import { useCartStateInterface } from "../../store/Cart";
+import { useCartStateInterface } from "../../store/CartState";
 
 const EmptyCartButton = () => {
   const clearCart = useCartStateInterface(state => state.ClearCart);
