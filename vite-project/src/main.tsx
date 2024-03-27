@@ -4,7 +4,7 @@ import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/home/home.tsx";
 import RecipePage from "./pages/recipes/RecipePage.tsx";
-import AddRecipePage from "./pages/recipes/AddRecipePage.tsx";
+import AddRecipePage from "./pages/addRecipe/AddRecipePage.tsx";
 import DrinkPage from "./pages/drinks/DrinkPage.tsx";
 import DrinkDetailsPage from "./pages/drinks/DrinkDetailsPage.tsx";
 import RecipeDetails from "./pages/recipeDetail/RecipeDetails.tsx";
