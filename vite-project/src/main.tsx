@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/home/home.tsx";
 import RecipePage from "./pages/recipes/RecipePage.tsx";
 import AddRecipePage from "./pages/addRecipe/AddRecipePage.tsx";
-import DrinkPage from "./pages/drinks/DrinkPage.tsx";
+import DrinkPage from "./pages/cocktails/CocktailsPage.tsx";
 import DrinkDetailsPage from "./pages/drinks/DrinkDetailsPage.tsx";
 import RecipeDetails from "./pages/recipeDetails/RecipeDetails.tsx";
 
