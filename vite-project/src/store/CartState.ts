@@ -2,7 +2,7 @@ import { CartInterface } from "../Types";
 import { create } from "zustand";
 import { RecipeInterface } from "../Types";
 
-interface CartStateInterface {
+interface CartState {
     cart: RecipeInterface[]
   
     AddToCart: (recipe:RecipeInterface) => void
@@ -10,7 +10,7 @@ interface CartStateInterface {
     ClearCart: () => void
   }
 
-  export const useCartStateInterface = create<CartStateInterface>((set) => ({
+  export const useCartState = create<CartState>((set) => ({
 
     cart: [],
 
