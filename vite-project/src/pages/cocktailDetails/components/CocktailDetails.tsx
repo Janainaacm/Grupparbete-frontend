@@ -1,18 +1,18 @@
 //import { NavigateFunction } from "react-router";
-import { CocktailInterface } from "../../api/getCocktails";
+import { CocktailInterface } from "../../../api/getCocktails";
 import { NavigateFunction } from "react-router-dom";
 
-interface DrinkDetailsProps {
+interface CocktailDetailsProps {
     drinks: CocktailInterface,
     navigate: NavigateFunction
 };
 
-const DrinkDetails = ( { drinks, navigate}: DrinkDetailsProps,  ) => {
+const CocktailDetails = ( { drinks, navigate}: CocktailDetailsProps,  ) => {
 
     return (
 
         <div>
-            <p>DrinkDetails</p>
+            <p>CocktailDetails</p>
             <button onClick={() => navigate("/Cocktails")}>Tillbaka</button>
 
             <div>
@@ -63,4 +63,4 @@ const DrinkDetails = ( { drinks, navigate}: DrinkDetailsProps,  ) => {
     );
 };
 
-export default DrinkDetails
+export default CocktailDetails

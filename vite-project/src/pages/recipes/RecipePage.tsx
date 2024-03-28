@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import NavBar from '../../global_components/NavBar/NavBar';
-import DisplayRecipes from '../../global_components/DisplayRecipes';
-import { useAPIState } from '../../state';
+import NavBar from '../../globalComponents/NavBar';
+import DisplayRecipes from '../../globalComponents/DisplayRecipes';
+import { useAPIState } from '../../store/APIState';
 
 const RecipePage = (): JSX.Element => {
   const { recipeList, fetchRecipeList } = useAPIState();

@@ -1,13 +1,13 @@
 import { useLocation, NavLink} from 'react-router-dom';
-import SearchBarComponent from '../SearchBarComponent'; 
+import SearchBarComponent from './SearchBarComponent'; 
 import "bootstrap/dist/css/bootstrap.css"
+import burger from "../assets/images/burger_10531010.png";
 import {Nav, Navbar, Button} from "react-bootstrap"
-import burger from "./img/burger_10531010.png";
 import cart from "./img/shopping-cart.png"
-import ShoppingCart from '../Cart/ShoppingCart';
+import ShoppingCart from './Cart/ShoppingCart.tsx';
 import { useState } from 'react';
-import useGetAllRecipes from '../../api/getAllRecipes';
-import Cart from "../Cart/SCPop"
+import useGetAllRecipes from '../api/getAllRecipes.tsx';
+import Cart from "./Cart/SCPop.tsx"
 
 
 

@@ -1,8 +1,8 @@
-import { useCartStateInterface } from "../../state/Cart";
+import { useCartState } from "../../store/CartState";
 import { RiDeleteBin6Line } from 'react-icons/ri'
 
 const RemoveFromCartButton = ({ recipe }) => {
-  const removeFromCart = useCartStateInterface(state => state.RemoveFromCart);
+  const removeFromCart = useCartState(state => state.RemoveFromCart);
   
 
   const handleClick = () => {

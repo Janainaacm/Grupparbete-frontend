@@ -1,11 +1,11 @@
 //import Header from "../../global_components/header"
-import NavBar from "../../global_components/NavBar/NavBar"
-import Footer from "../../global_components/footer"
+import NavBar from "../../globalComponents/NavBar"
+import Footer from "../../globalComponents/Footer"
 import { useLocation, useNavigate } from "react-router-dom";
-import DrinkDetails from "./DrinkDetails";
+import CocktailDetails from "./components/CocktailDetails";
 
 
-const DrinkDetailsPage = () => {
+const CocktailDetailsPage = () => {
     const { cocktail } =useLocation().state;
 
     const navigate = useNavigate();
@@ -26,7 +26,7 @@ const DrinkDetailsPage = () => {
             </div>
 
             <div>
-                <DrinkDetails drinks={cocktail} navigate={navigate}/>
+                <CocktailDetails drinks={cocktail} navigate={navigate}/>
                 <Footer />
             </div>
 
@@ -38,4 +38,4 @@ const DrinkDetailsPage = () => {
     );
 };
 
-export default DrinkDetailsPage
+export default CocktailDetailsPage
