@@ -2,12 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./pages/home/home.tsx";
+import Home from "./pages/home/Home.tsx";
 import RecipePage from "./pages/recipes/RecipePage.tsx";
-import AddRecipePage from "./pages/recipes/AddRecipePage.tsx";
-import DrinkPage from "./pages/drinks/DrinkPage.tsx";
-import DrinkDetailsPage from "./pages/drinks/DrinkDetailsPage.tsx";
-import RecipeDetails from "./pages/recipes/RecipeDetails.tsx";
+import AddRecipePage from "./pages/addRecipe/AddRecipePage.tsx";
+import CocktailsPage from "./pages/cocktails/CocktailsPage.tsx";
+import RecipeDetails from "./pages/recipeDetails/RecipeDetails.tsx";
+import CocktailDetailsPage from "./pages/cocktailDetails/CocktailDetailsPage.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -19,8 +19,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Route path="/Recept/:title" element={<RecipeDetails />} />
         <Route path="/Recept" element={<RecipePage />} />
         <Route path="/AddRecept" element={<AddRecipePage/>} />
-        <Route path="/Cocktails" element={<DrinkPage/>} />
-        <Route path="/Cocktails/:title" element={<DrinkDetailsPage/>} />
+        <Route path="/Cocktails" element={<CocktailsPage/>} />
+        <Route path="/Cocktails/:title" element=<CocktailDetailsPage/> />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

@@ -1,6 +1,6 @@
 import { IngredientInterface } from "../Types";
 import { useState } from "react";
-import { useAPIState } from "../state";
+import { useAPIState } from "../store/APIState";
 
 const PostRecipe = () => {
   const { postRecipe } = useAPIState();

@@ -1,9 +1,9 @@
 import './App.css'
 import deleteRecipe from './api/deleteRecipe';
-import SearchBarComponent from './global_components/SearchBarComponent';
+import SearchBarComponent from './globalComponents/SearchBarComponent';
 import useGetAllRecipes from './api/getAllRecipes';
-import NavBar from './global_components/NavBar/NavBar';
-import Footer from './global_components/footer';
+import NavBar from './globalComponents/NavBar';
+import Footer from './globalComponents/Footer';
 import PostRecipe from './api/postRecipe';
 
 function App() {
