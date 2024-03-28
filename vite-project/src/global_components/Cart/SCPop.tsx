@@ -6,6 +6,7 @@ import cartLogo from "../NavBar/img/shopping-cart.png";
 import ShoppingCart from './ShoppingCart';
 import { useCartStateInterface } from '../../state/Cart';
 import RemoveFromCartButton from './RemoveFromCartButton';
+import AddToCartButton from './AddToCartButton';
 
 function Cart() {
   const [showPopover, setShowPopover] = useState(false);
@@ -33,7 +34,7 @@ function Cart() {
   /* const allRecipes = useGetAllRecipes(); */
   const {cart, RemoveFromCart} = useCartStateInterface();
   ;
-
+const sortedCart = cart.sort((a, b) => a.title.localeCompare(b.title));
   return (
     <>
     <ShoppingCart visibility={cartsVisibility} products={cart} onClose={() => setCartVisibility(false)}></ShoppingCart>
@@ -58,14 +59,32 @@ function Cart() {
             onMouseEnter={handlePopoverMouseEnter}
             onMouseLeave={handlePopoverMouseLeave}
           >
-            {cart.map((product) => (
-        <div key={product._id}>
-            <img className='product-image' src={product.imageUrl} alt={product.title} />
-            {product.title}
-        <RemoveFromCartButton recipe={product}></RemoveFromCartButton>
-        
-        </div>
-        ))}
+            
+            {sortedCart.map((product, index) => {
+              
+    // Filtrera cart arrayen för att hitta produkter med samma ID
+    const sameIdProducts = cart.filter((p) => p._id === product._id);
+
+    // Räkna antalet produkter med samma ID
+    const quantity = sameIdProducts.length;
+
+    // Om det är första förekomsten av produkten, visa produktens titel och antal
+    if (index === sortedCart.findIndex((p) => p._id === product._id)) {
+        return (
+            <div key={product._id}>
+                <img className='product-image' src={product.imageUrl} alt={product.title} />
+                {product.title} 
+                {quantity > 1 && <span>({quantity})</span>}
+                <RemoveFromCartButton recipe={product}></RemoveFromCartButton>
+                
+                <AddToCartButton recipe={product}></AddToCartButton>
+            </div>
+        );
+    }
+
+    // Om det inte är första förekomsten av produkten, returnera null för att undvika att produkten dupliceras
+    return null;
+})} 
         
         
           </Col>

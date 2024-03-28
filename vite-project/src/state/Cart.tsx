@@ -21,9 +21,15 @@ interface CartStateInterface {
     },
 
     RemoveFromCart: (recipeIdToRemove) => {
-        set((state) => ({
-            cart: state.cart.filter(recipe => recipe._id !== recipeIdToRemove)
-        }))
+        set((state) => {
+            const indexToRemove = state.cart.findIndex(recipe => recipe._id === recipeIdToRemove);
+            if (indexToRemove !== -1) {
+                const updatedCart = [...state.cart];
+                updatedCart.splice(indexToRemove, 1);
+                return { cart: updatedCart };
+            }
+            return state;
+        });
     },
     ClearCart: () => {
         set(() => ({
