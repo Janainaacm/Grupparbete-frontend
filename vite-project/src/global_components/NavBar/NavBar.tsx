@@ -1,14 +1,31 @@
 import { useLocation, NavLink} from 'react-router-dom';
 import SearchBarComponent from '../SearchBarComponent'; 
 import "bootstrap/dist/css/bootstrap.css"
-import {Nav, Navbar} from "react-bootstrap"
+import {Nav, Navbar, Button} from "react-bootstrap"
 import burger from "./img/burger_10531010.png";
+import cart from "./img/shopping-cart.png"
+import ShoppingCart from '../Cart/ShoppingCart';
+import { useState } from 'react';
+import useGetAllRecipes from '../../api/getAllRecipes';
+import Cart from "../Cart/SCPop"
+
+
 
 function NavBar() {
     const location = useLocation();
 
+    const [cartsVisibility, setCartVisibility] = useState(false);
+  const [productsInCart, setProductsInCart] = useState([]);
+
+  const allRecipes = useGetAllRecipes();
+
     return (
         <>
+
+<ShoppingCart visibility={cartsVisibility} products={allRecipes} onClose={() => setCartVisibility(false)}></ShoppingCart>
+
+
+
         <Navbar style={{backgroundColor: '#b5b58f'}} 
         variant='dark'
         expand="lg" collapseOnSelect>
@@ -30,6 +47,8 @@ function NavBar() {
                 <NavLink to="/Recept" className="nav-link">Recept</NavLink>
                 <NavLink to="/Cocktails" className="nav-link">Cocktails</NavLink>
                 <Nav.Link>Login</Nav.Link>
+                <Cart />
+                
             </Nav>
         </Navbar.Collapse>
         </Navbar>
