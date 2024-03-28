@@ -47,9 +47,6 @@ function NavBar() {
                 <NavLink to="/Recept" className="nav-link">Recept</NavLink>
                 <NavLink to="/Cocktails" className="nav-link">Cocktails</NavLink>
                 <Nav.Link>Login</Nav.Link>
-                {/* <Button variant="link" className="nav-link" onClick={() => setCartVisibility(true)}>
-                    <img src={cart} alt="" style={{ maxWidth: '40px', marginRight: '10px', marginLeft: "10px"}}/>
-                </Button> */}
                 <Cart />
                 
             </Nav>
