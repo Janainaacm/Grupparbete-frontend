@@ -20,7 +20,7 @@ const ShoppingCart = ({
     onQuantityChange,
 }: ShoppingCartProps) => {
 
-    
+
 
     return (
         <div id='modal' style={{ display: visibility ? "block" : "none", }}>
@@ -39,25 +39,97 @@ const ShoppingCart = ({
                         <span className='empty-text'>Your basket is empty
                         </span>
                     )}
-                    {products.map((product, index) => (
+
+                    {/* {cart.map((product, index) => {
+                        // Filtrera cart arrayen för att hitta produkter med samma ID
+                        const sameIdProducts = cart.filter((p) => p._id === product._id);
+
+                        // Räkna antalet produkter med samma ID
+                        const quantity = sameIdProducts.length;
+
+                        // Om det är första förekomsten av produkten, visa produktens titel och antal
+                        if (index === cart.findIndex((p) => p._id === product._id)) {
+                            return (
+                                <div key={product._id}>
+                                    <img className='product-image' src={product.imageUrl} alt={product.title} />
+                                    {product.title} {quantity > 1 && <span>({quantity})</span>}
+                                    <RemoveFromCartButton recipe={product}></RemoveFromCartButton>
+                                </div>
+                            );
+                        }
+
+                        // Om det inte är första förekomsten av produkten, returnera null för att undvika att produkten dupliceras
+                        return null;
+                    })} */}
+
+                    {products.map((product, index) => {
+
+                        const sameIdProducts = products.filter((p) => p._id === product._id);
+
+                        const quantity = sameIdProducts.length;
+
+
+                        if (index === products.findIndex((p) => p._id === product._id)) {
+                            return (
+                                <div className='cart-product' key={index}>
+
+                                    <div className='product-info'>
+
+                                        <h3>{product.title}</h3>
+                                        <img className='product-image' src={product.imageUrl} alt={product.title} />
+                                        <h5>Ingredienter</h5>
+                                        {product.ingredients.map((ingredient, index) => (
+                                            <li key={index}>{ingredient.amount} {ingredient.unit} {ingredient.name}</li>
+
+                                        ))}
+
+
+                                        <span className='product-price'>Pris: {product.price * quantity} Sek</span>
+
+                                    </div>
+
+                                    <select
+                                        className='count'
+                                        value={quantity}
+                                        onChange={(event) => {
+                                            onQuantityChange(product._id, event.target.value);
+                                        }}>
+                                        {
+                                            [...Array(100).keys()].map(number => {
+                                                const num = number + 1;
+                                                return <option value={num} key={num}>{num}</option>
+                                            })
+                                        }
+                                    </select>
+                                    <button className='remove-button' onClick={() => onProductRemove(product._id)}><RiDeleteBin6Line size={20} /></button>
+
+                                    <br /><br />
+
+                                </div>
+                            );
+
+                        } return null
+
+                    })}
+
+                    {/* {products.map((product, index) => (
                         <div className='cart-product' key={index}>
-                            
+
                             <div className='product-info'>
-                                
+
                                 <h3>{product.title}</h3>
                                 <img className='product-image' src={product.imageUrl} alt={product.title} />
                                 <h5>Ingredienter</h5>
                                 {product.ingredients.map((ingredient, index) => (
                                     <li key={index}>{ingredient.amount} {ingredient.unit} {ingredient.name}</li>
-                                    
+
                                 ))}
-                                
+
 
                                 <span className='product-price'>Pris i Sek</span>
-{/*                             <button key={index} className='remove-button' onClick={() => onProductRemove(product._id)}><RiDeleteBin6Line size={20} /></button>
- */}                                
+
                             </div>
-                            
+
                             <select
                                 className='count'
                                 value={product.count}
@@ -71,15 +143,15 @@ const ShoppingCart = ({
                                     })
                                 }
                             </select>
-                            <button key={index} className='remove-button' onClick={() => onProductRemove(product._id)}><RiDeleteBin6Line size={20} /></button>
+                            <button className='remove-button' onClick={() => onProductRemove(product._id)}><RiDeleteBin6Line size={20} /></button>
 
                             <br /><br />
 
                         </div>
-                    ))}
+                    ))} */}
                     {products.length > 0 && <div className='checkout-clear'><button className='check-out'>Köp knapp</button>
-                    <button>Fortsätt handla</button> 
-                    <button>Töm varukorg</button></div>
+                        <button>Fortsätt handla</button>
+                        <button>Töm varukorg</button></div>
                     }
                 </div>
 

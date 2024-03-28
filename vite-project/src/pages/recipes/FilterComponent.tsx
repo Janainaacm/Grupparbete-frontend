@@ -70,7 +70,7 @@ const FilterComponent = () => {
 
         async function getAllCategories() {
             try {
-                const response = await axios.get("https://sti-java-grupp5-wjfjet.reky.se/categories/")
+                const response = await axios.get(`${API_URL}/categories/`)
 
                 if (response.status === 200) {
                     setCategories(response.data)
