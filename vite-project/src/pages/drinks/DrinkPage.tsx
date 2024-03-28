@@ -4,17 +4,10 @@ import AllCocktails from '../../api/getCocktails'
 //import Header from '../../global_components/header'
 //import SearchBarComponent from '../../global_components/SearchBarComponent'
 import Footer from '../../global_components/footer'
-import { useState } from 'react'
-import { GiShoppingBag } from 'react-icons/gi'
 
-import ShoppingCart from '../../global_components/Cart/ShoppingCart'
-import useGetAllRecipes from '../../api/getAllRecipes'
 
 const DrinkPage = () => {
-  const allRecipes = useGetAllRecipes();
-
-  const [cartsVisibility, setCartVisibility] = useState(false);
-  const [productsInCart, setProductsInCart] = useState([]);
+  
 
   
   
@@ -23,9 +16,6 @@ const DrinkPage = () => {
     <div>
       <p>Drink Page</p>
       
-      <ShoppingCart visibility={cartsVisibility} products={allRecipes} onClose={() => setCartVisibility(false)}></ShoppingCart>
-
-      <button onClick={() => setCartVisibility(true)}><GiShoppingBag size={24}></GiShoppingBag></button>
 
       <div>
         

@@ -2,16 +2,15 @@ import React, { useState } from 'react'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import "./ShoppingCart.css"
-import useGetAllRecipes from '../../api/getAllRecipes'
+
 import { useCartStateInterface } from '../../state/Cart'
 
 
 interface ShoppingCartProps {
-    visibility: any,
+    visibility: boolean,
     products: any,
     onProductRemove: any,
     onClose: any,
-    onQuantityChange: any,
     onProductAdd: any
 };
 
@@ -20,8 +19,7 @@ const ShoppingCart = ({
     products,
     onProductRemove,
     onClose,
-    onQuantityChange,
-    onProductAdd
+    onProductAdd,
 }: ShoppingCartProps) => {
 
     const { cart, ClearCart } = useCartStateInterface();

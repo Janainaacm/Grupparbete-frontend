@@ -6,16 +6,16 @@ import burger from "./img/burger_10531010.png";
 import ShoppingCart from '../Cart/ShoppingCart';
 import { useState } from 'react';
 import { GiShoppingBag } from 'react-icons/gi';
-import useGetAllRecipes from '../../api/getAllRecipes';
 import { useCartStateInterface } from '../../state/Cart';
-import { useAPIState } from '../../state';
+
 
 function NavBar() {
     const location = useLocation();
     const [cartsVisibility, setCartVisibility] = useState(false);
-    const allRecipes = useGetAllRecipes();
-    const {cart, RemoveFromCart, ChangeCart, AddToCart} = useCartStateInterface();
-    const {recipeList} = useAPIState();
+    
+    const {cart, RemoveFromCart, AddToCart} = useCartStateInterface();
+    
+    
 
     const sortedCart = cart.sort((a,b) => a.title.localeCompare(b.title))
 

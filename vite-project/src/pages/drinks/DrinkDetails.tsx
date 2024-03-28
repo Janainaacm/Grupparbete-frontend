@@ -1,13 +1,18 @@
 //import { NavigateFunction } from "react-router";
 import { CocktailInterface } from "../../api/getCocktails";
 import { NavigateFunction } from "react-router-dom";
+import AddToCartButton from "../../global_components/Cart/AddToCartButton";
+import { useCartStateInterface } from "../../state/Cart";
 
 interface DrinkDetailsProps {
     drinks: CocktailInterface,
     navigate: NavigateFunction
+    onProductAdd: any
 };
 
-const DrinkDetails = ( { drinks, navigate}: DrinkDetailsProps,  ) => {
+const DrinkDetails = ({onProductAdd, drinks, navigate}: DrinkDetailsProps,  ) => {
+/*     const {cart, AddToCart, AddCocktailToCart} = useCartStateInterface();
+ */
 
     return (
 
@@ -19,7 +24,8 @@ const DrinkDetails = ( { drinks, navigate}: DrinkDetailsProps,  ) => {
                 <h2>{drinks.strDrink}</h2>
 
                 <img src={drinks.strDrinkThumb} alt={drinks.strDrink} style={{ width: '200px', height: '200px', marginBottom: '5px' }} />
-                
+                <button className='remove-button' onClick={() => onProductAdd(drinks)}>+</button>
+
                 <p>Description: {drinks.strAlcoholic}</p>
                 
                 <p>ID: {drinks.idDrink}</p>
