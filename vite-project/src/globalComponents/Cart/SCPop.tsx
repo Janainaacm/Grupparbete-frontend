@@ -1,10 +1,11 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState, useRef } from "react";
-import { Overlay, Row, Col, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import cart from "../../assets/images/shopping-cart.png";
-import useGetAllRecipes from "../../api/getAllRecipes";
-import ShoppingCart from "./ShoppingCart";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState, useRef } from 'react';
+import { Overlay, Row, Col, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import cartLogo from "../NavBar/img/shopping-cart.png";
+import ShoppingCart from './ShoppingCart';
+import { useCartState } from '../../store/CartState';
+import RemoveFromCartButton from './RemoveFromCartButton';
 
 function Cart() {
   const [showPopover, setShowPopover] = useState(false);
@@ -29,15 +30,13 @@ function Cart() {
   const [cartsVisibility, setCartVisibility] = useState(false);
   const [productsInCart, setProductsInCart] = useState([]);
 
-  const allRecipes = useGetAllRecipes();
+  /* const allRecipes = useGetAllRecipes(); */
+  const {cart, RemoveFromCart} = useCartState();
+  ;
 
   return (
     <>
-      <ShoppingCart
-        visibility={cartsVisibility}
-        products={allRecipes}
-        onClose={() => setCartVisibility(false)}
-      ></ShoppingCart>
+    <ShoppingCart visibility={cartsVisibility} products={cart} onClose={() => setCartVisibility(false)}></ShoppingCart>
 
       <Button variant="link" className="nav-link">
         <div
@@ -46,11 +45,7 @@ function Cart() {
           onMouseLeave={handleMouseLeave}
           onClick={() => setCartVisibility(true)}
         >
-          <img
-            src={cart}
-            alt="Cart"
-            style={{ maxWidth: "40px", marginRight: "5px", marginLeft: "5px" }}
-          />
+          <img src={cartLogo} alt="Cart" style={{ maxWidth: '40px', marginRight: '5px', marginLeft: '5px' }} />
         </div>
       </Button>
       <Overlay show={showPopover} placement="bottom" target={cartRef.current}>
@@ -62,9 +57,16 @@ function Cart() {
             onMouseEnter={handlePopoverMouseEnter}
             onMouseLeave={handlePopoverMouseLeave}
           >
-            {allRecipes.map((product) => (
-              <div key={product._id}>{product.title}</div>
-            ))}
+            {cart.map((product) => (
+        <div key={product._id}>
+            <img className='product-image' src={product.imageUrl} alt={product.title} />
+            {product.title}
+        <RemoveFromCartButton recipe={product}></RemoveFromCartButton>
+        
+        </div>
+        ))}
+        
+        
           </Col>
         </Row>
       </Overlay>

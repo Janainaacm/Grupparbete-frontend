@@ -1,7 +1,8 @@
-import { useCartStateInterface } from "../../store/CartState";
+import { useCartState } from "../../store/CartState";
+import { RiDeleteBin6Line } from 'react-icons/ri'
 
 const RemoveFromCartButton = ({ recipe }) => {
-  const removeFromCart = useCartStateInterface(state => state.RemoveFromCart);
+  const removeFromCart = useCartState(state => state.RemoveFromCart);
   
 
   const handleClick = () => {
@@ -9,7 +10,7 @@ const RemoveFromCartButton = ({ recipe }) => {
   };
   
   return (
-    <button onClick={handleClick}>Remove from Cart</button>
+    <button onClick={handleClick}><RiDeleteBin6Line size={20} /></button>
   );
 };
 
