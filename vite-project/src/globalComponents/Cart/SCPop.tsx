@@ -4,7 +4,7 @@ import { Overlay, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import cartLogo from "../NavBar/img/shopping-cart.png";
 import ShoppingCart from './ShoppingCart';
-import { useCartStateInterface } from '../../state/Cart';
+import { useCartState } from '../../store/CartState';
 import RemoveFromCartButton from './RemoveFromCartButton';
 
 function Cart() {
@@ -31,14 +31,14 @@ function Cart() {
   const [productsInCart, setProductsInCart] = useState([]);
 
   /* const allRecipes = useGetAllRecipes(); */
-  const {cart, RemoveFromCart} = useCartStateInterface();
+  const {cart, RemoveFromCart} = useCartState();
   ;
 
   return (
     <>
     <ShoppingCart visibility={cartsVisibility} products={cart} onClose={() => setCartVisibility(false)}></ShoppingCart>
 
-      <Button variant="link" className="nav-link"> 
+      <Button variant="link" className="nav-link">
         <div
           ref={cartRef}
           onMouseEnter={handleMouseEnter}
@@ -48,13 +48,12 @@ function Cart() {
           <img src={cartLogo} alt="Cart" style={{ maxWidth: '40px', marginRight: '5px', marginLeft: '5px' }} />
         </div>
       </Button>
-      <Overlay
-        show={showPopover}
-        placement="bottom"
-        target={cartRef.current}
-      >
+      <Overlay show={showPopover} placement="bottom" target={cartRef.current}>
         <Row>
-          <Col lg={12} xl={12} className="bg-white p-2 rounded shadow d-none d-lg-block"
+          <Col
+            lg={12}
+            xl={12}
+            className="bg-white p-2 rounded shadow d-none d-lg-block"
             onMouseEnter={handlePopoverMouseEnter}
             onMouseLeave={handlePopoverMouseLeave}
           >
@@ -75,4 +74,4 @@ function Cart() {
   );
 }
 
-export default Cart; 
+export default Cart;

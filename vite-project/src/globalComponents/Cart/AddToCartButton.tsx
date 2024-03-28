@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { useCartStateInterface } from "../../state/Cart";
+import { useCartState } from "../../store/CartState";
 
 const AddToCartButton = ({ recipe }) => {
-  const addToCart = useCartStateInterface(state => state.AddToCart);
-  const cart = useCartStateInterface(state => state.cart);
+  const addToCart = useCartState(state => state.AddToCart);
+  const cart = useCartState(state => state.cart);
 
   useEffect(() => {
     console.log("Updated Cart:", cart);

@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "src/global_components/DisplayRecipes.tsx"],
+  "include": ["src", "src/globalComponents/DisplayRecipes.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
