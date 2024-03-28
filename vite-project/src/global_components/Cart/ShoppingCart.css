@@ -57,3 +57,13 @@
     grid-column-gap: 30px;
     grid-row-gap: 20px;
 }
+
+/* .product-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 20px;
+    border: 3px;
+} */

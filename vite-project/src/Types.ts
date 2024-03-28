@@ -5,6 +5,7 @@ export interface RecipeInterface {
   avgRating?: number[];
   ratings?: number[];
   imageUrl: string;
+  price: number,
   timeInMins: number;
   categories: string[];
   instructions: string[];

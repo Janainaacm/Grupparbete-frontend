@@ -3,13 +3,16 @@ import { AiFillCloseCircle } from 'react-icons/ai'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import "./ShoppingCart.css"
 import useGetAllRecipes from '../../api/getAllRecipes'
+import { useCartStateInterface } from '../../state/Cart'
+
 
 interface ShoppingCartProps {
     visibility: any,
     products: any,
     onProductRemove: any,
     onClose: any,
-    onQuantityChange: any
+    onQuantityChange: any,
+    onProductAdd: any
 };
 
 const ShoppingCart = ({
@@ -18,7 +21,15 @@ const ShoppingCart = ({
     onProductRemove,
     onClose,
     onQuantityChange,
+    onProductAdd
 }: ShoppingCartProps) => {
+
+    const { cart, ClearCart } = useCartStateInterface();
+
+      const sum = cart.reduce((n, {price}) => n + price, 0)
+      
+      console.log("sum",cart.reduce((n, {price}) => n + price, 0));
+    
 
 
 
@@ -82,13 +93,14 @@ const ShoppingCart = ({
                                             <li key={index}>{ingredient.amount} {ingredient.unit} {ingredient.name}</li>
 
                                         ))}
+                                        <br />
 
 
                                         <span className='product-price'>Pris: {product.price * quantity} Sek</span>
 
                                     </div>
 
-                                    <select
+                                    {/* <select
                                         className='count'
                                         value={quantity}
                                         onChange={(event) => {
@@ -100,8 +112,11 @@ const ShoppingCart = ({
                                                 return <option value={num} key={num}>{num}</option>
                                             })
                                         }
-                                    </select>
-                                    <button className='remove-button' onClick={() => onProductRemove(product._id)}><RiDeleteBin6Line size={20} /></button>
+                                    </select> */}
+                                    <p>Antal: {quantity}</p>
+                                    <button className='remove-button' onClick={() => onProductRemove(product._id)}>-</button>
+                                    <button className='remove-button' onClick={() => onProductAdd(product)}>+</button>
+
 
                                     <br /><br />
 
@@ -149,9 +164,12 @@ const ShoppingCart = ({
 
                         </div>
                     ))} */}
-                    {products.length > 0 && <div className='checkout-clear'><button className='check-out'>Köp knapp</button>
-                        <button>Fortsätt handla</button>
-                        <button>Töm varukorg</button></div>
+                    {products.length > 0 && <div className='checkout-clear'>
+                        <h3>Totalt pris: {sum}</h3>
+                        <br />
+                        <button className='check-out'>Köp knapp</button>
+                        <button onClick={onClose}>Fortsätt handla</button>
+                        <button onClick={ClearCart}>Töm varukorg</button></div>
                     }
                 </div>
 

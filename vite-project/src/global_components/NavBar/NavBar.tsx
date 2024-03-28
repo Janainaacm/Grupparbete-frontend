@@ -14,8 +14,10 @@ function NavBar() {
     const location = useLocation();
     const [cartsVisibility, setCartVisibility] = useState(false);
     const allRecipes = useGetAllRecipes();
-    const {cart, RemoveFromCart} = useCartStateInterface();
+    const {cart, RemoveFromCart, ChangeCart, AddToCart} = useCartStateInterface();
     const {recipeList} = useAPIState();
+
+    const sortedCart = cart.sort((a,b) => a.title.localeCompare(b.title))
 
     return (
         <>
@@ -36,7 +38,7 @@ function NavBar() {
             <Navbar.Toggle/>
             <Navbar.Collapse className='justify-content-end' style={{ marginRight: '15px'}}>
             <Nav>
-            <ShoppingCart visibility={cartsVisibility} products={cart} onClose={() => setCartVisibility(false)} onProductRemove={RemoveFromCart}></ShoppingCart>
+            <ShoppingCart visibility={cartsVisibility} products={sortedCart} onClose={() => setCartVisibility(false)} onProductRemove={RemoveFromCart} onProductAdd={AddToCart}></ShoppingCart>
 
                 <button onClick={() => setCartVisibility(true)}><GiShoppingBag size={24}></GiShoppingBag></button>
                 
