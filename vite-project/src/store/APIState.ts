@@ -15,7 +15,7 @@ interface APIState {
   postRecipe: (newRecipe: RecipeInterface) => Promise<number>;
   fetchRecipe: (recipeID: string) => Promise<RecipeInterface>;
   deleteRecipe: (recipeId: string) => Promise<void>;
-  updateRecipe: (updatedRecipe: RecipeInterface);
+  updateRecipe: (updatedRecipe: RecipeInterface) => Promise<void>;
 }
 
 // skapar global state och fyller 'recipes' med samtliga recept i databasen.
