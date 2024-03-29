@@ -2,10 +2,13 @@
 import { useNavigate} from "react-router";
 import { useAPIState } from "../store/APIState";
 import { useEffect } from "react";
+import { RecipeInterface } from "../Types";
 
-const DisplayRecipes = (): JSX.Element => {
-  const { recipeList, fetchRecipe, fetchRecipeList } = useAPIState();
+const DisplayRecipes = (recipeList: RecipeInterface[]): JSX.Element => {
+  const { fetchRecipe, fetchRecipeList } = useAPIState();
   const navigate = useNavigate();
+  console.log(recipeList, "det som tas emot")
+
 
   useEffect(() => {
     fetchRecipeList();
