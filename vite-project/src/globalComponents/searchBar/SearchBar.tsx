@@ -35,10 +35,12 @@ const SearchBar = () => {
    });
  };
 
+ const handleChange = (value) => {
+    setSearch(value)
+    
+ }
 
- useEffect(() => {
-   console.log(searchResults);
- }, [searchResults]);
+ 
 
 
  useEffect(() => {
@@ -52,7 +54,7 @@ const SearchBar = () => {
        type="text"
        placeholder="Search..."
        value={search}
-       onChange={(e) => setSearch(e.target.value)}
+       onChange={(e) => handleChange(e.target.value)}
        onKeyDown={(e) => e.key === "Enter" && getSearchResult()}
      />
      <FaSearch id="search-icon" />
