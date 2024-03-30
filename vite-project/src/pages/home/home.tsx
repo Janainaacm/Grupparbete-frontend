@@ -1,6 +1,6 @@
 import NavBar from "../../globalComponents/NavBar.tsx";
 import Footer from "../../globalComponents/Footer.tsx";
-import SearchBarComponent from "../../globalComponents/SearchBarComponent.tsx";
+import SearchBar from "../../globalComponents/searchBar/SearchBar.tsx";
 import DisplayRecipes from "../../globalComponents/DisplayRecipes.tsx";
 import { useNavigate } from "react-router-dom";
 import "./HomeStyles.css";
@@ -13,11 +13,13 @@ import harvestImg from "../../assets/images/harvest.png";
 import teaLeafImg from "../../assets/images/tea-leaf.png";
 import veganImg from "../../assets/images/vegan.png";
 import { useAPIState } from "../../store/APIState.ts";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import SearchResultsList from "../../globalComponents/searchBar/SearchResultsList.tsx";
 
 const Home = () => {
   const navigate = useNavigate();
   const { fetchRecipeList } = useAPIState();
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     fetchRecipeList();
@@ -76,9 +78,10 @@ const Home = () => {
       <div style={{ textAlign: "center" }} className="content">
         <div className="welcome-title">Välkommen!</div>
 
-        <div>
-          <SearchBarComponent />
-        </div>
+        <div className="searchBarField">
+           <SearchBar setSearchResults={setSearchResults}/>
+           <SearchResultsList results={searchResults}/>
+         </div>
 
         <div className="category-bubbles">
           <div className="button-one">
