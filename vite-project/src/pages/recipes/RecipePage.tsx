@@ -5,7 +5,6 @@ import { useAPIState } from '../../store/APIState';
 import { useLocation } from 'react-router-dom';
 import { RecipeInterface } from '../../Types';
 
-
 const RecipePage = (): JSX.Element => {
  const location = useLocation();
   const { recipeList, fetchRecipeList } = useAPIState();
@@ -27,7 +26,11 @@ const RecipePage = (): JSX.Element => {
     <>
       <NavBar />
       <div>
+
+        {showAll()} {/* Call the showAll function to render the list */}
+
       {DisplayRecipes(showRecipes)}
+
       </div>
     </>
   );
