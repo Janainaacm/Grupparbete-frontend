@@ -13,11 +13,13 @@ import harvestImg from "../../assets/images/harvest.png";
 import teaLeafImg from "../../assets/images/tea-leaf.png";
 import veganImg from "../../assets/images/vegan.png";
 import { useAPIState } from "../../store/APIState.ts";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import SearchResultsList from "../../globalComponents/searchBar/SearchResultsList.tsx";
 
 const Home = () => {
   const navigate = useNavigate();
   const { fetchRecipeList } = useAPIState();
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     fetchRecipeList();
@@ -77,7 +79,8 @@ const Home = () => {
         <div className="welcome-title">Välkommen!</div>
 
         <div className="searchBarField">
-           <SearchBar/>
+           <SearchBar setSearchResults={setSearchResults}/>
+           <SearchResultsList results={searchResults}/>
          </div>
 
         <div className="category-bubbles">

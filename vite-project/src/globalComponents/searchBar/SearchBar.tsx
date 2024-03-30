@@ -6,10 +6,9 @@ import "./SearchBar.css";
 import { useAPIState } from "../../store/APIState";
 
 
-const SearchBar = () => {
+const SearchBar = ({ setSearchResults }) => {
  const [search, setSearch] = useState("");
  const recipes = useAPIState((state) => state.recipeList);
- const [searchResults, setSearchResults] = useState<RecipeInterface[]>([]);
  const navigate = useNavigate();
 
 
@@ -28,6 +27,7 @@ const SearchBar = () => {
        )
      );
    });
+
    clearSearch();
    console.log(results)
    navigate("/Recept", {
@@ -35,16 +35,28 @@ const SearchBar = () => {
    });
  };
 
+ const fetchData = (value) => {
+    const dynamicSearchResult = recipes.filter((r) => {
+        return (
+            value && 
+            r && 
+            r.title && 
+            r.title.toLowerCase().includes(value)
+        );
+    })
+    setSearchResults(dynamicSearchResult)
+ }
+
  const handleChange = (value) => {
     setSearch(value)
-    
+    fetchData(value)
  }
 
  
 
 
  useEffect(() => {
-   setSearchResults([]);
+   
  }, []);
 
 
