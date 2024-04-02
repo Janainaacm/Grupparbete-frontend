@@ -110,6 +110,8 @@ const FilterComponent = () => {
                     <button className='button-1' onClick={() => filterByCategory(category.name)}>{category.name}</button>
 
                 ))}
+                <br />
+                <br />
                 <button className='button-1' onClick={() => setFilteredArray([])}>Återställ</button>
 
             </div>

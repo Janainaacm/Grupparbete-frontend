@@ -4,7 +4,7 @@ import AllCocktails from '../../api/getCocktails'
 //import Header from '../../global_components/header'
 //import SearchBarComponent from '../../global_components/SearchBarComponent'
 import Footer from '../../global_components/footer'
-import FilterCocktailComponent from '../recipes/FilterCocktailComponent'
+import FilterCocktailComponent from './FilterCocktailComponent'
 
 
 const DrinkPage = () => {
