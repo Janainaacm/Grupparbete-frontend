@@ -30,7 +30,9 @@ export const useAPIState = create<APIState>((set) => ({
     try {
       const response = await axios.get(`${API_URL}/recipes/`);
       if (response.status === 200) {
-        set({ recipeList: response.data });
+        set({ 
+          recipeList: response.data 
+        });
         console.log(response.data);
       }
     } catch (error) {
@@ -102,12 +104,12 @@ export const useAPIState = create<APIState>((set) => ({
   fetchCategories: async () => {
     try {
       const response = await axios.get(`${API_URL}/categories`);
-
       if (response.status === 200) {
-        
-        set((state)) => ({
-          
-        })
+        console.log("success fetching categories");
+        set({
+          allCategories: response.data
+        });
+        console.log(response.data);
       }
     } catch (error) {
       console.log("error", error);
