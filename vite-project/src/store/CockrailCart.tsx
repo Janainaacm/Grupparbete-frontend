@@ -1,4 +1,4 @@
-import {create} from "zustand"
+import { create } from "zustand"
 import { CocktailInterface } from "../api/getCocktails"
 
 interface CocktailCartInterface {
@@ -35,7 +35,7 @@ export const useCocktailCartStateInterface = create<CocktailCartInterface>((set)
                 const updatedCart = [...state.coctailCart];
                 updatedCart.splice(indexToRemove, 1);
 
-                return {coctailCart: updatedCart};
+                return { coctailCart: updatedCart };
             }
             return state;
         })

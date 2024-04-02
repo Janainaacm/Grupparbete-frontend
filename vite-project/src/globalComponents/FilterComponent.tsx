@@ -138,6 +138,7 @@ const FilterComponent = () => {
             </div> */}
 
 
+            <br />
 
             <div style={{ display: "flex", flexWrap: "wrap" }}>
 

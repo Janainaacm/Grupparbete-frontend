@@ -10,16 +10,13 @@ import { RecipeInterface } from '../../Types'
 
 interface ShoppingCartProps {
     visibility: boolean
-    products: any
-    onClose: any,
-    cocktails: any
+    onClose: any
+    
 };
 
 const ShoppingCart = ({
     visibility,
-    products,
     onClose,
-    cocktails,
     
 }: ShoppingCartProps) => {
 
