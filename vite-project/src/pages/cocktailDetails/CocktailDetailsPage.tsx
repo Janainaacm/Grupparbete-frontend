@@ -2,12 +2,7 @@
 import NavBar from "../../globalComponents/NavBar"
 import Footer from "../../globalComponents/Footer"
 import { useLocation, useNavigate } from "react-router-dom";
-<<<<<<< HEAD:vite-project/src/pages/drinks/DrinkDetailsPage.tsx
-import DrinkDetails from "./DrinkDetails";
-import FilterFunction from "../../global_components/FilterFunktion";
-=======
 import CocktailDetails from "./components/CocktailDetails";
->>>>>>> main:vite-project/src/pages/cocktailDetails/CocktailDetailsPage.tsx
 
 
 const CocktailDetailsPage = () => {
