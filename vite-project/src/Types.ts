@@ -21,3 +21,8 @@ export interface IngredientInterface {
 export interface CartInterface {
   recipe: RecipeInterface[]
 }
+
+export interface CategorieInterface {
+  name: string;
+  count: number;
+}

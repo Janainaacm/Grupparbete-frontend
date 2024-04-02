@@ -3,13 +3,15 @@
  */
 
 import { create } from "zustand";
-import { RecipeInterface } from "../Types";
+import { RecipeInterface, CategorieInterface } from "../Types";
 import axios from "axios";
 import { API_URL } from "../config";
+import { error } from "console";
 
 // interface som definierar struktur och funktionerna för global state
 interface APIState {
   recipeList: RecipeInterface[];
+  allCategories: CategorieInterface[];
 
   fetchRecipe: (recipeID: string) => Promise<RecipeInterface>;
   fetchRecipeList: () => Promise<void>;
@@ -21,7 +23,7 @@ interface APIState {
 export const useAPIState = create<APIState>((set) => ({
   
   recipeList: [],
-
+  allCategories: [],
   
 
   fetchRecipeList: async () => {
@@ -73,7 +75,7 @@ export const useAPIState = create<APIState>((set) => ({
       const response = await axios.delete(`${API_URL}/recipes/${recipeId}`);
 
       if (response.status === 200) {
-        console.log("success");
+        console.log("successfully deleted ID: ", recipeId );
         set((state) => ({
           recipeList: state.recipeList.filter(
             (recipe) => recipe._id !== recipeId
@@ -85,14 +87,16 @@ export const useAPIState = create<APIState>((set) => ({
     }
   },
 
-  //PATCH - /recipes/{recipeId} - Uppdaterar ett recept
 
+  // NICK
   //POST - /recipes/{recipeId}/ratings - Lägger till ett omdöme för ett recept
-
+  
   //GET - /recipes/{recipeId}/comments - Hämtar alla kommentarer för ett recept
-
+  
   //POST - /recipes/{recipeId}/comments - Lägger till en kommentar för ett recept
+  
 
+  //JONAS 
   //GET - /categories - Hämtar alla kategorier
 
   fetchCategories: async () => {
@@ -100,12 +104,18 @@ export const useAPIState = create<APIState>((set) => ({
       const response = await axios.get(`${API_URL}/categories`);
 
       if (response.status === 200) {
-
+        
+        set((state)) => ({
+          
+        })
       }
-    } catch {}
+    } catch (error) {
+      console.log("error", error);
+    }
   },
 
   //GET - /categories/{categoryName}/recipes - Hämtar alla recept i en viss kategori
-
+  
   //GET - /clear - Tömmer api:et på all data
+  
 }));
