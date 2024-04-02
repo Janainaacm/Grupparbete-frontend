@@ -1,10 +1,14 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { API_URL } from '../../config'
 import axios from 'axios'
 import { RecipeInterface } from '../../Types'
 import { useNavigate } from 'react-router-dom'
 import { useAPIState } from '../../state'
+
+interface CategoryInterface {
+    name: string
+    count: number
+}
 
 
 const FilterComponent = () => {
@@ -22,7 +26,7 @@ const FilterComponent = () => {
         if (response.status === 200) {
 
             setFilteredArray(response.data);
-            console.log(response.data)
+            console.log(response.data);
         };
     };
 
@@ -66,11 +70,11 @@ const FilterComponent = () => {
 
     function getAllCategories() {
 
-        const [categories, setCategories] = useState([])
+        const [categories, setCategories] = useState<CategoryInterface[]>([])
 
-        async function getAllCategories() {
+        async function getCategories() {
             try {
-                const response = await axios.get(`${API_URL}/categories/`)
+                const response = await axios.get(`${API_URL}/categories/`);
 
                 if (response.status === 200) {
                     setCategories(response.data)
@@ -82,11 +86,12 @@ const FilterComponent = () => {
         }
 
         useEffect(() => {
-            getAllCategories()
-        }, [])
+            getCategories()
+        }, []);
+
         return categories
 
-    }
+    };
 
 
     const allCategories = getAllCategories();
@@ -105,6 +110,8 @@ const FilterComponent = () => {
                     <button className='button-1' onClick={() => filterByCategory(category.name)}>{category.name}</button>
 
                 ))}
+                <button className='button-1' onClick={() => setFilteredArray([])}>Återställ</button>
+
             </div>
 
             {/* <div className="category-bubbles">
@@ -130,7 +137,7 @@ const FilterComponent = () => {
             <div style={{ display: "flex", flexWrap: "wrap" }}>
 
 
-                {filteredArray.map((recipe) => (
+                {filteredArray.map((recipe: RecipeInterface) => (
                     <div
                         key={recipe._id}
                         style={{

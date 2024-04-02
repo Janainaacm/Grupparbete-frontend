@@ -3,6 +3,8 @@ import { CocktailInterface } from "../../api/getCocktails";
 import { NavigateFunction } from "react-router-dom";
 import AddToCartButton from "../../global_components/Cart/AddToCartButton";
 import { useCartStateInterface } from "../../state/Cart";
+import { useCocktailCartStateInterface } from '../../state/CocktailCart';
+
 
 interface DrinkDetailsProps {
     drinks: CocktailInterface,
@@ -10,9 +12,11 @@ interface DrinkDetailsProps {
     onProductAdd: any
 };
 
-const DrinkDetails = ({onProductAdd, drinks, navigate}: DrinkDetailsProps,  ) => {
+const DrinkDetails = ({drinks, navigate}: DrinkDetailsProps,  ) => {
 /*     const {cart, AddToCart, AddCocktailToCart} = useCartStateInterface();
  */
+const { coctailCart, RemoveAllFromCocktailCart: RemoveFromCocktailCart, AddToCocktailCart } = useCocktailCartStateInterface();
+
 
     return (
 
@@ -24,9 +28,10 @@ const DrinkDetails = ({onProductAdd, drinks, navigate}: DrinkDetailsProps,  ) =>
                 <h2>{drinks.strDrink}</h2>
 
                 <img src={drinks.strDrinkThumb} alt={drinks.strDrink} style={{ width: '200px', height: '200px', marginBottom: '5px' }} />
-                <button className='remove-button' onClick={() => onProductAdd(drinks)}>+</button>
+                <br />
+                <button className='remove-button' onClick={() => AddToCocktailCart(drinks)}>Lägg till varukorg</button>
 
-                <p>Description: {drinks.strAlcoholic}</p>
+                <p>Alkohol: {drinks.strAlcoholic}</p>
                 
                 <p>ID: {drinks.idDrink}</p>
                 

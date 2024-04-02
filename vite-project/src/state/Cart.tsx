@@ -1,13 +1,13 @@
 import { CartInterface } from "../Types";
 import { create } from "zustand";
 import { RecipeInterface } from "../Types";
-import { CocktailInterface } from "../api/getCocktails";
 
 interface CartStateInterface {
     cart: RecipeInterface[]
 
     AddToCart: (recipe: RecipeInterface) => void
     RemoveFromCart: (recipeIdToRemove: string) => void
+    RemoveAllFromCart: (recipIdToRemove: string) => void
     ClearCart: () => void
     
 }
@@ -35,6 +35,12 @@ export const useCartStateInterface = create<CartStateInterface>((set) => ({
             }
             return state;
         });
+    },
+
+    RemoveAllFromCart: (recipeIdToRemove) => {
+        set((state) => ({
+            cart: state.cart.filter(cocktail => cocktail._id !== recipeIdToRemove)
+        }))
     },
 
 

@@ -4,36 +4,43 @@ import AllCocktails from '../../api/getCocktails'
 //import Header from '../../global_components/header'
 //import SearchBarComponent from '../../global_components/SearchBarComponent'
 import Footer from '../../global_components/footer'
+import FilterCocktailComponent from '../recipes/FilterCocktailComponent'
 
 
 const DrinkPage = () => {
-  
 
-  
-  
+
+
+
   return (
 
     <div>
       <p>Drink Page</p>
-      
+
 
       <div>
-        
+
       </div>
       <div>
-        <NavBar/>
+        <NavBar />
       </div>
-      <div style={{textAlign: "center"}}>
+      <div style={{ textAlign: "center" }}>
         <br />
       </div>
       <div>
+        <FilterCocktailComponent></FilterCocktailComponent>
+        <br />
+        <br />
+        <h2>Alla cocktails</h2>
+        <br />
+        <br />
         <AllCocktails></AllCocktails>
       </div>
-      <div style={{position: "fixed", bottom: "0", justifyContent: "center", width:"100%", padding: "10px",height:"50px"}}>
+      <div style={{bottom: "0", justifyContent: "center", width: "100%", padding: "10px", height: "50px" }}>
         <Footer />
-      </div> 
+      </div>
     </div>
-    
+
   )
 }
 
@@ -41,7 +48,7 @@ export default DrinkPage
 
 
 
-    
+
 
 {/* <>
     <NavBar/>

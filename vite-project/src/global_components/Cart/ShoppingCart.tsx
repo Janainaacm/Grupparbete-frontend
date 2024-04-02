@@ -1,32 +1,43 @@
-import React, { useState } from 'react'
 import { AiFillCloseCircle } from 'react-icons/ai'
-import { RiDeleteBin6Line } from 'react-icons/ri'
 import "./ShoppingCart.css"
-
 import { useCartStateInterface } from '../../state/Cart'
+import { CocktailInterface } from '../../api/getCocktails'
+import { RecipeInterface } from '../../Types'
+import { useCocktailCartStateInterface } from '../../state/CocktailCart'
 
 
 interface ShoppingCartProps {
-    visibility: boolean,
-    products: any,
-    onProductRemove: any,
+    visibility: boolean
+    products: any
     onClose: any,
-    onProductAdd: any
+    cocktails: any
 };
 
 const ShoppingCart = ({
     visibility,
     products,
-    onProductRemove,
     onClose,
-    onProductAdd,
+    cocktails,
+    
 }: ShoppingCartProps) => {
 
-    const { cart, ClearCart } = useCartStateInterface();
+    const { cart, ClearCart, RemoveFromCart, RemoveAllFromCart, AddToCart  } = useCartStateInterface();
+
+    const { coctailCart, RemoveOneFromCocktailCart, AddToCocktailCart, ClearCocktailCart, RemoveAllFromCocktailCart  } = useCocktailCartStateInterface();
+
+    const sortedProducts = cart.sort((a, b) => a.title.localeCompare(b.title))
+    const sortedCocktails = coctailCart.sort((a, b) => a.strDrink.localeCompare(b.strDrink))
+
 
       const sum = cart.reduce((n, {price}) => n + price, 0)
       
-      console.log("sum",cart.reduce((n, {price}) => n + price, 0));
+      console.log("sum(pris)",cart.reduce((n, {price}) => n + price, 0));
+
+      const clearShoppingCart = () => {
+
+        ClearCart();
+        ClearCocktailCart();
+      }
     
 
 
@@ -38,14 +49,14 @@ const ShoppingCart = ({
 
                 <div className='header'>
 
-                    <h2>Shopping Cart</h2>
+                    <h2>Varukorg</h2>
 
                     <button className='close-button' onClick={onClose}><AiFillCloseCircle size={30} /></button>
 
                 </div>
                 <div className='cart-products'>
-                    {products.length === 0 && (
-                        <span className='empty-text'>Your basket is empty
+                    {products.length + cocktails.length === 0 && (
+                        <span className='empty-text'>Inget här :(
                         </span>
                     )}
 
@@ -71,14 +82,14 @@ const ShoppingCart = ({
                         return null;
                     })} */}
 
-                    {products.map((product, index) => {
+                    {products.map((product: RecipeInterface, index: number) => {
 
-                        const sameIdProducts = products.filter((p) => p._id === product._id);
+                        const sameIdProducts = products.filter((p:RecipeInterface) => p._id === product._id);
 
                         const quantity = sameIdProducts.length;
 
 
-                        if (index === products.findIndex((p) => p._id === product._id)) {
+                        if (index === products.findIndex((p:RecipeInterface) => p._id === product._id)) {
                             return (
                                 <div className='cart-product' key={index}>
 
@@ -94,27 +105,58 @@ const ShoppingCart = ({
                                         <br />
 
 
-                                        <span className='product-price'>Pris: {product.price * quantity} Sek</span>
+                                        {/* <span className='product-price'>Pris: {product.price * quantity} Sek</span>
+                                        <br /> */}
+                                        <span className='product-price'>Pris: {Number.isNaN(product.price + 0) ? product.price = 0 : product.price*quantity + " Sek"}</span>
 
                                     </div>
 
-                                    {/* <select
-                                        className='count'
-                                        value={quantity}
-                                        onChange={(event) => {
-                                            onQuantityChange(product._id, event.target.value);
-                                        }}>
-                                        {
-                                            [...Array(100).keys()].map(number => {
-                                                const num = number + 1;
-                                                return <option value={num} key={num}>{num}</option>
-                                            })
-                                        }
-                                    </select> */}
                                     <p>Antal: {quantity}</p>
-                                    <button className='remove-button' onClick={() => onProductRemove(product._id)}>-</button>
-                                    <button className='remove-button' onClick={() => onProductAdd(product)}>+</button>
+                                    
+                                    {/* <button className='remove-button' onClick={() => onProductRemove(product._id)}>-</button> */}
+                                    <button className='remove-button' onClick={() => RemoveFromCart(product._id)}>-</button>
+                                    {/* <button className='remove-button' onClick={() => onProductAdd(product)}>+</button> */}
+                                    <button className='remove-button' onClick={() => AddToCart(product)}>+</button>
+                                    <button onClick={()=> RemoveAllFromCart(product._id)}>Ta bort produkt</button>
 
+
+
+                                    <br /><br />
+
+                                </div>
+                            );
+
+                        } return null
+
+                    })}
+
+                    {cocktails.map((cocktail: CocktailInterface, index:number) => {
+
+                        const sameIdCocktails = cocktails.filter((c: CocktailInterface) => c.idDrink === cocktail.idDrink);
+
+                        const cocktailQuantity = sameIdCocktails.length;
+
+                        if (index === cocktails.findIndex((c: CocktailInterface) => c.idDrink === cocktail.idDrink)) {
+                            return (
+                                <div className='cart-product' key={index}>
+
+                                    <div className='product-info'>
+
+                                        <h3>{cocktail.strDrink}</h3>
+                                        <img className='product-image' src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
+                                        <p>Kategori: {cocktail.strCategory}</p>
+                                        <p>Alkohol: {cocktail.strAlcoholic === "Alcoholic" && "Ja" }{cocktail.strAlcoholic === "Non alcoholic" && "Nej"}{cocktail.strAlcoholic === "Optional alcohol" && "Valbart"}</p>
+
+                                        {/* <p>Alkohol: {cocktail.strAlcoholic === "Alcoholic" ? "Ja" : "Nej"}</p> */}
+
+
+                                    </div>
+                                    <p>Antal: {cocktailQuantity}</p>
+                                    {/* <button className='remove-button' onClick={() => onCocktailRemove(cocktail.idDrink)}>-</button> */}
+                                    <button className='remove-button' onClick={() => RemoveOneFromCocktailCart(cocktail.idDrink)}>-</button>
+                                    {/* <button className='remove-button' onClick={() => onCocktailAdd(cocktail)}>+</button> */}
+                                    <button className='remove-button' onClick={() => AddToCocktailCart(cocktail)}>+</button>
+                                    <button onClick={()=> RemoveAllFromCocktailCart(cocktail.idDrink)}>Ta bort produkt</button>
 
                                     <br /><br />
 
@@ -162,12 +204,14 @@ const ShoppingCart = ({
 
                         </div>
                     ))} */}
-                    {products.length > 0 && <div className='checkout-clear'>
-                        <h3>Totalt pris: {sum}</h3>
+
+
+                    {products.length + cocktails.length > 0 && <div className='checkout-clear'>
+                        <h3>Totalt pris: {sum + " Sek"}</h3>
                         <br />
                         <button className='check-out'>Köp knapp</button>
                         <button onClick={onClose}>Fortsätt handla</button>
-                        <button onClick={ClearCart}>Töm varukorg</button></div>
+                        <button onClick={clearShoppingCart}>Töm varukorg</button></div>
                     }
                 </div>
 

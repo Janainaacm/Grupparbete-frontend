@@ -49,9 +49,10 @@ export interface CocktailInterface {
 
 
 
-const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
+const URL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
 const URL2 = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic";
-const URL3 = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="
+const URL3 = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
+const URL4 = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic";
 
 const AllCocktails = () => {
 
@@ -71,7 +72,7 @@ const AllCocktails = () => {
         state: { cocktail: selectedCocktail},
       });
 
-      console.log("cocktails",cocktails);
+      console.log("cocktails", cocktails);
       console.log("selectedCocktail.strDrink",selectedCocktail.strDrink);
 
     };
@@ -80,23 +81,32 @@ const AllCocktails = () => {
 
   };
   
-  const [cocktails, setCocktails] = useState<CocktailInterface[]>([]);
-  const [cocktails0, setCocktails0] = useState<CocktailInterface[]>([]);
+  const [cocktails1, setCocktails] = useState<CocktailInterface[]>([]);
+  const [cocktails2, setCocktails2] = useState<CocktailInterface[]>([]);
+  const [cocktails3, setCocktails3] = useState<CocktailInterface[]>([]);
 
+  const cocktailsList = [];
+
+  
   
 
   const getCocktails = async () => {
 
-    const response0 = await axios.get(url);
+    const response = await axios.get(URL);
 
-    const response = await axios.get(URL2);
+    const response2 = await axios.get(URL2);
+
+    const response3 = await axios.get(URL4);
+
       
 
-    if (response.status === 200) {
+    if (response2.status === 200) {
 
       setCocktails(response.data.drinks);
-      setCocktails0(response0.data.drinks)
-      console.log(response.data.drinks)
+      setCocktails2(response2.data.drinks);
+      setCocktails3(response3.data.drinks)
+      console.log("response2.data.drinks",response2.data.drinks)
+      console.log("cocktails",cocktails)
       
     };
 
@@ -109,44 +119,23 @@ const AllCocktails = () => {
     
   }, []);
 
+  cocktailsList.push(cocktails1, cocktails2, cocktails3);
+
+  const cocktails = cocktailsList.flatMap((num) => num);
+
+  console.log("cocktails", cocktails);
+  
+
+  console.log("cocktailsbeforeReturn", cocktails)
 
   return (
 
 
     <div style={{ display: "flex", flexWrap: "wrap" }}>
-      {cocktails.map((cocktail) => (
-        <div
-          key={cocktail.idDrink}
-          style={{
-            width: "200px",
-            marginBottom: "20px",
-            marginRight: "20px",
-            textAlign: "center",
-          }}
-        >
-          <button
-            onClick={() => seeCocktailDetails(cocktail.idDrink)}
-            style={{
-              border: "none",
-              background: "none",
-              padding: "0",
-              cursor: "pointer",
-            }}
-          >
-            <img
-              src={cocktail.strDrinkThumb}
-              alt={cocktail.strDrink}
-              style={{ width: "100px", height: "100px", marginBottom: "5px" }}
-            />
-          </button>
-          <div>{cocktail.strDrink}</div>
-        </div>
-      ))}
       
-
-      {cocktails0.map((cocktail) => (
+      {cocktails.map((cocktail, index) => (
         <div
-          key={cocktail.idDrink}
+          key={index}
           style={{
             width: "200px",
             marginBottom: "20px",
