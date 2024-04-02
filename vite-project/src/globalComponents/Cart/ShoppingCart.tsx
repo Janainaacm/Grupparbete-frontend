@@ -1,43 +1,41 @@
 import { AiFillCloseCircle } from 'react-icons/ai'
 import "./ShoppingCart.css"
-/* import { useCartStateInterface } from '../../state/Cart'
- */import { useCartState } from '../../store/CartState'
+import { useCartState } from '../../store/CartState'
 import { CocktailInterface } from '../../api/getCocktails'
 import { RecipeInterface } from '../../Types'
-/* import { useCocktailCartStateInterface } from '../../state/CocktailCart'
- */import { useCocktailCartStateInterface } from '../../store/CockrailCart'
+import { useCocktailCartStateInterface } from '../../store/CockrailCart'
 
 
 interface ShoppingCartProps {
     visibility: boolean
     onClose: any
-    
+
 };
 
 const ShoppingCart = ({
     visibility,
     onClose,
-    
+
 }: ShoppingCartProps) => {
 
-    const { cart, ClearCart, RemoveFromCart, RemoveAllFromCart, AddToCart  } = useCartState();
+    const { cart, ClearCart, RemoveFromCart, RemoveAllFromCart, AddToCart } = useCartState();
 
-    const { coctailCart, RemoveOneFromCocktailCart, AddToCocktailCart, ClearCocktailCart, RemoveAllFromCocktailCart  } = useCocktailCartStateInterface();
+    const { coctailCart, RemoveOneFromCocktailCart, AddToCocktailCart, ClearCocktailCart, RemoveAllFromCocktailCart } = useCocktailCartStateInterface();
 
     const sortedProducts = cart.sort((a, b) => a.title.localeCompare(b.title))
     const sortedCocktails = coctailCart.sort((a, b) => a.strDrink.localeCompare(b.strDrink))
 
 
-      const sum = cart.reduce((n, {price}) => n + price, 0)
-      
-      console.log("sum(pris)",cart.reduce((n, {price}) => n + price, 0));
+    const sum = cart.reduce((n, { price }) => n + price, 0)
 
-      const clearShoppingCart = () => {
+    console.log("sum(pris)", cart.reduce((n, { price }) => n + price, 0));
+
+    const clearShoppingCart = () => {
 
         ClearCart();
         ClearCocktailCart();
-      }
-    
+    }
+
 
 
 
@@ -83,12 +81,12 @@ const ShoppingCart = ({
 
                     {sortedProducts.map((product: RecipeInterface, index: number) => {
 
-                        const sameIdProducts = sortedProducts.filter((p:RecipeInterface) => p._id === product._id);
+                        const sameIdProducts = sortedProducts.filter((p: RecipeInterface) => p._id === product._id);
 
                         const quantity = sameIdProducts.length;
 
 
-                        if (index === sortedProducts.findIndex((p:RecipeInterface) => p._id === product._id)) {
+                        if (index === sortedProducts.findIndex((p: RecipeInterface) => p._id === product._id)) {
                             return (
                                 <div className='cart-product' key={index}>
 
@@ -106,17 +104,17 @@ const ShoppingCart = ({
 
                                         {/* <span className='product-price'>Pris: {product.price * quantity} Sek</span>
                                         <br /> */}
-                                        <span className='product-price'>Pris: {Number.isNaN(product.price + 0) ? product.price = 0 : product.price*quantity + " Sek"}</span>
+                                        <span className='product-price'>Pris: {Number.isNaN(product.price + 0) ? product.price = 0 : product.price * quantity + " Sek"}</span>
 
                                     </div>
 
                                     <p>Antal: {quantity}</p>
-                                    
+
                                     {/* <button className='remove-button' onClick={() => onProductRemove(product._id)}>-</button> */}
                                     <button className='remove-button' onClick={() => RemoveFromCart(product._id)}>-</button>
                                     {/* <button className='remove-button' onClick={() => onProductAdd(product)}>+</button> */}
                                     <button className='remove-button' onClick={() => AddToCart(product)}>+</button>
-                                    <button onClick={()=> RemoveAllFromCart(product._id)}>Ta bort produkt</button>
+                                    <button onClick={() => RemoveAllFromCart(product._id)}>Ta bort produkt</button>
 
 
 
@@ -129,7 +127,7 @@ const ShoppingCart = ({
 
                     })}
 
-                    {sortedCocktails.map((cocktail: CocktailInterface, index:number) => {
+                    {sortedCocktails.map((cocktail: CocktailInterface, index: number) => {
 
                         const sameIdCocktails = sortedCocktails.filter((c: CocktailInterface) => c.idDrink === cocktail.idDrink);
 
@@ -144,7 +142,7 @@ const ShoppingCart = ({
                                         <h3>{cocktail.strDrink}</h3>
                                         <img className='product-image' src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
                                         <p>Kategori: {cocktail.strCategory}</p>
-                                        <p>Alkohol: {cocktail.strAlcoholic === "Alcoholic" && "Ja" }{cocktail.strAlcoholic === "Non alcoholic" && "Nej"}{cocktail.strAlcoholic === "Optional alcohol" && "Valbart"}</p>
+                                        <p>Alkohol: {cocktail.strAlcoholic === "Alcoholic" && "Ja"}{cocktail.strAlcoholic === "Non alcoholic" && "Nej"}{cocktail.strAlcoholic === "Optional alcohol" && "Valbart"}</p>
 
                                         {/* <p>Alkohol: {cocktail.strAlcoholic === "Alcoholic" ? "Ja" : "Nej"}</p> */}
 
@@ -155,7 +153,7 @@ const ShoppingCart = ({
                                     <button className='remove-button' onClick={() => RemoveOneFromCocktailCart(cocktail.idDrink)}>-</button>
                                     {/* <button className='remove-button' onClick={() => onCocktailAdd(cocktail)}>+</button> */}
                                     <button className='remove-button' onClick={() => AddToCocktailCart(cocktail)}>+</button>
-                                    <button onClick={()=> RemoveAllFromCocktailCart(cocktail.idDrink)}>Ta bort produkt</button>
+                                    <button onClick={() => RemoveAllFromCocktailCart(cocktail.idDrink)}>Ta bort produkt</button>
 
                                     <br /><br />
 

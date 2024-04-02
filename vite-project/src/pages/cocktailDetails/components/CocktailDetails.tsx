@@ -1,29 +1,23 @@
-//import { NavigateFunction } from "react-router";
-/* import { CocktailInterface } from "../../api/getCocktails";
- */import { CocktailInterface } from "../../../api/getCocktails";
+import { CocktailInterface } from "../../../api/getCocktails";
 import { NavigateFunction } from "react-router-dom";
-/* import AddToCartButton from "../../global_components/Cart/AddToCartButton";
-import { useCartStateInterface } from "../../state/Cart"; */
-/* import { useCocktailCartStateInterface } from '../../state/CocktailCart';
- */import { useCocktailCartStateInterface } from "../../../store/CockrailCart";
+import { useCocktailCartStateInterface } from "../../../store/CockrailCart";
 
 
 interface DrinkDetailsProps {
     drinks: CocktailInterface,
     navigate: NavigateFunction
-    onProductAdd: any
+    
 };
 
-const CocktailDetails = ({drinks, navigate}: DrinkDetailsProps,  ) => {
-/*     const {cart, AddToCart, AddCocktailToCart} = useCartStateInterface();
- */
-const { coctailCart, RemoveAllFromCocktailCart: RemoveFromCocktailCart, AddToCocktailCart } = useCocktailCartStateInterface();
+const CocktailDetails = ({ drinks, navigate }: DrinkDetailsProps,) => {
+
+    const { AddToCocktailCart } = useCocktailCartStateInterface();
 
 
     return (
 
         <div>
-            <p>DrinkDetails</p>
+            <p>CocktailDetails</p>
             <button onClick={() => navigate("/Cocktails")}>Tillbaka</button>
 
             <div>
@@ -34,16 +28,16 @@ const { coctailCart, RemoveAllFromCocktailCart: RemoveFromCocktailCart, AddToCoc
                 <button className='remove-button' onClick={() => AddToCocktailCart(drinks)}>Lägg till varukorg</button>
 
                 <p>Alkohol: {drinks.strAlcoholic}</p>
-                
+
                 <p>ID: {drinks.idDrink}</p>
-                
+
                 <p>Glass: {drinks.strGlass}</p>
-                
+
                 <p>Category: {drinks.strCategory}</p>
-                
+
                 <h3>Ingredients:</h3>
-                
-                <p>{drinks.strMeasure1} {drinks.strIngredient1}</p> 
+
+                <p>{drinks.strMeasure1} {drinks.strIngredient1}</p>
                 <p>{drinks.strMeasure2} {drinks.strIngredient2}</p>
                 <p>{drinks.strMeasure3} {drinks.strIngredient3}</p>
                 <p>{drinks.strMeasure4} {drinks.strIngredient4}</p>
@@ -58,13 +52,13 @@ const { coctailCart, RemoveAllFromCocktailCart: RemoveFromCocktailCart, AddToCoc
                 <p>{drinks.strMeasure13} {drinks.strIngredient13}</p>
                 <p>{drinks.strMeasure14} {drinks.strIngredient14}</p>
                 <p>{drinks.strMeasure15} {drinks.strIngredient15}</p>
-               
+
                 <h3>Instructions:</h3>
 
                 <p>{drinks.strInstructions}</p>
-                
-                
-                
+
+
+
             </div>
 
 

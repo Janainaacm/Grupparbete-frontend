@@ -1,13 +1,7 @@
-//import React from 'react'
-/* import NavBar from '../../global_components/NavBar/NavBar'
- */import NavBar from '../../globalComponents/NavBar'
+import NavBar from '../../globalComponents/NavBar'
 import AllCocktails from '../../api/getCocktails'
-//import Header from '../../global_components/header'
-//import SearchBarComponent from '../../global_components/SearchBarComponent'
-/* import Footer from '../../global_components/footer'
- */import Footer from '../../globalComponents/Footer'
-/* import FilterCocktailComponent from './FilterCocktailComponent'
- */import FilterCocktailComponent from '../../globalComponents/FilterCocktailComponent'
+import Footer from '../../globalComponents/Footer'
+import FilterCocktailComponent from '../../globalComponents/FilterCocktailComponent'
 
 
 const CocktailsPage = () => {
@@ -18,7 +12,7 @@ const CocktailsPage = () => {
   return (
 
     <div>
-      <p>Drink Page</p>
+      <p>Cocktail Page</p>
 
 
       <div>
