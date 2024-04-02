@@ -1,20 +1,28 @@
 //import Header from "../../global_components/header"
-import NavBar from "../../globalComponents/NavBar"
-import Footer from "../../globalComponents/Footer"
+/* import NavBar from "../../global_components/NavBar/NavBar"
+ */import NavBar from "../../globalComponents/NavBar";
+/* import Footer from "../../global_components/footer"
+ */import Footer from "../../globalComponents/Footer";
 import { useLocation, useNavigate } from "react-router-dom";
-import CocktailDetails from "./components/CocktailDetails";
+/* import DrinkDetails from "./DrinkDetails";
+ */import CocktailDetails from "./components/CocktailDetails";
+/* import { useCartStateInterface } from "../../state/Cart";
+ */import { useCartState } from "../../store/CartState";
 
 
 const CocktailDetailsPage = () => {
     const { cocktail } =useLocation().state;
+    const {cart, AddToCart, AddCocktailToCart} = useCartState();
+
 
     const navigate = useNavigate();
 
     return (
         <div>
             <p>DrinkDetailsPage</p>
-           
-            
+            <div>
+            {/* <Header/> */}
+            </div>
 
             <div>
             <NavBar/>
@@ -25,7 +33,7 @@ const CocktailDetailsPage = () => {
             </div>
 
             <div>
-                <CocktailDetails drinks={cocktail} navigate={navigate}/>
+                <CocktailDetails onProductAdd={AddCocktailToCart} drinks={cocktail} navigate={navigate}/>
                 <Footer />
             </div>
 
