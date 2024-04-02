@@ -11,7 +11,8 @@ const DrinkPage = () => {
 
     <div>
       <p>Drink Page</p>
-      <div>
+{/*       <FilterFunction></FilterFunction>
+ */}      <div>
         {/* <Header/> */}
       </div>
       <div>

@@ -13,9 +13,8 @@ const CocktailDetailsPage = () => {
     return (
         <div>
             <p>DrinkDetailsPage</p>
-            <div>
-            {/* <Header/> */}
-            </div>
+           
+            
 
             <div>
             <NavBar/>
