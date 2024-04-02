@@ -16,6 +16,7 @@ interface APIState {
   fetchRecipe: (recipeID: string) => Promise<RecipeInterface>;
   deleteRecipe: (recipeId: string) => Promise<void>;
   updateRecipe: (updatedRecipe: RecipeInterface) => Promise<void>;
+  postRating: (recipeId: string, recipeRating: number) => Promise<void>;
 }
 
 // skapar global state och fyller 'recipes' med samtliga recept i databasen.
@@ -94,12 +95,22 @@ export const useAPIState = create<APIState>((set) => ({
     } catch (error) {
       console.log("Error while updating recipe", error);
     }
-  }
+  },
 
   
   // NICK
-  //POST - /recipes/{recipeId}/ratings - Lägger till ett omdöme för ett recept
   
+  postRating: async (recipeId, recipeRating) => {
+    try {
+      const response = await axios.patch(`${API_URL}/recipes/${recipeId}/ratings`,recipeRating)
+      
+      if (response.status === 200) {
+
+      }
+    } catch (error) {
+      console.log("Error while updating recipe", error);
+  }
+}
   //GET - /recipes/{recipeId}/comments - Hämtar alla kommentarer för ett recept
   
   //POST - /recipes/{recipeId}/comments - Lägger till en kommentar för ett recept
