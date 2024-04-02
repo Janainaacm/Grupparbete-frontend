@@ -103,9 +103,9 @@ const FilterCocktailComponent = () => {
                 <br />
                 <br />
 
-                {allCategories.map(category => (
+                {allCategories.map((category, index) => (
 
-                    <button className='button-1' onClick={() => filterByCategory(category.strCategory)} >{category.strCategory}</button>
+                    <button key={index} className='button-1' onClick={() => filterByCategory(category.strCategory)} >{category.strCategory}</button>
 
                 ))}
 

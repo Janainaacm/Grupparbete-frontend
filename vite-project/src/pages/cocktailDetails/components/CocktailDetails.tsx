@@ -1,26 +1,39 @@
 //import { NavigateFunction } from "react-router";
-import { CocktailInterface } from "../../../api/getCocktails";
+/* import { CocktailInterface } from "../../api/getCocktails";
+ */import { CocktailInterface } from "../../../api/getCocktails";
 import { NavigateFunction } from "react-router-dom";
+/* import AddToCartButton from "../../global_components/Cart/AddToCartButton";
+import { useCartStateInterface } from "../../state/Cart"; */
+/* import { useCocktailCartStateInterface } from '../../state/CocktailCart';
+ */import { useCocktailCartStateInterface } from "../../../store/CockrailCart";
 
-interface CocktailDetailsProps {
+
+interface DrinkDetailsProps {
     drinks: CocktailInterface,
     navigate: NavigateFunction
+    onProductAdd: any
 };
 
-const CocktailDetails = ( { drinks, navigate}: CocktailDetailsProps,  ) => {
+const CocktailDetails = ({drinks, navigate}: DrinkDetailsProps,  ) => {
+/*     const {cart, AddToCart, AddCocktailToCart} = useCartStateInterface();
+ */
+const { coctailCart, RemoveAllFromCocktailCart: RemoveFromCocktailCart, AddToCocktailCart } = useCocktailCartStateInterface();
+
 
     return (
 
         <div>
-            <p>CocktailDetails</p>
+            <p>DrinkDetails</p>
             <button onClick={() => navigate("/Cocktails")}>Tillbaka</button>
 
             <div>
                 <h2>{drinks.strDrink}</h2>
 
                 <img src={drinks.strDrinkThumb} alt={drinks.strDrink} style={{ width: '200px', height: '200px', marginBottom: '5px' }} />
-                
-                <p>Description: {drinks.strAlcoholic}</p>
+                <br />
+                <button className='remove-button' onClick={() => AddToCocktailCart(drinks)}>Lägg till varukorg</button>
+
+                <p>Alkohol: {drinks.strAlcoholic}</p>
                 
                 <p>ID: {drinks.idDrink}</p>
                 

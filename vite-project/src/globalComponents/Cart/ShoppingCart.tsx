@@ -138,7 +138,7 @@ const ShoppingCart = ({
 
                         const cocktailQuantity = sameIdCocktails.length;
 
-                        if (index === cocktails.findIndex((c: CocktailInterface) => c.idDrink === cocktail.idDrink)) {
+                        if (index === sortedCocktails.findIndex((c: CocktailInterface) => c.idDrink === cocktail.idDrink)) {
                             return (
                                 <div className='cart-product' key={index}>
 
