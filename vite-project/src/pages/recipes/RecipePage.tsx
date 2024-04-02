@@ -27,7 +27,7 @@ const RecipePage = (): JSX.Element => {
       <NavBar />
       <div>
 
-        {showAll()} {/* Call the showAll function to render the list */}
+        {/* {showAll()} {} */}
 
       {DisplayRecipes(showRecipes)}
 
