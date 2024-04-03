@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
-/* import { CocktailInterface } from '../../api/getCocktails';
- */import { CocktailInterface } from '../api/getCocktails';
+import { CocktailInterface } from '../api/getCocktails';
+
 
 
 const URL3 = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
