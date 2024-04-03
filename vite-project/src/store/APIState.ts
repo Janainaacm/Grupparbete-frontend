@@ -18,7 +18,7 @@ interface APIState {
   fetchRecipe: (recipeID: string) => Promise<RecipeInterface>;
   deleteRecipe: (recipeId: string) => Promise<void>;
   fetchCategories: () => Promise<void>;
-  fetchCategoryByID: (categoryName: string) => Promise<RecipeInterface[]>;
+  fetchRecipesByCategoryName: (categoryName: string) => Promise<RecipeInterface[]>;
   clearDB: (key: string) => Promise<void>;
   updateRecipe: (updatedRecipe: RecipeInterface) => Promise<void>;
   postRating: (recipeId: string, recipeRating: number) => Promise<void>;
@@ -168,7 +168,7 @@ export const useAPIState = create<APIState>((set) => ({
       if (response.status === 200) {
         console.log("success fetching categories");
         set({
-          allCategories: response.data,
+          allCategories: response.data
         });
         console.log(response.data);
       }
@@ -178,13 +178,13 @@ export const useAPIState = create<APIState>((set) => ({
   },
 
   //GET - /categories/{categoryName}/recipes - Hämtar alla recept i en viss kategori
-  fetchCategoryByID: async (categoryName: string) => {
+  fetchRecipesByCategoryName: async (categoryName: string) => {
     try {
       const response = await axios.get(
         `${API_URL}/categories/${categoryName}/recipes`
       );
       if (response.status === 200) {
-        console.log("success fetching category by ID");
+        console.log("success fetching recipes by category name");
         console.log(response.data);
         return response.data;
       }
