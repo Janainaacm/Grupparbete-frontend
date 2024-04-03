@@ -14,7 +14,7 @@ interface CategoryInterface {
 const FilterComponent = () => {
 
   const [filteredArray, setFilteredArray] = useState([]);
-  const { fetchRecipe } = useAPIState()
+  const { fetchRecipe, fetchCategories, allCategories, fetchCategoryByID } = useAPIState()
   const navigate = useNavigate();
 
   const filterByCategory = async (categoryName: string) => {
@@ -67,34 +67,14 @@ const FilterComponent = () => {
       return categoryArray
   }; */
 
+  useEffect(()=> {fetchCategories()}, [])
 
-  function getAllCategories() {
+  /* fetchCategories(); */
 
-    const [categories, setCategories] = useState<CategoryInterface[]>([])
-
-    async function getCategories() {
-      try {
-        const response = await axios.get(`${API_URL}/categories/`);
-
-        if (response.status === 200) {
-          setCategories(response.data)
-          console.log(response.data)
-        }
-      } catch (error) {
-        console.error('Error', error)
-      }
-    }
-
-    useEffect(() => {
-      getCategories()
-    }, []);
-
-    return categories
-
-  };
+  console.log("allCategories",allCategories);
 
 
-  const allCategories = getAllCategories();
+  /* const allCategories = getAllCategories(); */
 
 
 
@@ -107,7 +87,7 @@ const FilterComponent = () => {
       <div className='category-bubbles2'>
         {allCategories.map((category, index) => (
 
-          <button key={index} className='button-1' onClick={() => filterByCategory(category.name)}>{category.name}</button>
+          <button key={index} className='button-1' onClick={() => fetchCategoryByID(category.name)}>{category.name}</button>
 
         ))}
         <br />
