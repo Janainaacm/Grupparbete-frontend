@@ -51,7 +51,7 @@ export interface CocktailInterface {
 
 const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
 const URL2 = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic";
-const URL3 = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="
+const URL3 = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
 
 const AllCocktails = () => {
 
@@ -59,54 +59,54 @@ const AllCocktails = () => {
 
   const seeCocktailDetails = async (idDrink: string) => {
 
-    const response = await axios.get(`${URL3+idDrink}`);
+    const response = await axios.get(`${URL3 + idDrink}`);
 
     if (response.status === 200) {
-      
+
       const cocktail = response.data.drinks;
       const selectedCocktail = cocktail[0];
       const encodedCocktail = encodeURIComponent(selectedCocktail.strDrink);
-        
+
       navigate(`/Cocktails/${encodedCocktail}`, {
-        state: { cocktail: selectedCocktail},
+        state: { cocktail: selectedCocktail },
       });
 
-      console.log("cocktails",cocktails);
-      console.log("selectedCocktail.strDrink",selectedCocktail.strDrink);
+      console.log("cocktails", cocktails);
+      console.log("selectedCocktail.strDrink", selectedCocktail.strDrink);
 
     };
 
-    
+
 
   };
-  
+
   const [cocktails, setCocktails] = useState<CocktailInterface[]>([]);
   const [cocktails0, setCocktails0] = useState<CocktailInterface[]>([]);
 
-  
+
 
   const getCocktails = async () => {
 
     const response0 = await axios.get(url);
 
     const response = await axios.get(URL2);
-      
+
 
     if (response.status === 200) {
 
       setCocktails(response.data.drinks);
       setCocktails0(response0.data.drinks)
       console.log(response.data.drinks)
-      
+
     };
 
   };
-  
+
 
   useEffect(() => {
 
     getCocktails();
-    
+
   }, []);
 
 
@@ -142,7 +142,7 @@ const AllCocktails = () => {
           <div>{cocktail.strDrink}</div>
         </div>
       ))}
-      
+
 
       {cocktails0.map((cocktail) => (
         <div
@@ -173,8 +173,8 @@ const AllCocktails = () => {
         </div>
       ))}
     </div>
-    
-    
+
+
   );
 };
 export default AllCocktails;
