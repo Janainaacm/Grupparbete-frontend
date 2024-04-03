@@ -6,6 +6,7 @@ import { create } from "zustand";
 import { RecipeInterface } from "../Types";
 import axios from "axios";
 import { API_URL } from "../config";
+import { commentInterface } from "../Types";
 
 // interface som definierar struktur och funktionerna för global state
 interface APIState {
@@ -17,6 +18,9 @@ interface APIState {
   deleteRecipe: (recipeId: string) => Promise<void>;
   updateRecipe: (updatedRecipe: RecipeInterface) => Promise<void>;
   postRating: (recipeId: string, recipeRating: number) => Promise<void>;
+  postComment: (recipeId: string, comment:commentInterface) => Promise<void>;
+  fetchComment: (recipeId: string) => Promise<commentInterface>
+  fetchCategories: () => Promise<void>;
 }
 
 // skapar global state och fyller 'recipes' med samtliga recept i databasen.
@@ -103,21 +107,46 @@ export const useAPIState = create<APIState>((set) => ({
   
   // NICK
   
-  postRating: async (recipeId, recipeRating) => {
+  postRating: async (recipeId, newRating) => {
     try {
-      const response = await axios.patch(`${API_URL}/recipes/${recipeId}/ratings`,recipeRating)
+      const response = await axios.post(`${API_URL}/recipes/${recipeId}/ratings`,newRating)
       
       if (response.status === 200) {
-
+        set((state) => ({
+          recipeList: state.recipeList.map((recipe) =>
+          recipe._id === recipeId ? { ...recipe, ratings: [...recipe.ratings, newRating]} : recipe )
+        }))
       }
     } catch (error) {
-      console.log("Error while updating recipe", error);
+      console.log("Error while posting rating", error);
   }
-}
-  //GET - /recipes/{recipeId}/comments - Hämtar alla kommentarer för ett recept
+},
+  
+  postComment: async (recipeId, comment) => {
+    try {
+      const response = await axios.post(`${API_URL}/recipes/${recipeId}/comments`, comment)
 
-  //POST - /recipes/{recipeId}/comments - Lägger till en kommentar för ett recept
-  //GET - /categories - Hämtar alla kategorier
+      if (response.status === 200) {
+      console.log("Sucessfully posted comment")
+      }
+
+    } catch(error) {
+      console.log("Error while posting comment", error)
+    }
+  },
+
+  fetchComment: async(recipeId) => {
+      try {
+        const response = await axios.get(`${API_URL}/recipes/${recipeId}`)
+
+        if (response.status === 200) {
+          return response.data
+        }
+      } catch(error) {
+        console.log("Error fetching comments", error)
+      }
+  },
+
 
   fetchCategories: async () => {
     try {
@@ -129,7 +158,4 @@ export const useAPIState = create<APIState>((set) => ({
     } catch {}
   },
 
-  //GET - /categories/{categoryName}/recipes - Hämtar alla recept i en viss kategori
-
-  //GET - /clear - Tömmer api:et på all data
 }));

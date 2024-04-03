@@ -3,7 +3,7 @@ export interface RecipeInterface {
   title: string;
   description: string;
   avgRating?: number[];
-  ratings?: number[];
+  ratings: number[];
   imageUrl: string;
   timeInMins: number;
   categories: string[];
@@ -18,6 +18,7 @@ export interface IngredientInterface {
   unit: string;
 }
 
-export interface CartInterface {
-  recipe: RecipeInterface[]
+export interface commentInterface {
+  name: string;
+  comment: string;
 }
