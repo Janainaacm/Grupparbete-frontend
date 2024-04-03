@@ -10,7 +10,7 @@ import { useAPIState } from '../store/APIState'
 const FilterComponent = () => {
 
   const [filteredArray, setFilteredArray] = useState<RecipeInterface[]>([]);
-  const { fetchRecipe, fetchCategories, allCategories, fetchCategoryByID } = useAPIState()
+  const { fetchRecipe, fetchCategories, allCategories, fetchRecipesByCategoryName } = useAPIState()
   const navigate = useNavigate();
 
   /* const filterByCategory = async (categoryName: string) => {
@@ -72,7 +72,7 @@ const FilterComponent = () => {
   async function recipesByCategory(categoryName: string) {
 
     try {
-      const filteredList = await fetchCategoryByID(categoryName);
+      const filteredList = await fetchRecipesByCategoryName(categoryName);
       console.log("filteredList", filteredList);
       setFilteredArray(filteredList)
 
