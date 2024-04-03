@@ -5,19 +5,15 @@ import { RecipeInterface } from '../Types'
 import { useNavigate } from 'react-router-dom'
 import { useAPIState } from '../store/APIState'
 
-interface CategoryInterface {
-  name: string
-  count: number
-}
 
 
 const FilterComponent = () => {
 
-  const [filteredArray, setFilteredArray] = useState([]);
+  const [filteredArray, setFilteredArray] = useState<RecipeInterface[]>([]);
   const { fetchRecipe, fetchCategories, allCategories, fetchCategoryByID } = useAPIState()
   const navigate = useNavigate();
 
-  const filterByCategory = async (categoryName: string) => {
+  /* const filterByCategory = async (categoryName: string) => {
 
 
 
@@ -29,7 +25,7 @@ const FilterComponent = () => {
       console.log(response.data);
     };
   };
-
+ */
 
 
   const handleClick = async (recipeId: string) => {
@@ -67,14 +63,27 @@ const FilterComponent = () => {
       return categoryArray
   }; */
 
-  useEffect(()=> {fetchCategories()}, [])
+  useEffect(() => { fetchCategories() }, [])
 
   /* fetchCategories(); */
 
-  console.log("allCategories",allCategories);
+  /* console.log("allCategories", allCategories); */
+
+  async function recipesByCategory(categoryName: string) {
+
+    try {
+      const filteredList = await fetchCategoryByID(categoryName);
+      console.log("filteredList", filteredList);
+      setFilteredArray(filteredList)
 
 
-  /* const allCategories = getAllCategories(); */
+      return filteredList
+    } catch (error) {
+
+    }
+
+
+  };
 
 
 
@@ -87,7 +96,7 @@ const FilterComponent = () => {
       <div className='category-bubbles2'>
         {allCategories.map((category, index) => (
 
-          <button key={index} className='button-1' onClick={() => fetchCategoryByID(category.name)}>{category.name}</button>
+          <button key={index} className='button-1' onClick={() => recipesByCategory(category.name)}>{category.name}</button>
 
         ))}
         <br />
