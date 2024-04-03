@@ -3,12 +3,7 @@ import NavBar from '../../globalComponents/NavBar'
 import AllCocktails from '../../api/getCocktails'
 //import Header from '../../global_components/header'
 //import SearchBarComponent from '../../global_components/SearchBarComponent'
-<<<<<<< HEAD:vite-project/src/pages/drinks/DrinkPage.tsx
-import Footer from '../../global_components/footer'
-import FilterFunction from '../../global_components/FilterFunktion'
-=======
 import Footer from '../../globalComponents/Footer'
->>>>>>> main:vite-project/src/pages/cocktails/CocktailsPage.tsx
 
 const DrinkPage = () => {
   

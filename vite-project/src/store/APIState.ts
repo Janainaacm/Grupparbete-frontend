@@ -19,7 +19,10 @@ interface APIState {
 
 // skapar global state och fyller 'recipes' med samtliga recept i databasen.
 export const useAPIState = create<APIState>((set) => ({
+  
   recipeList: [],
+
+  
 
   fetchRecipeList: async () => {
     try {
@@ -85,15 +88,24 @@ export const useAPIState = create<APIState>((set) => ({
   //PATCH - /recipes/{recipeId} - Uppdaterar ett recept
 
   //POST - /recipes/{recipeId}/ratings - Lägger till ett omdöme för ett recept
-  
+
   //GET - /recipes/{recipeId}/comments - Hämtar alla kommentarer för ett recept
-  
+
   //POST - /recipes/{recipeId}/comments - Lägger till en kommentar för ett recept
-  
+
   //GET - /categories - Hämtar alla kategorier
 
-  //GET - /categories/{categoryName}/recipes - Hämtar alla recept i en viss kategori
-  
-  //GET - /clear - Tömmer api:et på all data
+  fetchCategories: async () => {
+    try {
+      const response = await axios.get(`${API_URL}/categories`);
 
+      if (response.status === 200) {
+
+      }
+    } catch {}
+  },
+
+  //GET - /categories/{categoryName}/recipes - Hämtar alla recept i en viss kategori
+
+  //GET - /clear - Tömmer api:et på all data
 }));
