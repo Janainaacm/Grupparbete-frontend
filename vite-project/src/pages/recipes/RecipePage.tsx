@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import NavBar from '../../globalComponents/NavBar';
+import Footer from "../../globalComponents/Footer.tsx";
 import DisplayRecipes from '../../globalComponents/DisplayRecipes';
 import { useAPIState } from '../../store/APIState';
 import { useLocation } from 'react-router-dom';
@@ -34,6 +35,7 @@ const RecipePage = (): JSX.Element => {
       {DisplayRecipes(showRecipes)}
 
       </div>
+      <Footer/>
     </>
   );
 };

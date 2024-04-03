@@ -8,6 +8,7 @@ import AddRecipePage from "./pages/addRecipe/AddRecipePage.tsx";
 import CocktailsPage from "./pages/cocktails/CocktailsPage.tsx";
 import RecipeDetails from "./pages/recipeDetails/RecipeDetails.tsx";
 import CocktailDetailsPage from "./pages/cocktailDetails/CocktailDetailsPage.tsx";
+import Admin from "./pages/admin/Admin.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -21,6 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Route path="/AddRecept" element={<AddRecipePage/>} />
         <Route path="/Cocktails" element={<CocktailsPage/>} />
         <Route path="/Cocktails/:title" element=<CocktailDetailsPage/> />
+        <Route path="/Admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
