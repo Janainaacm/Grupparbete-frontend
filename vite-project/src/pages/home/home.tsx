@@ -1,6 +1,6 @@
 import NavBar from "../../globalComponents/NavBar.tsx";
 import Footer from "../../globalComponents/Footer.tsx";
-import SearchBarComponent from "../../globalComponents/SearchBarComponent.tsx";
+import SearchBar from "../../globalComponents/searchBar/SearchBar.tsx";
 import DisplayRecipes from "../../globalComponents/DisplayRecipes.tsx";
 import { useNavigate } from "react-router-dom";
 import "./HomeStyles.css";
@@ -76,9 +76,9 @@ const Home = () => {
       <div style={{ textAlign: "center" }} className="content">
         <div className="welcome-title">Välkommen!</div>
 
-        <div>
-          <SearchBarComponent />
-        </div>
+        <div className="searchBarField">
+           <SearchBar/>
+         </div>
 
         <div className="category-bubbles">
           <div className="button-one">
