@@ -1,13 +1,18 @@
-//import { NavigateFunction } from "react-router";
 import { CocktailInterface } from "../../../api/getCocktails";
 import { NavigateFunction } from "react-router-dom";
+import { useCocktailCartStateInterface } from "../../../store/CockrailCart";
 
-interface CocktailDetailsProps {
+
+interface DrinkDetailsProps {
     drinks: CocktailInterface,
     navigate: NavigateFunction
+    
 };
 
-const CocktailDetails = ( { drinks, navigate}: CocktailDetailsProps,  ) => {
+const CocktailDetails = ({ drinks, navigate }: DrinkDetailsProps,) => {
+
+    const { AddToCocktailCart } = useCocktailCartStateInterface();
+
 
     return (
 
@@ -19,18 +24,20 @@ const CocktailDetails = ( { drinks, navigate}: CocktailDetailsProps,  ) => {
                 <h2>{drinks.strDrink}</h2>
 
                 <img src={drinks.strDrinkThumb} alt={drinks.strDrink} style={{ width: '200px', height: '200px', marginBottom: '5px' }} />
-                
-                <p>Description: {drinks.strAlcoholic}</p>
-                
+                <br />
+                <button className='remove-button' onClick={() => AddToCocktailCart(drinks)}>Lägg till varukorg</button>
+
+                <p>Alkohol: {drinks.strAlcoholic}</p>
+
                 <p>ID: {drinks.idDrink}</p>
-                
+
                 <p>Glass: {drinks.strGlass}</p>
-                
+
                 <p>Category: {drinks.strCategory}</p>
-                
+
                 <h3>Ingredients:</h3>
-                
-                <p>{drinks.strMeasure1} {drinks.strIngredient1}</p> 
+
+                <p>{drinks.strMeasure1} {drinks.strIngredient1}</p>
                 <p>{drinks.strMeasure2} {drinks.strIngredient2}</p>
                 <p>{drinks.strMeasure3} {drinks.strIngredient3}</p>
                 <p>{drinks.strMeasure4} {drinks.strIngredient4}</p>
@@ -45,13 +52,13 @@ const CocktailDetails = ( { drinks, navigate}: CocktailDetailsProps,  ) => {
                 <p>{drinks.strMeasure13} {drinks.strIngredient13}</p>
                 <p>{drinks.strMeasure14} {drinks.strIngredient14}</p>
                 <p>{drinks.strMeasure15} {drinks.strIngredient15}</p>
-               
+
                 <h3>Instructions:</h3>
 
                 <p>{drinks.strInstructions}</p>
-                
-                
-                
+
+
+
             </div>
 
 

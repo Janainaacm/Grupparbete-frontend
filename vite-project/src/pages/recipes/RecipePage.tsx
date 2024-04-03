@@ -4,6 +4,7 @@ import DisplayRecipes from '../../globalComponents/DisplayRecipes';
 import { useAPIState } from '../../store/APIState';
 import { useLocation } from 'react-router-dom';
 import { RecipeInterface } from '../../Types';
+import FilterComponent from '../../globalComponents/FilterComponent';
 
 const RecipePage = (): JSX.Element => {
  const location = useLocation();
@@ -28,6 +29,7 @@ const RecipePage = (): JSX.Element => {
       <div>
 
         {/* {showAll()} {} */}
+        <FilterComponent></FilterComponent>
 
       {DisplayRecipes(showRecipes)}
 

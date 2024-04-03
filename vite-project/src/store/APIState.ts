@@ -6,20 +6,24 @@ import { create } from "zustand";
 import { RecipeInterface, CategorieInterface } from "../Types";
 import axios from "axios";
 import { API_URL } from "../config";
-import { error } from "console";
+import { commentInterface } from "../Types";
 
 // interface som definierar struktur och funktionerna för global state
 interface APIState {
   recipeList: RecipeInterface[];
   allCategories: CategorieInterface[];
 
-  fetchRecipe: (recipeID: string) => Promise<RecipeInterface>;
   fetchRecipeList: () => Promise<void>;
   postRecipe: (newRecipe: RecipeInterface) => Promise<number>;
+  fetchRecipe: (recipeID: string) => Promise<RecipeInterface>;
   deleteRecipe: (recipeId: string) => Promise<void>;
   fetchCategories: () => Promise<void>;
   fetchCategoryByID: (categoryName: string) => Promise<RecipeInterface[]>;
   clearDB: (key: string) => Promise<void>;
+  updateRecipe: (updatedRecipe: RecipeInterface) => Promise<void>;
+  postRating: (recipeId: string, recipeRating: number) => Promise<void>;
+  postComment: (recipeId: string, comment: commentInterface) => Promise<void>;
+  fetchComment: (recipeId: string) => Promise<commentInterface>;
 }
 
 // skapar global state och fyller 'recipes' med samtliga recept i databasen.
@@ -37,7 +41,7 @@ export const useAPIState = create<APIState>((set) => ({
         console.log(response.data);
       }
     } catch (error) {
-      console.log("error", error);
+      console.log("Error fetching recipe list", error);
     }
   },
 
@@ -45,17 +49,16 @@ export const useAPIState = create<APIState>((set) => ({
     try {
       const response = await axios.post(`${API_URL}/recipes`, newRecipe);
       if (response.status === 200) {
-        console.log("Success!");
         set((state) => ({
           recipeList: [...state.recipeList, response.data],
         }));
         return response.status;
       } else {
-        console.log("Error fetching");
+        console.log("Error posting new recipe");
         return response.status;
       }
     } catch (error) {
-      console.log("error", error);
+      console.log("Error while posting new recipe", error);
       throw error;
     }
   },
@@ -69,7 +72,7 @@ export const useAPIState = create<APIState>((set) => ({
         return response.data;
       }
     } catch (error) {
-      console.log("error", error);
+      console.log("Error while fetching recipe", error);
     }
   },
 
@@ -86,20 +89,79 @@ export const useAPIState = create<APIState>((set) => ({
         }));
       }
     } catch (error) {
-      console.log("error", error);
+      console.log("Error while deleting recipe", error);
     }
   },
 
-  // NICK
-  //POST - /recipes/{recipeId}/ratings - Lägger till ett omdöme för ett recept
+  //PATCH - /recipes/{recipeId} - Uppdaterar ett recept
+  updateRecipe: async (updatedRecipe) => {
+    try {
+      const response = await axios.patch(
+        `${API_URL}/recipes/${updatedRecipe._id}`,
+        updatedRecipe
+      );
 
-  //GET - /recipes/{recipeId}/comments - Hämtar alla kommentarer för ett recept
+      if (response.status === 200) {
+        set((state) => ({
+          recipeList: state.recipeList.map((recipe) =>
+            recipe._id === updatedRecipe._id ? updatedRecipe : recipe
+          ),
+        }));
+      }
+    } catch (error) {
+      console.log("Error while updating recipe", error);
+    }
+  },
 
-  //POST - /recipes/{recipeId}/comments - Lägger till en kommentar för ett recept
+  postRating: async (recipeId, newRating) => {
+    try {
+      const response = await axios.post(
+        `${API_URL}/recipes/${recipeId}/ratings`,
+        newRating
+      );
 
-  //JONAS
+      if (response.status === 200) {
+        set((state) => ({
+          recipeList: state.recipeList.map((recipe) =>
+            recipe._id === recipeId
+              ? { ...recipe, ratings: [...recipe.ratings, newRating] }
+              : recipe
+          ),
+        }));
+      }
+    } catch (error) {
+      console.log("Error while posting rating", error);
+    }
+  },
+
+  postComment: async (recipeId, comment) => {
+    try {
+      const response = await axios.post(
+        `${API_URL}/recipes/${recipeId}/comments`,
+        comment
+      );
+
+      if (response.status === 200) {
+        console.log("Sucessfully posted comment");
+      }
+    } catch (error) {
+      console.log("Error while posting comment", error);
+    }
+  },
+
+  fetchComment: async (recipeId) => {
+    try {
+      const response = await axios.get(`${API_URL}/recipes/${recipeId}`);
+
+      if (response.status === 200) {
+        return response.data;
+      }
+    } catch (error) {
+      console.log("Error fetching comments", error);
+    }
+  },
+
   //GET - /categories - Hämtar alla kategorier
-
   fetchCategories: async () => {
     try {
       const response = await axios.get(`${API_URL}/categories`);
@@ -116,7 +178,6 @@ export const useAPIState = create<APIState>((set) => ({
   },
 
   //GET - /categories/{categoryName}/recipes - Hämtar alla recept i en viss kategori
-
   fetchCategoryByID: async (categoryName: string) => {
     try {
       const response = await axios.get(
@@ -133,7 +194,6 @@ export const useAPIState = create<APIState>((set) => ({
   },
 
   //GET - /clear - Tömmer api:et på all data
-
   clearDB: async (key: string) => {
     if (key === "ClearThisShitHole") {
       try {
