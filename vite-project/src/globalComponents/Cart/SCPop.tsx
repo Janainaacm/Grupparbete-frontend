@@ -7,7 +7,7 @@ import ShoppingCart from './ShoppingCart';
 import { useCartState } from '../../store/CartState';
 import RemoveFromCartButton from './RemoveFromCartButton';
 import AddToCartButton from './AddToCartButton';
-import { useCocktailCartStateInterface } from '../../store/CockrailCart';
+import { useCocktailCartStateInterface } from '../../store/CocktailCart';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 
 function Cart() {

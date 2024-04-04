@@ -3,7 +3,7 @@ import "./ShoppingCart.css"
 import { useCartState } from '../../store/CartState'
 import { CocktailInterface } from '../../api/getCocktails'
 import { RecipeInterface } from '../../Types'
-import { useCocktailCartStateInterface } from '../../store/CockrailCart'
+import { useCocktailCartStateInterface } from '../../store/CocktailCart'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
@@ -144,16 +144,17 @@ const ShoppingCart = ({
                                         {/* <span className='product-price'>Pris: {product.price * quantity} Sek</span>
                                         <br /> */}
                                         <span className='product-price'>Pris: {Number.isNaN(product.price + 0) ? product.price = 0 : product.price * quantity + " Sek"}</span>
+                                        <p>Antal: {quantity}</p>
 
-                                        <p>Rekomenderad Cocktail: </p>
+                                        <h6>Rekomenderad Cocktail: </h6>
 
-                                        <p key={index}>{product.categories[0] === "Sprängmedel" &&
+                                        {/* <p key={index}>{product.categories[0] === "Sprängmedel" &&
                                             <p>{alcoholic.map((alcotail) => (
                                                 <p>{alcotail.strDrink === "Absolut Sex" &&
                                                     <p onClick={() => seeCocktailDetails(alcotail.idDrink)}>{alcotail.strDrink}</p>}
                                                 </p>))}
                                             </p>}
-                                        </p>
+                                        </p> */}
 
                                         <p key={index + 1}>{product.categories[0] === "Kött" &&
                                             <p>{alcoholic.map((alcotail) => (
@@ -173,22 +174,94 @@ const ShoppingCart = ({
 
                                         </p>
 
-                                        <p key={index + 2}>{product.categories[0] === "snabbmat" &&
+                                        <p key={index + 1}>{product.categories[0] === "Sprängmedel" &&
+                                            <p>{alcoholic.map((alcotail) => (
+
+                                                <p>{alcotail.strDrink === "Absolut Sex" &&
+                                                    <div>
+
+                                                        <p>{alcotail.strDrink}</p>
+
+                                                        <img className='cocktail-image' width={"90"} alt={alcotail.strDrink} src={alcotail.strDrinkThumb} onClick={() => seeCocktailDetails(alcotail.idDrink)}></img>
+
+                                                    </div>}
+
+                                                </p>))}
+
+                                            </p>}
+
+                                        </p>
+
+                                        <p key={index + 3}>{product.categories[0] === "Dessert" &&
+                                            <p>{alcoholic.map((alcotail) => (
+
+                                                <p>{alcotail.strDrink === "A Piece of Ass" &&
+                                                    <div>
+
+                                                        <p>{alcotail.strDrink}</p>
+
+                                                        <img className='cocktail-image' width={"90"} alt={alcotail.strDrink} src={alcotail.strDrinkThumb} onClick={() => seeCocktailDetails(alcotail.idDrink)}></img>
+
+                                                    </div>}
+
+                                                </p>))}
+
+                                            </p>}
+
+                                        </p>
+
+                                        <p key={index + 4}>{product.categories[0] === "Fisk" &&
+                                            <p>{alcoholic.map((alcotail) => (
+
+                                                <p>{alcotail.strDrink === "Pornstar Martini" &&
+                                                    <div>
+
+                                                        <p>{alcotail.strDrink}</p>
+
+                                                        <img className='cocktail-image' width={"90"} alt={alcotail.strDrink} src={alcotail.strDrinkThumb} onClick={() => seeCocktailDetails(alcotail.idDrink)}></img>
+
+                                                    </div>}
+
+                                                </p>))}
+
+                                            </p>}
+
+                                        </p>
+
+                                        <p key={index + 5}>{product.categories[0] === "snabbmat" &&
+                                            <p>{alcoholic.map((alcotail) => (
+
+                                                <p>{alcotail.strDrink === "Quick F**K" &&
+                                                    <div>
+
+                                                        <p>{alcotail.strDrink}</p>
+
+                                                        <img className='cocktail-image' width={"90"} alt={alcotail.strDrink} src={alcotail.strDrinkThumb} onClick={() => seeCocktailDetails(alcotail.idDrink)}></img>
+
+                                                    </div>}
+
+                                                </p>))}
+
+                                            </p>}
+
+                                        </p>
+
+                                        {/* <p key={index + 2}>{product.categories[0] === "snabbmat" &&
                                             <p>{alcoholic.map((alcotail) => (
                                                 <p>{alcotail.strDrink === "After sex" &&
                                                     <p onClick={() => seeCocktailDetails(alcotail.idDrink)}>{alcotail.strDrink}</p>}
                                                 </p>))}
                                             </p>}
-                                        </p>
+                                        </p> */}
 
                                     </div>
 
-                                    <p>Antal: {quantity}</p>
+                                    
 
                                     {/* <button className='remove-button' onClick={() => onProductRemove(product._id)}>-</button> */}
                                     <button className='remove-button' onClick={() => RemoveFromCart(product._id)}>-</button>
                                     {/* <button className='remove-button' onClick={() => onProductAdd(product)}>+</button> */}
-                                    <button className='remove-button' onClick={() => AddToCart(product)}>+</button>
+                                    <button className='remove-button'  onClick={() => AddToCart(product)}>+</button>
                                     <button onClick={() => RemoveAllFromCart(product._id)}>Ta bort produkt</button>
 
 
