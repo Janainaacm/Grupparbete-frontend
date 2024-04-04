@@ -19,6 +19,15 @@ export interface IngredientInterface {
   unit: string;
 }
 
+export interface CartInterface {
+  recipe: RecipeInterface[]
+}
+
+export interface CategorieInterface {
+  name: string;
+  count: number;
+}
+
 export interface commentInterface {
   name: string;
   comment: string;

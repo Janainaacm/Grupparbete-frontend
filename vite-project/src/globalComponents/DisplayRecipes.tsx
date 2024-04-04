@@ -5,14 +5,9 @@ import { useEffect } from "react";
 import { RecipeInterface } from "../Types";
 
 const DisplayRecipes = (recipeList: RecipeInterface[]): JSX.Element => {
-  const { fetchRecipe, fetchRecipeList } = useAPIState();
+  const { fetchRecipe } = useAPIState();
   const navigate = useNavigate();
   console.log(recipeList, "det som tas emot")
-
-
-  useEffect(() => {
-    fetchRecipeList();
-  }, []);
 
   const handleClick = async (recipeId: string) => {
     try {
