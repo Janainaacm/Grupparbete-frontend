@@ -8,11 +8,7 @@ import FilterComponent from '../../globalComponents/FilterComponent';
 
 const RecipePage = (): JSX.Element => {
  const location = useLocation();
-  const { recipeList, fetchRecipeList } = useAPIState();
-
-  useEffect(() => {
-    fetchRecipeList();
-  }, []);
+  const { recipeList } = useAPIState();
 
   let showRecipes = location.state as RecipeInterface[];
  if (!showRecipes){
