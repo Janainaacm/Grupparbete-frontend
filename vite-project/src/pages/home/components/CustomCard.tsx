@@ -25,7 +25,7 @@ function CustomCard({ title, description, image, route }: CustomCardProps) {
               <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '10px', textAlign: 'center', backgroundColor: hovered ? 'rgba(0, 0, 0, 0.5)' : 'transparent', transition: 'background-color 0.3s' }}>
                 <h5 className="text-white d-none d-md-block">{title}</h5>
               </div>
-              <Card.Img 
+              <Card.Img
                 variant="top" 
                 src={image} 
                 style={{ 

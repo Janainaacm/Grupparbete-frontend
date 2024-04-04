@@ -1,17 +1,17 @@
 .content{
     margin-top: 0px;
-    padding: 12px;
-    height: 700px;
+    padding: 0px;
+    height: 1500px;
 }
 
 .welcome-title {
     font-family: 'Pacifico', cursive;
     text-align: center;
-    margin-top: 70px;
+    margin-top: 40px;
     color: #f7f7e8;
     text-shadow: 2px 4px 3px #9a9595;
     font-size: 70px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     font-style: italic;
     font-weight: 1000;
     letter-spacing: 3px;
@@ -68,5 +68,27 @@
  
  
  }
+
+ .searchBar_wrapper{
+    height: 500px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-image: url(https://i.pinimg.com/originals/5e/82/d5/5e82d589d2b9d5ed4599686d3603a242.jpg);
+    background-size: cover;
+    border-bottom-left-radius: 25%;
+    border-bottom-right-radius: 25%;
+ }
+
+ .divider {
+    height: 1px; /* Höjden på strecket */
+    width: 100%; /* Bredden på strecket */
+    background-color: gray; /* Färgen på strecket */
+    margin: 20px 0px; /* Avstånd över och under strecket */
+    margin-bottom: 45px;
+}
+.section{
+    margin-top: 25px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
  
 

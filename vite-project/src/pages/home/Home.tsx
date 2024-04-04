@@ -4,17 +4,20 @@ import SearchBar from "../../globalComponents/searchBar/SearchBar.tsx";
 import DisplayRecipes from "../../globalComponents/DisplayRecipes.tsx";
 import { useNavigate } from "react-router-dom";
 import "./HomeStyles.css";
-import { Container, Row, Col, Card } from "react-bootstrap";
+/* import { Container, Row, Col, Card } from "react-bootstrap";
 import CustomCard from "./components/CustomCard.tsx";
 import imgSrc from "../../assets/images/pexels-ella-olsson-1640773.jpg";
 import barbecueImg from "../../assets/images/barbecue.png";
 import fishImg from "../../assets/images/fish.png";
 import harvestImg from "../../assets/images/harvest.png";
 import teaLeafImg from "../../assets/images/tea-leaf.png";
-import veganImg from "../../assets/images/vegan.png";
+import veganImg from "../../assets/images/vegan.png"; */
 import { useAPIState } from "../../store/APIState.ts";
 import { useEffect, useState } from "react";
 import SearchResultsList from "../../globalComponents/searchBar/SearchResultsList.tsx";
+import Carousel from "./components/Carousel.tsx"
+import {CarouselData} from "../../assets/data/carousel_data.ts"
+
 
 const Home = () => {
   const navigate = useNavigate();
@@ -25,7 +28,7 @@ const Home = () => {
     fetchRecipeList();
   }, []);
 
-  const categories = [
+  /* const categories = [
     {
       id: 1,
       title: "Frukt",
@@ -61,12 +64,12 @@ const Home = () => {
       image: veganImg,
       route: "/recept",
     },
-  ];
+  ]; */
 
   return (
     <div
       style={{
-        backgroundImage: `url(${imgSrc})`,
+        background: ``,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -76,14 +79,24 @@ const Home = () => {
         <NavBar />
       </div>
       <div style={{ textAlign: "center" }} className="content">
-        <div className="welcome-title">Välkommen!</div>
-
+        
+      <div className="searchBar_wrapper" >
         <div className="searchBarField">
+        <div className="welcome-title">Välkommen!</div>
            <SearchBar setSearchResults={setSearchResults}/>
            <SearchResultsList results={searchResults}/>
          </div>
+      </div>
 
-        <div className="category-bubbles">
+      <div className="section">
+  <h2>Populära kategorier</h2>
+  <p>Utforska några våra olika kategorier för att hitta recept som passar dina smaker och preferenser.</p>
+</div>
+
+      <div className="divider"></div>
+        
+
+        {/* <div className="category-bubbles">
           <div className="button-one">
             <button>Frukt</button>
           </div>
@@ -99,10 +112,18 @@ const Home = () => {
           <div className="button-five">
             <button>Vego</button>
           </div>
-        </div>
+        </div> */}
+        <Carousel images={CarouselData}/>
       </div>
 
-      <Container>
+        
+        
+
+
+
+
+
+      {/* <Container>
         <Row className="justify-content-between ">
           {categories.map((category) => (
             <CustomCard
@@ -114,7 +135,7 @@ const Home = () => {
             />
           ))}
         </Row>
-      </Container>
+      </Container> */}
 
       {/*
         <button onClick={()=>navigate("/AddRecept")}>Lägg Till recept</button>
