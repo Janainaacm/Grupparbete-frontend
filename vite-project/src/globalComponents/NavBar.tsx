@@ -41,7 +41,7 @@ function NavBar() {
                         <NavLink to="/home" className="nav-link">Hem</NavLink>
                         <NavLink to="/Recept" className="nav-link">Recept</NavLink>
                         <NavLink to="/Cocktails" className="nav-link">Cocktails</NavLink>
-                        <Nav.Link>Login</Nav.Link>
+                        <NavLink to="/Admin" className="nav-link">Admin</NavLink>
                         <Cart />
 
                     </Nav>
