@@ -4,6 +4,7 @@ import { useCartState } from '../../store/CartState'
 import { CocktailInterface } from '../../api/getCocktails'
 import { RecipeInterface } from '../../Types'
 import { useCocktailCartStateInterface } from '../../store/CockrailCart'
+import BuyButton from './BuyButton'
 
 
 interface ShoppingCartProps {
@@ -206,7 +207,7 @@ const ShoppingCart = ({
                     {sortedProducts.length + sortedCocktails.length > 0 && <div className='checkout-clear'>
                         <h3>Totalt pris: {sum + " Sek"}</h3>
                         <br />
-                        <button className='check-out'>Köp knapp</button>
+                        <BuyButton/>
                         <button onClick={onClose}>Fortsätt handla</button>
                         <button onClick={clearShoppingCart}>Töm varukorg</button></div>
                     }

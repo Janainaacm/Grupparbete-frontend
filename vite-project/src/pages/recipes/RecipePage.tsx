@@ -28,7 +28,7 @@ const RecipePage = (): JSX.Element => {
         {/* {showAll()} {} */}
         <FilterComponent></FilterComponent>
 
-      {DisplayRecipes(showRecipes)}
+        <DisplayRecipes recipeList={recipeList} showDeleteButton={false} />
 
       </div>
       <Footer/>
