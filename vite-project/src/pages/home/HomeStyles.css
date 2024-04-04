@@ -91,4 +91,32 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
  
+ .category-bubbles2 button {
+    font-family: Optima, sans-serif	;
+    color: rgb(104, 104, 90);
+    font-size: 18px;
+    border: 3px solid #dcdcc3dc;
+    background: #f8f8f2b0;
+    border-radius: 50%;
+    padding: 6px 23px;
+    box-shadow: 0.5px 1px 1px #cdc3c3;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .category-bubbles2 button:hover {
+    transform: scale(1.1);
+    color: #352c2c;
+    font-weight: 200%;
+    border: 3px solid #dfdfb8ed;
+    background: #f5f5eda1;
+  }
+    
+  .category-bubbles2 {
+    margin-left: 10px;
+    padding: 10px;
+  }
+  
+  .button-1 {
+    margin-left: 10px;
+  }
 

@@ -1,39 +1,40 @@
-//import Header from "../../global_components/header"
-import NavBar from "../../globalComponents/NavBar"
-import Footer from "../../globalComponents/Footer"
+import NavBar from "../../globalComponents/NavBar";
+import Footer from "../../globalComponents/Footer";
 import { useLocation, useNavigate } from "react-router-dom";
 import CocktailDetails from "./components/CocktailDetails";
 
 
 const CocktailDetailsPage = () => {
-    const { cocktail } =useLocation().state;
+    const { cocktail } = useLocation().state;
+
 
     const navigate = useNavigate();
 
     return (
         <div>
-            <p>DrinkDetailsPage</p>
-           
-            
-
+            <p>CocktailDetailsPage</p>
             <div>
-            <NavBar/>
-            </div>
-
-            <div style={{textAlign: "center"}}>
-            
+                {/* <Header/> */}
             </div>
 
             <div>
-                <CocktailDetails drinks={cocktail} navigate={navigate}/>
+                <NavBar />
+            </div>
+
+            <div style={{ textAlign: "center" }}>
+
+            </div>
+
+            <div>
+                <CocktailDetails drinks={cocktail} navigate={navigate} />
                 <Footer />
             </div>
 
-            <div style={{ justifyContent: "center", width:"100%", padding: "10px",height:"50px"}}>
-            
+            <div style={{ justifyContent: "center", width: "100%", padding: "10px", height: "50px" }}>
+
             </div>
-            
-      </div>  
+
+        </div>
     );
 };
 

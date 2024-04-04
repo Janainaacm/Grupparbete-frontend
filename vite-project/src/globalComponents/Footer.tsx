@@ -22,6 +22,7 @@ const Footer = () => {
               <li>
                 <Button variant="link" href="https://www.youtube.com/watch?v=fAsy0GwKmRs" target="_blank" rel="noopener noreferrer" style={{ color: "#fff" }}>How to cook</Button>
               </li>
+              
             </ul>
           </Col>
         </Row>

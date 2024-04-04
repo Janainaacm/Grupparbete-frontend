@@ -3,9 +3,10 @@ export interface RecipeInterface {
   title: string;
   description: string;
   avgRating?: number[];
-  ratings?: number[];
+  ratings: number[];
   imageUrl: string;
   timeInMins: number;
+  price: number;
   categories: string[];
   instructions: string[];
   password?: string;
@@ -20,4 +21,14 @@ export interface IngredientInterface {
 
 export interface CartInterface {
   recipe: RecipeInterface[]
+}
+
+export interface CategorieInterface {
+  name: string;
+  count: number;
+}
+
+export interface commentInterface {
+  name: string;
+  comment: string;
 }

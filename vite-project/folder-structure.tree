@@ -1,0 +1,38 @@
+├── src
+│  ├── assets
+│  │  ├── images
+│  │  │  └── // all pictures
+│  │  │ 
+│  │  └── styles
+│  │    └── // all stylesheets
+│  │ 
+│  ├── globalComponents
+│  │  ├── // all global components
+│  │  ├── Cart
+│  │  │  └── // all components concerning 'Cart'
+│  │  │
+│  │  └── SearchBar
+│  │     └── // all components concerning 'SearchBar'
+│  │
+│  ├── pages
+│  │  ├── addRecipe
+│  │  ├── cocktailDetails
+│  │  ├── cocktails
+│  │  ├── home
+│  │  │  ├── // 'main page'
+│  │  │  └── components
+│  │  │    └── // components used in 'main page'
+│  │  │
+│  │  ├── recipeDetails
+│  │  └── recipes
+│  │ 
+│  ├── store
+│  │  └── // global states
+│  │ 
+│  ├── App.css
+│  ├── App.tsx
+│  ├── config.ts
+│  ├── index.css
+│  ├── main.tsx
+│  ├── Types.ts
+│  └── vite-env.d.ts
