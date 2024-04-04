@@ -8,6 +8,7 @@ interface CartState {
     AddToCart: (recipe:RecipeInterface) => void
     RemoveFromCart: (recipeIdToRemove: string) => void
     ClearCart: () => void
+    RemoveAllFromCart: (recipeIdToRemove: string) => void
   }
 
   export const useCartState = create<CartState>((set) => ({
@@ -31,6 +32,13 @@ interface CartState {
             return state;
         });
     },
+
+    RemoveAllFromCart: (recipeIdToRemove) => {
+        set((state) => ({
+            cart: state.cart.filter(recipe => recipe._id !== recipeIdToRemove)
+        }))
+    },
+
     ClearCart: () => {
         set(() => ({
             cart: []
