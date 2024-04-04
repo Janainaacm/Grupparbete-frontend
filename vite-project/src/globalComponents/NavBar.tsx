@@ -21,15 +21,6 @@ function NavBar() {
 
 
 
-<<<<<<< HEAD
-        <Navbar style={{backgroundColor: '#F5F5DC'}} 
-        variant='light'
-        expand="lg" collapseOnSelect>
-            <Navbar.Brand>
-                <img src={burger} alt="" style={{ maxWidth: '50px', marginRight: '10px', marginLeft: "10px"}}/>
-                ReceptKungen
-            </Navbar.Brand>
-=======
             <Navbar style={{ backgroundColor: '#b5b58f' }}
                 variant='dark'
                 expand="lg" collapseOnSelect>
@@ -37,7 +28,6 @@ function NavBar() {
                     <img src={burger} alt="" style={{ maxWidth: '50px', marginRight: '10px', marginLeft: "10px" }} />
                     ReceptKungen
                 </Navbar.Brand>
->>>>>>> main
 
                 {location.pathname !== '/' && location.pathname !== '/home' && (
                     <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
