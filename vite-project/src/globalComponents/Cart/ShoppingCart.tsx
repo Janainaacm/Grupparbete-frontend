@@ -146,7 +146,7 @@ const ShoppingCart = ({
                                         <span className='product-price'>Pris: {Number.isNaN(product.price + 0) ? product.price = 0 : product.price * quantity + " Sek"}</span>
                                         <p>Antal: {quantity}</p>
 
-                                        <h6>Rekomenderad Cocktail: </h6>
+                                        <h6>Rekommenderad Cocktail: </h6>
 
                                         {/* <p key={index}>{product.categories[0] === "Sprängmedel" &&
                                             <p>{alcoholic.map((alcotail) => (
