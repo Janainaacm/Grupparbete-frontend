@@ -6,10 +6,12 @@ import { RecipeInterface } from '../../Types'
 import { useCocktailCartStateInterface } from '../../store/CocktailCart'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
 import getAlcoholicCocktails from '../../api/getAlcoholicCocktails'
+import BuyButton from './BuyButton'
 
 const URL3 = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
+
+
 
 
 interface ShoppingCartProps {
@@ -353,7 +355,7 @@ const ShoppingCart = ({
                     {sortedProducts.length + sortedCocktails.length > 0 && <div className='checkout-clear'>
                         <h3>Totalt pris: {sum + " Sek"}</h3>
                         <br />
-                        <button className='check-out'>Köp knapp</button>
+                        <BuyButton/>
                         <button onClick={onClose}>Fortsätt handla</button>
                         <button onClick={clearShoppingCart}>Töm varukorg</button></div>
                     }
