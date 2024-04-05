@@ -192,6 +192,8 @@ const ShoppingCart = ({
 
                                         </p>
 
+                                        
+
                                         <div key={index + 3}>{product.categories[0] === "Dessert" &&
                                             <div>{alcoholic.map((alcotail) => (
 
@@ -210,6 +212,8 @@ const ShoppingCart = ({
                                             </div>}
 
                                         </div>
+
+
 
                                         <p key={index + 4}>{product.categories[0] === "Fisk" &&
                                             <p>{alcoholic.map((alcotail) => (

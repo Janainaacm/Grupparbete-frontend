@@ -41,7 +41,7 @@ const RecipeDetails = () => {
   const { AddToCocktailCart } = useCocktailCartStateInterface();
 
 
-  const alcoholic = getAlcoholicCocktails();
+  const recommendedCocktails = getAlcoholicCocktails();
 
 
   const { fetchRecipe } = useAPIState();
@@ -78,17 +78,17 @@ const RecipeDetails = () => {
         </div>
 
         <div className='recommended-cocktail'>{recipe.categories[0] === "Dessert" &&
-          <div>{alcoholic.map((alcotail) => (
+          <div>{recommendedCocktails.map((recCock) => (
 
-            <div>{alcotail.strDrink === "A Piece of Ass" &&
+            <div>{recCock.strDrink === "A Piece of Ass" &&
 
               <div>
 
                 <h6>Rekommenderad Cocktail: </h6>
-                <p>{alcotail.strDrink}</p>
+                <p>{recCock.strDrink}</p>
 
-                <img className='cocktail-image' width={"90"} alt={alcotail.strDrink} src={alcotail.strDrinkThumb} onClick={() => seeCocktailDetails(alcotail.idDrink)}></img>
-                <button className='remove-button' onClick={() => AddToCocktailCart(alcotail)}>Lägg till varukorg</button>
+                <img className='cocktail-image' width={"90"} alt={recCock.strDrink} src={recCock.strDrinkThumb} onClick={() => seeCocktailDetails(recCock.idDrink)}></img>
+                <button className='remove-button' onClick={() => AddToCocktailCart(recCock)}>Lägg till varukorg</button>
 
               </div>}
 
@@ -98,58 +98,80 @@ const RecipeDetails = () => {
         </div>
 
         <div className='recommended-cocktail'>{recipe.categories[0] === "Fisk" &&
-          <div>{alcoholic.map((alcotail) => (
+          <div>{recommendedCocktails.map((recCock) => (
 
-            <div>{alcotail.strDrink === "Fuzzy Asshole" &&
+            <div>{recCock.strDrink === "A Piece of Ass" &&
 
               <div>
 
                 <h6>Rekommenderad Cocktail: </h6>
-                <p>{alcotail.strDrink}</p>
+                <p>{recCock.strDrink}</p>
 
-                <img className='cocktail-image' width={"90"} alt={alcotail.strDrink} src={alcotail.strDrinkThumb} onClick={() => seeCocktailDetails(alcotail.idDrink)}></img>
-                <button className='remove-button' onClick={() => AddToCocktailCart(alcotail)}>Lägg till varukorg</button>
+                <img className='cocktail-image' width={"90"} alt={recCock.strDrink} src={recCock.strDrinkThumb} onClick={() => seeCocktailDetails(recCock.idDrink)}></img>
+                <button className='remove-button' onClick={() => AddToCocktailCart(recCock)}>Lägg till varukorg</button>
 
               </div>}
 
             </div>))}
+
+            <p>Andra, mindre passande, cocktail:</p>
+            <p>{recommendedCocktails.map((recCock) =>
+              <div>
+
+                <p>{recCock.strDrink === "110 in the shade" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
+                <p>{recCock.strDrink === "Affinity" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
+                <p>{recCock.strDrink === "Almeria" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
+
+              </div>
+            )}</p>
 
           </div>}
         </div>
 
         <div className='recommended-cocktail'>{recipe.categories[0] === "Sprängmedel" &&
-          <div>{alcoholic.map((alcotail) => (
+          <div>{recommendedCocktails.map((recCock) => (
 
-            <div>{alcotail.strDrink === "Artillery" &&
+            <div>{recCock.strDrink === "Absolut Sex" &&
 
               <div>
 
                 <h6>Rekommenderad Cocktail: </h6>
-                <p>{alcotail.strDrink}</p>
+                <p>{recCock.strDrink}</p>
 
-                <img className='cocktail-image' width={"90"} alt={alcotail.strDrink} src={alcotail.strDrinkThumb} onClick={() => seeCocktailDetails(alcotail.idDrink)}></img>
-                <button className='remove-button' onClick={() => AddToCocktailCart(alcotail)}>Lägg till varukorg</button>
+                <img className='cocktail-image' width={"90"} alt={recCock.strDrink} src={recCock.strDrinkThumb} onClick={() => seeCocktailDetails(recCock.idDrink)}></img>
+                <button className='remove-button' onClick={() => AddToCocktailCart(recCock)}>Lägg till varukorg</button>
 
               </div>}
 
             </div>))}
+
+            <p>Andra, mindre passande, cocktail:</p>
+            <p>{recommendedCocktails.map((recCock) =>
+              <div>
+
+                <p>{recCock.strDrink === "110 in the shade" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
+                <p>{recCock.strDrink === "Affinity" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
+                <p>{recCock.strDrink === "Almeria" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
+
+              </div>
+            )}</p>
 
           </div>}
         </div>
 
 
         <div className='recommended-cocktail'>{recipe.categories[0] === "snabbmat" &&
-          <div>{alcoholic.map((alcotail) => (
+          <div>{recommendedCocktails.map((recCock) => (
 
-            <div>{alcotail.strDrink === "Quick F**K" &&
+            <div>{recCock.strDrink === "Quick F**K" &&
 
               <div>
 
                 <h6>Rekommenderad Cocktail: </h6>
-                <p>{alcotail.strDrink}</p>
+                <p>{recCock.strDrink}</p>
 
-                <img className='cocktail-image' width={"90"} alt={alcotail.strDrink} src={alcotail.strDrinkThumb} onClick={() => seeCocktailDetails(alcotail.idDrink)}></img>
-                <button className='remove-button' onClick={() => AddToCocktailCart(alcotail)}>Lägg till varukorg</button>
+                <img className='cocktail-image' width={"90"} alt={recCock.strDrink} src={recCock.strDrinkThumb} onClick={() => seeCocktailDetails(recCock.idDrink)}></img>
+                <button className='remove-button' onClick={() => AddToCocktailCart(recCock)}>Lägg till varukorg</button>
 
               </div>}
 
@@ -159,12 +181,12 @@ const RecipeDetails = () => {
 
             </div>))}
             <p>Andra, mindre passande, cocktail:</p>
-            <p>{alcoholic.map((alco) =>
+            <p>{recommendedCocktails.map((recCock) =>
               <div>
 
-                <p>{alco.strDrink === "110 in the shade" && <p onClick={() => seeCocktailDetails(alco.idDrink)}>{alco.strDrink}</p>}</p>
-                <p>{alco.strDrink === "Affinity" && <p onClick={() => seeCocktailDetails(alco.idDrink)}>{alco.strDrink}</p>}</p>
-                <p>{alco.strDrink === "Almeria" && <p onClick={() => seeCocktailDetails(alco.idDrink)}>{alco.strDrink}</p>}</p>
+                <p>{recCock.strDrink === "110 in the shade" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
+                <p>{recCock.strDrink === "Affinity" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
+                <p>{recCock.strDrink === "Almeria" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
 
               </div>
             )}</p>
