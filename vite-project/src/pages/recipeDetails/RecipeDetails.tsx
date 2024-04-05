@@ -93,6 +93,15 @@ const RecipeDetails = () => {
               </div>}
 
             </div>))}
+            <p>{recommendedCocktails.map((recCock) =>
+              <div>
+
+                <p>{recCock.strDrink === "110 in the shade" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
+                <p>{recCock.strDrink === "Affinity" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
+                <p>{recCock.strDrink === "Almeria" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
+
+              </div>
+            )}</p>
 
           </div>}
         </div>
