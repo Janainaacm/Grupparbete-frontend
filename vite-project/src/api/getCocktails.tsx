@@ -149,9 +149,9 @@ const AllCocktails = () => {
 
     const response = await axios.get(URL);
 
-    const response2 = await axios.get(URL2);
+    /* const response2 = await axios.get(URL2);
 
-    const response3 = await axios.get(URL4);
+    const response3 = await axios.get(URL4); */
 
     /* const response5 = await axios.get(URL6);
     const response6 = await axios.get(URL7);
@@ -182,11 +182,11 @@ const AllCocktails = () => {
 
       
 
-    if (response2.status === 200) {
+    if (response.status === 200) {
 
       setCocktails(response.data.drinks);
-      setCocktails2(response2.data.drinks);
-      setCocktails3(response3.data.drinks);
+      /* setCocktails2(response2.data.drinks);
+      setCocktails3(response3.data.drinks); */
 
       /* setCocktails5(response5.data.drinks)
       setCocktails6(response6.data.drinks)
@@ -215,7 +215,7 @@ const AllCocktails = () => {
       setCocktails29(response5.data.drinks)
       setCocktails30(response5.data.drinks) */
 
-      console.log("response2.data.drinks",response2.data.drinks)
+      console.log("response2.data.drinks",response.data.drinks)
       console.log("cocktails",cocktails)
       
     };

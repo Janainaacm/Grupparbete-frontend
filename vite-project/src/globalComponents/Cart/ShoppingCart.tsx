@@ -63,13 +63,11 @@ const ShoppingCart = ({
 
         };
 
-
-
     };
 
-    const alcoholic = getAlcoholicCocktails()
+    const alcoholic = getAlcoholicCocktails();
 
-    console.log("alcoholic", alcoholic)
+   /*  console.log("alcoholic", alcoholic); */
 
 
 
@@ -146,7 +144,7 @@ const ShoppingCart = ({
                                         <span className='product-price'>Pris: {Number.isNaN(product.price + 0) ? product.price = 0 : product.price * quantity + " Sek"}</span>
                                         <p>Antal: {quantity}</p>
 
-                                        <h6>Rekommenderad Cocktail: </h6>
+
 
                                         {/* <p key={index}>{product.categories[0] === "Sprängmedel" &&
                                             <p>{alcoholic.map((alcotail) => (
@@ -174,7 +172,7 @@ const ShoppingCart = ({
 
                                         </p>
 
-                                        <p key={index + 1}>{product.categories[0] === "Sprängmedel" &&
+                                        <p key={index + 2}>{product.categories[0] === "Sprängmedel" &&
                                             <p>{alcoholic.map((alcotail) => (
 
                                                 <p>{alcotail.strDrink === "Absolut Sex" &&
@@ -192,23 +190,24 @@ const ShoppingCart = ({
 
                                         </p>
 
-                                        <p key={index + 3}>{product.categories[0] === "Dessert" &&
-                                            <p>{alcoholic.map((alcotail) => (
+                                        <div key={index + 3}>{product.categories[0] === "Dessert" &&
+                                            <div>{alcoholic.map((alcotail) => (
 
-                                                <p>{alcotail.strDrink === "A Piece of Ass" &&
+                                                <div>{alcotail.strDrink === "A Piece of Ass" &&
                                                     <div>
-
+                                                        <h6>Rekommenderad Cocktail: </h6>
                                                         <p>{alcotail.strDrink}</p>
 
                                                         <img className='cocktail-image' width={"90"} alt={alcotail.strDrink} src={alcotail.strDrinkThumb} onClick={() => seeCocktailDetails(alcotail.idDrink)}></img>
+                                                        <button className='remove-button' onClick={() => AddToCocktailCart(alcotail)}>Lägg till varukorg</button>
 
                                                     </div>}
 
-                                                </p>))}
+                                                </div>))}
 
-                                            </p>}
+                                            </div>}
 
-                                        </p>
+                                        </div>
 
                                         <p key={index + 4}>{product.categories[0] === "Fisk" &&
                                             <p>{alcoholic.map((alcotail) => (
@@ -256,12 +255,12 @@ const ShoppingCart = ({
 
                                     </div>
 
-                                    
+
 
                                     {/* <button className='remove-button' onClick={() => onProductRemove(product._id)}>-</button> */}
                                     <button className='remove-button' onClick={() => RemoveFromCart(product._id)}>-</button>
                                     {/* <button className='remove-button' onClick={() => onProductAdd(product)}>+</button> */}
-                                    <button className='remove-button'  onClick={() => AddToCart(product)}>+</button>
+                                    <button className='remove-button' onClick={() => AddToCart(product)}>+</button>
                                     <button onClick={() => RemoveAllFromCart(product._id)}>Ta bort produkt</button>
 
 
