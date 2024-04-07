@@ -3,10 +3,9 @@
  */
 
 import { create } from "zustand";
-import { RecipeInterface, CategorieInterface } from "../Types";
+import { RecipeInterface, CategorieInterface, commentInterface, ratingInterface  } from "../Types";
 import axios from "axios";
 import { API_URL } from "../config";
-import { commentInterface } from "../Types";
 
 // interface som definierar struktur och funktionerna för global state
 interface APIState {
@@ -114,20 +113,23 @@ export const useAPIState = create<APIState>((set) => ({
   },
 
   postRating: async (recipeId, newRating) => {
+    const ratingObject:ratingInterface = {rating:newRating}
+
     try {
       const response = await axios.post(
         `${API_URL}/recipes/${recipeId}/ratings`,
-        newRating
+        ratingObject
       );
 
       if (response.status === 200) {
-        set((state) => ({
-          recipeList: state.recipeList.map((recipe) =>
-            recipe._id === recipeId
-              ? { ...recipe, ratings: [...recipe.ratings, newRating] }
-              : recipe
-          ),
-        }));
+        console.log("FUNGERAR ATT SKICKA RATING")
+        // set((state) => ({
+        //   recipeList: state.recipeList.map((recipe) =>
+        //     recipe._id === recipeId
+        //       ? { ...recipe, ratings: [...recipe.ratings, newRating.rating] }
+        //       : recipe
+        //   ),
+        // }));
       }
     } catch (error) {
       console.log("Error while posting rating", error);
@@ -137,9 +139,7 @@ export const useAPIState = create<APIState>((set) => ({
   postComment: async (recipeId, comment) => {
     try {
       const response = await axios.post(
-        `${API_URL}/recipes/${recipeId}/comments`,
-        comment
-      );
+        `${API_URL}/recipes/${recipeId}/comments`, comment);
 
       if (response.status === 200) {
         console.log("Sucessfully posted comment");

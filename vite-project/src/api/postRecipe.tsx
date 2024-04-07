@@ -28,7 +28,6 @@ const PostRecipe = () => {
     const newRecipe = {
       title: recipeName,
       description: recipeDescription,
-     // ratings: [rating],
       imageUrl: imageURL,
       timeInMins: timeInMins,
       categories: categoryArray,
