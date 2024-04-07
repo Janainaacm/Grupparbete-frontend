@@ -1,6 +1,7 @@
 import { IngredientInterface } from "../Types";
 import { useState } from "react";
 import { useAPIState } from "../store/APIState";
+import { useNavigate } from "react-router";
 
 const PostRecipe = () => {
   const { postRecipe } = useAPIState();
@@ -9,6 +10,7 @@ const PostRecipe = () => {
   const [timeInMins, setTimeInMinutes] = useState(Number);
   const [imageURL, setImageURL] = useState("");
   const [rating, setRating] = useState("");
+  const navigate = useNavigate();
 
   const [categories, setCategories] = useState("");
   const [instructions, setInstructions] = useState("");
@@ -187,6 +189,7 @@ const PostRecipe = () => {
       <br />
       <br />
       <button onClick={addRecipe}>Add recipe</button>
+      <button onClick={() => navigate(-1)}>Tillbaka</button>
     </div>
   );
 };
