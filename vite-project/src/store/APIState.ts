@@ -21,7 +21,7 @@ interface APIState {
   clearDB: (key: string) => Promise<void>;
   updateRecipe: (updatedRecipe: RecipeInterface) => Promise<void>;
   postRating: (recipeId: string, recipeRating: number) => Promise<void>;
-  postComment: (recipeId: string, comment: commentInterface) => Promise<void>;
+  postComment: (recipeId: string, name: string, comment: string) => Promise<void>;
   fetchComment: (recipeId: string) => Promise<commentInterface>;
 }
 
@@ -38,6 +38,7 @@ export const useAPIState = create<APIState>((set) => ({
           recipeList: response.data,
         });
         console.log(response.data);
+        console.log("Fetch all recipes")
       }
     } catch (error) {
       console.log("Error fetching recipe list", error);
@@ -120,29 +121,25 @@ export const useAPIState = create<APIState>((set) => ({
         `${API_URL}/recipes/${recipeId}/ratings`,
         ratingObject
       );
-
       if (response.status === 200) {
-        console.log("FUNGERAR ATT SKICKA RATING")
-        // set((state) => ({
-        //   recipeList: state.recipeList.map((recipe) =>
-        //     recipe._id === recipeId
-        //       ? { ...recipe, ratings: [...recipe.ratings, newRating.rating] }
-        //       : recipe
-        //   ),
-        // }));
+        alert("Rating submitted!")
       }
+      
     } catch (error) {
       console.log("Error while posting rating", error);
     }
   },
 
-  postComment: async (recipeId, comment) => {
+  postComment: async (recipeId, name, comment) => {
+    const commentObject:commentInterface = {name:name, comment:comment}
+
     try {
       const response = await axios.post(
-        `${API_URL}/recipes/${recipeId}/comments`, comment);
+        `${API_URL}/recipes/${recipeId}/comments`, commentObject);
 
       if (response.status === 200) {
         console.log("Sucessfully posted comment");
+        alert("Successfully posted comment")
       }
     } catch (error) {
       console.log("Error while posting comment", error);
