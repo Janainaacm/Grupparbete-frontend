@@ -3,7 +3,12 @@
  */
 
 import { create } from "zustand";
-import { RecipeInterface, CategorieInterface, reviewInterface, ratingInterface  } from "../Types";
+import {
+  RecipeInterface,
+  CategorieInterface,
+  reviewInterface,
+  ratingInterface,
+} from "../Types";
 import axios from "axios";
 import { API_URL } from "../config";
 
@@ -11,24 +16,32 @@ import { API_URL } from "../config";
 interface APIState {
   recipeList: RecipeInterface[];
   allCategories: CategorieInterface[];
+  reviewList: reviewInterface[];
 
   fetchRecipeList: () => Promise<void>;
   postRecipe: (newRecipe: RecipeInterface) => Promise<number>;
   fetchRecipe: (recipeID: string) => Promise<RecipeInterface>;
   deleteRecipe: (recipeId: string) => Promise<void>;
   fetchCategories: () => Promise<void>;
-  fetchRecipesByCategoryName: (categoryName: string) => Promise<RecipeInterface[]>;
+  fetchRecipesByCategoryName: (
+    categoryName: string
+  ) => Promise<RecipeInterface[]>;
   clearDB: (key: string) => Promise<void>;
   updateRecipe: (updatedRecipe: RecipeInterface) => Promise<void>;
   postRating: (recipeId: string, recipeRating: number) => Promise<void>;
-  postComment: (recipeId: string, name: string, comment: string) => Promise<void>;
-  fetchReviews: (recipeId: string) => Promise<reviewInterface[]>;
+  postReview: (
+    recipeId: string,
+    name: string,
+    comment: string
+  ) => Promise<void>;
+  fetchReviews: (recipeId: string) => Promise<void>;
 }
 
 // skapar global state och fyller 'recipes' med samtliga recept i databasen.
 export const useAPIState = create<APIState>((set) => ({
   recipeList: [],
   allCategories: [],
+  reviewList: [],
 
   fetchRecipeList: async () => {
     try {
@@ -38,7 +51,7 @@ export const useAPIState = create<APIState>((set) => ({
           recipeList: response.data,
         });
         console.log(response.data);
-        console.log("Fetch all recipes")
+        console.log("Fetch all recipes");
       }
     } catch (error) {
       console.log("Error fetching recipe list", error);
@@ -114,32 +127,34 @@ export const useAPIState = create<APIState>((set) => ({
   },
 
   postRating: async (recipeId, newRating) => {
-    const ratingObject:ratingInterface = {rating:newRating}
-
+    const ratingObject: ratingInterface = { rating: newRating };
     try {
       const response = await axios.post(
         `${API_URL}/recipes/${recipeId}/ratings`,
         ratingObject
       );
       if (response.status === 200) {
-        alert("Rating submitted!")
+        alert("Rating submitted!");
       }
-      
     } catch (error) {
       console.log("Error while posting rating", error);
     }
   },
 
-  postComment: async (recipeId, name, comment) => {
-    const reviewObject:reviewInterface = {name:name, comment:comment}
-
+  postReview: async (recipeId, name, comment) => {
+    const reviewObject: reviewInterface = { name: name, comment: comment };
     try {
       const response = await axios.post(
-        `${API_URL}/recipes/${recipeId}/comments`, reviewObject);
+        `${API_URL}/recipes/${recipeId}/comments`,
+        reviewObject
+      );
 
       if (response.status === 200) {
+        set((state) => ({
+          reviewList: [...state.reviewList, response.data],
+        }));
         console.log("Sucessfully posted comment");
-        alert("Successfully posted comment")
+        alert("Successfully posted comment");
       }
     } catch (error) {
       console.log("Error while posting comment", error);
@@ -147,12 +162,30 @@ export const useAPIState = create<APIState>((set) => ({
   },
 
   fetchReviews: async (recipeId) => {
+    //const {reviewList} = useAPIState()
+
     try {
-      const response = await axios.get(`${API_URL}/recipes/${recipeId}/comments`);
+      
+      const response = await axios.get(
+        `${API_URL}/recipes/${recipeId}/comments`
+      );
 
       if (response.status === 200) {
-        return response.data;
-        console.log("fetchComment RESPONSE.DATA: ", response.data)
+        
+          set({
+            reviewList: response.data
+          })
+        
+        
+        // set((state) => {
+        //   const currentReviewsLength = state.reviewList.length;
+        //   const fetchedReviewsLength = response.data.length;
+
+        //   if (currentReviewsLength < fetchedReviewsLength) {
+        //     return { reviewList: response.data };
+        //   }
+        //   return {};
+        // });
       }
     } catch (error) {
       console.log("Error fetching comments", error);
@@ -166,7 +199,7 @@ export const useAPIState = create<APIState>((set) => ({
       if (response.status === 200) {
         console.log("success fetching categories");
         set({
-          allCategories: response.data
+          allCategories: response.data,
         });
         console.log(response.data);
       }

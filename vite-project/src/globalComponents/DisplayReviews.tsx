@@ -7,22 +7,24 @@ interface DisplayReviewsProps {
 }
 
 const DisplayReviews = (props: DisplayReviewsProps) => {
+ 
+  const {fetchReviews, reviewList} = useAPIState()
+  //const [reviews, setReviews] = useState<reviewInterface[]>([]);
+
   useEffect(() => {
-    updateReviews();
+    fetchReviews(props.recipeID);
+    console.log("FETCH REVIEWS TEST")
+    
   }, []);
-
-  const { fetchReviews } = useAPIState(); // able to update comment section
-  const [reviews, setReviews] = useState<reviewInterface[]>([]);
-
-  const updateReviews = async () => {
-    const tempReviews = await fetchReviews(props.recipeID);
-    setReviews(tempReviews);
-  };
+  // const updateReviews = async () => {
+  //   const tempReviews = await fetchReviews(props.recipeID);
+  //   setReviews(tempReviews);
+  // };
  
   return (
     <>
       <div>
-        {reviews.map((review, index) => (
+        {reviewList.map((review, index) => (
           <div key={index} style={{border: "solid"}}>
             <div>{review.name}</div> 
             <div>{review.comment}</div> 

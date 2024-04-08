@@ -7,11 +7,14 @@ interface PostReviewProps {
 }
 
 const PostReview = ({ recipeId }: PostReviewProps) => {
+  
+
   //const [rating, setRating] = useState<number>();
-  const { postComment, postRating } = useAPIState();
+  const { postReview, postRating } = useAPIState();
   const [name, setName] = useState<string>("");
   const [comment, setComment] = useState<string>("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -24,7 +27,7 @@ const PostReview = ({ recipeId }: PostReviewProps) => {
 
   const handleReviewSubmit = async () => {
     if (name !== "" && comment !== "") {
-      postComment(recipeId, name, comment);
+      postReview(recipeId, name, comment);
       setName("");
       setComment("");
     } else {
