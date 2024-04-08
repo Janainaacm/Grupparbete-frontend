@@ -80,10 +80,10 @@
  }
 
  .divider {
-    height: 1px; /* Höjden på strecket */
-    width: 100%; /* Bredden på strecket */
-    background-color: gray; /* Färgen på strecket */
-    margin: 20px 0px; /* Avstånd över och under strecket */
+    height: 1px; 
+    width: 100%;
+    background-color: gray; 
+    margin: 20px 0px;
     margin-bottom: 45px;
 }
 .section{
