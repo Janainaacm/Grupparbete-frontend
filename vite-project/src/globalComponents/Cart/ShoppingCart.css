@@ -53,7 +53,11 @@
 
 .checkout-clear {
     display: grid;
-    grid-template-columns: 150px 150px ;
+    grid-template-columns: 150px;
     grid-column-gap: 30px;
     grid-row-gap: 20px;
+}
+
+.cocktail-image {
+    cursor: pointer;
 }
