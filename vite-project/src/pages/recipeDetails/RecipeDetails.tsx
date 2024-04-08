@@ -10,6 +10,7 @@ import EmptyCartButton from "../../globalComponents/Cart/EmptyCartButton";
 import PostReview from "../../globalComponents/PostReview";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RecipeRecommendations from "./RecipeRecommendations";
+import RatingStars from "./RatingStars";
 
 const RecipeDetails = () => {
 
@@ -44,7 +45,7 @@ const RecipeDetails = () => {
                 <p className="card-text">{recipe.description}</p>
                 <p className="card-text">Time: {recipe.timeInMins} minutes</p>
                 <p className="card-text">Categories: {recipe.categories.join(', ')}</p>
-                <p className="card-text">Rating: {recipe.avgRating}</p>
+                <p className="card-text"><RatingStars></RatingStars></p>
                 <AddToCartButton recipe={recipe} /* recommendation={() => setRecommendation(true)} *//>
                 <EmptyCartButton />
                 <button onClick={() => setRecommendation(true)}>Cocktail Recommendationer</button>
