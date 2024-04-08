@@ -4,7 +4,7 @@ import {Container, Row, Col, Button} from "react-bootstrap"
 
 const Footer = () => {
   return (
-    <footer style={{ backgroundColor: "#efede0", color: "#fff", padding: "20px 0" }}>
+    <footer style={{ backgroundColor: "green", color: "#fff", padding: "20px 0" }}>
       <Container>
         <Row>
           <Col md={6}>
@@ -21,8 +21,7 @@ const Footer = () => {
               </li>
               <li>
                 <Button variant="link" href="https://www.youtube.com/watch?v=fAsy0GwKmRs" target="_blank" rel="noopener noreferrer" style={{ color: "#fff" }}>How to cook</Button>
-              </li>
-              
+              </li> 
             </ul>
           </Col>
         </Row>
