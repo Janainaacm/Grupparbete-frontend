@@ -21,8 +21,8 @@ function NavBar() {
 
 
 
-            <Navbar style={{ backgroundColor: '#b5b58f' }}
-                variant='dark'
+            <Navbar style={{ backgroundColor: '#efede0' }}
+                variant='light'
                 expand="lg" collapseOnSelect>
                 <Navbar.Brand>
                     <img src={burger} alt="" style={{ maxWidth: '50px', marginRight: '10px', marginLeft: "10px" }} />
