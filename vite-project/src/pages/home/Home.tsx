@@ -17,12 +17,15 @@ import { useEffect, useState } from "react";
 import SearchResultsList from "../../globalComponents/searchBar/SearchResultsList.tsx";
 import Carousel from "./components/Carousel.tsx"
 import {CarouselData} from "../../assets/data/carousel_data.ts"
+import HomeSwiper from "./components/HomeSwiper.tsx";
 
 
 const Home = () => {
   const navigate = useNavigate();
   const { fetchRecipeList } = useAPIState();
   const [searchResults, setSearchResults] = useState([]);
+
+  const { recipeList } = useAPIState();
 
   useEffect(() => {
     fetchRecipeList();
@@ -146,6 +149,9 @@ const Home = () => {
       <div style={{ justifyContent: "center", width:"100%", padding: "10px",height:"50px", textAlign: "center",}}>
         
       </div> */}
+      <div>
+        <HomeSwiper recipeList={recipeList}></HomeSwiper>
+      </div>
       <Footer />
     </div>
   );

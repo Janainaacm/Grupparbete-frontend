@@ -4,7 +4,7 @@ import {Container, Row, Col, Button} from "react-bootstrap"
 
 const Footer = () => {
   return (
-    <footer style={{ backgroundColor: "#efede0", color: "#fff", padding: "20px 0" }}>
+    <footer style={{ backgroundColor: "#efede0", padding: "20px 0" }}>
       <Container>
         <Row>
           <Col md={6}>
@@ -17,10 +17,10 @@ const Footer = () => {
             <h5>Externa länkar</h5>
             <ul className="list-unstyled">
               <li>
-                <Button variant="link" href="https://github.com/Janainaacm/Grupparbete-frontend/branches" target="_blank" rel="noopener noreferrer" style={{ color: "#fff" }}>GitHub</Button>
+                <Button variant="link" href="https://github.com/Janainaacm/Grupparbete-frontend/branches" target="_blank" rel="noopener noreferrer" style={{ color: "black" }}>GitHub</Button>
               </li>
               <li>
-                <Button variant="link" href="https://www.youtube.com/watch?v=fAsy0GwKmRs" target="_blank" rel="noopener noreferrer" style={{ color: "#fff" }}>How to cook</Button>
+                <Button variant="link" href="https://www.youtube.com/watch?v=fAsy0GwKmRs" target="_blank" rel="noopener noreferrer" style={{ color: "black" }}>How to cook</Button>
               </li>
               
             </ul>
