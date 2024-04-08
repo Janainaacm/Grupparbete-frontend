@@ -1,13 +1,17 @@
 import { useState, useEffect } from "react";
 import { RiSearchLine } from "react-icons/ri";
-import useGetAllRecipes from "../api/getAllRecipes";
+// import useGetAllRecipes from "../api/getAllRecipes";
+import { useAPIState } from "../store/APIState"
 import { RecipeInterface } from "../Types";
 import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+
+
 const SearchBarComponent = () => {
   const [search, setSearch] = useState("");
-  const recipes = useGetAllRecipes();
+  const {recipeList} = useAPIState();
+  const recipes = recipeList
   const [searchResults, setSearchResults] = useState<RecipeInterface[]>([]);
   const navigate = useNavigate();
   const [value, setValue] = useState()
