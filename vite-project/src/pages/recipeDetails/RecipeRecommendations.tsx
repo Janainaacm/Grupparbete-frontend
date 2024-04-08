@@ -92,7 +92,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
             <div className='recommended-cocktail'>{recipe.categories[0] === "Kött" &&
                 <div>{recommendedCocktails.map((recCock) => (
 
-                    <div>{recCock.strDrink === "A Piece of Ass" &&
+                    <div>{recCock.strDrink === "Affair" &&
 
                         <div className='shoppingCart'>
 
@@ -242,7 +242,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
             <div className='recommended-cocktail'>{recipe.categories[0] === "huvudmål" &&
                 <div>{recommendedCocktails.map((recCock) => (
 
-                    <div>{recCock.strDrink === "Quick F**K" &&
+                    <div>{recCock.strDrink === "Amaretto fizz" &&
 
                         <div className='shoppingCart'>
 
@@ -280,7 +280,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
             <div className='recommended-cocktail'>{recipe.categories[0] === "Förrätt" &&
                 <div>{recommendedCocktails.map((recCock) => (
 
-                    <div>{recCock.strDrink === "Quick F**K" &&
+                    <div>{recCock.strDrink === "Affinity" &&
 
                         <div className='shoppingCart'>
 
@@ -316,7 +316,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
             <div className='recommended-cocktail'>{recipe.categories[0] === "Bra" &&
                 <div>{recommendedCocktails.map((recCock) => (
 
-                    <div>{recCock.strDrink === "Quick F**K" &&
+                    <div>{recCock.strDrink === "Quaker's Cocktail" &&
 
                         <div className='shoppingCart'>
 
@@ -353,7 +353,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
             <div className='recommended-cocktail'>{recipe.categories[0] === "Amazing" &&
                 <div>{recommendedCocktails.map((recCock) => (
 
-                    <div>{recCock.strDrink === "Quick F**K" &&
+                    <div>{recCock.strDrink === "After sex" &&
 
                         <div className='shoppingCart'>
 

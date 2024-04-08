@@ -156,7 +156,7 @@ const ShoppingCart = ({
                                             </p>}
                                         </p> */}
 
-                                        <p key={index + 1}>{product.categories[0] === "Kött" &&
+                                        {/* <p key={index + 1}>{product.categories[0] === "Kött" &&
                                             <p>{alcoholic.map((alcotail) => (
 
                                                 <p>{alcotail.strDrink === "Affair" &&
@@ -172,9 +172,9 @@ const ShoppingCart = ({
 
                                             </p>}
 
-                                        </p>
+                                        </p> */}
 
-                                        <p key={index + 2}>{product.categories[0] === "Sprängmedel" &&
+                                        {/* <p key={index + 2}>{product.categories[0] === "Sprängmedel" &&
                                             <p>{alcoholic.map((alcotail) => (
 
                                                 <p>{alcotail.strDrink === "Absolut Sex" &&
@@ -190,11 +190,11 @@ const ShoppingCart = ({
 
                                             </p>}
 
-                                        </p>
+                                        </p> */}
 
                                         
 
-                                        <div key={index + 3}>{product.categories[0] === "Dessert" &&
+                                       {/*  <div key={index + 3}>{product.categories[0] === "Dessert" &&
                                             <div>{alcoholic.map((alcotail) => (
 
                                                 <div>{alcotail.strDrink === "A Piece of Ass" &&
@@ -211,11 +211,11 @@ const ShoppingCart = ({
 
                                             </div>}
 
-                                        </div>
+                                        </div> */}
 
 
 
-                                        <p key={index + 4}>{product.categories[0] === "Fisk" &&
+                                        {/* <p key={index + 4}>{product.categories[0] === "Fisk" &&
                                             <p>{alcoholic.map((alcotail) => (
 
                                                 <p>{alcotail.strDrink === "Pornstar Martini" &&
@@ -231,9 +231,9 @@ const ShoppingCart = ({
 
                                             </p>}
 
-                                        </p>
+                                        </p> */}
 
-                                        <p key={index + 5}>{product.categories[0] === "snabbmat" &&
+                                        {/* <p key={index + 5}>{product.categories[0] === "snabbmat" &&
                                             <p>{alcoholic.map((alcotail) => (
 
                                                 <p>{alcotail.strDrink === "Quick F**K" &&
@@ -249,7 +249,7 @@ const ShoppingCart = ({
 
                                             </p>}
 
-                                        </p>
+                                        </p> */}
 
                                         {/* <p key={index + 2}>{product.categories[0] === "snabbmat" &&
                                             <p>{alcoholic.map((alcotail) => (
