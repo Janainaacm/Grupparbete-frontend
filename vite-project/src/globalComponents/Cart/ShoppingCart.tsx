@@ -4,12 +4,9 @@ import { useCartState } from '../../store/CartState'
 import { CocktailInterface } from '../../api/getCocktails'
 import { RecipeInterface } from '../../Types'
 import { useCocktailCartStateInterface } from '../../store/CocktailCart'
-import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
-import getAlcoholicCocktails from '../../api/getAlcoholicCocktails'
 import BuyButton from './BuyButton'
 
-const URL3 = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
+/* const URL3 = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="; */
 
 
 
@@ -44,7 +41,7 @@ const ShoppingCart = ({
         ClearCocktailCart();
     };
 
-    const navigate = useNavigate();
+    /* const navigate = useNavigate();
 
     const seeCocktailDetails = async (idDrink: string) => {
 
@@ -67,7 +64,7 @@ const ShoppingCart = ({
 
     };
 
-    const alcoholic = getAlcoholicCocktails();
+    const alcoholic = getAlcoholicCocktails(); */
 
    /*  console.log("alcoholic", alcoholic); */
 

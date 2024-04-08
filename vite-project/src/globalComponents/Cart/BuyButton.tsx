@@ -1,11 +1,15 @@
 import { useCartState } from "../../store/CartState";
+import { useCocktailCartStateInterface } from "../../store/CocktailCart";
 
 const BuyButton = () => {
     const clearCart = useCartState(state => state.ClearCart);
+    const { coctailCart, RemoveOneFromCocktailCart, AddToCocktailCart, ClearCocktailCart, RemoveAllFromCocktailCart } = useCocktailCartStateInterface();
+
 
     const handleClick = () => {
       clearCart();
-      window.alert("Tack för din beställning!")
+      ClearCocktailCart();
+      window.alert("Tack för din beställning!");
     };
 
   return (

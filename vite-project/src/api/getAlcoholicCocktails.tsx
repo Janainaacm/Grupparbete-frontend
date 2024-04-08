@@ -7,9 +7,9 @@ function getAlcoholicCocktails() {
 
     const [cocktails, setCocktails] = useState<CocktailInterface[]>([]);
     const [cocktails2, setCocktails2] = useState<CocktailInterface[]>([]);
-    const [cocktails3, setCocktails3] = useState<CocktailInterface[]>([]);
+   /*  const [cocktails3, setCocktails3] = useState<CocktailInterface[]>([]);
     const [cocktails4, setCocktails4] = useState<CocktailInterface[]>([]);
-    const [cocktails5, setCocktails5] = useState<CocktailInterface[]>([]);
+    const [cocktails5, setCocktails5] = useState<CocktailInterface[]>([]); */
 
     async function getAlcoholicCocktails() {
         try {
@@ -41,7 +41,7 @@ function getAlcoholicCocktails() {
 
     const allCocktails = []
 
-    allCocktails.push(cocktails , cocktails2, cocktails3, cocktails4, cocktails5);
+    allCocktails.push(cocktails , cocktails2/* , cocktails3, cocktails4, cocktails5 */);
 
     const cocktailsAll = allCocktails.flatMap((num) => num);
 
