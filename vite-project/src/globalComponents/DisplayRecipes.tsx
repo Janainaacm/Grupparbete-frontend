@@ -10,7 +10,7 @@ interface DisplayRecipesProps {
   showDeleteButton?: boolean; // Optional prop for showing delete button
 }
 
-const DisplayRecipes = ({recipeList,showDeleteButton=false}: DisplayRecipesProps) => {
+const DisplayRecipes = ({recipeList, showDeleteButton=false}: DisplayRecipesProps) => {
   const { fetchRecipe } = useAPIState();
   const navigate = useNavigate();
   console.log(recipeList, "det som tas emot")

@@ -52,8 +52,6 @@ const SearchBar = ({ setSearchResults }) => {
     fetchData(value)
  }
 
- 
-
 
  useEffect(() => {
    
