@@ -7,8 +7,8 @@ interface PostReviewProps {
 }
 
 const PostReview = ({ recipeId }: PostReviewProps) => {
+  //const [rating, setRating] = useState<number>();
   const { postComment, postRating } = useAPIState();
-  const [rating, setRating] = useState<number>();
   const [name, setName] = useState<string>("");
   const [comment, setComment] = useState<string>("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
@@ -37,7 +37,7 @@ const PostReview = ({ recipeId }: PostReviewProps) => {
     setIsButtonDisabled(true);
   };
 
-  console.log("Rating: ", rating);
+  //console.log("Rating: ", rating);
   console.log("setName: ", name);
   console.log("setComment", comment);
 

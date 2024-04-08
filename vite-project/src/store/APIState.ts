@@ -22,7 +22,7 @@ interface APIState {
   updateRecipe: (updatedRecipe: RecipeInterface) => Promise<void>;
   postRating: (recipeId: string, recipeRating: number) => Promise<void>;
   postComment: (recipeId: string, name: string, comment: string) => Promise<void>;
-  fetchComment: (recipeId: string) => Promise<commentInterface>;
+  fetchComments: (recipeId: string) => Promise<commentInterface>;
 }
 
 // skapar global state och fyller 'recipes' med samtliga recept i databasen.
@@ -146,12 +146,13 @@ export const useAPIState = create<APIState>((set) => ({
     }
   },
 
-  fetchComment: async (recipeId) => {
+  fetchComments: async (recipeId) => {
     try {
       const response = await axios.get(`${API_URL}/recipes/${recipeId}`);
 
       if (response.status === 200) {
         return response.data;
+        console.log("fetchComment RESPONSE.DATA: ", response.data)
       }
     } catch (error) {
       console.log("Error fetching comments", error);

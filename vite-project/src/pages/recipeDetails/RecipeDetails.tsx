@@ -11,7 +11,7 @@ import PostReview from "../../globalComponents/PostReview";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const RecipeDetails = () => {
-  const { fetchRecipe } = useAPIState();
+  const { fetchRecipe, fetchComments } = useAPIState();
   const { state: recipe } = useLocation();
   const navigate = useNavigate();
   useEffect(() => {
@@ -26,6 +26,17 @@ const RecipeDetails = () => {
           <div className="col-md-5">
             <div className="card">
               <img src={recipe.imageUrl} className="card-img-top" alt={recipe.title} />
+            </div>
+            <div>
+              /*create: 
+                import function*/
+
+              //show comments
+
+              // async func for calling api fetchComments
+
+              //commentList.Map
+
             </div>
           </div>
           <div className="col-md-6">
