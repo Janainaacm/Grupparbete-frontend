@@ -32,3 +32,7 @@ export interface commentInterface {
   name: string;
   comment: string;
 }
+
+export interface ratingInterface {
+  rating: number;
+}

@@ -10,7 +10,7 @@ interface DisplayRecipesProps {
   showDeleteButton?: boolean; // Optional prop for showing delete button
 }
 
-const DisplayRecipes = ({recipeList,showDeleteButton=false}: DisplayRecipesProps) => {
+const DisplayRecipes = ({recipeList, showDeleteButton=false}: DisplayRecipesProps) => {
   const { fetchRecipe } = useAPIState();
   const navigate = useNavigate();
   console.log(recipeList, "det som tas emot")
@@ -29,9 +29,9 @@ const DisplayRecipes = ({recipeList,showDeleteButton=false}: DisplayRecipesProps
   };
 
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+    <div className="recipe-list" style={{ display: 'flex', flexWrap: 'wrap' }}>
       {recipeList.map((recipe) => (
-        <div
+        <div className="recipe-card"
           key={recipe._id}
           style={{
             width: '200px',
@@ -55,9 +55,8 @@ const DisplayRecipes = ({recipeList,showDeleteButton=false}: DisplayRecipesProps
               style={{ width: '100px', height: '100px', marginBottom: '5px' }}
             />
           </button>
-          <div>{recipe.title}</div>
-          <div style={{ fontSize: '12px' }}>{recipe.categories}</div>
-          {showDeleteButton && <DeleteButton recipeId={recipe._id}/>}
+          <div className="recipe-title">{recipe.title}</div>
+          <div className="recipe-categories" style={{ fontSize: '12px' }}>{recipe.categories}</div>
         </div>
       ))}
     </div>

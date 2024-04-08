@@ -3,10 +3,9 @@
  */
 
 import { create } from "zustand";
-import { RecipeInterface, CategorieInterface } from "../Types";
+import { RecipeInterface, CategorieInterface, commentInterface, ratingInterface  } from "../Types";
 import axios from "axios";
 import { API_URL } from "../config";
-import { commentInterface } from "../Types";
 
 // interface som definierar struktur och funktionerna för global state
 interface APIState {
@@ -22,7 +21,7 @@ interface APIState {
   clearDB: (key: string) => Promise<void>;
   updateRecipe: (updatedRecipe: RecipeInterface) => Promise<void>;
   postRating: (recipeId: string, recipeRating: number) => Promise<void>;
-  postComment: (recipeId: string, comment: commentInterface) => Promise<void>;
+  postComment: (recipeId: string, name: string, comment: string) => Promise<void>;
   fetchComment: (recipeId: string) => Promise<commentInterface>;
 }
 
@@ -39,6 +38,7 @@ export const useAPIState = create<APIState>((set) => ({
           recipeList: response.data,
         });
         console.log(response.data);
+        console.log("Fetch all recipes")
       }
     } catch (error) {
       console.log("Error fetching recipe list", error);
@@ -114,35 +114,32 @@ export const useAPIState = create<APIState>((set) => ({
   },
 
   postRating: async (recipeId, newRating) => {
+    const ratingObject:ratingInterface = {rating:newRating}
+
     try {
       const response = await axios.post(
         `${API_URL}/recipes/${recipeId}/ratings`,
-        newRating
+        ratingObject
       );
-
       if (response.status === 200) {
-        set((state) => ({
-          recipeList: state.recipeList.map((recipe) =>
-            recipe._id === recipeId
-              ? { ...recipe, ratings: [...recipe.ratings, newRating] }
-              : recipe
-          ),
-        }));
+        alert("Rating submitted!")
       }
+      
     } catch (error) {
       console.log("Error while posting rating", error);
     }
   },
 
-  postComment: async (recipeId, comment) => {
+  postComment: async (recipeId, name, comment) => {
+    const commentObject:commentInterface = {name:name, comment:comment}
+
     try {
       const response = await axios.post(
-        `${API_URL}/recipes/${recipeId}/comments`,
-        comment
-      );
+        `${API_URL}/recipes/${recipeId}/comments`, commentObject);
 
       if (response.status === 200) {
         console.log("Sucessfully posted comment");
+        alert("Successfully posted comment")
       }
     } catch (error) {
       console.log("Error while posting comment", error);
