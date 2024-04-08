@@ -1,17 +1,18 @@
 //Joel
-import DeleteButton from '../../globalComponents/DeleteButton';
-import './RecipeDetails.css'
-import { useLocation, useNavigate  } from 'react-router-dom';
-import NavBar from '../../globalComponents/NavBar';
-import AddToCartButton from '../../globalComponents/Cart/AddToCartButton';
-import { useAPIState } from '../../store/APIState';
-import { useEffect } from 'react';
-import EmptyCartButton from '../../globalComponents/Cart/EmptyCartButton';
+import DeleteButton from "../../globalComponents/DeleteButton";
+import "./RecipeDetails.css";
+import { useLocation, useNavigate } from "react-router-dom";
+import NavBar from "../../globalComponents/NavBar";
+import AddToCartButton from "../../globalComponents/Cart/AddToCartButton";
+import { useAPIState } from "../../store/APIState";
+import { useEffect } from "react";
+import EmptyCartButton from "../../globalComponents/Cart/EmptyCartButton";
+import PostReview from "../../globalComponents/PostReview";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const RecipeDetails = () => {
   const { fetchRecipe } = useAPIState();
-  const {state:recipe} = useLocation();
+  const { state: recipe } = useLocation();
   const navigate = useNavigate();
   useEffect(() => {
       fetchRecipe(recipe._id);
@@ -38,6 +39,7 @@ const RecipeDetails = () => {
                 <p className="card-text">Rating: {recipe.avgRating}</p>
                 <AddToCartButton recipe={recipe} />
                 <EmptyCartButton />
+                <PostReview recipeId={recipe._id}/>
               </div>
               </div>
             </div>
