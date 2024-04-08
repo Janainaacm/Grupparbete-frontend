@@ -39,6 +39,7 @@ const RecipeDetails = () => {
                 <p className="card-text">Rating: {recipe.avgRating}</p>
                 <AddToCartButton recipe={recipe} />
                 <EmptyCartButton />
+                <PostReview recipeId={recipe._id}/>
               </div>
               </div>
             </div>
