@@ -5,6 +5,7 @@ import { useAPIState } from '../../store/APIState';
 
 const FilterFunction = ({ setShowRecipes }) => {
     const categories = useAPIState((state) => state.allCategories);
+    const recipes = useAPIState((state) => state.recipeList);
   const getResultsCategories = useAPIState((state) => state.fetchRecipesByCategoryName);
 
 
@@ -34,6 +35,11 @@ const FilterFunction = ({ setShowRecipes }) => {
             console.error('Error fetching recipe:', error);
           }
     };
+
+    const resetFilter = () => {
+        setShowRecipes(recipes)
+        setOpen(false)
+      }
   
     return (
         <div className="App">
@@ -46,6 +52,9 @@ const FilterFunction = ({ setShowRecipes }) => {
                     <div onClick={() => chosenCategory(item.name)}>{item.name}</div>
                   </li>
                 ))}
+                <div>
+        <button onClick={() => (resetFilter())}>Återställ filter</button>
+      </div>
               </ul>
             )}
           </div>

@@ -9,6 +9,7 @@ import FilterComponent from "../../globalComponents/FilterComponent";
 import Card from "./Card";
 import "./RecipePage.css";
 import FilterFunction from "../../globalComponents/filterFunction/FilterFunction";
+import SearchBarRecipePage from "../../globalComponents/searchBar/SearchBarRecipePage";
 
 const RecipePage = () => {
   const location = useLocation();
@@ -20,19 +21,19 @@ const RecipePage = () => {
     fetchCategories();
   }, []);
 
+  console.log(location.state, 'statet');
+  console.log(showRecipes.length, 'längd');
+
+
   if (showRecipes.length == 0) {
-    setShowRecipes(location.state as RecipeInterface[]);
-    
-    if (showRecipes.length == 0) {
+    if (location.state){
+      setShowRecipes(location.state as RecipeInterface[]);
+      
+    } else {
       setShowRecipes(recipeList);
     }
-
   }
 
-  const resetFilter = () => {
-    setShowRecipes(recipeList)
-    console.log('filter återställt')
-  }
 
   console.log(recipeList, "tydligen alla recept");
   console.log(showRecipes, "det vi skickar");
@@ -40,10 +41,8 @@ const RecipePage = () => {
   return (
     <div>
       <NavBar />
+      <SearchBarRecipePage setShowRecipes={setShowRecipes}/>
       <FilterFunction setShowRecipes={setShowRecipes}/>
-      <div>
-        <button onClick={() => (resetFilter())}>Återställ filter</button>
-      </div>
 
       <main>
         {showRecipes.map((item) => {
