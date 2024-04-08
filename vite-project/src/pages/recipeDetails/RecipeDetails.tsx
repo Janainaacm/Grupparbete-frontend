@@ -8,15 +8,19 @@ import { useAPIState } from "../../store/APIState";
 import { useEffect } from "react";
 import EmptyCartButton from "../../globalComponents/Cart/EmptyCartButton";
 import PostReview from "../../globalComponents/PostReview";
+import DisplayReviews from "../../globalComponents/DisplayReviews"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const RecipeDetails = () => {
-  const { fetchRecipe, fetchComments } = useAPIState();
+  const { fetchRecipe } = useAPIState();
   const { state: recipe } = useLocation();
   const navigate = useNavigate();
+  
   useEffect(() => {
-      fetchRecipe(recipe._id);
-  }, [fetchRecipe, recipe._id]);
+      
+    fetchRecipe(recipe._id);
+  
+  }, [recipe.avgRating]);
 
   return (
     <div>
@@ -28,15 +32,7 @@ const RecipeDetails = () => {
               <img src={recipe.imageUrl} className="card-img-top" alt={recipe.title} />
             </div>
             <div>
-              /*create: 
-                import function*/
-
-              //show comments
-
-              // async func for calling api fetchComments
-
-              //commentList.Map
-
+              <DisplayReviews recipeID={recipe._id} />
             </div>
           </div>
           <div className="col-md-6">

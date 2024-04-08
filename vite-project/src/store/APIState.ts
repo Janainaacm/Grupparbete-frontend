@@ -3,7 +3,7 @@
  */
 
 import { create } from "zustand";
-import { RecipeInterface, CategorieInterface, commentInterface, ratingInterface  } from "../Types";
+import { RecipeInterface, CategorieInterface, reviewInterface, ratingInterface  } from "../Types";
 import axios from "axios";
 import { API_URL } from "../config";
 
@@ -22,7 +22,7 @@ interface APIState {
   updateRecipe: (updatedRecipe: RecipeInterface) => Promise<void>;
   postRating: (recipeId: string, recipeRating: number) => Promise<void>;
   postComment: (recipeId: string, name: string, comment: string) => Promise<void>;
-  fetchComments: (recipeId: string) => Promise<commentInterface>;
+  fetchReviews: (recipeId: string) => Promise<reviewInterface[]>;
 }
 
 // skapar global state och fyller 'recipes' med samtliga recept i databasen.
@@ -131,11 +131,11 @@ export const useAPIState = create<APIState>((set) => ({
   },
 
   postComment: async (recipeId, name, comment) => {
-    const commentObject:commentInterface = {name:name, comment:comment}
+    const reviewObject:reviewInterface = {name:name, comment:comment}
 
     try {
       const response = await axios.post(
-        `${API_URL}/recipes/${recipeId}/comments`, commentObject);
+        `${API_URL}/recipes/${recipeId}/comments`, reviewObject);
 
       if (response.status === 200) {
         console.log("Sucessfully posted comment");
@@ -146,9 +146,9 @@ export const useAPIState = create<APIState>((set) => ({
     }
   },
 
-  fetchComments: async (recipeId) => {
+  fetchReviews: async (recipeId) => {
     try {
-      const response = await axios.get(`${API_URL}/recipes/${recipeId}`);
+      const response = await axios.get(`${API_URL}/recipes/${recipeId}/comments`);
 
       if (response.status === 200) {
         return response.data;

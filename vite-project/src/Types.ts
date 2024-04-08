@@ -20,7 +20,7 @@ export interface IngredientInterface {
 }
 
 export interface CartInterface {
-  recipe: RecipeInterface[]
+  recipe: RecipeInterface[];
 }
 
 export interface CategorieInterface {
@@ -28,9 +28,10 @@ export interface CategorieInterface {
   count: number;
 }
 
-export interface commentInterface {
+export interface reviewInterface {
   name: string;
   comment: string;
+  createdAt?: string;
 }
 
 export interface ratingInterface {
