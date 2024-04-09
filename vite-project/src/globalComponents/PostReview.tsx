@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import { useAPIState } from "../store/APIState";
-import { commentInterface } from "../Types";
+import { reviewInterface } from "../Types";
 
 interface PostReviewProps {
   recipeId: string;
 }
 
 const PostReview = ({ recipeId }: PostReviewProps) => {
-  const { postComment, postRating } = useAPIState();
-  const [rating, setRating] = useState<number>();
+  
+
+  //const [rating, setRating] = useState<number>();
+  const { postReview, postRating } = useAPIState();
   const [name, setName] = useState<string>("");
   const [comment, setComment] = useState<string>("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -24,7 +27,7 @@ const PostReview = ({ recipeId }: PostReviewProps) => {
 
   const handleReviewSubmit = async () => {
     if (name !== "" && comment !== "") {
-      postComment(recipeId, name, comment);
+      postReview(recipeId, name, comment);
       setName("");
       setComment("");
     } else {
@@ -37,7 +40,7 @@ const PostReview = ({ recipeId }: PostReviewProps) => {
     setIsButtonDisabled(true);
   };
 
-  console.log("Rating: ", rating);
+  //console.log("Rating: ", rating);
   console.log("setName: ", name);
   console.log("setComment", comment);
 
