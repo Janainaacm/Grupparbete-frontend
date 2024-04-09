@@ -14,17 +14,6 @@ const Admin=(): JSX.Element=>{
     const handleClick = () =>{
         navigate('/AddRecept')
     }
-    const handleClickEdit = async (recipeId: string) => {
-        try {
-          const selectedRecipe = await fetchRecipe(recipeId);
-          const encodedTitle = encodeURIComponent(selectedRecipe.title);
-          navigate(`/EditRecipe/${encodedTitle}`, {
-            state: selectedRecipe,
-          });
-        } catch (error) {
-          console.error('Error fetching recipe:', error);
-        }
-      };
     
     useEffect(() => {
       fetchRecipeList();
@@ -47,6 +36,3 @@ const Admin=(): JSX.Element=>{
 }
 export default Admin;
 
-function fetchRecipe(recipeId: string) {
-    throw new Error("Function not implemented.");
-}
