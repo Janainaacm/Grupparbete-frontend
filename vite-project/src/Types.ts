@@ -26,6 +26,7 @@ export interface CartInterface {
 export interface CategorieInterface {
   name: string;
   count: number;
+  selected?: boolean
 }
 
 export interface reviewInterface {

@@ -12,7 +12,6 @@ interface DisplayRecipesProps {
   showEditButton?: boolean;
 }
 
-
   
 const DisplayRecipes = ({recipeList,showDeleteButton=false,showEditButton=false}: DisplayRecipesProps) => {
   const { fetchRecipe, clearReviewState } = useAPIState();

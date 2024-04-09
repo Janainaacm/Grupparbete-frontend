@@ -21,9 +21,6 @@ const RecipePage = () => {
     fetchCategories();
   }, []);
 
-  console.log(location.state, 'statet');
-  console.log(showRecipes.length, 'längd');
-
 
   if (showRecipes.length == 0) {
     if (location.state){
@@ -34,10 +31,6 @@ const RecipePage = () => {
     }
   }
 
-
-  console.log(recipeList, "tydligen alla recept");
-  console.log(showRecipes, "det vi skickar");
-
   return (
     <div>
       <NavBar />
@@ -46,13 +39,13 @@ const RecipePage = () => {
 
       <main>
         {showRecipes.map((item) => {
-          return <Card item={item} key={item._id} />;
+          return <Card item={item}/>;
         })}
       </main>
   
       {/* <FilterComponent></FilterComponent> */}
   
-      <DisplayRecipes recipeList={showRecipes} showDeleteButton={false} />
+     {/* <DisplayRecipes recipeList={showRecipes} showDeleteButton={false} /> */}
       
   
       <Footer/>
