@@ -4,16 +4,18 @@ import { useAPIState } from "../store/APIState";
 import { useEffect } from "react";
 import { RecipeInterface } from "../Types";
 import DeleteButton from "./DeleteButton";
+import EditRecipeButton from "./EditRecipeButton";
 
 interface DisplayRecipesProps {
   recipeList: RecipeInterface[];
-  showDeleteButton?: boolean; // Optional prop for showing delete button
+  showDeleteButton?: boolean; 
+  showEditButton?: boolean;
 }
 
-const DisplayRecipes = ({recipeList, showDeleteButton=false}: DisplayRecipesProps) => {
+const DisplayRecipes = ({recipeList,showDeleteButton=false,showEditButton=false}: DisplayRecipesProps) => {
   const { fetchRecipe } = useAPIState();
   const navigate = useNavigate();
-  console.log(recipeList, "det som tas emot")
+  // console.log(recipeList, "det som tas emot")
 
 
   const handleClick = async (recipeId: string) => {
@@ -57,6 +59,8 @@ const DisplayRecipes = ({recipeList, showDeleteButton=false}: DisplayRecipesProp
           </button>
           <div className="recipe-title">{recipe.title}</div>
           <div className="recipe-categories" style={{ fontSize: '12px' }}>{recipe.categories}</div>
+          {showEditButton && <EditRecipeButton recipeId={recipe._id}/>}
+          {showDeleteButton && <DeleteButton recipeId={recipe._id}/>}
         </div>
       ))}
     </div>

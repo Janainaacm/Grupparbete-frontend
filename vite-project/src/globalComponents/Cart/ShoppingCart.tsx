@@ -33,7 +33,7 @@ const ShoppingCart = ({
 
     const sum = cart.reduce((n, { price }) => n + price, 0)
 
-    console.log("sum(pris)", cart.reduce((n, { price }) => n + price, 0));
+    // console.log("sum(pris)", cart.reduce((n, { price }) => n + price, 0));
 
     const clearShoppingCart = () => {
 
