@@ -102,7 +102,7 @@ const PostRecipe = () => {
       />
       <input
         type="number"
-        value={""}
+        value={timeInMins}
         onChange={(event) => setTimeInMinutes(event.target.valueAsNumber)}
         placeholder="Time in minutes"
       />
@@ -152,7 +152,7 @@ const PostRecipe = () => {
             placeholder="Ingredient"
           />
           <input
-            value={""}
+            value={singleIngredient.amount}
             onChange={(e) => handleIngredientChange(e, index)}
             name="amount"
             type="number"
