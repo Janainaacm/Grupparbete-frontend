@@ -9,6 +9,7 @@ import CocktailsPage from "./pages/cocktails/CocktailsPage.tsx";
 import RecipeDetails from "./pages/recipeDetails/RecipeDetails.tsx";
 import CocktailDetailsPage from "./pages/cocktailDetails/CocktailDetailsPage.tsx";
 import Admin from "./pages/admin/Admin.tsx";
+import EditRecipe from "./pages/editRecipe/EditRecipe.tsx";
 
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
@@ -24,6 +25,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Route path="/Cocktails" element={<CocktailsPage/>} />
         <Route path="/Cocktails/:title" element=<CocktailDetailsPage/> />
         <Route path="/Admin" element={<Admin />} />
+        <Route path="/EditRecipe/:title" element={<EditRecipe />} />
+
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
