@@ -46,30 +46,35 @@ const PostReview = ({ recipeId }: PostReviewProps) => {
       <div>
         {/* buttons for rating*/}
         <button
+          className="rating-button"
           onClick={() => handleRatingButton(1)}
           disabled={isButtonDisabled}
         >
           1
         </button>
         <button
+          className="rating-button"
           onClick={() => handleRatingButton(2)}
           disabled={isButtonDisabled}
         >
           2
         </button>
         <button
+          className="rating-button"
           onClick={() => handleRatingButton(3)}
           disabled={isButtonDisabled}
         >
           3
         </button>
         <button
+          className="rating-button"
           onClick={() => handleRatingButton(4)}
           disabled={isButtonDisabled}
         >
           4
         </button>
         <button
+          className="rating-button"
           onClick={() => handleRatingButton(5)}
           disabled={isButtonDisabled}
         >
@@ -83,18 +88,19 @@ const PostReview = ({ recipeId }: PostReviewProps) => {
             type="text"
             name="name"
             value={name}
-            placeholder="Name"
+            placeholder="Name..."
             onChange={handleInputChange}
           />
           <input
             type="text"
             name="comment"
             value={comment}
-            placeholder="Comment"
+            placeholder="Comment..."
             onChange={handleInputChange}
           />
           <input 
           type="button"
+          className="submit-button"
           value="Submit"
           onClick={handleReviewSubmit} />
         </form>

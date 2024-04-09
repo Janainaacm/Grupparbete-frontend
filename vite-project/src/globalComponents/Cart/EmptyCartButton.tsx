@@ -9,7 +9,9 @@ const EmptyCartButton = () => {
 
 
   return (
-    <button onClick={handleClick}>Empty Cart</button>
+    <button 
+    className="empty-cart-button"
+    onClick={handleClick}>Empty Cart</button>
   );
 };
 

@@ -16,7 +16,11 @@ const AddToCartButton = ({ recipe/* , recommendation */ }) => {
 
   };
   return (
-    <button onClick={handleClick}>Add to Cart</button>
+    
+    <button 
+    className="add-to-cart-button"
+    onClick={handleClick}>Add to Cart</button>
+  
   )
 }
 

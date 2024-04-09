@@ -61,3 +61,74 @@
 .cocktail-image {
     cursor: pointer;
 }
+  
+  /*B*/
+.submit-button {
+    padding: 4px 8px;
+    border: 2px solid #000;
+    border-radius: 2px;
+    background-color: rgb(79, 44, 196);
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: hwb(88 18% 42% / 0.649);
+    color: hsl(144, 76%, 10%);
+  }
+
+  .rating-button {
+    padding: 2px 4px;
+    border: none;
+    border-radius: 5px;
+    background-color: #d8f51efb; 
+    color: #fff; 
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  
+  .rating-button:hover {
+    background-color: hwb(68 28% 6%);
+  }
+  
+  .add-to-cart-button {
+    padding: 4px 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: hsl(122, 83%, 23%); 
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .add-to-cart-button:hover {
+    background-color: #333; 
+  }
+  
+  .empty-cart-button {
+    padding: 4px 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: hwb(358 8% 19%); 
+    color: #fff; 
+    cursor: pointer;
+  }
+  
+  .empty-cart-button:hover {
+    background-color: #333; 
+  }
+
+  .cocktail-recommendationer {
+    padding: 4px 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: hwb(29 5% 6%); 
+    color: #fff; 
+    cursor: pointer;
+  }
+  
+  .cocktail-recommendationer:hover {
+    background-color: #333; 
+  }
+  
+  
+  
