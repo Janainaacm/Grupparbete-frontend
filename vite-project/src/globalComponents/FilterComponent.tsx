@@ -5,19 +5,15 @@ import { RecipeInterface } from '../Types'
 import { useNavigate } from 'react-router-dom'
 import { useAPIState } from '../store/APIState'
 
-interface CategoryInterface {
-  name: string
-  count: number
-}
 
 
 const FilterComponent = () => {
 
-  const [filteredArray, setFilteredArray] = useState([]);
-  const { fetchRecipe } = useAPIState()
+  const [filteredArray, setFilteredArray] = useState<RecipeInterface[]>([]);
+  const { fetchRecipe, fetchCategories, allCategories, fetchRecipesByCategoryName } = useAPIState()
   const navigate = useNavigate();
 
-  const filterByCategory = async (categoryName: string) => {
+  /* const filterByCategory = async (categoryName: string) => {
 
 
 
@@ -29,7 +25,7 @@ const FilterComponent = () => {
       console.log(response.data);
     };
   };
-
+ */
 
 
   const handleClick = async (recipeId: string) => {
@@ -67,34 +63,27 @@ const FilterComponent = () => {
       return categoryArray
   }; */
 
+  useEffect(() => { fetchCategories() }, [])
 
-  function getAllCategories() {
+  /* fetchCategories(); */
 
-    const [categories, setCategories] = useState<CategoryInterface[]>([])
+  /* console.log("allCategories", allCategories); */
 
-    async function getCategories() {
-      try {
-        const response = await axios.get(`${API_URL}/categories/`);
+  async function recipesByCategory(categoryName: string) {
 
-        if (response.status === 200) {
-          setCategories(response.data)
-          console.log(response.data)
-        }
-      } catch (error) {
-        console.error('Error', error)
-      }
+    try {
+      const filteredList = await fetchRecipesByCategoryName(categoryName);
+      console.log("filteredList", filteredList);
+      setFilteredArray(filteredList)
+
+
+      return filteredList
+    } catch (error) {
+
     }
 
-    useEffect(() => {
-      getCategories()
-    }, []);
-
-    return categories
 
   };
-
-
-  const allCategories = getAllCategories();
 
 
 
@@ -107,7 +96,7 @@ const FilterComponent = () => {
       <div className='category-bubbles2'>
         {allCategories.map((category, index) => (
 
-          <button key={index} className='button-1' onClick={() => filterByCategory(category.name)}>{category.name}</button>
+          <button key={index} className='button-1' onClick={() => recipesByCategory(category.name)}>{category.name}</button>
 
         ))}
         <br />

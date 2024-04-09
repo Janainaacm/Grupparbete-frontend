@@ -6,16 +6,13 @@ import "./SearchBar.css";
 import { useAPIState } from "../../store/APIState";
 
 
-const SearchBar = ({ setSearchResults }) => {
+const SearchBarRecipePage = ({ setShowRecipes }) => {
  const [search, setSearch] = useState("");
  const recipes = useAPIState((state) => state.recipeList);
- const navigate = useNavigate();
-
 
  const clearSearch = () => {
    setSearch("");
  };
-
 
  const getSearchResult = () => {
    const results = recipes.filter((recipe) => {
@@ -29,32 +26,10 @@ const SearchBar = ({ setSearchResults }) => {
    });
 
    clearSearch();
-   console.log(results)
-   navigate("/Recept", {
-     state: results,
-   });
+   setShowRecipes(results)
  };
 
- const fetchData = (value) => {
-    const dynamicSearchResult = recipes.filter((r) => {
-        return (
-            value && 
-            r && 
-            r.title && 
-            r.title.toLowerCase().includes(value)
-        );
-    })
-    setSearchResults(dynamicSearchResult)
- }
-
- const handleChange = (value) => {
-    setSearch(value)
-    fetchData(value)
- }
-
-
  useEffect(() => {
-   
  }, []);
 
 
@@ -64,11 +39,11 @@ const SearchBar = ({ setSearchResults }) => {
        type="text"
        placeholder="Search..."
        value={search}
-       onChange={(e) => handleChange(e.target.value)}
+       onChange={(e) => setSearch(e.target.value)}
        onKeyDown={(e) => e.key === "Enter" && getSearchResult()}
      />
      <FaSearch id="search-icon" />
    </div>
  );
 };
-export default SearchBar;
+export default SearchBarRecipePage;

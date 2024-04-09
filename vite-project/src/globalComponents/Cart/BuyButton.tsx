@@ -1,5 +1,5 @@
 import { useCartState } from "../../store/CartState";
-import { useCocktailCartStateInterface } from "../../store/CockrailCart";
+import { useCocktailCartStateInterface } from "../../store/CocktailCart";
 
 const BuyButton = () => {
     const clearCart = useCartState(state => state.ClearCart);

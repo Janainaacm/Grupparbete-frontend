@@ -6,7 +6,7 @@ import { Nav, Navbar, Button } from "react-bootstrap"
 import ShoppingCart from './Cart/ShoppingCart.tsx';
 import { useState } from 'react';
 import Cart from "./Cart/SCPop.tsx"
-
+import SearchBarRecipePage from './searchBar/SearchBarRecipePage.tsx';
 
 
 function NavBar() {

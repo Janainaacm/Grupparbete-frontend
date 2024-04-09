@@ -5,12 +5,19 @@ import { useLocation, useNavigate } from "react-router-dom";
 import NavBar from "../../globalComponents/NavBar";
 import AddToCartButton from "../../globalComponents/Cart/AddToCartButton";
 import { useAPIState } from "../../store/APIState";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import EmptyCartButton from "../../globalComponents/Cart/EmptyCartButton";
 import PostReview from "../../globalComponents/PostReview";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import RecipeRecommendations from "./RecipeRecommendations";
+import RatingStars from "./RatingStars";
 
 const RecipeDetails = () => {
+
+
+  const [recommendation, setRecommendation] = useState(false);
+
+
   const { fetchRecipe } = useAPIState();
   const { state: recipe } = useLocation();
   const navigate = useNavigate();
@@ -21,6 +28,8 @@ const RecipeDetails = () => {
   return (
     <div>
       <NavBar />
+      <RecipeRecommendations recipe={recipe} visibility={recommendation} onClose={() => setRecommendation(false)} ></RecipeRecommendations>
+
       <div className="container mt-5">
         <div className="row">
           <div className="col-md-5">
@@ -36,9 +45,10 @@ const RecipeDetails = () => {
                 <p className="card-text">{recipe.description}</p>
                 <p className="card-text">Time: {recipe.timeInMins} minutes</p>
                 <p className="card-text">Categories: {recipe.categories.join(', ')}</p>
-                <p className="card-text">Rating: {recipe.avgRating}</p>
-                <AddToCartButton recipe={recipe} />
+                <p className="card-text"><RatingStars></RatingStars></p>
+                <AddToCartButton recipe={recipe} /* recommendation={() => setRecommendation(true)} *//>
                 <EmptyCartButton />
+                <button onClick={() => setRecommendation(true)}>Cocktail Recommendationer</button>
                 <PostReview recipeId={recipe._id}/>
               </div>
               </div>
