@@ -12,6 +12,7 @@ import DisplayReviews from "../../globalComponents/DisplayReviews";
 import "bootstrap/dist/css/bootstrap.min.css";
 import RecipeRecommendations from "./RecipeRecommendations";
 import RatingStars from "./RatingStars";
+import { RecipeInterface } from "../../Types";
 
 const RecipeDetails = () => {
 
@@ -20,7 +21,8 @@ const RecipeDetails = () => {
 
 
   const { fetchRecipe } = useAPIState();
-  const { state: recipe } = useLocation();
+  const location = useLocation();
+  const recipe = location.state as RecipeInterface;
   const navigate = useNavigate();
 
   // state to update
