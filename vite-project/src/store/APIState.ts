@@ -17,6 +17,7 @@ interface APIState {
   recipeList: RecipeInterface[];
   allCategories: CategorieInterface[];
   reviewList: reviewInterface[];
+  //currentRecipe: RecipeInterface | null;
 
   fetchRecipeList: () => Promise<void>;
   postRecipe: (newRecipe: RecipeInterface) => Promise<number>;
@@ -35,6 +36,8 @@ interface APIState {
     comment: string
   ) => Promise<void>;
   fetchReviews: (recipeId: string) => Promise<void>;
+  clearReviewState: () => void;
+  //setCurrentRecipe: (recipe: RecipeInterface) => void;
 }
 
 // skapar global state och fyller 'recipes' med samtliga recept i databasen.
@@ -42,6 +45,29 @@ export const useAPIState = create<APIState>((set) => ({
   recipeList: [],
   allCategories: [],
   reviewList: [],
+  
+  //currentRecipe: null,
+  
+  // currentRecipe: {
+  //   _id: "",
+  //   title: "",
+  //   description: "",
+  //   avgRating: 0,
+  //   ratings: [],
+  //   imageUrl: "",
+  //   timeInMins: 0,
+  //   price: 0,
+  //   categories: [],
+  //   instructions: [],
+  //   password: "",
+  //   ingredients: [],
+  // },
+
+  // setCurrentRecipe: (recipe: RecipeInterface) => {
+  //   set({
+  //     currentRecipe: recipe,
+  //   });
+  // },
 
   fetchRecipeList: async () => {
     try {
@@ -165,18 +191,15 @@ export const useAPIState = create<APIState>((set) => ({
     //const {reviewList} = useAPIState()
 
     try {
-      
       const response = await axios.get(
         `${API_URL}/recipes/${recipeId}/comments`
       );
 
       if (response.status === 200) {
-        
-          set({
-            reviewList: response.data
-          })
-        
-        
+        set({
+          reviewList: response.data,
+        });
+
         // set((state) => {
         //   const currentReviewsLength = state.reviewList.length;
         //   const fetchedReviewsLength = response.data.length;
@@ -190,6 +213,12 @@ export const useAPIState = create<APIState>((set) => ({
     } catch (error) {
       console.log("Error fetching comments", error);
     }
+  },
+
+  clearReviewState: () => {
+    set({
+      reviewList: [],
+    });
   },
 
   //GET - /categories - Hämtar alla kategorier

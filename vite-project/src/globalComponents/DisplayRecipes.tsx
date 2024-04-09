@@ -11,10 +11,13 @@ interface DisplayRecipesProps {
 }
 
 const DisplayRecipes = ({recipeList, showDeleteButton=false}: DisplayRecipesProps) => {
-  const { fetchRecipe } = useAPIState();
+  const { fetchRecipe, clearReviewState } = useAPIState();
   const navigate = useNavigate();
   console.log(recipeList, "det som tas emot")
 
+  useEffect(() => {
+    clearReviewState()
+  },[])
 
   const handleClick = async (recipeId: string) => {
     try {

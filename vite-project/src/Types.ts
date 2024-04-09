@@ -2,7 +2,7 @@ export interface RecipeInterface {
   _id?: string;
   title: string;
   description: string;
-  avgRating?: number[];
+  avgRating?: number;
   ratings: number[];
   imageUrl: string;
   timeInMins: number;
