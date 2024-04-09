@@ -4,11 +4,7 @@ import {Container, Row, Col, Button} from "react-bootstrap"
 
 const Footer = () => {
   return (
-<<<<<<< HEAD
-    <footer style={{ backgroundColor: "green", color: "#fff", padding: "20px 0" }}>
-=======
     <footer style={{ backgroundColor: "#efede0", padding: "20px 0" }}>
->>>>>>> main
       <Container>
         <Row>
           <Col md={6}>
@@ -24,14 +20,9 @@ const Footer = () => {
                 <Button variant="link" href="https://github.com/Janainaacm/Grupparbete-frontend/branches" target="_blank" rel="noopener noreferrer" style={{ color: "black" }}>GitHub</Button>
               </li>
               <li>
-<<<<<<< HEAD
-                <Button variant="link" href="https://www.youtube.com/watch?v=fAsy0GwKmRs" target="_blank" rel="noopener noreferrer" style={{ color: "#fff" }}>How to cook</Button>
-              </li> 
-=======
                 <Button variant="link" href="https://www.youtube.com/watch?v=fAsy0GwKmRs" target="_blank" rel="noopener noreferrer" style={{ color: "black" }}>How to cook</Button>
               </li>
               
->>>>>>> main
             </ul>
           </Col>
         </Row>

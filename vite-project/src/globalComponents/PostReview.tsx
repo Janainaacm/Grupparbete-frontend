@@ -93,7 +93,10 @@ const PostReview = ({ recipeId }: PostReviewProps) => {
             placeholder="Comment"
             onChange={handleInputChange}
           />
-          <input type="button" value="Submit" onClick={handleReviewSubmit} />
+          <input 
+          type="button"
+          value="Submit"
+          onClick={handleReviewSubmit} />
         </form>
       </div>
     </div>
