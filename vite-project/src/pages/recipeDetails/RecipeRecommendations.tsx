@@ -15,6 +15,8 @@ const URL3 = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
 
 const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommendationsProps) => {
 
+    
+
     const navigate = useNavigate();
 
 
@@ -67,7 +69,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
 
 
                             <p>Andra, mindre passande, cocktail:</p>
-                            <p>{recommendedCocktails.map((recCock) =>
+                            <div>{recommendedCocktails.map((recCock) =>
                                 <div>
 
                                     <p>{recCock.strDrink === "110 in the shade" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
@@ -75,7 +77,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
                                     <p>{recCock.strDrink === "Almeria" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
 
                                 </div>
-                            )}</p>
+                            )}</div>
                             
                             <button onClick={onClose}>Stäng</button>
 
@@ -105,7 +107,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
 
 
                             <p>Andra, mindre passande, cocktail:</p>
-                            <p>{recommendedCocktails.map((recCock) =>
+                            <div>{recommendedCocktails.map((recCock) =>
                                 <div>
 
                                     <p>{recCock.strDrink === "110 in the shade" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
@@ -113,7 +115,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
                                     <p>{recCock.strDrink === "Almeria" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
 
                                 </div>
-                            )}</p>
+                            )}</div>
                             
                             <button onClick={onClose}>Stäng</button>
 
@@ -143,7 +145,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
 
 
                             <p>Andra, mindre passande, cocktail:</p>
-                            <p>{recommendedCocktails.map((recCock) =>
+                            <div>{recommendedCocktails.map((recCock) =>
                                 <div>
 
                                     <p>{recCock.strDrink === "110 in the shade" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
@@ -151,7 +153,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
                                     <p>{recCock.strDrink === "Almeria" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
 
                                 </div>
-                            )}</p>
+                            )}</div>
 
                             <button onClick={onClose}>Stäng</button>
 
@@ -180,7 +182,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
 
 
                             <p>Andra, mindre passande, cocktail:</p>
-                            <p>{recommendedCocktails.map((recCock) =>
+                            <div>{recommendedCocktails.map((recCock) =>
                                 <div>
 
                                     <p>{recCock.strDrink === "110 in the shade" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
@@ -188,7 +190,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
                                     <p>{recCock.strDrink === "Almeria" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
 
                                 </div>
-                            )}</p>
+                            )}</div>
 
                             <button onClick={onClose}>Stäng</button>
 
@@ -218,7 +220,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
 
 
                             <p>Andra, mindre passande, cocktail:</p>
-                            <p>{recommendedCocktails.map((recCock) =>
+                            <div>{recommendedCocktails.map((recCock) =>
                                 <div>
 
                                     <p>{recCock.strDrink === "110 in the shade" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
@@ -226,7 +228,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
                                     <p>{recCock.strDrink === "Almeria" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
 
                                 </div>
-                            )}</p>
+                            )}</div>
 
                             <button onClick={onClose}>Stäng</button>
 
@@ -255,7 +257,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
 
 
                             <p>Andra, mindre passande, cocktail:</p>
-                            <p>{recommendedCocktails.map((recCock) =>
+                            <div>{recommendedCocktails.map((recCock) =>
                                 <div>
 
                                     <p>{recCock.strDrink === "110 in the shade" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
@@ -263,7 +265,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
                                     <p>{recCock.strDrink === "Almeria" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
 
                                 </div>
-                            )}</p>
+                            )}</div>
 
                             <button onClick={onClose}>Stäng</button>
 
@@ -293,7 +295,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
 
 
                             <p>Andra, mindre passande, cocktail:</p>
-                            <p>{recommendedCocktails.map((recCock) =>
+                            <div>{recommendedCocktails.map((recCock) =>
                                 <div>
 
                                     <p>{recCock.strDrink === "110 in the shade" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
@@ -301,7 +303,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
                                     <p>{recCock.strDrink === "Almeria" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
 
                                 </div>
-                            )}</p>
+                            )}</div>
 
                             <button onClick={onClose}>Stäng</button>
 
@@ -329,7 +331,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
 
 
                             <p>Andra, mindre passande, cocktail:</p>
-                            <p>{recommendedCocktails.map((recCock) =>
+                            <div>{recommendedCocktails.map((recCock) =>
                                 <div>
 
                                     <p>{recCock.strDrink === "110 in the shade" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
@@ -337,7 +339,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
                                     <p>{recCock.strDrink === "Almeria" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
 
                                 </div>
-                            )}</p>
+                            )}</div>
 
                             <button onClick={onClose}>Stäng</button>
 
@@ -366,7 +368,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
 
 
                             <p>Andra, mindre passande, cocktail:</p>
-                            <p>{recommendedCocktails.map((recCock) =>
+                            <div>{recommendedCocktails.map((recCock) =>
                                 <div>
 
                                     <p>{recCock.strDrink === "110 in the shade" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
@@ -374,7 +376,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
                                     <p>{recCock.strDrink === "Almeria" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
 
                                 </div>
-                            )}</p>
+                            )}</div>
 
                             <button onClick={onClose}>Stäng</button>
 
