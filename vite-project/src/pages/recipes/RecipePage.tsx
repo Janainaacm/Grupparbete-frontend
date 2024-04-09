@@ -42,17 +42,17 @@ const RecipePage = () => {
     <div>
       <NavBar />
       <SearchBarRecipePage setShowRecipes={setShowRecipes}/>
-      <FilterFunction setShowRecipes={setShowRecipes}/>
+      <FilterFunction showRecipes={showRecipes} setShowRecipes={setShowRecipes}/>
 
       <main>
         {showRecipes.map((item) => {
-          return <Card item={item} key={item._id} />;
+          return <Card item={item}/>;
         })}
       </main>
   
       {/* <FilterComponent></FilterComponent> */}
   
-      <DisplayRecipes recipeList={showRecipes} showDeleteButton={false} />
+     {/* <DisplayRecipes recipeList={showRecipes} showDeleteButton={false} /> */}
       
   
       <Footer/>
