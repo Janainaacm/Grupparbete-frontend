@@ -105,7 +105,7 @@
   }
   
   .empty-cart-button {
-    padding: 4px 8px;
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     background-color: hwb(358 8% 19%); 
@@ -118,7 +118,7 @@
   }
 
   .cocktail-recommendationer {
-    padding: 4px 8px;
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     background-color: hwb(29 5% 6%); 
