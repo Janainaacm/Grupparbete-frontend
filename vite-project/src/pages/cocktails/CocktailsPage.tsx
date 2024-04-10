@@ -2,11 +2,21 @@ import NavBar from '../../globalComponents/NavBar'
 import AllCocktails from '../../api/getCocktails'
 import Footer from '../../globalComponents/Footer'
 import FilterCocktailComponent from '../../globalComponents/FilterCocktailComponent'
-
+import { useEffect } from 'react'
+import { useAPIState } from '../../store/APIState'
 
 const CocktailsPage = () => {
 
+  const { recipeList,fetchRecipeList, fetchCategories } = useAPIState();
 
+  useEffect(() => {
+    if (recipeList.length == 0){
+     fetchRecipeList();
+    }
+    if (recipeList.length == 0) {
+     fetchCategories();
+    }
+  }, []);
 
 
   return (

@@ -8,15 +8,21 @@ import PostRecipe from "../../api/postRecipe.tsx";
 import { useNavigate } from "react-router";
 
 const Admin=(): JSX.Element=>{
-    const { recipeList,fetchRecipeList,fetchRecipe } = useAPIState();
+    const { recipeList,fetchRecipeList,fetchCategories } = useAPIState();
     const navigate = useNavigate()
 
     const handleClick = () =>{
         navigate('/AddRecept')
     }
-    
+  
+
     useEffect(() => {
-      fetchRecipeList();
+      if (recipeList.length == 0){
+       fetchRecipeList();
+      }
+      if (recipeList.length == 0) {
+       fetchCategories();
+      }
     }, []);
 
     return(

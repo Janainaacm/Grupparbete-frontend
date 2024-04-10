@@ -13,12 +13,16 @@ import SearchBarRecipePage from "../../globalComponents/searchBar/SearchBarRecip
 
 const RecipePage = () => {
   const location = useLocation();
-  const { recipeList,/*fetchRecipeList, fetchCategories*/ } = useAPIState();
+  const { recipeList, fetchRecipeList, fetchCategories } = useAPIState();
   const [showRecipes, setShowRecipes] = useState<RecipeInterface[]>([]);
 
   useEffect(() => {
-    // fetchRecipeList();
-    // fetchCategories();
+    if (recipeList.length == 0){
+     fetchRecipeList();
+    }
+    if (recipeList.length == 0) {
+     fetchCategories();
+    }
   }, []);
 
   console.log(location.state, 'statet');
@@ -45,7 +49,6 @@ const RecipePage = () => {
 
   return (
     <div>
-      <NavBar />
       <SearchBarRecipePage setShowRecipes={setShowRecipes} />
       <FilterFunction setShowRecipes={setShowRecipes} />
 

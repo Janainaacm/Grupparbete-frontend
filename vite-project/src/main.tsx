@@ -10,18 +10,9 @@ import RecipeDetails from "./pages/recipeDetails/RecipeDetails.tsx";
 import CocktailDetailsPage from "./pages/cocktailDetails/CocktailDetailsPage.tsx";
 import Admin from "./pages/admin/Admin.tsx";
 import EditRecipe from "./pages/editRecipe/EditRecipe.tsx";
-import { useAPIState } from "./store/APIState.ts";
 import NavBar from "./globalComponents/NavBar.tsx";
 
-const start = () => {
 
-  const { fetchRecipeList, fetchCategories } = useAPIState();
-
-  useEffect(() => {
-    fetchRecipeList();
-    fetchCategories();
-  }, []);
-}
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
