@@ -155,6 +155,14 @@ const EditRecipe = ({}) => {
                     onChange={handleInputChange}
                     style={{marginLeft:"20px"}}
                   />
+                </p><p >
+                  <h3>Price:</h3>
+                  <textarea
+                    name="price"
+                    value={editedRecipe.price}
+                    onChange={handleInputChange}
+                    style={{marginLeft:"20px"}}
+                  />
                 </p>
                 <p >
                   <h3>Categories:</h3>
