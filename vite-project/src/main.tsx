@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -10,6 +10,17 @@ import RecipeDetails from "./pages/recipeDetails/RecipeDetails.tsx";
 import CocktailDetailsPage from "./pages/cocktailDetails/CocktailDetailsPage.tsx";
 import Admin from "./pages/admin/Admin.tsx";
 import EditRecipe from "./pages/editRecipe/EditRecipe.tsx";
+import { useAPIState } from "./store/APIState.ts";
+
+const start = () => {
+
+  const { fetchRecipeList, fetchCategories } = useAPIState();
+
+  useEffect(() => {
+    fetchRecipeList();
+    fetchCategories();
+  }, []);
+}
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

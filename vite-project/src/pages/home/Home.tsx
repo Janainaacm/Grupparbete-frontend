@@ -22,13 +22,14 @@ import HomeSwiper from "./components/HomeSwiper.tsx";
 
 const Home = () => {
   const navigate = useNavigate();
-  const { fetchRecipeList } = useAPIState();
+  // const { fetchRecipeList, fetchCategories } = useAPIState();
   const [searchResults, setSearchResults] = useState([]);
 
   const { recipeList } = useAPIState();
 
   useEffect(() => {
-    fetchRecipeList();
+    // fetchRecipeList();
+    // fetchCategories();
   }, []);
 
   /* const categories = [
