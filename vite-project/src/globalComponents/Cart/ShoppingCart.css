@@ -133,7 +133,7 @@
    /* Inom Rekommenderad Cocktail 'button' */
   .remove-button {
     padding: 5px 10px;
-    background-color: #f60101; 
+    background-color: hwb(128 4% 40%); 
     color: white; 
     border: none;
     border-radius: 5px;
@@ -144,7 +144,7 @@
     background-color: #333; 
   }
 
-  .se-alla-cocktails {
+  .cocktails-button {
     background-color: hsl(227, 85%, 39%);
     color: white;
     padding: 5px 10px;
@@ -153,11 +153,11 @@
     cursor: pointer;
   }
   
-  .se-alla-cocktails:hover {
+  .cocktails-button:hover {
     background-color: #333; 
   }
 
-  .stäng-button {
+  .steng-button {
     background-color: #cb530d;
     color: white;
     padding: 10px 20px;
@@ -166,10 +166,9 @@
     cursor: pointer;
   }
   
-  .stäng-button:hover {
-    background-color: #333; /* Mörkare svart färg när du hovrar över */
+  .steng-button:hover {
+    background-color: #333; 
   }
-  
   
   
   

@@ -65,7 +65,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
 
                             <img className='cocktail-image' width={"90"} alt={recCock.strDrink} src={recCock.strDrinkThumb} onClick={() => seeCocktailDetails(recCock.idDrink)}></img>
                             <button className='remove-button' onClick={() => AddToCocktailCart(recCock)}>Lägg till varukorg</button>
-                            <button className='se-alla-cocktails' onClick={() => navigate("/Cocktails")}>Se alla cocktails</button>
+                            <button className='cocktails-button' onClick={() => navigate("/Cocktails")}>Se alla cocktails</button>
 
 
                             <p>Andra, mindre passande, cocktail:</p>
@@ -79,7 +79,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
                                 </div>
                             )}</div>
                             
-                            <button className='stäng-button' onClick={onClose}>Stäng</button>
+                            <button className='steng-button' onClick={onClose}>Stäng</button>
 
                         </div>}
 
