@@ -425,6 +425,117 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
 
             </div>
 
+            <div className='recommended-cocktail'>{recipe.categories[0] === "Kyckling" &&
+                <div>{recommendedCocktails.map((recCock) => (
+
+                    <div>{recCock.strDrink === "A Day at the Beach" &&
+
+                        <div className='shoppingCart'>
+
+                            <h6>Rekommenderad Cocktail: </h6>
+                            <p>{recCock.strDrink}</p>
+
+                            <img className='cocktail-image' width={"90"} alt={recCock.strDrink} src={recCock.strDrinkThumb} onClick={() => seeCocktailDetails(recCock.idDrink)}></img>
+                            <button className='remove-button' onClick={() => AddToCocktailCart(recCock)}>Lägg till varukorg</button>
+                            <button onClick={() => navigate("/Cocktails")}>Se alla cocktails</button>
+
+
+                            <p>Andra, mindre passande, cocktail:</p>
+                            <div>{recommendedCocktails.map((recCock) =>
+                                <div>
+
+                                    <p>{recCock.strDrink === "110 in the shade" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
+                                    <p>{recCock.strDrink === "Affinity" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
+                                    <p>{recCock.strDrink === "Almeria" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
+
+                                </div>
+                            )}</div>
+
+                            <button onClick={onClose}>Stäng</button>
+
+                        </div>}
+
+                    </div>))}
+
+                </div>}
+
+            </div>
+
+
+            <div className='recommended-cocktail'>{recipe.categories[0] === "Vego" &&
+                <div>{recommendedCocktails.map((recCock) => (
+
+                    <div>{recCock.strDrink === "After Supper Cocktail" &&
+
+                        <div className='shoppingCart'>
+
+                            <h6>Rekommenderad Cocktail: </h6>
+                            <p>{recCock.strDrink}</p>
+
+                            <img className='cocktail-image' width={"90"} alt={recCock.strDrink} src={recCock.strDrinkThumb} onClick={() => seeCocktailDetails(recCock.idDrink)}></img>
+                            <button className='remove-button' onClick={() => AddToCocktailCart(recCock)}>Lägg till varukorg</button>
+                            <button onClick={() => navigate("/Cocktails")}>Se alla cocktails</button>
+
+
+                            <p>Andra, mindre passande, cocktail:</p>
+                            <div>{recommendedCocktails.map((recCock) =>
+                                <div>
+
+                                    <p>{recCock.strDrink === "110 in the shade" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
+                                    <p>{recCock.strDrink === "Affinity" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
+                                    <p>{recCock.strDrink === "Almeria" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
+
+                                </div>
+                            )}</div>
+
+                            <button onClick={onClose}>Stäng</button>
+
+                        </div>}
+
+                    </div>))}
+
+                </div>}
+
+            </div>
+
+
+
+            <div className='recommended-cocktail'>{recipe.categories[0] === "Övrigt" &&
+                <div>{recommendedCocktails.map((recCock) => (
+
+                    <div>{recCock.strDrink === "Apple Slammer" &&
+
+                        <div className='shoppingCart'>
+
+                            <h6>Rekommenderad Cocktail: </h6>
+                            <p>{recCock.strDrink}</p>
+
+                            <img className='cocktail-image' width={"90"} alt={recCock.strDrink} src={recCock.strDrinkThumb} onClick={() => seeCocktailDetails(recCock.idDrink)}></img>
+                            <button className='remove-button' onClick={() => AddToCocktailCart(recCock)}>Lägg till varukorg</button>
+                            <button onClick={() => navigate("/Cocktails")}>Se alla cocktails</button>
+
+
+                            <p>Andra, mindre passande, cocktail:</p>
+                            <div>{recommendedCocktails.map((recCock) =>
+                                <div>
+
+                                    <p>{recCock.strDrink === "110 in the shade" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
+                                    <p>{recCock.strDrink === "Affinity" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
+                                    <p>{recCock.strDrink === "Almeria" && <p onClick={() => seeCocktailDetails(recCock.idDrink)}>{recCock.strDrink}</p>}</p>
+
+                                </div>
+                            )}</div>
+
+                            <button onClick={onClose}>Stäng</button>
+
+                        </div>}
+
+                    </div>))}
+
+                </div>}
+
+            </div>
+
 
 
         </div>

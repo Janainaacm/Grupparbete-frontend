@@ -128,11 +128,24 @@ const PostRecipe = () => {
       ></textarea>
       <br />
 
-      <input
+      {/* <input
+        
         type="text"
         onChange={(event) => setCategories(event.target.value)}
         placeholder="Categories"
-      />
+      /> */}
+      <h5>Categories</h5>
+      <select onChange={(event) => setCategories(event.target.value)}>
+        <option value="Kött">Kött</option>
+        <option value="Kyckling">Kyckling</option>
+        <option value="Fisk">Fisk</option>
+        <option value="Vego">Vego</option>
+        <option value="Dessert">Dessert</option>
+        <option value="Sprängmedel">Sprängmedel</option>
+
+        <option value="Övrigt">Övrigt</option>
+      </select>
+
       <input
         type="number"
         onChange={(event) => setPrice(event.target.valueAsNumber)}
