@@ -76,13 +76,15 @@ function Cart() {
               // Om det är första förekomsten av produkten, visa produktens titel och antal
               if (index === sortedCart.findIndex((p) => p._id === product._id)) {
                 return (
-                  <div key={product._id}>
+                  <div key={product._id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                     <img className='product-image' src={product.imageUrl} alt={product.title} />
-                    {product.title}
+                    {/* {product.title} */}
                     {quantity > 1 && <span>({quantity})</span>}
+                    <div style={{display: "flex", justifyContent: "flex-end"}}>
                     <RemoveFromCartButton recipe={product}></RemoveFromCartButton>
 
                     <AddToCartButton recipe={product}></AddToCartButton>
+                    </div>
                   </div>
                 );
               }
