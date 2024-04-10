@@ -17,14 +17,18 @@ const RecipePage = () => {
   const [showRecipes, setShowRecipes] = useState<RecipeInterface[]>([]);
 
   useEffect(() => {
-    fetchRecipeList();
-    fetchCategories();
+    //debugger;
+    fetchRecipeList
+    //debugger;
+    fetchCategories
+    //debugger;
+    console.log("USE EFFECT : RecipePage")
+    console.log("fetchRecipeList()")
+    console.log("fetchCategories()")
   }, []);
 
   console.log(location.state, 'statet');
   console.log(showRecipes.length, 'längd');
-
-
 
   // Ser till att setShowRecipes inte kallas på ett oändligt antal gånger om vi uppdaterar RecipePage, vilket orsakade krash med Too many re-renders.
   useEffect(() => { 
