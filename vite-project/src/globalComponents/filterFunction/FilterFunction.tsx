@@ -1,64 +1,101 @@
-import React, { useEffect } from 'react'
-import { useState, useRef } from 'react';
-import { RecipeInterface } from '../../Types';
-import { useAPIState } from '../../store/APIState';
+import React, { useState, useRef, useEffect } from "react";
+import { useAPIState } from "../../store/APIState";
+import "./FilterFunction.css";
+import { RecipeInterface, CategorieInterface } from "../../Types";
 
-const FilterFunction = ({ setShowRecipes }) => {
-    const categories = useAPIState((state) => state.allCategories);
-    const recipes = useAPIState((state) => state.recipeList);
-  const getResultsCategories = useAPIState((state) => state.fetchRecipesByCategoryName);
+const FilterFunction = ({ setShowRecipes }: { setShowRecipes: any }) => {
+  const { recipeList, fetchRecipesByCategoryName, allCategories } =
+    useAPIState();
+  let [filteredCategories, setFilteredCategories] = useState<string[]>([]);
+  const [open, setOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
+  const handleDropDownFocus = () => {
+    setOpen(!open);
+  };
 
-  console.log(categories)
-
-  const [open, setOpen] = useState<boolean>(false);
-    const dropdownRef = useRef<HTMLDivElement>(null)
-    const handleDropDownFocus = (state: boolean) => {
-      setOpen(!state);
-    };
-
-    const handleClickOutsideDropdown =(e:any)=>{
-      if(open && !dropdownRef.current?.contains(e.target as Node)){
-        setOpen(false)
+  const handleOnChange = (item: CategorieInterface) => {
+    const updatedCategories = [...filteredCategories];
+    if (item.selected) {
+      item.selected = false;
+      const index = updatedCategories.indexOf(item.name);
+      if (index !== -1) {
+        updatedCategories.splice(index, 1);
       }
+    } else {
+      item.selected = true;
+      updatedCategories.push(item.name);
     }
-    window.addEventListener("click",handleClickOutsideDropdown)
-    
-    console.log(open);
 
-    const chosenCategory = async (name:string) => {
+    setFilteredCategories(updatedCategories);
+  };
+
+  useEffect(() => {
+    chosenCategory();
+  }, [filteredCategories]);
+
+  const chosenCategory = async () => {
+    try {
+      const fetchPromises = filteredCategories.map(async (e) => {
         try {
-            const results = await getResultsCategories(name)
-                setShowRecipes(results)
-                setOpen(false)
-          } catch (error) {
-            console.error('Error fetching recipe:', error);
-          }
-    };
+          return await fetchRecipesByCategoryName(e);
+        } catch (error) {
+          console.error("Error fetching recipes by category:", error);
+          return [];
+        }
+      });
 
-    const resetFilter = () => {
-        setShowRecipes(recipes)
-        setOpen(false)
-      }
-  
-    return (
-        <div className="App">
-          <div className="app-drop-down-container" ref={dropdownRef}>
-            <button onClick={(e) => handleDropDownFocus(open)}>Filter</button>
-            {open && ( 
-              <ul>
-                {categories.map((item, index) => (
-                  <li key={index}>
-                    <div onClick={() => chosenCategory(item.name)}>{item.name}</div>
-                  </li>
-                ))}
-                <div>
-        <button onClick={() => (resetFilter())}>Återställ filter</button>
-      </div>
-              </ul>
-            )}
-          </div>
-        </div>
+      const results = await Promise.all(fetchPromises);
+
+      const flattenedResults = results.reduce(
+        (acc, val) => acc.concat(val),
+        []
       );
-    };
-export default FilterFunction
+
+      const distinctArray = flattenedResults.filter((value, index, self) => {
+        return index === self.findIndex(obj => obj._id === value._id);
+    });
+      console.log(distinctArray)
+      setShowRecipes(distinctArray);
+    } catch (error) {
+      console.error("Error fetching recipes by category:", error);
+    }
+  };
+
+  const resetFilter = () => {
+    setShowRecipes(recipeList);
+    setOpen(false);
+  };
+
+  return (
+    <div className="App">
+      <div className="app-drop-down-container" ref={dropdownRef}>
+        <button onClick={handleDropDownFocus}>Filter</button>
+        {open && (
+          <ul>
+            {allCategories.map((item, index) => (
+              <li key={index}>
+                <div>
+                  <label className="container">
+                    {item.name}
+                    <input
+                      type="checkbox"
+                      checked={item.selected}
+                      onChange={() => handleOnChange(item)}
+                    />
+                    <span className="checkmark"></span>
+                  </label>
+                </div>
+              </li>
+            ))}
+            <div>
+              <button onClick={resetFilter}>Reset Filter</button>
+            </div>
+          </ul>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default FilterFunction;
