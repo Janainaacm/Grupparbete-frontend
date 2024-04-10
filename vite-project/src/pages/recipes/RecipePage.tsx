@@ -25,15 +25,20 @@ const RecipePage = () => {
   console.log(showRecipes.length, 'längd');
 
 
-  if (showRecipes.length == 0) {
-    if (location.state){
-      setShowRecipes(location.state as RecipeInterface[]);
-      
-    } else {
-      setShowRecipes(recipeList);
-    }
-  }
 
+  // Ser till att setShowRecipes inte kallas på ett oändligt antal gånger om vi uppdaterar RecipePage, vilket orsakade krash med Too many re-renders.
+  useEffect(() => { 
+
+    if (showRecipes.length == 0) {
+      if (location.state) {
+        setShowRecipes(location.state as RecipeInterface[]);
+
+      } else {
+        setShowRecipes(recipeList);
+      }
+    }
+
+  }, [showRecipes, location.state, recipeList])
 
   console.log(recipeList, "tydligen alla recept");
   console.log(showRecipes, "det vi skickar");
@@ -41,22 +46,22 @@ const RecipePage = () => {
   return (
     <div>
       <NavBar />
-      <SearchBarRecipePage setShowRecipes={setShowRecipes}/>
-      <FilterFunction setShowRecipes={setShowRecipes}/>
+      <SearchBarRecipePage setShowRecipes={setShowRecipes} />
+      <FilterFunction setShowRecipes={setShowRecipes} />
 
       <main>
         {showRecipes.map((item) => {
           return <Card item={item} key={item._id} />;
         })}
       </main>
-  
+
       {/* <FilterComponent></FilterComponent> */}
-  
+
       <DisplayRecipes recipeList={showRecipes} showDeleteButton={false} />
-      
-  
-      <Footer/>
+
+
+      <Footer />
     </div>
   );
-      }
+}
 export default RecipePage;
