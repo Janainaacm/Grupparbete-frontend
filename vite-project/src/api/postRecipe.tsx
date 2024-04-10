@@ -5,12 +5,15 @@ import { useNavigate } from "react-router";
 
 const PostRecipe = () => {
   const { postRecipe } = useAPIState();
+  const navigate = useNavigate();
+
   const [recipeName, setRecipeName] = useState("");
   const [recipeDescription, setDescription] = useState("");
   const [timeInMins, setTimeInMinutes] = useState(Number);
   const [imageURL, setImageURL] = useState("");
-  const [rating, setRating] = useState("");
-  const navigate = useNavigate();
+  const [price, setPrice] =useState(Number)
+  /* const [rating, setRating] = useState(""); */
+  
 
   const [categories, setCategories] = useState("");
   const [instructions, setInstructions] = useState("");
@@ -35,6 +38,8 @@ const PostRecipe = () => {
       categories: categoryArray,
       instructions: instructionsArray,
       ingredients: ingredient,
+      price: price,
+    
     };
 
     const response = await postRecipe(newRecipe);
@@ -47,9 +52,10 @@ const PostRecipe = () => {
       setDescription("");
       setTimeInMinutes(0);
       setImageURL("");
-      setRating("");
+      /* setRating(""); */
       setCategories("");
       setInstructions("");
+      setPrice(0);
     } else {
       alert("Error");
     }
@@ -72,18 +78,7 @@ const PostRecipe = () => {
     setIngredient(list);
   };
 
-  const array = ["test", "test 2", "test3"];
-
-  const filterArray = () => {
-    console.log("array", array);
-
-    const filteredArray = array.filter(
-      (currentArray) => currentArray === "test"
-    );
-
-    console.log("filteredArray", filteredArray);
-  };
-
+  
   return (
     <div>
       <br />
@@ -102,7 +97,7 @@ const PostRecipe = () => {
       />
       <input
         type="number"
-        value={timeInMins}
+        /* value={timeInMins} */
         onChange={(event) => setTimeInMinutes(event.target.valueAsNumber)}
         placeholder="Time in minutes"
       />
@@ -133,10 +128,28 @@ const PostRecipe = () => {
       ></textarea>
       <br />
 
-      <input
+      {/* <input
+        
         type="text"
         onChange={(event) => setCategories(event.target.value)}
         placeholder="Categories"
+      /> */}
+      <h5>Categories</h5>
+      <select onChange={(event) => setCategories(event.target.value)}>
+        <option value="Kött">Kött</option>
+        <option value="Kyckling">Kyckling</option>
+        <option value="Fisk">Fisk</option>
+        <option value="Vego">Vego</option>
+        <option value="Dessert">Dessert</option>
+        <option value="Sprängmedel">Sprängmedel</option>
+
+        <option value="Övrigt">Övrigt</option>
+      </select>
+
+      <input
+        type="number"
+        onChange={(event) => setPrice(event.target.valueAsNumber)}
+        placeholder="Pris"
       />
 
       <br />
@@ -152,7 +165,7 @@ const PostRecipe = () => {
             placeholder="Ingredient"
           />
           <input
-            value={singleIngredient.amount}
+            /* value={singleIngredient.amount} */
             onChange={(e) => handleIngredientChange(e, index)}
             name="amount"
             type="number"
