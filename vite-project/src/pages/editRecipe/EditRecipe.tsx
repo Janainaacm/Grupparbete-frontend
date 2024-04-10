@@ -4,6 +4,7 @@ import NavBar from "../../globalComponents/NavBar";
 import Footer from "../../globalComponents/Footer";
 import { useAPIState } from "../../store/APIState";
 import { useNavigate, useLocation } from "react-router-dom";
+import ClearButton from "./components/ClearButton";
 
 const EditRecipe = ({}) => {
   const { fetchRecipe, updateRecipe } = useAPIState();
