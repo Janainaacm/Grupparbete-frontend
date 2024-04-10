@@ -114,13 +114,13 @@ const PostRecipe = () => {
         placeholder="Add picture"
       />
 
-      <input
+      {/* <input
         type="number"
         onChange={(event) => setRating(event.target.value)}
         min={1}
         max={5}
         placeholder="Rating"
-      />
+      /> */}
 
       <br />
       <br />
