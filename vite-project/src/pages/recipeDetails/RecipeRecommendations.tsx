@@ -503,7 +503,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
             <div className='recommended-cocktail'>{recipe.categories[0] === "Övrigt" &&
                 <div>{recommendedCocktails.map((recCock) => (
 
-                    <div>{recCock.strDrink === "Apple Slammer" &&
+                    <div>{recCock.strDrink === "Quick F**K" &&
 
                         <div className='shoppingCart'>
 
