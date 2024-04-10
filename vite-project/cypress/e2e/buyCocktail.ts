@@ -1,4 +1,4 @@
-describe('first test', () => {
+describe('BuyCocktail', () => {
     it('passes', () => {
       cy.visit('http://localhost:5173/')
   
