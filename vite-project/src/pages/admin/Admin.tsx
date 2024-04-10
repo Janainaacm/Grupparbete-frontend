@@ -21,7 +21,6 @@ const Admin=(): JSX.Element=>{
 
     return(
         <>
-      <NavBar />
       <div>
         <FilterComponent></FilterComponent>
         <button onClick={handleClick}>Add recipe</button>

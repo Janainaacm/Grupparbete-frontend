@@ -7,9 +7,6 @@ const AddRecipePage = () => {
  
   return (
     <div>
-      <div>
-        <NavBar/>
-      </div>
       <div style={{textAlign: "center"}}>
        Lägg till recept
       </div>

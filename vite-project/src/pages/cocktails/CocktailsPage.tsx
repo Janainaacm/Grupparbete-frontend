@@ -18,9 +18,6 @@ const CocktailsPage = () => {
       <div>
 
       </div>
-      <div>
-        <NavBar />
-      </div>
       <div style={{ textAlign: "center" }}>
         <br />
       </div>

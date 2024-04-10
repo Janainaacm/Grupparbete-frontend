@@ -79,9 +79,6 @@ const Home = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div>
-        <NavBar />
-      </div>
       <div style={{ textAlign: "center" }} className="content">
         
       <div className="searchBar_wrapper" >

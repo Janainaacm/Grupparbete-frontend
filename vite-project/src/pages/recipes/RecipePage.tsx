@@ -13,12 +13,12 @@ import SearchBarRecipePage from "../../globalComponents/searchBar/SearchBarRecip
 
 const RecipePage = () => {
   const location = useLocation();
-  const { recipeList, fetchRecipeList, fetchCategories } = useAPIState();
+  const { recipeList,/*fetchRecipeList, fetchCategories*/ } = useAPIState();
   const [showRecipes, setShowRecipes] = useState<RecipeInterface[]>([]);
 
   useEffect(() => {
-    fetchRecipeList();
-    fetchCategories();
+    // fetchRecipeList();
+    // fetchCategories();
   }, []);
 
 
@@ -33,7 +33,6 @@ const RecipePage = () => {
 
   return (
     <div>
-      <NavBar />
       <SearchBarRecipePage setShowRecipes={setShowRecipes}/>
       <FilterFunction setShowRecipes={setShowRecipes}/>
 
@@ -45,7 +44,7 @@ const RecipePage = () => {
   
       {/* <FilterComponent></FilterComponent> */}
   
-     {/* <DisplayRecipes recipeList={showRecipes} showDeleteButton={false} /> */}
+     <DisplayRecipes recipeList={showRecipes} showDeleteButton={false} />
       
   
       <Footer/>

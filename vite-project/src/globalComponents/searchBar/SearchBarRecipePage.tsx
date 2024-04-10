@@ -29,8 +29,8 @@ const SearchBarRecipePage = ({ setShowRecipes }) => {
    setShowRecipes(results)
  };
 
- useEffect(() => {
- }, []);
+//  useEffect(() => {
+//  }, []);
 
 
  return (

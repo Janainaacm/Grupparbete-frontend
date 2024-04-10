@@ -11,6 +11,7 @@ import CocktailDetailsPage from "./pages/cocktailDetails/CocktailDetailsPage.tsx
 import Admin from "./pages/admin/Admin.tsx";
 import EditRecipe from "./pages/editRecipe/EditRecipe.tsx";
 import { useAPIState } from "./store/APIState.ts";
+import NavBar from "./globalComponents/NavBar.tsx";
 
 const start = () => {
 
@@ -25,7 +26,7 @@ const start = () => {
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
-    
+    <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Home" element={<Home />} />
