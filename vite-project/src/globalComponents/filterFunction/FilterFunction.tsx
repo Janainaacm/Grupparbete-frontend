@@ -55,7 +55,7 @@ const FilterFunction = ({ setShowRecipes }: { setShowRecipes: any }) => {
       const distinctArray = flattenedResults.filter((value, index, self) => {
         return index === self.findIndex(obj => obj._id === value._id);
     });
-      console.log(distinctArray)
+      // console.log(distinctArray)
       setShowRecipes(distinctArray);
     } catch (error) {
       console.error("Error fetching recipes by category:", error);
