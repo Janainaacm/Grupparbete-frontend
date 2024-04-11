@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Overlay, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import cartLogo from "../../assets/images/shopping-cart.png";
@@ -28,19 +28,75 @@ function Cart() {
   };
 
   const [cartsVisibility, setCartVisibility] = useState(false);
-  const [productsInCart, setProductsInCart] = useState([]);
+
 
   /* const allRecipes = useGetAllRecipes(); */
+ /*  const { cart } = useCartState(); */
+  /* const { coctailCart, RemoveOneFromCocktailCart, AddToCocktailCart } = useCocktailCartStateInterface(); */
+  const [cart4, setCart4] = useState<RecipeInterface[]>([]);
+  const [cocktailCart4, setCocktailCart4] = useState<CocktailInterface[]>([]);
   const { cart, RemoveFromCart, AddToCart } = useCartState();
   const { coctailCart, RemoveOneFromCocktailCart, AddToCocktailCart, ClearCocktailCart, RemoveAllFromCocktailCart } = useCocktailCartStateInterface();
 
-  ;
-  const sortedCart = cart.sort((a, b) => a.title.localeCompare(b.title));
-  const sortedCocktails = coctailCart.sort((a, b) => a.strDrink.localeCompare(b.strDrink));
+  const sortedCart = cart4.sort((a, b) => a.title.localeCompare(b.title));
+  const sortedCocktails = cocktailCart4.sort((a, b) => a.strDrink.localeCompare(b.strDrink));
+
+  if (cart.length > cart4.length) {
+
+    setCart4(cart);
+
+    setShowPopover(true);
+
+    function hidePop() {
+      setShowPopover(false);
+      setCart4(cart);
+    };
+
+    setTimeout(hidePop, 1000);
+
+  };
+
+  if (cart.length < cart4.length) {
+    setCart4(cart)
+  };
+
+  useEffect(() => {
+    if (cart.length == cart4.length) {
+      setShowPopover(false)
+    }
+
+  }, []);
+
+
+  if (coctailCart.length > cocktailCart4.length) {
+
+    setCocktailCart4(coctailCart);
+
+    setShowPopover(true);
+
+    function hidePop() {
+      setShowPopover(false);
+      setCocktailCart4(coctailCart);
+    };
+
+    setTimeout(hidePop, 1000);
+
+  };
+
+  if (coctailCart.length < cocktailCart4.length) {
+    setCocktailCart4(coctailCart)
+  };
+
+  useEffect(() => {
+    if (coctailCart.length == cocktailCart4.length) {
+      setShowPopover(false)
+    }
+
+  }, []);
 
   return (
     <>
-      <ShoppingCart visibility={cartsVisibility} products={cart} onClose={() => setCartVisibility(false)}></ShoppingCart>
+      <ShoppingCart visibility={cartsVisibility} onClose={() => setCartVisibility(false)}></ShoppingCart>
 
       <Button variant="link" className="nav-link">
         <div

@@ -113,7 +113,8 @@ const ShoppingCart = ({
 
                                     
                                     <Card.Body className="product-body">
-                                    <Card.Title>{cocktail.strDrink}</Card.Title>
+                                    <Card.Title>{cocktail.strDrink.length > 10 ? cocktail.strDrink.substring(0, 10) + "..." : cocktail.strDrink}</Card.Title>
+                                    {/* <Card.Title>{cocktail.strDrink}</Card.Title> */}
                                     
                                         <img className='product-image' src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />    
                                         <p>pris:</p>                                  
