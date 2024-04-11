@@ -24,6 +24,7 @@ const DisplayReviews = (props: DisplayReviewsProps) => {
   return (
     <>
       <div>
+        
         {reviewList.map((review, index) => (
           <div key={index} style={{border: "solid"}}>
             <div>{review.name}</div> 

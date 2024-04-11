@@ -20,8 +20,10 @@ const AddToCartButton = ({ recipe/* , recommendation */ }) => {
     <button 
     className="add-to-cart-button"
     onClick={handleClick}>Add to Cart</button>
+    
   
   )
+  
 }
 
 export default AddToCartButton

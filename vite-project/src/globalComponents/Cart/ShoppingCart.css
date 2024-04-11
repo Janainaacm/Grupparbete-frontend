@@ -63,30 +63,37 @@
 }
   
   /*B*/
+  form {
+    margin-top: 5px;
+  }
+
 .submit-button {
     padding: 4px 8px;
     border: 2px solid #000;
     border-radius: 2px;
-    background-color: rgb(79, 44, 196);
+    background-color: hsl(254, 64%, 55%);
     font-size: 16px;
     cursor: pointer;
+    margin-top: 10px;
   }
   
   .submit-button:hover {
-    background-color: hwb(88 18% 42% / 0.649);
+    background-color: rgb(79, 44, 196);
     color: hsl(144, 76%, 10%);
   }
-
+  
   .rating-button {
     padding: 2px 4px;
     border: none;
     border-radius: 5px;
-    background-color: #d8f51efb; 
+    background-color: rgb(236, 204, 24); 
     color: #fff; 
-    margin-right: 5px;
+    margin-top: 10px;
     cursor: pointer;
+    width: 28px; 
+    height: 28px; 
+    
   }
-  
   .rating-button:hover {
     background-color: hwb(68 28% 6%);
   }
@@ -130,7 +137,6 @@
     background-color: #333; 
   }
 
-   /* Inom Rekommenderad Cocktail 'button' */
   .remove-button {
     padding: 5px 10px;
     background-color: hwb(128 4% 40%); 
@@ -157,8 +163,8 @@
     background-color: #333; 
   }
 
-  .steng-button {
-    background-color: #cb530d;
+  .add-to-cart-button {
+    background-color: hwb(96 9% 9%);
     color: white;
     padding: 10px 20px;
     border: none;
@@ -166,11 +172,26 @@
     cursor: pointer;
   }
   
-  .steng-button:hover {
+  .add-to-cart-button:hover {
     background-color: #333; 
   }
   
-  
+  .name-button,
+  .comment-button {
+    background-color:hsl(50, 100%, 80%);;
+    color: #151313;
+    padding: 10px 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .name-button {
+    margin-bottom: 5px;
+  }
+
+ 
+
   
   
   

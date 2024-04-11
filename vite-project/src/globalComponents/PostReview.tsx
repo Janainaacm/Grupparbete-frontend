@@ -46,7 +46,8 @@ const PostReview = ({ recipeId }: PostReviewProps) => {
 
   return (
     <div>
-      <div>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '5vh' }}>
+        
         {/* buttons for rating*/}
         <button
           className="rating-button"
@@ -84,11 +85,13 @@ const PostReview = ({ recipeId }: PostReviewProps) => {
           5
         </button>
       </div>
+      <br />
       <div>
         {/*Input field för name */}
         <form>
           <input
             type="text"
+            className="name-button"
             name="name"
             value={name}
             placeholder="Name..."
@@ -96,6 +99,7 @@ const PostReview = ({ recipeId }: PostReviewProps) => {
           />
           <input
             type="text"
+            className="comment-button"
             name="comment"
             value={comment}
             placeholder="Comment..."
