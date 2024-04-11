@@ -15,7 +15,6 @@ const CocktailDetailsPage = () => {
 
             <div>
                 <CocktailDetails drinks={cocktail} navigate={navigate} />
-                <Footer />
             </div>
 
         </div>
