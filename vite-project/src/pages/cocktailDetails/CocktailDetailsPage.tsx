@@ -12,22 +12,10 @@ const CocktailDetailsPage = () => {
 
     return (
         <div>
-            <p>CocktailDetailsPage</p>
-            <div>
-                {/* <Header/> */}
-            </div>
-
-            <div style={{ textAlign: "center" }}>
-
-            </div>
 
             <div>
                 <CocktailDetails drinks={cocktail} navigate={navigate} />
                 <Footer />
-            </div>
-
-            <div style={{ justifyContent: "center", width: "100%", padding: "10px", height: "50px" }}>
-
             </div>
 
         </div>
