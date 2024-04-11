@@ -136,13 +136,13 @@ const PostRecipe = () => {
       /> */}
       <h5>Categories</h5>
       <select onChange={(event) => setCategories(event.target.value)}>
+        <option value="Select">Select</option>
         <option value="Kött">Kött</option>
         <option value="Kyckling">Kyckling</option>
         <option value="Fisk">Fisk</option>
         <option value="Vego">Vego</option>
         <option value="Dessert">Dessert</option>
         <option value="Sprängmedel">Sprängmedel</option>
-
         <option value="Övrigt">Övrigt</option>
       </select>
 
