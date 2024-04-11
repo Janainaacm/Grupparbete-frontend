@@ -16,7 +16,7 @@ interface DisplayRecipesProps {
 const DisplayRecipes = ({recipeList,showDeleteButton=false,showEditButton=false}: DisplayRecipesProps) => {
   const { fetchRecipe, clearReviewState } = useAPIState();
   const navigate = useNavigate();
-  // console.log(recipeList, "det som tas emot")
+
 
   useEffect(() => {
     clearReviewState()
@@ -63,7 +63,8 @@ const DisplayRecipes = ({recipeList,showDeleteButton=false,showEditButton=false}
           </button>
           <div className="recipe-title">{recipe.title}</div>
           <div className="recipe-categories" style={{ fontSize: '12px' }}>{recipe.categories}</div>
-          {showEditButton && <EditRecipeButton recipeId={recipe._id}/>}
+          {showEditButton && <EditRecipeButton recipeId={recipe._id} />}
+          <div style={{padding:"2px"}}>   </div>
           {showDeleteButton && <DeleteButton recipeId={recipe._id}/>}
         </div>
       ))}

@@ -1,6 +1,7 @@
-import { CocktailInterface } from "../../../api/getCocktails";
+import { CocktailInterface } from "../../cocktails/components/DisplayCocktail";
 import { NavigateFunction } from "react-router-dom";
 import { useCocktailCartStateInterface } from "../../../store/CocktailCart";
+import Cart from "../../../globalComponents/Cart/SCPop";
 
 
 interface DrinkDetailsProps {

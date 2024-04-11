@@ -3,12 +3,14 @@ import axios from "axios";
 import NavBar from "../../globalComponents/NavBar";
 import Footer from "../../globalComponents/Footer";
 import { useAPIState } from "../../store/APIState";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
+import ClearButton from "./components/ClearButton";
 
 const EditRecipe = ({}) => {
   const { fetchRecipe, updateRecipe } = useAPIState();
   const { state: recipe } = useLocation();
   const navigate = useNavigate();
+  const [submitClicked, setSubmitClicked] = useState(false);
 
   // State to hold edited recipe data
   const [editedRecipe, setEditedRecipe] = useState(recipe);
@@ -25,11 +27,14 @@ const EditRecipe = ({}) => {
   };
 
   // Function to handle form submission
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void; },shouldNavigate:boolean) => {
     e.preventDefault();
     try {
       await updateRecipe(editedRecipe);
-      // navigate(-1);
+      if(shouldNavigate){
+        navigate(-1)
+      }
+      //  navigate(-1);
     } catch (error) {
       console.error("Error updating recipe:", error);
     }
@@ -65,9 +70,17 @@ const EditRecipe = ({}) => {
         ...prevRecipe,
         ingredients: updatedIngredients,
       }));
-      setNewIngredient("");
+      setNewIngredient(""); // Clear the newIngredient state
     }
   };
+  const handleCategoriesChange = (selectedCategory)=>{
+    const updatedCategory = [...editedRecipe.categories]
+    setEditedRecipe((prevRecipe) => ({
+      ...prevRecipe,
+      categories: selectedCategory,
+    }));
+
+  }
   const handleInstructionsChange = (e, index) => {
     const { value } = e.target;
     const updatedInstructions = [...editedRecipe.instructions];
@@ -97,28 +110,29 @@ const EditRecipe = ({}) => {
         ...prevRecipe,
         instructions: updatedInstructions,
       }));
-      setNewInstructions("");
+      setNewInstructions(""); // Clear the newInstructions state
     }
   };
 
-  useEffect(() => {
-    // Fetch recipe details when component mounts
-    fetchRecipe(recipe._id);
-  }, [fetchRecipe, recipe._id]);
+  // useEffect(() => {
+  //   // Fetch recipe details when component mounts
+  //   if (recipe && recipe._id) {
+  //     fetchRecipe(recipe._id);
+  //   }
+  // }, [fetchRecipe, recipe?._id]);
 
   return (
     <div>
-      <NavBar />
       <form onSubmit={handleSubmit}>
         <div>
           <div>
             <div>
               <div style={{ display: "flex", alignItems: "center" }}>
-                <img
-                  src={editedRecipe.imageUrl}
-                  alt={editedRecipe.title}
-                  style={{ maxWidth: "200px", maxHeight: "200px" }}
-                />
+              <img
+              src={editedRecipe?.imageUrl || ""}
+              alt={editedRecipe?.title || ""}
+              style={{ maxWidth: "200px", maxHeight: "200px" }}
+              />
                 <div style={{ marginLeft: "10px" }}>
                   <h3>Image URL:</h3>
                   <textarea
@@ -167,12 +181,16 @@ const EditRecipe = ({}) => {
                 </p>
                 <p >
                   <h3>Categories:</h3>
-                  <textarea
-                    name="categories"
-                    value={editedRecipe.categories.join(", ")}
-                    onChange={handleInputChange}
-                    style={{marginLeft:"20px"}}
-                  />
+                  <select onChange={(e) => handleCategoriesChange(e.target.value)}>
+                  <option value="Select">Select</option>
+                  <option value="Kött">Kött</option>
+                  <option value="Kyckling">Kyckling</option>
+                  <option value="Fisk">Fisk</option>
+                  <option value="Vego">Vego</option>
+                  <option value="Dessert">Dessert</option>
+                  <option value="Sprängmedel">Sprängmedel</option>
+                  <option value="Övrigt">Övrigt</option>
+                </select>
                 </p>
               </div>
             </div>
@@ -229,7 +247,8 @@ const EditRecipe = ({}) => {
           </div>
         </div>
       </form>
-      <button onClick={handleSubmit}>Submit</button>
+      <button onClick={(e) => {setSubmitClicked(true); 
+        handleSubmit(e,true);}}>Submit</button>
       <button onClick={() => navigate(-1)}>Tillbaka</button>
       <Footer />
     </div>

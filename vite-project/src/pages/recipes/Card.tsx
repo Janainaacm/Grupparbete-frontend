@@ -26,7 +26,7 @@ const Card = ({ item }: { item: RecipeInterface }) => {
         <div className="product-card-top">
         <img className="product-card__image" src={item.imageUrl} alt={item.title} />
         <button className="product-card__btn-wishlist">
-            <Cart/>
+            {/* <Cart/> */}
         </button>
         </div>
         <div className="product-card-bottom" onClick={() => handleClick(item._id)}>
