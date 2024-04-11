@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { CocktailInterface } from './getCocktails'
+import { CocktailInterface } from '../pages/cocktails/components/DisplayCocktail'
 
 
 function getAlcoholicCocktails() {
@@ -45,11 +45,13 @@ function getAlcoholicCocktails() {
 
     const cocktailsAll = allCocktails.flatMap((num) => num);
 
-    console.log("cocktailsAll",cocktailsAll)
+    // console.log("cocktailsAll",cocktailsAll)
 
     useEffect(() => {
+        if(cocktailsAll.length===0){
         getAlcoholicCocktails()
-    }, [])
+    }
+    }, [getAlcoholicCocktails,cocktailsAll])
     return cocktailsAll
 
 }

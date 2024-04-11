@@ -3,12 +3,16 @@ import Footer from "../../globalComponents/Footer.tsx";
 import { useAPIState } from "../../store/APIState.ts";
 import { useEffect } from "react";
 import DisplayRecipes from "../../globalComponents/DisplayRecipes.tsx";
-import FilterComponent from "../../globalComponents/FilterComponent.tsx";
-import PostRecipe from "../../api/postRecipe.tsx";
 import { useNavigate } from "react-router";
+import ClearButton from "../editRecipe/components/ClearButton.tsx";
+
 
 const Admin=(): JSX.Element=>{
+<<<<<<< HEAD
     const { recipeList,fetchRecipeList,fetchCategories } = useAPIState();
+=======
+    const { recipeList,fetchRecipeList } = useAPIState();
+>>>>>>> 80b6a7fe8165bd6fc5a6c0405c757dd7d6815f4e
     const navigate = useNavigate()
 
     const handleClick = () =>{
@@ -28,8 +32,9 @@ const Admin=(): JSX.Element=>{
     return(
         <>
       <div>
-        <FilterComponent></FilterComponent>
+      
         <button onClick={handleClick}>Add recipe</button>
+        <ClearButton/>
 
         <DisplayRecipes recipeList={recipeList} showDeleteButton={true} showEditButton={true} />
 
