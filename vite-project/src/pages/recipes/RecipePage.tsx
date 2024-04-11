@@ -49,7 +49,6 @@ const RecipePage = () => {
         })}
       </main>
       {/* <DisplayRecipes recipeList={showRecipes} showDeleteButton={false} /> */}
-      <Footer />
     </div>
   );
 }

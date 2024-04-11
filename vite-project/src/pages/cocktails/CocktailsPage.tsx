@@ -41,7 +41,6 @@ const CocktailsPage = () => {
         <DisplayCocktail />
       </div>
       <div style={{bottom: "0", justifyContent: "center", width: "100%", padding: "10px", height: "50px" }}>
-        <Footer />
       </div>
     </div>
 

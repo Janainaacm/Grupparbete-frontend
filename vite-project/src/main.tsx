@@ -11,7 +11,7 @@ import CocktailDetailsPage from "./pages/cocktailDetails/CocktailDetailsPage.tsx
 import Admin from "./pages/admin/Admin.tsx";
 import EditRecipe from "./pages/editRecipe/EditRecipe.tsx";
 import NavBar from "./globalComponents/NavBar.tsx";
-
+import Footer from "./globalComponents/Footer.tsx";
 
 
 
@@ -19,6 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
     <NavBar />
+    
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Home" element={<Home />} />
@@ -30,8 +31,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Route path="/AddRecept" element={<AddRecipePage/>} />
         <Route path="/Admin" element={<Admin />} />
         <Route path="/EditRecipe/:title" element={<EditRecipe />} />
-
+        
       </Routes>
+      <Footer />
     </BrowserRouter>
   </React.StrictMode>
 
