@@ -14,22 +14,24 @@
     width: 60%;
     height: 90%;
     margin: 2rem auto;
-    background-color: #eee;
+    background-image: linear-gradient(to bottom, #FFEE99, #FFFFFF);
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    position: relative;
 }
 
 .shoppingCart .header {
     display: flex;
-    background-color: #ccc;
+    background-color: none;
     padding: 10px 20px;
     justify-content: space-between;
 }
 
-.close-button {
-    color: #065a82;
+.close-button-cart {
+    color: orange;
+    padding: 0;
+    background-color: transparent;
+    border: none;
 }
 
 .empty-text {
@@ -40,24 +42,84 @@
 
 .cart-products {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     padding: 1rem 0;
-    overflow-y: scroll;
+    overflow-x: scroll;
     margin: 10px;
 }
 
 .product-image {
     max-width: 70px;
+    height: 50px;
 }
 
 .checkout-clear {
-    display: grid;
+    position: fixed;
+    align-items: center;
     grid-template-columns: 150px;
-    grid-column-gap: 30px;
-    grid-row-gap: 20px;
 }
 
 .cocktail-image {
     cursor: pointer;
+}
+.product-container{
+    display: flex;
+    align-items: center;
+    width: max-content;
+}
+.remove-button{
+    margin-bottom: 0px;
+    
+}
+.content-container{
+    position: sticky;
+}
+
+.add-button,.remove-all-button,.remove-button{
+    display: inline-block; /* Så att de ligger bredvid varandra */
+    margin-right: 4px; /* Lite mellanrum mellan knapparna */
+    padding: 8px 8px; /* Justera storleken på knapparna efter behov */
+    font-size: 14px; /* Justera textstorleken efter behov */
+    border: none; /* Ta bort ramen */
+    border-radius: 4px; /* Runda hörnen */
+    background-color: #007bff; /* Bakgrundsfärg */
+    color: #ffffff; /* Textfärg */
+    cursor: pointer; /* Visa pekaren när man håller över knappen */
+}
+.remove-all-button{
+    background-color: red;
+}
+.product-body{
+    height:230px;
+    width: 150px;
+}
+@media (max-width: 700px){
+    .checkout-clear {
+        position: relative;
+        align-items: flex-end;
+    }
+    .product-container {
+        display: block;
+        width: 94%; /* Ta upp all tillgänglig bredd */
+        height: 100%; /* Ta upp all tillgänglig höjd */
+    }
+    
+    .product-image {
+        max-width: max-content;
+        width: 100%; /* Ta upp all tillgänglig bredd */
+        height: auto; /* Behåll proportionerna för bilden */
+    }
+    
+    .cart-products {
+        overflow-y: scroll;
+        width: 100%; /* Ta upp all tillgänglig bredd */
+        height: 100%; /* Ta upp all tillgänglig höjd */
+    }
+    
+    .product-body {
+        width: 100%; /* Ta upp all tillgänglig bredd */
+        height: 80%; /* Ta upp all tillgänglig höjd */
+    }
+    
+    
+
 }
