@@ -30,6 +30,10 @@ const RecipeDetails = () => {
 
   useEffect(() => {
     fetchRecipe(recipe._id);
+
+    console.log("USE EFFECT: Recipe Details")
+    console.log("fetchRecipe")
+
   }, [recipe._id, recipe.avgRating]);
 
   // Called from PostReview after posting a review

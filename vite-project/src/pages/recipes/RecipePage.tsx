@@ -21,7 +21,7 @@ const RecipePage = () => {
       fetchCategories();
       console.log("RecipeList is empty")
     }
-  }, [recipeList, fetchRecipeList, fetchCategories]);
+  }, []);
 
   // Ser till att setShowRecipes inte kallas på ett oändligt antal gånger om vi uppdaterar RecipePage, vilket orsakade krash med Too many re-renders.
   useEffect(() => { 
