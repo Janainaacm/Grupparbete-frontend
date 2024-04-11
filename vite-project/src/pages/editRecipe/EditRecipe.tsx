@@ -114,12 +114,12 @@ const EditRecipe = ({}) => {
     }
   };
 
-  // useEffect(() => {
-  //   // Fetch recipe details when component mounts
-  //   if (recipe && recipe._id) {
-  //     fetchRecipe(recipe._id);
-  //   }
-  // }, [fetchRecipe, recipe?._id]);
+  useEffect(() => {
+     // Fetch recipe details when component mounts
+     if (recipe && recipe._id) {
+       fetchRecipe(recipe._id);
+     }
+   }, [fetchRecipe, recipe?._id]);
 
   return (
     <div>
@@ -221,7 +221,7 @@ const EditRecipe = ({}) => {
             </div>
             <p>---------------------------------------------------</p>
             <div >
-              <h3>Ingredients:</h3>
+              <h3>Ingredients: (Amount, unit, name)</h3>
               <ul>
                 {editedRecipe.ingredients.map((ingredient, index) => (
                   <li key={index}>

@@ -30,10 +30,6 @@ const RecipeDetails = () => {
 
   useEffect(() => {
     fetchRecipe(recipe._id);
-
-    console.log("USE EFFECT: Recipe Details")
-    console.log("fetchRecipe")
-
   }, [recipe._id, recipe.avgRating]);
 
   // Called from PostReview after posting a review
@@ -69,7 +65,6 @@ const RecipeDetails = () => {
                 <p className="card-text">Categories: {recipe.categories.join(', ')}</p>
                 <p className="card-text"><RatingStars></RatingStars></p>
                 <AddToCartButton recipe={recipe} /* recommendation={() => setRecommendation(true)} *//>
-                <EmptyCartButton />
                 <button onClick={() => setRecommendation(true)}>Cocktail Recommendationer</button>
                 <PostReview recipeId={recipe._id}/>
               </div>

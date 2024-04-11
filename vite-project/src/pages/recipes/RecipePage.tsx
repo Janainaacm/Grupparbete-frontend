@@ -15,6 +15,7 @@ const RecipePage = () => {
   const { recipeList, fetchRecipeList, fetchCategories } = useAPIState();
   const [showRecipes, setShowRecipes] = useState<RecipeInterface[]>([]);
 
+  //ser till att recipeList är laddat så sidan har data att ladda in
   useEffect(() => {
     if (recipeList.length == 0){
      fetchRecipeList();
@@ -28,11 +29,10 @@ const RecipePage = () => {
   useEffect(() => { 
 
     if (showRecipes.length == 0) {
-      if (location.state) {
+      if (location.state) {      
         setShowRecipes(location.state as RecipeInterface[]);
-
       } else {
-        setShowRecipes(recipeList);
+        setShowRecipes(recipeList);        
       }
     }
 
@@ -48,7 +48,7 @@ const RecipePage = () => {
           return <Card item={item} key={item._id} />;
         })}
       </main>
-      <DisplayRecipes recipeList={showRecipes} showDeleteButton={false} />
+      
       <Footer />
     </div>
   );
