@@ -76,8 +76,6 @@
 
 } 
 
- 
-
 .submit-button:hover { 
 
   background-color: hwb(88 18% 42% / 0.649); 
@@ -85,8 +83,6 @@
   color: hsl(144, 76%, 10%); 
 
 } 
-
-
 
 .rating-button { 
 
@@ -106,15 +102,11 @@
 
 } 
 
- 
-
 .rating-button:hover { 
 
   background-color: hwb(68 28% 6%); 
 
 } 
-
- 
 
 .add-to-cart-button { 
 
@@ -132,15 +124,11 @@
 
 } 
 
- 
-
 .add-to-cart-button:hover { 
 
   background-color: #333;  
 
 } 
-
- 
 
 .empty-cart-button { 
 
@@ -158,15 +146,11 @@
 
 } 
 
- 
-
 .empty-cart-button:hover { 
 
   background-color: #333;  
 
 } 
-
-
 
 .cocktail-recommendationer { 
 
@@ -184,15 +168,11 @@
 
 } 
 
- 
-
 .cocktail-recommendationer:hover { 
 
   background-color: #333;  
 
 } 
-
-
 
  /* Inom Rekommenderad Cocktail 'button' */ 
 
@@ -212,15 +192,11 @@
 
 } 
 
- 
-
 .remove-button:hover { 
 
   background-color: #333;  
 
 } 
-
-
 
 .se-alla-cocktails { 
 
@@ -237,8 +213,6 @@
   cursor: pointer; 
 
 } 
-
- 
 
 .se-alla-cocktails:hover { 
 
