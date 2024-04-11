@@ -12,7 +12,15 @@ interface DrinkDetailsProps {
 
 const CocktailDetails = ({ drinks, navigate }: DrinkDetailsProps,) => {
 
-    const { AddToCocktailCart } = useCocktailCartStateInterface();
+    const {coctailCart, AddToCocktailCart } = useCocktailCartStateInterface();
+    
+
+    const addCocktailToCart = (drinks) => {
+
+        AddToCocktailCart(drinks);
+        localStorage.setItem("cocktails", JSON.stringify(coctailCart));
+
+    }
 
 
     return (
@@ -26,7 +34,7 @@ const CocktailDetails = ({ drinks, navigate }: DrinkDetailsProps,) => {
 
                 <img src={drinks.strDrinkThumb} alt={drinks.strDrink} style={{ width: '200px', height: '200px', marginBottom: '5px' }} />
                 <br />
-                <button className='remove-button' onClick={() => AddToCocktailCart(drinks)}>Lägg till varukorg</button>
+                <button className='remove-button' onClick={() => addCocktailToCart(drinks)}>Lägg till varukorg</button>
 
                 <p>Alkohol: {drinks.strAlcoholic}</p>
 
