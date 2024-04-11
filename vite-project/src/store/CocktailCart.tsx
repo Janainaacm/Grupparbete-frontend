@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import { CocktailInterface } from "../api/getCocktails"
+import { CocktailInterface } from "../pages/cocktails/components/DisplayCocktail"
 
 interface CocktailCartInterface {
     coctailCart: CocktailInterface[];

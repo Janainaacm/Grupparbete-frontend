@@ -4,6 +4,7 @@ import NavBar from "../../globalComponents/NavBar";
 import Footer from "../../globalComponents/Footer";
 import { useAPIState } from "../../store/APIState";
 import { useNavigate, useLocation } from "react-router-dom";
+import ClearButton from "./components/ClearButton";
 
 const EditRecipe = ({}) => {
   const { fetchRecipe, updateRecipe } = useAPIState();
@@ -25,11 +26,11 @@ const EditRecipe = ({}) => {
   };
 
   // Function to handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
+    
     try {
       await updateRecipe(editedRecipe);
-      // navigate(-1);
+       navigate("/Admin");
     } catch (error) {
       console.error("Error updating recipe:", error);
     }
@@ -68,6 +69,14 @@ const EditRecipe = ({}) => {
       setNewIngredient("");
     }
   };
+  const handleCategoriesChange = (selectedCategory)=>{
+    const updatedCategory = [...editedRecipe.categories]
+    setEditedRecipe((prevRecipe) => ({
+      ...prevRecipe,
+      categories: selectedCategory,
+    }));
+
+  }
   const handleInstructionsChange = (e, index) => {
     const { value } = e.target;
     const updatedInstructions = [...editedRecipe.instructions];
@@ -108,7 +117,6 @@ const EditRecipe = ({}) => {
 
   return (
     <div>
-      <NavBar />
       <form onSubmit={handleSubmit}>
         <div>
           <div>
@@ -167,12 +175,16 @@ const EditRecipe = ({}) => {
                 </p>
                 <p >
                   <h3>Categories:</h3>
-                  <textarea
-                    name="categories"
-                    value={editedRecipe.categories.join(", ")}
-                    onChange={handleInputChange}
-                    style={{marginLeft:"20px"}}
-                  />
+                  <select onChange={(e) => handleCategoriesChange(e.target.value)}>
+                  <option value="Select">Select</option>
+                  <option value="Kött">Kött</option>
+                  <option value="Kyckling">Kyckling</option>
+                  <option value="Fisk">Fisk</option>
+                  <option value="Vego">Vego</option>
+                  <option value="Dessert">Dessert</option>
+                  <option value="Sprängmedel">Sprängmedel</option>
+                  <option value="Övrigt">Övrigt</option>
+                </select>
                 </p>
               </div>
             </div>

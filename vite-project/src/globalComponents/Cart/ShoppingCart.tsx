@@ -1,7 +1,7 @@
 import { CgCloseR } from "react-icons/cg";
 import "./ShoppingCart.css"
 import { useCartState } from '../../store/CartState'
-import { CocktailInterface } from '../../api/getCocktails'
+import { CocktailInterface } from '../../pages/cocktails/components/DisplayCocktail'
 import { RecipeInterface } from '../../Types'
 import { useCocktailCartStateInterface } from '../../store/CocktailCart'
 import BuyButton from './BuyButton'
