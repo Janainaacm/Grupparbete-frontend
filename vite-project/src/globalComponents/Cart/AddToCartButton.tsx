@@ -6,8 +6,10 @@ const AddToCartButton = ({ recipe/* , recommendation */ }) => {
   const cart = useCartState(state => state.cart);
 
   useEffect(() => {
+    if(cart.length>0){
     console.log("Updated Cart:", cart);
     console.log("Cart Contents:", cart.map(recipe => recipe.title));
+  }
   }, [cart]);
 
   const handleClick = () => {

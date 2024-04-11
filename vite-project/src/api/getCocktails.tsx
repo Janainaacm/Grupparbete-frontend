@@ -224,8 +224,11 @@ const AllCocktails = () => {
   
 
   useEffect(() => {
+    if(cocktails.length===0){
+      getCocktails();
+    }
 
-    getCocktails();
+    
     
   }, []);
 
@@ -233,10 +236,10 @@ const AllCocktails = () => {
 
   const cocktails = cocktailsList.flatMap((num) => num);
 
-  console.log("cocktails", cocktails);
+  // console.log("cocktails", cocktails);
   
 
-  console.log("cocktailsbeforeReturn", cocktails)
+  // console.log("cocktailsbeforeReturn", cocktails)
 
   return (
 

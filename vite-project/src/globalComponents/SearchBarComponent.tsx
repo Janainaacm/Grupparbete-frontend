@@ -39,9 +39,9 @@ const SearchBarComponent = () => {
     })
 };
 
-  useEffect(() => {
-    console.log(searchResults);
-  }, [searchResults]);
+  // useEffect(() => {
+  //   console.log(searchResults);
+  // }, [searchResults]);
 
   useEffect(() => {
     setSearchResults([]);

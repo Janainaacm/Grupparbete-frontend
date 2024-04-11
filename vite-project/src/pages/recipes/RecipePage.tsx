@@ -5,7 +5,6 @@ import { useAPIState } from "../../store/APIState";
 import { useLocation } from "react-router-dom";
 import { RecipeInterface } from "../../Types";
 import Footer from "../../globalComponents/Footer";
-import FilterComponent from "../../globalComponents/FilterComponent";
 import Card from "./Card";
 import "./RecipePage.css";
 import FilterFunction from "../../globalComponents/filterFunction/FilterFunction";
@@ -17,14 +16,12 @@ const RecipePage = () => {
   const [showRecipes, setShowRecipes] = useState<RecipeInterface[]>([]);
 
   useEffect(() => {
-    fetchRecipeList();
-    fetchCategories();
-  }, []);
-
-  console.log(location.state, 'statet');
-  console.log(showRecipes.length, 'längd');
-
-
+    if (recipeList.length === 0) {
+      fetchRecipeList();
+      fetchCategories();
+      console.log("RecipeList is empty")
+    }
+  }, [recipeList, fetchRecipeList, fetchCategories]);
 
   // Ser till att setShowRecipes inte kallas på ett oändligt antal gånger om vi uppdaterar RecipePage, vilket orsakade krash med Too many re-renders.
   useEffect(() => { 
@@ -40,9 +37,6 @@ const RecipePage = () => {
 
   }, [showRecipes, location.state, recipeList])
 
-  console.log(recipeList, "tydligen alla recept");
-  console.log(showRecipes, "det vi skickar");
-
   return (
     <div>
       <NavBar />
@@ -54,12 +48,7 @@ const RecipePage = () => {
           return <Card item={item} key={item._id} />;
         })}
       </main>
-
-      {/* <FilterComponent></FilterComponent> */}
-
       <DisplayRecipes recipeList={showRecipes} showDeleteButton={false} />
-
-
       <Footer />
     </div>
   );

@@ -19,7 +19,7 @@ const EditRecipeButton = ({recipeId}) => {
       };
 
   return (
-    <button onClick={handleClick}>Edit Recipe</button>
+    <button onClick={handleClick}style={{borderRadius:"5px"}}>Edit Recipe</button>
   )
 }
 
