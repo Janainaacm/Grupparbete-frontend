@@ -10,8 +10,8 @@ import EmptyCartButton from "../../globalComponents/Cart/EmptyCartButton";
 import PostReview from "../../globalComponents/PostReview";
 import DisplayReviews from "../../globalComponents/DisplayReviews";
 import "bootstrap/dist/css/bootstrap.min.css";
-import RecipeRecommendations from "./RecipeRecommendations";
-import RatingStars from "./RatingStars";
+import RecipeRecommendations from "./components/RecipeRecommendations";
+import RatingStars from "./components/RatingStars";
 import { RecipeInterface } from "../../Types";
 
 const RecipeDetails = () => {

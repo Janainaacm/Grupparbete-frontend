@@ -8,11 +8,7 @@ import ClearButton from "../editRecipe/components/ClearButton.tsx";
 
 
 const Admin=(): JSX.Element=>{
-<<<<<<< HEAD
     const { recipeList,fetchRecipeList,fetchCategories } = useAPIState();
-=======
-    const { recipeList,fetchRecipeList } = useAPIState();
->>>>>>> 80b6a7fe8165bd6fc5a6c0405c757dd7d6815f4e
     const navigate = useNavigate()
 
     const handleClick = () =>{

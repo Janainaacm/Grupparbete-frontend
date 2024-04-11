@@ -1,6 +1,6 @@
-import { IngredientInterface } from "../Types";
+import { IngredientInterface } from "../../../Types";
 import { useState } from "react";
-import { useAPIState } from "../store/APIState";
+import { useAPIState } from "../../../store/APIState";
 import { useNavigate } from "react-router";
 
 const PostRecipe = () => {
