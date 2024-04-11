@@ -117,7 +117,6 @@ const EditRecipe = ({}) => {
 
   return (
     <div>
-      <NavBar />
       <form onSubmit={handleSubmit}>
         <div>
           <div>

@@ -16,12 +16,13 @@ const RecipePage = () => {
   const [showRecipes, setShowRecipes] = useState<RecipeInterface[]>([]);
 
   useEffect(() => {
-    if (recipeList.length === 0) {
-      fetchRecipeList();
-      fetchCategories();
-      console.log("RecipeList is empty")
+    if (recipeList.length == 0){
+     fetchRecipeList();
     }
-  }, [recipeList, fetchRecipeList, fetchCategories]);
+    if (recipeList.length == 0) {
+     fetchCategories();
+    }
+  }, []);
 
   // Ser till att setShowRecipes inte kallas på ett oändligt antal gånger om vi uppdaterar RecipePage, vilket orsakade krash med Too many re-renders.
   useEffect(() => { 
@@ -39,7 +40,6 @@ const RecipePage = () => {
 
   return (
     <div>
-      <NavBar />
       <SearchBarRecipePage setShowRecipes={setShowRecipes} />
       <FilterFunction setShowRecipes={setShowRecipes} />
 

@@ -22,52 +22,19 @@ import HomeSwiper from "./components/HomeSwiper.tsx";
 
 const Home = () => {
   const navigate = useNavigate();
-  const { fetchRecipeList } = useAPIState();
+   const { fetchRecipeList, fetchCategories } = useAPIState();
   const [searchResults, setSearchResults] = useState([]);
 
   const { recipeList } = useAPIState();
 
   useEffect(() => {
-    fetchRecipeList();
+    if (recipeList.length == 0){
+     fetchRecipeList();
+    }
+    if (recipeList.length == 0) {
+     fetchCategories();
+    }
   }, []);
-
-  /* const categories = [
-    {
-      id: 1,
-      title: "Frukt",
-      description: "Välj dina favoritfrukter",
-      image: harvestImg,
-      route: "/recept",
-    },
-    {
-      id: 2,
-      title: "Grönt",
-      description: "Utforska olika grönsaksalternativ",
-      image: teaLeafImg,
-      route: "/recept",
-    },
-    {
-      id: 3,
-      title: "Kött",
-      description: "Hitta olika köttrecept",
-      image: barbecueImg,
-      route: "/recept",
-    },
-    {
-      id: 4,
-      title: "Fisk",
-      description: "Upptäck olika fiskrätter",
-      image: fishImg,
-      route: "/recept",
-    },
-    {
-      id: 6,
-      title: "Vego",
-      description: "Hälsosamma och smakrika vegetariska alternativ",
-      image: veganImg,
-      route: "/recept",
-    },
-  ]; */
 
   return (
     <div
@@ -78,9 +45,6 @@ const Home = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div>
-        <NavBar />
-      </div>
       <div style={{ textAlign: "center" }} className="content">
         
       <div className="searchBar_wrapper" >
