@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useCartState } from "../../store/CartState";
 
-const AddToCartButton = ({ recipe/* , recommendation */ }) => {
+const AddToCartButton = ({ recipe, recommendation }) => {
   const addToCart = useCartState(state => state.AddToCart);
   const cart = useCartState(state => state.cart);
 
@@ -14,7 +14,7 @@ const AddToCartButton = ({ recipe/* , recommendation */ }) => {
 
   const handleClick = () => {
     addToCart(recipe);
-    /* recommendation() */
+    recommendation();
 
   };
   return (
