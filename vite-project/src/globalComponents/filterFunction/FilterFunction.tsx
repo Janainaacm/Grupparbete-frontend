@@ -3,7 +3,7 @@ import { useAPIState } from "../../store/APIState";
 import "./FilterFunction.css";
 import { RecipeInterface, CategorieInterface } from "../../Types";
 
-const FilterFunction = ({ setShowRecipes }: { setShowRecipes: any }) => {
+const FilterFunction = ({ setShowRecipes, setHeadlineTag }: { setShowRecipes: any, setHeadlineTag: any }) => {
   const { recipeList, fetchRecipesByCategoryName, allCategories } =
     useAPIState();
   let [filteredCategories, setFilteredCategories] = useState<string[]>([]);
@@ -26,7 +26,6 @@ const FilterFunction = ({ setShowRecipes }: { setShowRecipes: any }) => {
       item.selected = true;
       updatedCategories.push(item.name);
     }
-
     setFilteredCategories(updatedCategories);
   };
 
@@ -57,6 +56,9 @@ const FilterFunction = ({ setShowRecipes }: { setShowRecipes: any }) => {
     });
       // console.log(distinctArray)
       setShowRecipes(distinctArray);
+      if (filteredCategories.length != 0){
+        setHeadlineTag("Visar alla recept inom: " + filteredCategories.join(", "));
+      }
     } catch (error) {
       console.error("Error fetching recipes by category:", error);
     }

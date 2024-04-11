@@ -15,18 +15,26 @@ import RatingStars from "./components/RatingStars";
 import { RecipeInterface } from "../../Types";
 
 const RecipeDetails = () => {
-
-
   const [recommendation, setRecommendation] = useState(false);
-
-
   const { fetchRecipe } = useAPIState();
   const location = useLocation();
-  const recipe = location.state as RecipeInterface;
+  const recipeName = location.pathname;
   const navigate = useNavigate();
+  const [recipe, setRecipe] = useState<RecipeInterface>([]);
 
-  // state to update
-  // const [refreshReviews, setRefreshReviews] = useState(0);
+  useEffect(() => {
+    const fetchRecipeData = async () => {
+      try {
+        const getRecipe = await fetchRecipe(recipeName);
+        setRecipe(getRecipe)
+        console.log("Fetched recipe:", recipe);
+      } catch (error) {
+        console.error("Error fetching recipe:", error);
+      }
+    };
+    fetchRecipeData();
+  }, [recipeName]);
+
 
   useEffect(() => {
     fetchRecipe(recipe._id);

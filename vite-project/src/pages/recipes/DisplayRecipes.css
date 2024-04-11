@@ -1,0 +1,118 @@
+/*
+├── container
+│  ├── page-headline
+│  │  ├── page-title
+│  │  └── page-description
+│  │ 
+│  ├── recipe-list
+│  │  └── recipe-card
+│  │      ├── recipe-card-img
+│  │      └── recipe-info-container
+│  │          ├── recipe-stars
+│  │          ├── recipe-title
+│  │          ├── recipe-description
+│  │          ├── recipe-categories
+│  │          └── recipe-card-buy-btn
+│  └──.
+└── .
+*/
+
+.container {
+    display: block;
+    width: 100%;
+}
+
+/* ------------------------------------ */
+
+.page-headline {
+    display: block;
+    overflow-wrap: normal;
+    text-align: center;
+    line-height: 1.8em;
+    color: #000;
+}
+
+.page-title {
+    display: block;
+    font-family: Futura;
+    font-size: 56px;
+    font-weight: 900;
+    margin-block-start: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    line-height: 1.14286em;
+    letter-spacing: 0.0117647em;
+}
+
+.page-description {
+    display: block;
+    font-size: 18px;
+    text-transform: none;
+    font-family: Futura;
+    transform: scale(1, 1.4);
+    -webkit-text-stroke: 0.6px white; 
+    color:rgb(81, 80, 80);
+    font-weight: 100;
+    line-height: 1.4em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    padding: 0.6rem 1.5rem 0px;
+}
+
+/* ------------------------------------ */
+
+
+@media (min-width: 768px) {
+    .recipe-list {
+        /* grid-template-columns: repeat(12, 1fr); */
+            --grid-gap: 1rem;
+            --grid-margin: 1.5rem; 
+        display: grid;
+        gap: var(--grid-gap);
+        padding-right: calc(1* var(--grid-margin));
+        padding-left: calc(1* var(--grid-margin));
+        margin: 0px auto;
+        width: 100%; 
+        max-width: 1600px;
+    }
+
+    .recipe-list:first-child {
+        margin-top: 0px;
+    }
+
+}
+
+.recipe-card {
+    cursor: pointer;
+    border-bottom: 1px solid #b0b0b0;
+    --border-bottom-color__token-name:
+    border: none;
+    padding: none;
+    box-shadow: none;
+
+}
+
+.recipe-card-img {
+
+}
+
+.recipe-info-container {
+
+}
+
+.recipe-stars {
+    
+}
+
+.recipe-title {
+    font-family: Blooming Elegant Sans Bold;
+}
+
+.recipe-description {
+    
+}
+
+.recipe-card-buy-btn {
+    
+}
+
