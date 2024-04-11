@@ -243,7 +243,6 @@ const EditRecipe = ({}) => {
       </form>
       <button onClick={handleSubmit}>Submit</button>
       <button onClick={() => navigate(-1)}>Tillbaka</button>
-      <Footer />
     </div>
   );
 };

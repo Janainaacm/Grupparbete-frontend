@@ -35,7 +35,6 @@ const Admin=(): JSX.Element=>{
         <DisplayRecipes recipeList={recipeList} showDeleteButton={true} showEditButton={true} />
 
       </div>
-      <Footer/>
     </>
     );
 
