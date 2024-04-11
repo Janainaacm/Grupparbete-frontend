@@ -143,7 +143,6 @@ const PostRecipe = () => {
         <option value="Vego">Vego</option>
         <option value="Dessert">Dessert</option>
         <option value="Sprängmedel">Sprängmedel</option>
-
         <option value="Övrigt">Övrigt</option>
       </select>
 

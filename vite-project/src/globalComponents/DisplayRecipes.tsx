@@ -16,7 +16,7 @@ interface DisplayRecipesProps {
 const DisplayRecipes = ({recipeList,showDeleteButton=false,showEditButton=false}: DisplayRecipesProps) => {
   const { fetchRecipe, clearReviewState } = useAPIState();
   const navigate = useNavigate();
-  // console.log(recipeList, "det som tas emot")
+
 
   useEffect(() => {
     clearReviewState()
