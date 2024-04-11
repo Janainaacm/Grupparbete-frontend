@@ -20,7 +20,7 @@ const DeleteButton = ({ recipeId }) => {
   };
 
   return (
-    <button onClick={handleClick} style={{padding:"3px",fontSize:"14px",borderRadius:"5px"}}>Delete Recipe</button>
+    <button className='delete-recipe' onClick={handleClick} style={{padding:"3px",fontSize:"14px",borderRadius:"5px"}}>Delete Recipe</button>
   );
 };
 

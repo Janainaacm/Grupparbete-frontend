@@ -28,7 +28,9 @@ const Admin=(): JSX.Element=>{
     return(
         <>
       <div>
-        <button onClick={handleClick}>Add recipe</button>
+        <button 
+        className="add-recipe"
+        onClick={handleClick}>Add recipe</button>
         <ClearButton/>
         <DisplayRecipes recipeList={recipeList} showDeleteButton={true} showEditButton={true} />
       </div>
