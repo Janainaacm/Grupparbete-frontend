@@ -1,7 +1,7 @@
 import React, { startTransition } from 'react'
 import { FaStar } from "react-icons/fa";
-import { useAPIState } from "../../store/APIState";
-import RecipeDetails from "./RecipeDetails";
+import { useAPIState } from "../../../store/APIState";
+import RecipeDetails from "../RecipeDetails";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const RatingStars = () => {

@@ -4,19 +4,16 @@ import { useCocktailAPIState } from "../../../store/CocktailAPI";
 
 const AllCocktails = () => {
   const navigate = useNavigate();
-  const { cocktailList, fetchCocktails, fetchCockailByID } =
+  const { cocktailList, updateCocktailID , fetchCocktails,  } =
     useCocktailAPIState();
 
   useEffect(() => {
     fetchCocktails();
   }, []);
 
-  const displayCocktailDetails = async (cocktailID: string) => {
-    const displayedCocktail = await fetchCockailByID(cocktailID);
-    const encodedCocktail = encodeURIComponent(displayedCocktail.strDrink);
-    navigate(`/Cocktails/${encodedCocktail}`, {
-      state: { cocktail: displayedCocktail },
-    });
+  const displayCocktailDetails = async (cocktailID: string, cocktailName: string) => {
+    updateCocktailID(cocktailID)
+    navigate(`/Cocktails/${cocktailName}`);
   };
 
   return (
@@ -32,7 +29,7 @@ const AllCocktails = () => {
           }}
         >
           <button
-            onClick={() => displayCocktailDetails(cocktail.idDrink)}
+            onClick={() => displayCocktailDetails(cocktail.idDrink, cocktail.strDrink)}
             style={{
               border: "none",
               background: "none",
