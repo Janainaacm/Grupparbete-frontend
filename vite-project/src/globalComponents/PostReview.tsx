@@ -41,8 +41,8 @@ const PostReview = ({ recipeId }: PostReviewProps) => {
   };
 
   //console.log("Rating: ", rating);
-  console.log("setName: ", name);
-  console.log("setComment", comment);
+  // console.log("setName: ", name);
+  // console.log("setComment", comment);
 
   return (
     <div>
