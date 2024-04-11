@@ -5,10 +5,7 @@ import { Link } from 'react-router-dom';
 import cartLogo from "../../assets/images/shopping-cart.png";
 import ShoppingCart from './ShoppingCart';
 import { useCartState } from '../../store/CartState';
-import RemoveFromCartButton from './RemoveFromCartButton';
-import AddToCartButton from './AddToCartButton';
 import { useCocktailCartStateInterface } from '../../store/CocktailCart';
-import { RiDeleteBin6Line } from 'react-icons/ri';
 
 function Cart() {
   const [showPopover, setShowPopover] = useState(false);
@@ -34,7 +31,7 @@ function Cart() {
   const [productsInCart, setProductsInCart] = useState([]);
 
   /* const allRecipes = useGetAllRecipes(); */
-  const { cart, RemoveFromCart } = useCartState();
+  const { cart, RemoveFromCart, AddToCart } = useCartState();
   const { coctailCart, RemoveOneFromCocktailCart, AddToCocktailCart, ClearCocktailCart, RemoveAllFromCocktailCart } = useCocktailCartStateInterface();
 
   ;
@@ -77,13 +74,13 @@ function Cart() {
               if (index === sortedCart.findIndex((p) => p._id === product._id)) {
                 return (
                   <div key={product._id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <img className='product-image' src={product.imageUrl} alt={product.title} />
+                    <img style={{width:"80px"}}  src={product.imageUrl} alt={product.title} />
                     {/* {product.title} */}
-                    {quantity > 1 && <span>({quantity})</span>}
+                    
                     <div style={{display: "flex", justifyContent: "flex-end"}}>
-                    <RemoveFromCartButton recipe={product}></RemoveFromCartButton>
-
-                    <AddToCartButton recipe={product}></AddToCartButton>
+                    <button style={{marginLeft:"10px", padding: "5px 12px"}} className='remove-button' onClick={() => RemoveFromCart(product._id)}>-</button>
+                    <span>({quantity})</span>
+                    <button style={{marginLeft:"10px", padding: "5px 12px"}} className='add-button' onClick={() => AddToCart(product)}>+</button>
                     </div>
                   </div>
                 );
@@ -104,14 +101,15 @@ function Cart() {
               // Om det är första förekomsten av produkten, visa produktens titel och antal
               if (index === sortedCocktails.findIndex((p) => p.idDrink === product.idDrink)) {
                 return (
-                  <div key={product.idDrink}>
-                    <img className='product-image' src={product.strDrinkThumb} alt={product.strDrink} />
-                    {product.strDrink}
-                    {quantity > 1 && <span>({quantity})</span>}
-                    <button onClick={() => RemoveOneFromCocktailCart(product.idDrink)}><RiDeleteBin6Line size={20}/></button>
-
-                    <button onClick={() => AddToCocktailCart(product)}>Add to cart</button>
-                    <button onClick={() => RemoveAllFromCocktailCart(product.idDrink)}>Remove all</button>
+                  <div key={product.idDrink} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                    <img style={{width:"80px"}} src={product.strDrinkThumb} alt={product.strDrink} />
+                    
+                    <div style={{display: "flex", justifyContent: "flex-end"}}>
+                    <button style={{marginLeft:"10px", padding: "5px 12px"}} className='remove-button' onClick={() => RemoveOneFromCocktailCart(product.idDrink)}>-</button>
+                    <span>({quantity})</span>
+                    <button style={{marginLeft:"10px", padding: "5px 12px"}} className='add-button' onClick={() => AddToCocktailCart(product)}>+</button>
+                    </div>
+                    
                   </div>
                 );
               }

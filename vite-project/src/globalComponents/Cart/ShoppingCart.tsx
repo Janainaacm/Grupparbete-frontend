@@ -1,10 +1,14 @@
-import { AiFillCloseCircle } from 'react-icons/ai'
+import { CgCloseR } from "react-icons/cg";
 import "./ShoppingCart.css"
 import { useCartState } from '../../store/CartState'
 import { CocktailInterface } from '../../api/getCocktails'
 import { RecipeInterface } from '../../Types'
 import { useCocktailCartStateInterface } from '../../store/CocktailCart'
 import BuyButton from './BuyButton'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Card, CardBody} from "react-bootstrap"
+
+
 
 
 interface ShoppingCartProps {
@@ -37,7 +41,7 @@ const ShoppingCart = ({
 
 
     return (
-        <div id='modal' style={{ display: visibility ? "block" : "none", }}>
+        <div id='modal' style={{ display: visibility ? "flex" : "none", }}>
 
             <div className='shoppingCart'>
 
@@ -45,16 +49,18 @@ const ShoppingCart = ({
 
                     <h2>Varukorg</h2>
 
-                    <button className='close-button' onClick={onClose}><AiFillCloseCircle size={30} /></button>
+                    <button className='close-button-cart' onClick={onClose}><CgCloseR size={50} /></button>
+                    
 
                 </div>
-                <div className='cart-products'>
+                <div className='cart-products' style={{ display: "flex", flexDirection: "column"}}>
                     {sortedProducts.length + sortedCocktails.length === 0 && (
                         <span className='empty-text'>Inget här :(
                         </span>
                     )}
 
-                    
+
+                        <div className='product-container'>
 
                     {sortedProducts.map((product: RecipeInterface, index: number) => {
 
@@ -63,41 +69,37 @@ const ShoppingCart = ({
                         const quantity = sameIdProducts.length;
 
 
+                        
                         if (index === sortedProducts.findIndex((p: RecipeInterface) => p._id === product._id)) {
                             return (
-                                <div className='cart-product' key={index}>
-
-                                    <div className='product-info'>
-
-                                        <h3>{product.title}</h3>
-                                        <img className='product-image' src={product.imageUrl} alt={product.title} />
-                                        <h5>Ingredienter</h5>
-                                        {product.ingredients.map((ingredient, index) => (
-                                            <li key={index}>{ingredient.amount} {ingredient.unit} {ingredient.name}</li>
-
-                                        ))}
-                                        <br />
-
-                                        <span className='product-price'>Pris: {Number.isNaN(product.price + 0) ? product.price = 0 : product.price * quantity + " Sek"}</span>
-                                        <p>Antal: {quantity}</p>
-
-                                    </div>
-
-                                    <button className='remove-button' onClick={() => RemoveFromCart(product._id)}>-</button>
-                                   
-                                    <button className='remove-button' onClick={() => AddToCart(product)}>+</button>
-                                    <button onClick={() => RemoveAllFromCart(product._id)}>Ta bort produkt</button>
-
-
-
-                                    <br /><br />
-
-                                </div>
+                                <Card className='cart-product' key={index} >
+                                    <Card.Body className="product-body">
+                                    <Card.Title>{product.title.length > 10 ? product.title.substring(0, 10) + "..." : product.title}</Card.Title>
+                                        <Card.Img className='product-image' src={product.imageUrl} alt={product.title} />
+                                        
+                                            {/* <h5>Ingredienter</h5>
+                                            {product.ingredients.map((ingredient, index) => (
+                                                <li key={index}>{ingredient.amount} {ingredient.unit} {ingredient.name}</li>
+                                            ))} */}
+                                            <br />
+                                            
+                                            <p>Pris: {Number.isNaN(product.price + 0) ? product.price = 0 : product.price * quantity + " Sek"}</p>
+                                            <p>Antal: {quantity}</p>
+                                        
+                                        <button  className='remove-button' onClick={() => RemoveFromCart(product._id)}>-</button>
+                                        <button  className='add-button' onClick={() => AddToCart(product)}>+</button>
+                                        <button className="remove-all-button" onClick={() => RemoveAllFromCart(product._id)}>Ta bort</button>
+                                       
+                                    </Card.Body>
+                                </Card>
                             );
+                           } return null
+                        })
 
-                        } return null
+                        }
+                        
 
-                    })}
+                    
 
                     {sortedCocktails.map((cocktail: CocktailInterface, index: number) => {
 
@@ -107,33 +109,36 @@ const ShoppingCart = ({
 
                         if (index === sortedCocktails.findIndex((c: CocktailInterface) => c.idDrink === cocktail.idDrink)) {
                             return (
-                                <div className='cart-product' key={index}>
+                                <Card className='cart-product' key={index}>
 
-                                    <div className='product-info'>
-
-                                        <h3>{cocktail.strDrink}</h3>
-                                        <img className='product-image' src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
-                                        <p>Kategori: {cocktail.strCategory}</p>
-                                        <p>Alkohol: {cocktail.strAlcoholic === "Alcoholic" && "Ja"}{cocktail.strAlcoholic === "Non alcoholic" && "Nej"}{cocktail.strAlcoholic === "Optional alcohol" && "Valbart"}</p>
-
-                                    </div>
-                                    <p>Antal: {cocktailQuantity}</p>
                                     
+                                    <Card.Body className="product-body">
+                                    <Card.Title>{cocktail.strDrink}</Card.Title>
+                                    
+                                        <img className='product-image' src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />    
+                                        <p>pris:</p>                                  
+                                    
+                                    <p>Antal: {cocktailQuantity}</p>
+                                    <div>
                                     <button className='remove-button' onClick={() => RemoveOneFromCocktailCart(cocktail.idDrink)}>-</button>
                                     
-                                    <button className='remove-button' onClick={() => AddToCocktailCart(cocktail)}>+</button>
-                                    <button onClick={() => RemoveAllFromCocktailCart(cocktail.idDrink)}>Ta bort produkt</button>
-
-                                    <br /><br />
-
-                                </div>
+                                    <button className='add-button' onClick={() => AddToCocktailCart(cocktail)}>+</button>
+                                    <button className="remove-all-button" onClick={() => RemoveAllFromCocktailCart(cocktail.idDrink)}>Ta bort</button>
+                                    </div>
+                                    
+                                    </Card.Body>
+                                </Card>
                             );
 
                         } return null
 
                     })}
+                    </div>
+                    </div>
+                
+                    
 
-
+                    <div className='content-container'>
                     {sortedProducts.length + sortedCocktails.length > 0 && <div className='checkout-clear'>
                         <h3>Totalt pris: {sum + " Sek"}</h3>
                         <br />
@@ -141,8 +146,7 @@ const ShoppingCart = ({
                         <button onClick={onClose}>Fortsätt handla</button>
                         <button onClick={clearShoppingCart}>Töm varukorg</button></div>
                     }
-                </div>
-
+                    </div>
             </div>
         </div>
     )
