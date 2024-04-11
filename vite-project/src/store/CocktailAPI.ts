@@ -2,8 +2,7 @@ import { create } from "zustand";
 import { CocktailInterface } from "../Types";
 import { COCKTAIL_API_URL } from "../config";
 import axios from "axios";
-import CocktailDetails from "../pages/cocktailDetails/components/CocktailDetails";
-import { get } from "http";
+
 
 interface CocktailAPIState {
   cocktailList: CocktailInterface[];
@@ -15,6 +14,8 @@ interface CocktailAPIState {
   fetchCocktails: () => Promise<void>;
   fetchCocktailByID: (cocktailID: string) => Promise<void>;
 }
+
+
 
 export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
   cocktailList: [],
@@ -63,6 +64,7 @@ export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
   },
 
   updateCocktailID: (cocktailID: string) => {
+    localStorage.setItem('cocktailID', cocktailID);
     set({
       cocktailID: cocktailID,
     });

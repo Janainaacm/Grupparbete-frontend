@@ -5,18 +5,24 @@ import { useCocktailCartStateInterface } from "../../../store/CocktailCart";
 import { useCocktailAPIState } from "../../../store/CocktailAPI";
 import Cart from "../../../globalComponents/Cart/SCPop";
 
+
 const CocktailDetails = () => {
   const { cocktailID, cocktailToRender, fetchCocktailByID } =
     useCocktailAPIState();
   const { AddToCocktailCart } = useCocktailCartStateInterface();
   const navigate = useNavigate();
-
-
+    
   useEffect(() => {
-    //fetchCocktailID()
-    console.log(cocktailID)
-    fetchCocktailByID(cocktailID);
-  },[]);
+    
+    const savedCocktailID = localStorage.getItem('cocktailID');
+    if (savedCocktailID) {
+      fetchCocktailByID(savedCocktailID);
+    }else{
+        fetchCocktailByID(cocktailID);
+    }
+    console.log(cocktailID);
+    
+  }, []);
 
   return (
     <div>
