@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
-import { CocktailInterface } from '../api/getCocktails';
+import { CocktailInterface } from '../pages/cocktails/components/DisplayCocktail';
 
 
 

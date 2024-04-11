@@ -1,5 +1,5 @@
 import NavBar from '../../globalComponents/NavBar'
-import GetCocktail from '../../api/getCocktails'
+import DisplayCocktail from './components/DisplayCocktail'
 import Footer from '../../globalComponents/Footer'
 import FilterCocktailComponent from '../../globalComponents/FilterCocktailComponent'
 
@@ -31,7 +31,7 @@ const CocktailsPage = () => {
         <h2>Alla cocktails</h2>
         <br />
         <br />
-        <GetCocktail />
+        <DisplayCocktail />
       </div>
       <div style={{bottom: "0", justifyContent: "center", width: "100%", padding: "10px", height: "50px" }}>
         <Footer />
