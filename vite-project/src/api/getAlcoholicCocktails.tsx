@@ -96,11 +96,13 @@ function getAlcoholicCocktails() {
 
     const cocktailsAll = allCocktails.flatMap((num) => num);
 
-    console.log("cocktailsAll", cocktailsAll)
+    // console.log("cocktailsAll",cocktailsAll)
 
     useEffect(() => {
+        if(cocktailsAll.length===0){
         getAlcoholicCocktails()
-    }, [])
+    }
+    }, [getAlcoholicCocktails,cocktailsAll])
     return cocktailsAll
 
 }

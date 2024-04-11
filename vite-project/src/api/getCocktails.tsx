@@ -101,17 +101,22 @@ const AllCocktails = () => {
 
 
   useEffect(() => {
+    if(cocktails.length===0){
+      getCocktails();
+    }
 
-    getCocktails();
-
+    
+    
   }, []);
 
   cocktailsList.push(cocktails1);
 
   const cocktails = cocktailsList.flatMap((num) => num);
 
-  console.log("cocktails", cocktails);
+  // console.log("cocktails", cocktails);
+  
 
+  // console.log("cocktailsbeforeReturn", cocktails)
 
   return (
 
