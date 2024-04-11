@@ -16,11 +16,10 @@ const RecipePage = () => {
   const [showRecipes, setShowRecipes] = useState<RecipeInterface[]>([]);
 
   useEffect(() => {
-    if (recipeList.length == 0){
-     fetchRecipeList();
-    }
-    if (recipeList.length == 0) {
-     fetchCategories();
+    if (recipeList.length === 0) {
+      fetchRecipeList();
+      fetchCategories();
+      console.log("RecipeList is empty")
     }
   }, []);
 

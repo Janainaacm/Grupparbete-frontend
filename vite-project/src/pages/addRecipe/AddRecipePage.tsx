@@ -1,6 +1,6 @@
 import NavBar from "../../globalComponents/NavBar";
 import Footer from "../../globalComponents/Footer";
-import PostRecipe from "../../api/postRecipe";
+import PostRecipe from "./components/postRecipe";
 
 const AddRecipePage = () => {
 
