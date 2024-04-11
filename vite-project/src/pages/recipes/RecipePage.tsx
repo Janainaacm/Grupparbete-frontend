@@ -16,10 +16,11 @@ const RecipePage = () => {
   const [showRecipes, setShowRecipes] = useState<RecipeInterface[]>([]);
 
   useEffect(() => {
-    if (recipeList.length === 0) {
-      fetchRecipeList();
-      fetchCategories();
-      console.log("RecipeList is empty")
+    if (recipeList.length == 0){
+     fetchRecipeList();
+    }
+    if (recipeList.length == 0) {
+     fetchCategories();
     }
   }, []);
 
@@ -39,7 +40,6 @@ const RecipePage = () => {
 
   return (
     <div>
-      <NavBar />
       <SearchBarRecipePage setShowRecipes={setShowRecipes} />
       <FilterFunction setShowRecipes={setShowRecipes} />
 

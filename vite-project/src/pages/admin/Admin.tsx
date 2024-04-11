@@ -8,19 +8,27 @@ import ClearButton from "../editRecipe/components/ClearButton.tsx";
 
 
 const Admin=(): JSX.Element=>{
-    const { recipeList,fetchRecipeList } = useAPIState();
+    const { recipeList,fetchRecipeList, fetchCategories } = useAPIState();
     const navigate = useNavigate()
 
     const handleClick = () =>{
         navigate('/AddRecept')
     }
-    
+  
+
     useEffect(() => {
-      fetchRecipeList();
+      if (recipeList.length == 0){
+       fetchRecipeList();
+      }
+      if (recipeList.length == 0) {
+       fetchCategories();
+      }
     }, []);
 
     return(
         <>
+      <div>
+      
       <NavBar />
       <div>    
         <button onClick={handleClick}>Add recipe</button>
