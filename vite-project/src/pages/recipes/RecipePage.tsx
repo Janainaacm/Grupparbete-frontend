@@ -47,8 +47,7 @@ const RecipePage = () => {
           return <Card item={item} key={item._id} />;
         })}
       </main>
-      <DisplayRecipes recipeList={showRecipes} showDeleteButton={false} />
-      <Footer />
+      {/* <DisplayRecipes recipeList={showRecipes} showDeleteButton={false} /> */}
     </div>
   );
 }

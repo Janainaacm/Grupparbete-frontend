@@ -3,13 +3,14 @@ import axios from "axios";
 import NavBar from "../../globalComponents/NavBar";
 import Footer from "../../globalComponents/Footer";
 import { useAPIState } from "../../store/APIState";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import ClearButton from "./components/ClearButton";
 
 const EditRecipe = ({}) => {
   const { fetchRecipe, updateRecipe } = useAPIState();
   const { state: recipe } = useLocation();
   const navigate = useNavigate();
+  const [submitClicked, setSubmitClicked] = useState(false);
 
   // State to hold edited recipe data
   const [editedRecipe, setEditedRecipe] = useState(recipe);
@@ -26,11 +27,14 @@ const EditRecipe = ({}) => {
   };
 
   // Function to handle form submission
-  const handleSubmit = async () => {
-    
+  const handleSubmit = async (e: { preventDefault: () => void; },shouldNavigate:boolean) => {
+    e.preventDefault();
     try {
       await updateRecipe(editedRecipe);
-       navigate("/Admin");
+      if(shouldNavigate){
+        navigate(-1)
+      }
+      //  navigate(-1);
     } catch (error) {
       console.error("Error updating recipe:", error);
     }
@@ -66,7 +70,7 @@ const EditRecipe = ({}) => {
         ...prevRecipe,
         ingredients: updatedIngredients,
       }));
-      setNewIngredient("");
+      setNewIngredient(""); // Clear the newIngredient state
     }
   };
   const handleCategoriesChange = (selectedCategory)=>{
@@ -106,14 +110,16 @@ const EditRecipe = ({}) => {
         ...prevRecipe,
         instructions: updatedInstructions,
       }));
-      setNewInstructions("");
+      setNewInstructions(""); // Clear the newInstructions state
     }
   };
 
-  useEffect(() => {
-    // Fetch recipe details when component mounts
-    fetchRecipe(recipe._id);
-  }, [fetchRecipe, recipe._id]);
+  // useEffect(() => {
+  //   // Fetch recipe details when component mounts
+  //   if (recipe && recipe._id) {
+  //     fetchRecipe(recipe._id);
+  //   }
+  // }, [fetchRecipe, recipe?._id]);
 
   return (
     <div>
@@ -122,11 +128,11 @@ const EditRecipe = ({}) => {
           <div>
             <div>
               <div style={{ display: "flex", alignItems: "center" }}>
-                <img
-                  src={editedRecipe.imageUrl}
-                  alt={editedRecipe.title}
-                  style={{ maxWidth: "200px", maxHeight: "200px" }}
-                />
+              <img
+              src={editedRecipe?.imageUrl || ""}
+              alt={editedRecipe?.title || ""}
+              style={{ maxWidth: "200px", maxHeight: "200px" }}
+              />
                 <div style={{ marginLeft: "10px" }}>
                   <h3>Image URL:</h3>
                   <textarea
@@ -241,9 +247,9 @@ const EditRecipe = ({}) => {
           </div>
         </div>
       </form>
-      <button onClick={handleSubmit}>Submit</button>
+      <button onClick={(e) => {setSubmitClicked(true); 
+        handleSubmit(e,true);}}>Submit</button>
       <button onClick={() => navigate(-1)}>Tillbaka</button>
-      <Footer />
     </div>
   );
 };

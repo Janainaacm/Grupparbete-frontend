@@ -3,6 +3,7 @@ import { CocktailInterface } from "../../cocktails/components/DisplayAllCocktail
 import { NavigateFunction, Navigate, useNavigate } from "react-router-dom";
 import { useCocktailCartStateInterface } from "../../../store/CocktailCart";
 import { useCocktailAPIState } from "../../../store/CocktailAPI";
+import Cart from "../../../globalComponents/Cart/SCPop";
 
 const CocktailDetails = () => {
   const { cocktailID, cocktailToRender, fetchCocktailByID } =
