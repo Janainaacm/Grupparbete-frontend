@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { RecipeInterface } from "../../Types";
 import Footer from "../../globalComponents/Footer";
 import "./RecipePage.css";
+import BackToTopButton from "../../globalComponents/BackToTopButton";
 
 const RecipePage = () => {
   const { fetchRecipeList, fetchCategories, recipeList } = useAPIState();
@@ -30,6 +31,8 @@ const RecipePage = () => {
   return (
     <div>
       <DisplayRecipes recipeListFromRecipePage={recipes} showDeleteButton={false} />
+
+      
     </div>
   );
 }
