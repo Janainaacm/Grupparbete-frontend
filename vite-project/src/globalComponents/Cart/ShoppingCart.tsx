@@ -7,6 +7,11 @@ import { useCocktailCartStateInterface } from '../../store/CocktailCart'
 import BuyButton from './BuyButton'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, CardBody } from "react-bootstrap"
+import { useCocktailAPIState } from "../../store/CocktailAPI";
+import { useNavigate } from "react-router-dom";
+import { useAPIState } from "../../store/APIState";
+import { useEffect } from "react";
+
 
 
 
@@ -24,9 +29,15 @@ const ShoppingCart = ({
 }: ShoppingCartProps) => {
 
     const { cart, ClearCart, RemoveFromCart, RemoveAllFromCart, AddToCart } = useCartState();
+    const { fetchRecipe } = useAPIState();
 
 
     const { coctailCart, RemoveOneFromCocktailCart, AddToCocktailCart, ClearCocktailCart, RemoveAllFromCocktailCart } = useCocktailCartStateInterface();
+    const navigate = useNavigate();
+    const { updateCocktailID } =
+        useCocktailAPIState();
+
+
 
     const sortedProducts = cart.sort((a, b) => a.title.localeCompare(b.title));
     const sortedCocktails = coctailCart.sort((a, b) => a.strDrink.localeCompare(b.strDrink));
@@ -38,27 +49,34 @@ const ShoppingCart = ({
 
         ClearCart();
         ClearCocktailCart();
-        localStorage.clear();
     };
 
+    const displayCocktailDetails = async (cocktailID: string, cocktailName: string) => {
+        onClose();
+        updateCocktailID(cocktailID)
+        navigate(`/Cocktails`);
 
-    /* const addToCocktailCart = (cocktail) => {
+        function redirect() {
+            navigate(`/Cocktails/${cocktailName}`);
 
-        AddToCocktailCart(cocktail)
-        localStorage.setItem("cocktails", JSON.stringify(sortedCocktails));
+        }
+
+        setTimeout(redirect, 1);
     };
 
-    const removeAllFromcocktailCart = (cocktailID) => {
+    const seeRecipeDetails = async (recipeId: string) => {
+        onClose();
+        try {
+            const selectedRecipe = await fetchRecipe(recipeId);
+            const encodedTitle = encodeURIComponent(selectedRecipe.title);
+            navigate(`/Recept/${encodedTitle}`, {
+                state: selectedRecipe,
+            });
+        } catch (error) {
+            console.error('Error fetching recipe:', error);
+        }
+    };
 
-        RemoveAllFromCocktailCart(cocktailID)
-        localStorage.setItem("cocktails", JSON.stringify(sortedCocktails));
-
-    }; */
-
-    
-
-    const cocktails = JSON.parse(localStorage.getItem("cocktails") || "[]")
-    console.log("localStorage", cocktails)
 
     return (
         <div id='modal' style={{ display: visibility ? "flex" : "none", }}>
@@ -109,6 +127,7 @@ const ShoppingCart = ({
                                             <button className='remove-button' onClick={() => RemoveFromCart(product._id)}>-</button>
                                             <button className='add-button' onClick={() => AddToCart(product)}>+</button>
                                             <button className="remove-all-button" onClick={() => RemoveAllFromCart(product._id)}>Ta bort</button>
+                                            <button onClick={() => (seeRecipeDetails(product._id ?? ''))}>Visa recept</button>
 
                                         </Card.Body>
                                     </Card>
@@ -145,6 +164,7 @@ const ShoppingCart = ({
 
                                                 <button className='add-button' onClick={() => AddToCocktailCart(cocktail)}>+</button>
                                                 <button className="remove-all-button" onClick={() => RemoveAllFromCocktailCart(cocktail.idDrink)}>Ta bort</button>
+                                                <button onClick={() => displayCocktailDetails(cocktail.idDrink, cocktail.strDrink)}>Visa Cocktail</button>
                                             </div>
 
                                         </Card.Body>
