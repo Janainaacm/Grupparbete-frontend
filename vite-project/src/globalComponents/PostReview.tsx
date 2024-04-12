@@ -46,7 +46,7 @@ const PostReview = ({ recipeId }: PostReviewProps) => {
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '5vh' }}>
+      <div>
         
         {/* buttons for rating*/}
         <button
