@@ -4,7 +4,7 @@ import { RecipeInterface } from '../../../Types';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useCocktailCartStateInterface } from '../../../store/CocktailCart';
-import getAlcoholicCocktails from '../../../api/getAlcoholicCocktails';
+import getAlcoholicCocktails from './getAlcoholicCocktails';
 
 interface RecipeRecommendationsProps {
     recipe: RecipeInterface;
