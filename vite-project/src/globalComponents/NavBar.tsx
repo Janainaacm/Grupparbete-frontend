@@ -1,5 +1,5 @@
 import { useLocation, NavLink } from 'react-router-dom';
-import SearchBarComponent from './SearchBarComponent';
+import SearchBar from './searchBar/SearchBar.tsx';
 import "bootstrap/dist/css/bootstrap.css"
 import burger from "../assets/images/burger_10531010.png";
 import { Nav, Navbar, Button } from "react-bootstrap"
@@ -30,8 +30,8 @@ function NavBar() {
                 </Navbar.Brand>
 
                 {location.pathname !== '/' && location.pathname !== '/home' && (
-                    <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-                        <SearchBarComponent />
+                    <div style={{ display: 'flex', justifyContent: 'center', width: '100%', marginLeft: '30px', marginRight: '30px', marginBottom: '10px', marginTop: '10px'}}>
+                        <SearchBar />
                     </div>
                 )}
 
@@ -43,7 +43,6 @@ function NavBar() {
                         <NavLink to="/Cocktails" className="nav-link">Cocktails</NavLink>
                         <NavLink to="/Admin" className="nav-link">Admin</NavLink>
                         <Cart />
-
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
