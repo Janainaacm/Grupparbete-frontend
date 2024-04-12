@@ -108,7 +108,7 @@ const ShoppingCart = ({
 
                                             <button className='remove-button' onClick={() => RemoveFromCart(product._id)}>-</button>
                                             <button className='add-button' onClick={() => AddToCart(product)}>+</button>
-                                            <button className="remove-all-button" onClick={() => RemoveAllFromCocktailCart(product._id)}>Ta bort</button>
+                                            <button className="remove-all-button" onClick={() => RemoveAllFromCart(product._id)}>Ta bort</button>
 
                                         </Card.Body>
                                     </Card>
@@ -144,7 +144,7 @@ const ShoppingCart = ({
                                                 <button className='remove-button' onClick={() => RemoveOneFromCocktailCart(cocktail.idDrink)}>-</button>
 
                                                 <button className='add-button' onClick={() => AddToCocktailCart(cocktail)}>+</button>
-                                                <button className="remove-all-button" onClick={() => RemoveAllFromcocktailCart(cocktail.idDrink)}>Ta bort</button>
+                                                <button className="remove-all-button" onClick={() => RemoveAllFromCocktailCart(cocktail.idDrink)}>Ta bort</button>
                                             </div>
 
                                         </Card.Body>
