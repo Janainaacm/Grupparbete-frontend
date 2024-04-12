@@ -18,22 +18,20 @@ const RecipeDetails = () => {
   const [recommendation, setRecommendation] = useState(false);
   const { fetchRecipe } = useAPIState();
   const location = useLocation();
-  const recipeName = location.pathname;
+  const recipe = location.state as RecipeInterface;
   const navigate = useNavigate();
-  const [recipe, setRecipe] = useState<RecipeInterface>([]);
-
-  useEffect(() => {
-    const fetchRecipeData = async () => {
-      try {
-        const getRecipe = await fetchRecipe(recipeName);
-        setRecipe(getRecipe)
-        console.log("Fetched recipe:", recipe);
-      } catch (error) {
-        console.error("Error fetching recipe:", error);
-      }
-    };
-    fetchRecipeData();
-  }, [recipeName]);
+  
+  // useEffect(() => {
+  //   const fetchRecipeData = async () => {
+  //     try {
+  //       const recipe = await fetchRecipe(recipeName);
+  //       console.log("Fetched recipe:", recipe);
+  //     } catch (error) {
+  //       console.error("Error fetching recipe:", error);
+  //     }
+  //   };
+  //   fetchRecipeData();
+  // }, [recipeName]);
 
 
   useEffect(() => {
@@ -42,7 +40,7 @@ const RecipeDetails = () => {
     console.log("USE EFFECT: Recipe Details")
     console.log("fetchRecipe")
 
-  }, [recipe._id, recipe.avgRating]);
+  }, [recipe.avgRating]);
 
   // Called from PostReview after posting a review
   // const handleRefreshReviews = () => {
@@ -76,9 +74,8 @@ const RecipeDetails = () => {
                 <p className="card-text">Time: {recipe.timeInMins} minutes</p>
                 <p className="card-text">Categories: {recipe.categories.join(', ')}</p>
                 <p className="card-text"><RatingStars></RatingStars></p>
-                <AddToCartButton recipe={recipe} recommendation={() => setRecommendation(true)} />
-                <EmptyCartButton />
-                {/* <button onClick={() => setRecommendation(true)}>Cocktail Recommendationer</button> */}
+                <AddToCartButton recipe={recipe} /* recommendation={() => setRecommendation(true)} *//>
+                <button onClick={() => setRecommendation(true)}>Cocktail Recommendationer</button>
                 <PostReview recipeId={recipe._id}/>
               </div>
               </div>
@@ -110,7 +107,6 @@ const RecipeDetails = () => {
             </div>
           </div>
         </div>
-        <DeleteButton recipeId={recipe._id} />
         <button
           /* className="btn btn-secondary mt-3" */ onClick={() => navigate(-1)}
         >

@@ -12,20 +12,28 @@ import SearchBarRecipePage from "../../globalComponents/searchBar/SearchBarRecip
 
 const RecipePage = () => {
   const { fetchRecipeList, fetchCategories, recipeList } = useAPIState();
+  const [recipes, setRecipes] = useState<RecipeInterface[]>([]);
+  const location = useLocation();
 
   useEffect(() => {
-    if (recipeList.length === 0) {
-      fetchRecipeList();
-      fetchCategories();
-      console.log("RecipeList is empty")
+    const list = location.state as RecipeInterface[]
+    if (list){
+      setRecipes(list)
+    } 
+
+    if (recipeList.length == 0){
+     fetchRecipeList();
     }
+    if (recipeList.length == 0) {
+     fetchCategories();
+    }
+
   }, []);
 
 
   return (
     <div>
-      <NavBar />
-      <DisplayRecipes showDeleteButton={false} />
+      <DisplayRecipes recipeListFromRecipePage={recipes} showDeleteButton={false} />
       <Footer />
     </div>
   );

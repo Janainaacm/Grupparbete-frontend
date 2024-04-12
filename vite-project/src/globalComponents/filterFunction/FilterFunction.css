@@ -1,48 +1,87 @@
-.App {
-    padding: 10px;
-    z-index: 2;
-  }
 
-  .app-drop-down-container {
-    width: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
-  }
-  .app-drop-down-container button {
-    padding: 15px 20px;
-    box-shadow: 0 0 25px -20px #dbdbdb;
-    flex: 1;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    border-radius: 4px;
-    border: .3px solid #919191;
-  }
+#toggle-filter-button {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  background-color: white;
+  color: #2f2f2f;
+  border: none;
+  border-radius: 0px;
+  margin-bottom: 6px;
+  transition: all 0.5s ease-in-out;
+  font-family: "Gill Sans", sans-serif;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 1.3px;
+}
+
+#toggle-filter-button:hover {
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;  
+}
+
+
+#filter-inside-collapse {
+  padding: 20px;
+  background-color: rgba(249, 247, 233, 0.813);
+}
+
+.radio-button input {
+  display: none;
+}
+
+.radio-button span {
+  background-color: rgb(243, 243, 243);
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  padding-left: 22px;
+  padding-right: 22px;
+  margin-bottom: 5px;
+  border: none;
+  transition: all 0.3s ease-in-out;
+  font-family: "Gill Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 1.3px;
+}
+
+.radio-button input:hover + span{
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;  
+}
+
+.radio-button input:checked + span {
+  box-shadow: rgb(239, 237, 224) 0px 30px 60px -12px inset, rgb(239, 237, 224) 0px 18px 36px -18px inset;
+  border: 0.5px solid black;
+}
+
+#dropdown-element {
+  display: inline-block;
+}
+
+
+#reset-button {
+  display: block;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  background-color: white;
+  color: #2f2f2f;
+  border: none;
+  border-radius: 0px;
+  transition: all 0.5s ease-in-out;
+  font-family: "Gill Sans", sans-serif;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 14px;
+  padding-right: 14px;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 1.3px;
+  margin-top: 15px;
   
-  .app-drop-down-container ul {
-    margin: 0;
-    position: absolute;
-    top: calc(100% + 5px);
-    min-width: 100%;
-    width: max-content;
-    display: flex;
-    flex-direction: column;
-    padding: 5px; 
-    border-radius: 4px;
-    box-shadow: 0 0 5px #d4d4d4;
-    list-style: none;
-  }
-  
-  .app-drop-down-container ul li{
-    background-color: #fcfcfc;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color ease .2s;
-  }
-  .app-drop-down-container ul li:hover{
-    background-color: #000000;
-    color: #fcfcfc;
-  }
+}
+
+#reset-button:hover {
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;  
+}
+
