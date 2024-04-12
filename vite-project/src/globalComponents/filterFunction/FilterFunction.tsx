@@ -72,6 +72,8 @@ const FilterFunction = ({ setShowRecipes, setHeadlineTag }: { setShowRecipes: an
   };
 
   const resetFilter = () => {
+    setShowRecipes(recipeList);
+    setHeadlineTag("Alla recept");
     setOpen(false);
   };
 
