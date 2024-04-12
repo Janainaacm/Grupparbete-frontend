@@ -1,10 +1,10 @@
 import React from 'react';
 import { Button, Card } from 'react-bootstrap';
-import { RecipeInterface } from '../../Types';
+import { RecipeInterface } from '../../../Types';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useCocktailCartStateInterface } from '../../store/CocktailCart';
-import getAlcoholicCocktails from '../../api/getAlcoholicCocktails';
+import { useCocktailCartStateInterface } from '../../../store/CocktailCart';
+import getAlcoholicCocktails from '../../../api/getAlcoholicCocktails';
 
 interface RecipeRecommendationsProps {
     recipe: RecipeInterface;
