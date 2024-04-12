@@ -74,7 +74,7 @@ const ShoppingCart = ({
 
                 </div>
                 <div className='cart-products' style={{ display: "flex", flexDirection: "column" }}>
-                    {sortedProducts.length + cocktails.length === 0 && (
+                    {sortedProducts.length + sortedCocktails.length === 0 && (
                         <span className='empty-text'>Inget här :(
                         </span>
                     )}
@@ -121,13 +121,13 @@ const ShoppingCart = ({
 
 
 
-                        {cocktails.map((cocktail: CocktailInterface, index: number) => {
+                        {sortedCocktails.map((cocktail: CocktailInterface, index: number) => {
 
-                            const sameIdCocktails = cocktails.filter((c: CocktailInterface) => c.idDrink === cocktail.idDrink);
+                            const sameIdCocktails = sortedCocktails.filter((c: CocktailInterface) => c.idDrink === cocktail.idDrink);
 
                             const cocktailQuantity = sameIdCocktails.length;
 
-                            if (index === cocktails.findIndex((c: CocktailInterface) => c.idDrink === cocktail.idDrink)) {
+                            if (index === sortedCocktails.findIndex((c: CocktailInterface) => c.idDrink === cocktail.idDrink)) {
                                 return (
                                     <Card className='cart-product' key={index}>
 
@@ -160,7 +160,7 @@ const ShoppingCart = ({
 
 
                 <div className='content-container'>
-                    {sortedProducts.length + cocktails.length > 0 && <div className='checkout-clear'>
+                    {sortedProducts.length + sortedCocktails.length > 0 && <div className='checkout-clear'>
                         <h3>Totalt pris: {sum + " Sek"}</h3>
                         <br />
                         <BuyButton />
