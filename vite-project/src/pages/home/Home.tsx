@@ -116,7 +116,6 @@ const Home = () => {
       <div>
         <HomeSwiper recipeList={recipeList}></HomeSwiper>
       </div>
-      <Footer />
     </div>
   );
 };

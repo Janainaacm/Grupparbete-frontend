@@ -1,6 +1,6 @@
-import { IngredientInterface } from "../Types";
+import { IngredientInterface } from "../../../Types";
 import { useState } from "react";
-import { useAPIState } from "../store/APIState";
+import { useAPIState } from "../../../store/APIState";
 import { useNavigate } from "react-router";
 
 const PostRecipe = () => {
@@ -11,9 +11,9 @@ const PostRecipe = () => {
   const [recipeDescription, setDescription] = useState("");
   const [timeInMins, setTimeInMinutes] = useState(Number);
   const [imageURL, setImageURL] = useState("");
-  const [price, setPrice] =useState(Number)
+  const [price, setPrice] = useState(Number)
   /* const [rating, setRating] = useState(""); */
-  
+
 
   const [categories, setCategories] = useState("");
   const [instructions, setInstructions] = useState("");
@@ -39,7 +39,7 @@ const PostRecipe = () => {
       instructions: instructionsArray,
       ingredients: ingredient,
       price: price,
-    
+
     };
 
     const response = await postRecipe(newRecipe);
@@ -78,7 +78,7 @@ const PostRecipe = () => {
     setIngredient(list);
   };
 
-  
+
   return (
     <div>
       <br />
@@ -134,9 +134,9 @@ const PostRecipe = () => {
         onChange={(event) => setCategories(event.target.value)}
         placeholder="Categories"
       /> */}
-      <h5>Categories</h5>
+      {/* <h5>Categories</h5> */}
       <select onChange={(event) => setCategories(event.target.value)}>
-        <option value="Select">Select</option>
+        <option >Välj Kategori</option>
         <option value="Kött">Kött</option>
         <option value="Kyckling">Kyckling</option>
         <option value="Fisk">Fisk</option>

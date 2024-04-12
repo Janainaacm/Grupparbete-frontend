@@ -8,7 +8,7 @@ import ClearButton from "../editRecipe/components/ClearButton.tsx";
 
 
 const Admin=(): JSX.Element=>{
-    const { recipeList,fetchRecipeList, fetchCategories } = useAPIState();
+    const { recipeList,fetchRecipeList,fetchCategories } = useAPIState();
     const navigate = useNavigate()
 
     const handleClick = () =>{
@@ -32,7 +32,6 @@ const Admin=(): JSX.Element=>{
         <ClearButton/>
         <DisplayRecipes recipeList={recipeList} showDeleteButton={true} showEditButton={true} />
       </div>
-      <Footer/>
     </>
     );
 

@@ -250,7 +250,6 @@ const EditRecipe = ({}) => {
       <button onClick={(e) => {setSubmitClicked(true); 
         handleSubmit(e,true);}}>Submit</button>
       <button onClick={() => navigate(-1)}>Tillbaka</button>
-      <Footer />
     </div>
   );
 };

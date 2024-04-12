@@ -76,8 +76,8 @@ export const useAPIState = create<APIState>((set) => ({
         set({
           recipeList: response.data,
         });
-        console.log(response.data);
-        console.log("Fetch all recipes");
+        //console.log(response.data);
+        //console.log("Fetch all recipes");
       }
     } catch (error) {
       console.log("Error fetching recipe list", error);
@@ -106,8 +106,8 @@ export const useAPIState = create<APIState>((set) => ({
     try {
       const response = await axios.get(`${API_URL}/recipes/${recipeID}`);
       if (response.status === 200) {
-        console.log("Success loading recipe");
-        console.log(response.data);
+        //console.log("Success loading recipe");
+        //console.log(response.data);
         return response.data;
       }
     } catch (error) {
@@ -179,7 +179,7 @@ export const useAPIState = create<APIState>((set) => ({
         set((state) => ({
           reviewList: [...state.reviewList, response.data],
         }));
-        console.log("Sucessfully posted comment");
+        //console.log("Sucessfully posted comment");
         alert("Successfully posted comment");
       }
     } catch (error) {
@@ -226,11 +226,11 @@ export const useAPIState = create<APIState>((set) => ({
     try {
       const response = await axios.get(`${API_URL}/categories`);
       if (response.status === 200) {
-        console.log("success fetching categories");
+        //console.log("success fetching categories");
         set({
           allCategories: response.data,
         });
-        console.log(response.data);
+        //console.log(response.data);
       }
     } catch (error) {
       console.log("error fetching categories", error);
@@ -244,8 +244,8 @@ export const useAPIState = create<APIState>((set) => ({
         `${API_URL}/categories/${categoryName}/recipes`
       );
       if (response.status === 200) {
-        console.log("success fetching recipes by category name");
-        console.log(response.data);
+        //console.log("success fetching recipes by category name");
+        //console.log(response.data);
         return response.data;
       }
     } catch (error) {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
-import { CocktailInterface } from '../pages/cocktails/components/DisplayCocktail';
+import { CocktailInterface } from '../pages/cocktails/components/DisplayAllCocktails';
 
 
 
@@ -49,7 +49,7 @@ const FilterCocktailComponent = () => {
 
         if (response.status === 200) {
             setFilteredCocktailArray(response.data.drinks);
-            console.log("response.data.drinks", response.data.drinks);
+            //console.log("response.data.drinks", response.data.drinks);
         };
 
 
@@ -75,7 +75,7 @@ const FilterCocktailComponent = () => {
 
                 if (response.status === 200) {
                     setCategories(response.data.drinks);
-                    console.log("allCategories", response.data.drinks);
+                    //console.log("allCategories", response.data.drinks);
                 }
             } catch (error) {
                 console.error('Error', error)

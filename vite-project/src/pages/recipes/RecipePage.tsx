@@ -17,11 +17,10 @@ const RecipePage = () => {
 
   //ser till att recipeList är laddat så sidan har data att ladda in
   useEffect(() => {
-    if (recipeList.length == 0){
-     fetchRecipeList();
-    }
-    if (recipeList.length == 0) {
-     fetchCategories();
+    if (recipeList.length === 0) {
+      fetchRecipeList();
+      fetchCategories();
+      console.log("RecipeList is empty")
     }
   }, []);
 
