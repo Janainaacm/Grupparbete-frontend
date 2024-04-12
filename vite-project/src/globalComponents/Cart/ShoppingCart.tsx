@@ -42,7 +42,7 @@ const ShoppingCart = ({
     };
 
 
-    const addToCocktailCart = (cocktail) => {
+    /* const addToCocktailCart = (cocktail) => {
 
         AddToCocktailCart(cocktail)
         localStorage.setItem("cocktails", JSON.stringify(sortedCocktails));
@@ -53,7 +53,7 @@ const ShoppingCart = ({
         RemoveAllFromCocktailCart(cocktailID)
         localStorage.setItem("cocktails", JSON.stringify(sortedCocktails));
 
-    }
+    }; */
 
     
 
@@ -108,7 +108,7 @@ const ShoppingCart = ({
 
                                             <button className='remove-button' onClick={() => RemoveFromCart(product._id)}>-</button>
                                             <button className='add-button' onClick={() => AddToCart(product)}>+</button>
-                                            <button className="remove-all-button" onClick={() => RemoveAllFromCart(product._id)}>Ta bort</button>
+                                            <button className="remove-all-button" onClick={() => RemoveAllFromCocktailCart(product._id)}>Ta bort</button>
 
                                         </Card.Body>
                                     </Card>
@@ -143,8 +143,8 @@ const ShoppingCart = ({
                                             <div>
                                                 <button className='remove-button' onClick={() => RemoveOneFromCocktailCart(cocktail.idDrink)}>-</button>
 
-                                                <button className='add-button' onClick={() => addToCocktailCart(cocktail)}>+</button>
-                                                <button className="remove-all-button" onClick={() => removeAllFromcocktailCart(cocktail.idDrink)}>Ta bort</button>
+                                                <button className='add-button' onClick={() => AddToCocktailCart(cocktail)}>+</button>
+                                                <button className="remove-all-button" onClick={() => RemoveAllFromcocktailCart(cocktail.idDrink)}>Ta bort</button>
                                             </div>
 
                                         </Card.Body>
