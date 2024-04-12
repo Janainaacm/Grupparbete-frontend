@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { CocktailInterface } from '../../cocktails/components/DisplayCocktail'
+import { CocktailInterface } from '../../cocktails/components/DisplayAllCocktails'
 
 
 function getAlcoholicCocktails() {

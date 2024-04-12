@@ -2,13 +2,16 @@ import React, { useState, useRef, useEffect } from "react";
 import { useAPIState } from "../../store/APIState";
 import "./FilterFunction.css";
 import { RecipeInterface, CategorieInterface } from "../../Types";
+import Button from 'react-bootstrap/Button';
+import Collapse from 'react-bootstrap/Collapse';
+import ToggleButton from 'react-bootstrap/ToggleButton';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 
-const FilterFunction = ({ setShowRecipes }: { setShowRecipes: any }) => {
-  const { recipeList, fetchRecipesByCategoryName, allCategories } =
-    useAPIState();
+
+const FilterFunction = ({ setShowRecipes, setHeadlineTag }: { setShowRecipes: any, setHeadlineTag: any }) => {
+  const { recipeList, fetchRecipesByCategoryName, allCategories } = useAPIState();
   let [filteredCategories, setFilteredCategories] = useState<string[]>([]);
   const [open, setOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleDropDownFocus = () => {
     setOpen(!open);
@@ -26,9 +29,9 @@ const FilterFunction = ({ setShowRecipes }: { setShowRecipes: any }) => {
       item.selected = true;
       updatedCategories.push(item.name);
     }
-
     setFilteredCategories(updatedCategories);
   };
+
 
   useEffect(() => {
     chosenCategory();
@@ -55,8 +58,14 @@ const FilterFunction = ({ setShowRecipes }: { setShowRecipes: any }) => {
       const distinctArray = flattenedResults.filter((value, index, self) => {
         return index === self.findIndex(obj => obj._id === value._id);
     });
-      // console.log(distinctArray)
-      setShowRecipes(distinctArray);
+      if (distinctArray.length > 0) {
+        setShowRecipes(distinctArray);
+        setHeadlineTag("Visar alla recept inom: " + filteredCategories.join(", "))
+      } else {
+        resetLists();
+      }
+      
+      
     } catch (error) {
       console.error("Error fetching recipes by category:", error);
     }
@@ -64,37 +73,37 @@ const FilterFunction = ({ setShowRecipes }: { setShowRecipes: any }) => {
 
   const resetFilter = () => {
     setShowRecipes(recipeList);
+    setHeadlineTag("Alla recept");
     setOpen(false);
   };
 
+  const resetLists = () => {
+    setShowRecipes(recipeList);
+    setHeadlineTag("Alla recept");
+  }
+  
+
   return (
-    <div className="App">
-      <div className="app-drop-down-container" ref={dropdownRef}>
-        <button onClick={handleDropDownFocus}>Filter</button>
-        {open && (
-          <ul>
-            {allCategories.map((item, index) => (
-              <li key={index}>
-                <div>
-                  <label className="container">
-                    {item.name}
-                    <input
-                      type="checkbox"
-                      checked={item.selected}
-                      onChange={() => handleOnChange(item)}
-                    />
-                    <span className="checkmark"></span>
-                  </label>
-                </div>
-              </li>
+<>
+      <Button id="toggle-filter-button"
+        onClick={() => handleDropDownFocus()}
+        aria-controls="example-collapse-text"
+        aria-expanded={open}
+      >
+      FILTER <i className="bi bi-caret-down"></i>
+      </Button>
+      <Collapse in={open}>
+        <div id="filter-inside-collapse">
+        {allCategories.map((item, index) => (
+              <label className="radio-button" key={index}>
+              <input type="radio" name={item.name} onClick={() => handleOnChange(item)} checked={item.selected}/>
+              <span>{item.name.toUpperCase()}</span>
+            </label>
             ))}
-            <div>
-              <button onClick={resetFilter}>Reset Filter</button>
-            </div>
-          </ul>
-        )}
-      </div>
-    </div>
+          <button id="reset-button" onClick={resetFilter} >ÅTERSTÄLL FILTER</button>
+        </div>
+      </Collapse>
+    </>
   );
 };
 

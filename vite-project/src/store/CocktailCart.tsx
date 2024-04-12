@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import { CocktailInterface } from "../pages/cocktails/components/DisplayCocktail"
+import { CocktailInterface } from "../pages/cocktails/components/DisplayAllCocktails"
 
 interface CocktailCartInterface {
     coctailCart: CocktailInterface[];

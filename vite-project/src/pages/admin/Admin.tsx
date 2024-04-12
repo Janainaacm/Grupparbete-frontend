@@ -32,7 +32,6 @@ const Admin=(): JSX.Element=>{
         <ClearButton/>
         <DisplayRecipes recipeList={recipeList} showDeleteButton={true} showEditButton={true} />
       </div>
-      <Footer/>
     </>
     );
 
