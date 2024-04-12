@@ -52,6 +52,7 @@ const DisplayRecipes = ({recipeListFromRecipePage, showDeleteButton=false, showE
       <div className="page-headline">
         <h1 className="page-title">Recept</h1>
         <p className="page-description">{headlinetag}</p>
+        {showDeleteButton}
       </div>
       <div className="page-filter-function">
         
