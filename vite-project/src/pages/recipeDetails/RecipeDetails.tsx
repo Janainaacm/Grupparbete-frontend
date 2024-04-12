@@ -13,10 +13,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import RecipeRecommendations from "./components/RecipeRecommendations";
 import RatingStars from "./components/RatingStars";
 import { RecipeInterface } from "../../Types";
+import { useCocktailAPIState } from "../../store/CocktailAPI";
 
 const RecipeDetails = () => {
   const [recommendation, setRecommendation] = useState(false);
   const { fetchRecipe } = useAPIState();
+  const { fetchCocktails } = useCocktailAPIState()
   const location = useLocation();
   const recipe = location.state as RecipeInterface;
   const navigate = useNavigate();
@@ -36,7 +38,7 @@ const RecipeDetails = () => {
 
   useEffect(() => {
     fetchRecipe(recipe._id);
-
+    fetchCocktails()
     console.log("USE EFFECT: Recipe Details")
     console.log("fetchRecipe")
 
