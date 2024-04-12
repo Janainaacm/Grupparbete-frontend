@@ -13,16 +13,42 @@ interface HomeSwiperProps {
   }
 
 const HomeSwiper = ({recipeList}: HomeSwiperProps) => {
+
+  
   return (
     <div>
         <Swiper
         modules={[Pagination, EffectCoverflow, Autoplay]}
         autoplay
         mousewheel
+        slidesPerView={3}
+        breakpoints={{
+          0: {
+            slidesPerView: 1,
+          },
+          400:{
+            slidesPerView:2,
+          },
+          639: {
+            slidesPerView: 3,
+          },
+          865:{
+            slidesPerView:3
+          },
+          1000:{
+            slidesPerView:3
+          },
+          1500:{
+            slidesPerView:3
+          },
+          1700:{
+            slidesPerView:3
+          }
+        }}
       spaceBetween={50}
       centeredSlides
       /* effect={"coverflow"} */
-      slidesPerView={3}
+      /* slidesPerView={3} */
       pagination={{ clickable: true }}
       /* onSlideChange={() => console.log('slide change')}
       onSwiper={(swiper) => console.log(swiper)} */
@@ -35,12 +61,12 @@ const HomeSwiper = ({recipeList}: HomeSwiperProps) => {
       
         {recipeList.map((recipe) => (
             <SwiperSlide>
-          <div key={recipe._id} className="col-md-4 mb-4">
-            <Card style={{ width: '18rem', border: "none" }}>
+          <div key={recipe._id} className="col-md-8 mb-4">
+            <Card style={{ width: '100%', border: "none" }}>
               <Card.Img variant="top" src={recipe.imageUrl}/>
               <Card.Body>
                 <Card.Title>{recipe.title}</Card.Title>
-                <Button variant="primary">Go somewhere</Button>
+                <Button variant="primary" className="btn-block">Go somewhere</Button>
               </Card.Body>
             </Card>
           </div>

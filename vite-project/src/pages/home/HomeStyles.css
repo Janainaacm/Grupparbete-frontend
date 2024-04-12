@@ -1,7 +1,7 @@
 .content{
     margin-top: 0px;
     padding: 0px;
-    height: 1500px;
+    height: 1700px;
 }
 
 .welcome-title {
@@ -88,6 +88,10 @@
 }
 .section{
     margin-top: 25px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.section-2{
+  margin-top: 60px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
  
