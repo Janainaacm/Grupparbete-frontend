@@ -32,7 +32,6 @@ const FilterFunction = ({ setShowRecipes, setHeadlineTag }: { setShowRecipes: an
     setFilteredCategories(updatedCategories);
   };
 
-
   useEffect(() => {
     chosenCategory();
   }, [filteredCategories]);
