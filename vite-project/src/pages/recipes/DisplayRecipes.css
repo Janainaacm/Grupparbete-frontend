@@ -1,0 +1,206 @@
+/*
+├── container
+│  ├── page-headline
+│  │  ├── page-title
+│  │  └── page-description
+│  │ 
+│  ├── recipe-list
+│  │  └── recipe-card
+│  │      ├── recipe-card-img
+│  │      └── recipe-info-container
+│  │          ├── recipe-stars
+│  │          ├── recipe-title
+│  │          ├── recipe-description
+│  │          ├── recipe-categories
+│  │          └── recipe-card-buy-btn
+│  └──.
+└── .
+*/
+
+.container {
+    display: block;
+    width: 100%;
+}
+
+/* ------------------------------------ */
+
+.page-headline {
+    display: block;
+    overflow-wrap: normal;
+    text-align: center;
+    line-height: 1.8em;
+    color: #000;
+}
+
+.page-title {
+    display: block;
+    font-family: Futura;
+    font-size: 56px;
+    font-weight: 900;
+    margin-block-start: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    line-height: 1.14286em;
+    letter-spacing: 0.0117647em;
+}
+
+.page-description {
+    display: block;
+    font-size: 16px;
+    text-transform: none;
+    font-family: "Gill Sans", sans-serif;
+    font-weight: 300;
+    transform: scale(1, 1.4);
+    color:rgb(81, 80, 80);
+    font-weight: 100;
+    line-height: 1.4em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    padding: 0.6rem 1.5rem 0px;
+    letter-spacing: 1.3px;
+}
+
+/* ------------------------------------ */
+.recipe-list {
+    /* grid-template-columns: repeat(12, 1fr); */
+        --grid-gap: 1rem;
+        --grid-margin: 1.5rem; 
+    display:inline-block;
+    gap: var(--grid-gap);
+    padding-right: calc(1* var(--grid-margin));
+    padding-left: calc(1* var(--grid-margin));
+    margin: 0px auto;
+    width: 100%; 
+    max-width: 1600px;
+}
+
+.recipe-box {
+    align-items: center;
+    cursor: pointer;
+    border-bottom: 1px solid #b0b0b0;
+    --border-bottom-color__token-name:
+    border: none;
+    padding: none;
+    box-shadow: none;
+    --grid-gap: 1.5rem;
+    --grid-margin: 3rem;
+    grid-column-gap: var(--grid-gap);
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+    .recipe-box {
+        align-items: center;
+        display: grid;
+        grid-template-areas: "image content";
+        grid-template-columns: repeat(2, 1fr);
+        cursor: pointer;
+        border-bottom: 1px solid #b0b0b0;
+        --border-bottom-color__token-name:
+        border: none;
+        padding: none;
+        box-shadow: none;
+        --grid-gap: 1.5rem;
+        --grid-margin: 3rem;
+        grid-column-gap: var(--grid-gap);
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+    }
+}
+
+
+
+.recipe-card-img {
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    border: 0.3px solid gray;
+}
+
+.page-filter-function {
+    margin-bottom: 20px;
+}
+
+
+.recipe-categories {
+    font-family: Futura;
+    margin: 0px 0px 3px;
+    color: gray;
+    font-size: 12px;
+    font-weight: 600;
+    -webkit-text-stroke: 0.37px white; 
+    margin-top: 10px;
+}
+
+.recipe-title {
+    font-family: Futura;
+    margin: 0px 0px 16px;
+    color: #000;
+    font-size: 28;
+}
+
+.recipe-title:hover {
+    text-decoration: underline;
+}
+
+.recipe-description {
+    font-family: Futura;
+    margin: 0px 0px 8px;
+    color: #666;
+    font-size: 18;
+    -webkit-text-stroke: 0.6px white; 
+    color:rgb(81, 80, 80);
+}
+
+.recipe-card-buy-btn {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  background-color: white;
+  color: #2f2f2f;
+  border: none;
+  border-radius: 0px;
+  padding-bottom: 4px;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-size: 20px;
+  transition: 0.3s ease-in-out;
+}
+
+.recipe-card-buy-btn:hover {
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;  
+  }
+
+.page-quote {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.quote {
+    background: whitesmoke;
+    font-family: URW Chancery L, cursive	;
+    width: 50vw;
+    padding: 80px 32px;
+    position: relative;
+    text-align: center;
+  }
+  
+  .quote::before {
+    position: absolute;
+    content: '“';
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 60px;
+    color: gray;
+    top: 0;
+    left: 16px;
+  }
+  
+  .quote::after {
+    position: absolute;
+    content: '”';
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 60px;
+    color: gray;
+    bottom: -10px;
+    right: 16px;
+  }

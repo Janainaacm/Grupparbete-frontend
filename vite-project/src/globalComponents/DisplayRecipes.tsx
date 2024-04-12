@@ -1,26 +1,39 @@
-//Joel
 import { useNavigate} from "react-router";
 import { useAPIState } from "../store/APIState";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { RecipeInterface } from "../Types";
 import DeleteButton from "./DeleteButton";
 import EditRecipeButton from "./EditRecipeButton";
+import RatingStars from "../pages/recipeDetails/RatingStars";
+import FilterFunction from "./filterFunction/FilterFunction";
+import "../pages/recipes/DisplayRecipes.css"
+import { LiaCartPlusSolid } from "react-icons/lia";
+
 
 interface DisplayRecipesProps {
-  recipeList: RecipeInterface[];
+  recipeListFromRecipePage: RecipeInterface[];
   showDeleteButton?: boolean; 
   showEditButton?: boolean;
 }
 
-  
-const DisplayRecipes = ({recipeList,showDeleteButton=false,showEditButton=false}: DisplayRecipesProps) => {
-  const { fetchRecipe, clearReviewState } = useAPIState();
+const DisplayRecipes = ({recipeListFromRecipePage, showDeleteButton=false, showEditButton=false}: DisplayRecipesProps) => {
+  const { fetchRecipe, fetchRecipeList, clearReviewState, recipeList } = useAPIState();
+  const [showRecipes, setShowRecipes] = useState<RecipeInterface[]>([]);
+  const [headlinetag, setHeadlineTag] = useState("Alla recept");
   const navigate = useNavigate();
 
-
   useEffect(() => {
-    clearReviewState()
-  },[])
+    const getRecipes = async () => {
+      console.log(showRecipes, "b4 anything")
+        if (recipeListFromRecipePage.length > 0) {
+            setShowRecipes(recipeListFromRecipePage);
+
+        } else {
+            setShowRecipes(recipeList);
+        }
+    };
+    getRecipes();
+}, [recipeList]);
 
   const handleClick = async (recipeId: string) => {
     try {
@@ -33,41 +46,37 @@ const DisplayRecipes = ({recipeList,showDeleteButton=false,showEditButton=false}
       console.error('Error fetching recipe:', error);
     }
   };
-
+    
   return (
-    <div className="recipe-list" style={{ display: 'flex', flexWrap: 'wrap' }}>
-      {recipeList.map((recipe) => (
-        <div className="recipe-card"
-          key={recipe._id}
-          style={{
-            width: '200px',
-            marginBottom: '20px',
-            marginRight: '20px',
-            textAlign: 'center',
-          }}
-        >
-          <button
-            onClick={() => handleClick(recipe._id)}
-            style={{
-              border: 'none',
-              background: 'none',
-              padding: '0',
-              cursor: 'pointer',
-            }}
-          >
-            <img
-              src={recipe.imageUrl}
-              alt={recipe.title}
-              style={{ width: '100px', height: '100px', marginBottom: '5px' }}
-            />
-          </button>
-          <div className="recipe-title">{recipe.title}</div>
-          <div className="recipe-categories" style={{ fontSize: '12px' }}>{recipe.categories}</div>
-          {showEditButton && <EditRecipeButton recipeId={recipe._id} />}
-          <div style={{padding:"2px"}}>   </div>
-          {showDeleteButton && <DeleteButton recipeId={recipe._id}/>}
+    <div className="container">
+      <div className="page-headline">
+        <h1 className="page-title">Recept</h1>
+        <p className="page-description">{headlinetag}</p>
+      </div>
+      <div className="page-filter-function">
+        
+      <FilterFunction setShowRecipes={setShowRecipes} setHeadlineTag={setHeadlineTag} /> 
+      </div>
+      <div className="recipe-list">
+      {showRecipes.map((recipe) => (
+        <div className="recipe-box" key={recipe._id}>
+          <img className="recipe-card-img" src={recipe.imageUrl} alt={recipe.title} />
+            <div className="recipe-info-container">
+              <p className="recipe-categories">{recipe.categories.join(' | ').toUpperCase()}</p>
+              <h4 className="recipe-title" onClick={() => (handleClick(recipe._id ?? ''))}>{recipe.title}</h4>
+              <p className="recipe-description">{recipe.description}</p>
+              {showEditButton && <EditRecipeButton recipeId={recipe._id} />}
+              <div style={{padding:"2px"}}>   </div>
+              {showDeleteButton && <DeleteButton recipeId={recipe._id}/>}
+              <button className="recipe-card-buy-btn"><LiaCartPlusSolid /></button>
+              
+            </div>
         </div>
       ))}
+      </div>
+      <div className="page-quote">
+        <p className="quote">"Let food be thy medicine and medicine be thy food." <br/> - Hippocrates</p>
+        </div>
     </div>
   );
 };

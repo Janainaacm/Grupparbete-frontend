@@ -15,18 +15,24 @@ import RatingStars from "./components/RatingStars";
 import { RecipeInterface } from "../../Types";
 
 const RecipeDetails = () => {
-
-
   const [recommendation, setRecommendation] = useState(false);
-
-
   const { fetchRecipe } = useAPIState();
   const location = useLocation();
   const recipe = location.state as RecipeInterface;
   const navigate = useNavigate();
+  
+  // useEffect(() => {
+  //   const fetchRecipeData = async () => {
+  //     try {
+  //       const recipe = await fetchRecipe(recipeName);
+  //       console.log("Fetched recipe:", recipe);
+  //     } catch (error) {
+  //       console.error("Error fetching recipe:", error);
+  //     }
+  //   };
+  //   fetchRecipeData();
+  // }, [recipeName]);
 
-  // state to update
-  // const [refreshReviews, setRefreshReviews] = useState(0);
 
   useEffect(() => {
     fetchRecipe(recipe._id);
@@ -66,6 +72,7 @@ const RecipeDetails = () => {
                 <p className="card-text"><RatingStars></RatingStars></p>
                 <AddToCartButton recipe={recipe} /* recommendation={() => setRecommendation(true)} *//>
                 <button onClick={() => setRecommendation(true)}>Cocktail Recommendationer</button>
+              
                 <PostReview recipeId={recipe._id}/>
               </div>
               </div>
@@ -97,7 +104,6 @@ const RecipeDetails = () => {
             </div>
           </div>
         </div>
-        <DeleteButton recipeId={recipe._id} />
         <button
           /* className="btn btn-secondary mt-3" */ onClick={() => navigate(-1)}
         >
