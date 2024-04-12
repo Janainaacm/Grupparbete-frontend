@@ -56,12 +56,12 @@ const ShoppingCart = ({
         updateCocktailID(cocktailID)
         navigate(`/Cocktails`);
 
-        function redirect() {
+
+        function redirectCocktailDetails () {
             navigate(`/Cocktails/${cocktailName}`);
-
         }
-
-        setTimeout(redirect, 1);
+        // setTimeout used to navigate to selected cocktail.
+        setTimeout(redirectCocktailDetails, 1);
     };
 
     const seeRecipeDetails = async (recipeId: string) => {
@@ -113,7 +113,8 @@ const ShoppingCart = ({
                                     <Card className='cart-product' key={index} >
                                         <Card.Body className="product-body">
                                             <Card.Title>{product.title.length > 10 ? product.title.substring(0, 10) + "..." : product.title}</Card.Title>
-                                            <Card.Img className='product-image' src={product.imageUrl} alt={product.title} />
+                                            <Card.Img onClick={() => (seeRecipeDetails(product._id ?? ''))} className='product-image' src={product.imageUrl} alt={product.title} />
+
 
                                             {/* <h5>Ingredienter</h5>
                                             {product.ingredients.map((ingredient, index) => (
@@ -124,10 +125,11 @@ const ShoppingCart = ({
                                             <p>Pris: {Number.isNaN(product.price + 0) ? product.price = 0 : product.price * quantity + " Sek"}</p>
                                             <p>Antal: {quantity}</p>
 
+                                            <button onClick={() => (seeRecipeDetails(product._id ?? ''))}>Visa {product.title}</button>
                                             <button className='remove-button' onClick={() => RemoveFromCart(product._id)}>-</button>
                                             <button className='add-button' onClick={() => AddToCart(product)}>+</button>
                                             <button className="remove-all-button" onClick={() => RemoveAllFromCart(product._id)}>Ta bort</button>
-                                            <button onClick={() => (seeRecipeDetails(product._id ?? ''))}>Visa recept</button>
+
 
                                         </Card.Body>
                                     </Card>
@@ -155,16 +157,20 @@ const ShoppingCart = ({
                                             <Card.Title>{cocktail.strDrink.length > 10 ? cocktail.strDrink.substring(0, 10) + "..." : cocktail.strDrink}</Card.Title>
                                             {/* <Card.Title>{cocktail.strDrink}</Card.Title> */}
 
-                                            <img className='product-image' src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
+                                            
+                                            <img onClick={() => displayCocktailDetails(cocktail.idDrink, cocktail.strDrink)} className='product-image' src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
+
                                             <p>pris:</p>
 
                                             <p>Antal: {cocktailQuantity}</p>
                                             <div>
+                                                
+                                                <button onClick={() => displayCocktailDetails(cocktail.idDrink, cocktail.strDrink)}> Visa {cocktail.strDrink} </button>
                                                 <button className='remove-button' onClick={() => RemoveOneFromCocktailCart(cocktail.idDrink)}>-</button>
 
                                                 <button className='add-button' onClick={() => AddToCocktailCart(cocktail)}>+</button>
                                                 <button className="remove-all-button" onClick={() => RemoveAllFromCocktailCart(cocktail.idDrink)}>Ta bort</button>
-                                                <button onClick={() => displayCocktailDetails(cocktail.idDrink, cocktail.strDrink)}>Visa Cocktail</button>
+
                                             </div>
 
                                         </Card.Body>
