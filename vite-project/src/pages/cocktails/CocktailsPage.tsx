@@ -1,5 +1,5 @@
 import NavBar from '../../globalComponents/NavBar'
-import DisplayCocktail from './components/DisplayCocktail'
+import DisplayCocktails from './components/DisplayAllCocktails'
 import Footer from '../../globalComponents/Footer'
 import FilterCocktailComponent from '../../globalComponents/FilterCocktailComponent'
 import { useEffect } from 'react'
@@ -38,10 +38,9 @@ const CocktailsPage = () => {
         <h2>Alla cocktails</h2>
         <br />
         <br />
-        <DisplayCocktail />
+        <DisplayCocktails />
       </div>
       <div style={{bottom: "0", justifyContent: "center", width: "100%", padding: "10px", height: "50px" }}>
-        <Footer />
       </div>
     </div>
 
