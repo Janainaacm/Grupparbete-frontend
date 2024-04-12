@@ -29,7 +29,7 @@ const RecipePage = () => {
 
   return (
     <div>
-      <DisplayRecipes recipeListFromRecipePage={recipes} showDeleteButton={false} />
+      <DisplayRecipes recipeListFromRecipePage={recipes} showDeleteButton={false} showEditButton={false} />
     </div>
   );
 }

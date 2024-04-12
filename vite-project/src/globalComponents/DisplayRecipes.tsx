@@ -65,11 +65,15 @@ const DisplayRecipes = ({recipeListFromRecipePage, showDeleteButton=false, showE
               <p className="recipe-categories">{recipe.categories.join(' | ').toUpperCase()}</p>
               <h4 className="recipe-title" onClick={() => (handleClick(recipe._id ?? ''))}>{recipe.title}</h4>
               <p className="recipe-description">{recipe.description}</p>
+              {showEditButton && <EditRecipeButton recipeId={recipe._id} />}
+          <div className="deletebtn">   </div>
+          {showDeleteButton && <DeleteButton recipeId={recipe._id}/>}
               <button className="recipe-card-buy-btn"><LiaCartPlusSolid /></button>
             </div>
         </div>
       ))}
       </div>
+
       <div className="page-quote">
         <p className="quote">"Let food be thy medicine and medicine be thy food." <br/> - Hippocrates</p>
         </div>
