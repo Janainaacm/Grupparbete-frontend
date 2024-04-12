@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Button, Card} from 'react-bootstrap';
 import { RecipeInterface } from '../../../Types';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -57,10 +57,11 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
                         {recommendedCocktails.map((recCock) => (
                             recCock.strDrink === recommendedCocktail && (
                                 <Card key={recCock.idDrink} style={{ width: '18rem' }}>
-                                    <Card.Img variant="top" src={recCock.strDrinkThumb} alt={recCock.strDrink} />
+                                    <Card.Img onClick={() => seeCocktailDetails(recCock.idDrink)} variant="top" src={recCock.strDrinkThumb} alt={recCock.strDrink} />
                                     <Card.Body>
                                         <Card.Title>{recCock.strDrink}</Card.Title>
-                                        <Button style={{marginBottom:"10px"}} variant="primary" onClick={() => seeCocktailDetails(recCock.idDrink)}>Visa detaljer</Button>
+                                        {/* <Button style={{marginBottom:"10px"}} variant="primary" onClick={() => seeCocktailDetails(recCock.idDrink)}>Visa detaljer</Button> */}
+                                        <Button style={{marginBottom:"10px"}} variant="primary" onClick={() => navigate("/cocktails")}>Visa fler cocktails</Button>
                                         <Button variant="success" onClick={() => AddToCocktailCart(recCock)}>Lägg till varukorg</Button>
                                         <Button style={{marginLeft: "38px"}} variant="danger" onClick={onClose}>Stäng</Button>
                                     </Card.Body>
