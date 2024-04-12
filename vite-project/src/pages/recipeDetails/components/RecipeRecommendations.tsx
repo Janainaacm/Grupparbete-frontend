@@ -4,8 +4,8 @@ import { RecipeInterface } from '../../../Types';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useCocktailCartStateInterface } from '../../../store/CocktailCart';
-import getAlcoholicCocktails from './getAlcoholicCocktails';
-import { useCocktailAPIState } from '../../../store/CocktailAPI';
+/* import getAlcoholicCocktails from './getAlcoholicCocktails';
+ */import { useCocktailAPIState } from '../../../store/CocktailAPI';
 
 interface RecipeRecommendationsProps {
     recipe: RecipeInterface;
@@ -28,8 +28,8 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
 
 
     console.log("cocktailList",cocktailList)
-    const recommendedCocktails = getAlcoholicCocktails();
-
+/*     const recommendedCocktails = getAlcoholicCocktails();
+ */
 
     const categories = [
         { category: "Dessert", recommendedCocktail: "A1" },
