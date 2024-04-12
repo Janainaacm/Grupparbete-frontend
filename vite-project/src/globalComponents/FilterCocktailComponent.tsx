@@ -95,7 +95,6 @@ const FilterCocktailComponent = () => {
 
     return (
         <div >
-            FilterCocktailComponent
             <div className='category-bubbles2'>
                 <button className='button-1' onClick={() => filterByAlcohol("a=alcoholic")} >Alcoholic</button>
                 <button className='button-1' onClick={() => filterByAlcohol("a=non_alcoholic")} >Non Alcoholic</button>

@@ -4,7 +4,7 @@ describe('BuyRecipesandCocktail', () => {
 
       cy.get('[href="/Recept"]').click()
 
-      cy.get(':nth-child(1) > .product-card-bottom > .product-card__brand').click()
+      cy.get(':nth-child(1) > .recipe-info-container > .recipe-title').click()
 
       cy.get('.card-body > :nth-child(6)').click()
 
