@@ -117,7 +117,7 @@ export const useAPIState = create<APIState>((set) => ({
     }
   },
 
-  // LÅT KOMENTAR VARA!!! JONAS BYGGER OM LITE!!!
+ 
   fetchRecipe: async (recipeID: string) => {
     try {
       const response = await axios.get(`${API_URL}/recipes/${recipeID}`);
@@ -167,7 +167,7 @@ export const useAPIState = create<APIState>((set) => ({
   },
 
   //PATCH - /recipes/{recipeId} - Uppdaterar ett recept
-  updateRecipe: async (updatedRecipe) => {
+  updateRecipe: async (updatedRecipe: RecipeInterface) => {
     try {
       const response = await axios.patch(
         `${API_URL}/recipes/${updatedRecipe._id}`,

@@ -10,7 +10,7 @@ interface EditRecipeProps{
 const EditRecipeButton = (props: EditRecipeProps) => {
     const navigate = useNavigate();
     const { setRecipeIDState } = useAPIState();
-  
+   
     const handleClick = async () => {
         setRecipeIDState(props.recipeID)
         navigate(`/EditRecipe/${props.recipeName}`)

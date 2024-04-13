@@ -8,14 +8,14 @@ import RatingStars from "../pages/recipeDetails/RatingStars";
 import FilterFunction from "./filterFunction/FilterFunction";
 import "../pages/recipes/DisplayRecipes.css";
 import { LiaCartPlusSolid } from "react-icons/lia";
+import { Button } from "react-bootstrap";
 
 interface DisplayRecipesProps {
   showDeleteButton?: boolean;
   showEditButton?: boolean;
 }
 
-const DisplayRecipes = ({ showDeleteButton = false, showEditButton = false,
-}: DisplayRecipesProps) => {
+const DisplayRecipes = (props: DisplayRecipesProps) => {
   const {
     recipeList,
     filteredRecipeList,
@@ -50,6 +50,11 @@ const DisplayRecipes = ({ showDeleteButton = false, showEditButton = false,
     setRecipeIDState(recipeId)
     navigate(`/Recept/${recipeName}`);
   };
+  
+  const handleEditClick = (recipeId: string, recipeName: string) => {
+    setRecipeIDState(recipeId)
+    navigate(`/EditRecipe/${recipeName}`);
+  };
 
   return (
     <div className="container">
@@ -82,8 +87,10 @@ const DisplayRecipes = ({ showDeleteButton = false, showEditButton = false,
                 {recipe.title}
               </h4>
               <p className="recipe-description">{recipe.description}</p>
-              {showEditButton && <EditRecipeButton recipeID={recipe._id} recipeName={recipe.title}/>}
-              {showDeleteButton && <DeleteButton recipeId={recipe._id}/>}
+
+              {props.showEditButton && <Button onClick={() => handleEditClick(recipe._id, recipe.title)}>Edit Recipe</Button>}
+              {/* {props.showEditButton && <EditRecipeButton recipeID={recipe._id} recipeName={recipe.title}/>} */}
+              {props.showDeleteButton && <DeleteButton recipeId={recipe._id}/>}
               <button className="recipe-card-buy-btn">
                 <LiaCartPlusSolid />
               </button>
