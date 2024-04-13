@@ -32,11 +32,11 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
  */
 
     const categories = [
-        { category: "Dessert", recommendedCocktail: "A1" },
-        { category: "Kött", recommendedCocktail: "ABC" },
-        { category: "Fisk", recommendedCocktail: "Ace" },
+        { category: "Dessert", recommendedCocktail: "Orgasm" },
+        { category: "Kött", recommendedCocktail: "Quick F**K" },
+        { category: "Fisk", recommendedCocktail: "Fuzzy Asshole" },
         { category: "Sprängmedel", recommendedCocktail: "Adam" },
-        { category: "Kyckling", recommendedCocktail: "Affair" },
+        { category: "Kyckling", recommendedCocktail: "Absolut Sex" },
         { category: "Övrigt", recommendedCocktail: "After sex" },
         { category: "Förrätt", recommendedCocktail: "Avalon" },
         { category: "Bra", recommendedCocktail: "Appello" },
