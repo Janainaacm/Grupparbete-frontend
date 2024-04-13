@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import { CocktailInterface } from '../pages/cocktails/components/DisplayAllCocktails';
+import { useCocktailAPIState } from '../store/CocktailAPI';
 
 
 
@@ -12,11 +13,16 @@ const URL3 = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
 
 const FilterCocktailComponent = () => {
 
+    const { cocktailList, updateCocktailID , fetchCocktails,  } =
+    useCocktailAPIState();
     const navigate = useNavigate();
 
-    const seeCocktailDetails = async (idDrink: string) => {
+    const displayCocktailDetails = async (cocktailID: string, cocktailName: string) => {
+        updateCocktailID(cocktailID)
+        navigate(`/Cocktails/${cocktailName}`);
+      };
 
-
+    /* const seeCocktailDetails = async (idDrink: string) => {
 
         const response = await axios.get(`${URL3 + idDrink}`);
 
@@ -34,9 +40,7 @@ const FilterCocktailComponent = () => {
 
         };
 
-
-
-    };
+    }; */
 
     const [filteredCocktailArray, setFilteredCocktailArray] = useState<CocktailInterface[]>([]);
 
@@ -137,7 +141,7 @@ const FilterCocktailComponent = () => {
                                     }}
                                 >
                                     <button
-                                        onClick={() => seeCocktailDetails(cocktail.idDrink)}
+                                        onClick={() => displayCocktailDetails(cocktail.idDrink, cocktail.strDrink)}
                                         style={{
                                             border: "none",
                                             background: "none",
