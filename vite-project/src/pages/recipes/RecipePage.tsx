@@ -31,7 +31,7 @@ const RecipePage = () => {
   return (
     <div>
       <DisplayRecipes recipeListFromRecipePage={recipes} showDeleteButton={false} />
-
+      <BackToTopButton></BackToTopButton>
       
     </div>
   );

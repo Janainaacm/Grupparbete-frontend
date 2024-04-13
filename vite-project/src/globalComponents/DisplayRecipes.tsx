@@ -8,7 +8,6 @@ import RatingStars from "../pages/recipeDetails/RatingStars";
 import FilterFunction from "./filterFunction/FilterFunction";
 import "../pages/recipes/DisplayRecipes.css"
 import { LiaCartPlusSolid } from "react-icons/lia";
-import BackToTopButton from "./BackToTopButton";
 
 
 interface DisplayRecipesProps {
@@ -74,10 +73,6 @@ const DisplayRecipes = ({ recipeListFromRecipePage, showDeleteButton = false, sh
       <div className="page-quote">
         <p className="quote">"Let food be thy medicine and medicine be thy food." <br /> - Hippocrates</p>
       </div>
-
-
-      <BackToTopButton style={{ position: "absolute", right: "0%" }}>To Top</BackToTopButton>
-
     </div>
   );
 };

@@ -8,10 +8,10 @@ const BackToTopButton = () =>{
   
   const toggleVisible = () => { 
     const scrolled = document.documentElement.scrollTop; 
-    if (scrolled > 300){ 
+    if (scrolled > 100){ 
       setVisible(true) 
     }  
-    else if (scrolled <= 300){ 
+    else if (scrolled <= 100){ 
       setVisible(false) 
     } 
   }; 
@@ -28,9 +28,8 @@ const BackToTopButton = () =>{
   window.addEventListener('scroll', toggleVisible); 
   
   return ( 
-    <button>
-     <FaArrowCircleUp onClick={scrollToTop}  
-     style={{display: visible ? 'inline' : 'none'}} /> 
+    <button onClick={scrollToTop} style={{position: "sticky", bottom: "0px", left:"90%", display: visible ? 'inline' : 'none' }}>
+     Till Topp
     </button>
   ); 
 } 
