@@ -6,7 +6,13 @@ import { RecipeInterface } from "../../Types";
 import { useEditRecipeState } from "../../store/EditRecipeState";
 
 const EditRecipe = () => {
-  const { currentRecipe, recipeID, fetchRecipe, updateRecipe, fetchCategories } = useAPIState();
+  const {
+    currentRecipe,
+    recipeID,
+    fetchRecipe,
+    updateRecipe,
+    fetchCategories,
+  } = useAPIState();
   const {
     recipeToEdit,
     newInstruction,
@@ -87,58 +93,51 @@ const EditRecipe = () => {
                 </div>
               </div>
               <div>
-                <p>
-                  <h3>Title:</h3>
-                  <textarea
-                    name="title"
-                    value={recipeToEdit.title}
-                    onChange={handleInputChange}
-                    style={{ marginLeft: "20px" }}
-                  />
-                </p>
-                <p>
-                  <h3>Description:</h3>
-                  <textarea
-                    name="description"
-                    value={recipeToEdit.description}
-                    onChange={handleInputChange}
-                    style={{ marginLeft: "20px" }}
-                  />
-                </p>
-                <p>
-                  <h3>Time:</h3>
-                  <textarea
-                    name="timeInMins"
-                    value={recipeToEdit.timeInMins}
-                    onChange={handleInputChange}
-                    style={{ marginLeft: "20px" }}
-                  />
-                </p>
-                <p>
-                  <h3>Price:</h3>
-                  <textarea
-                    name="price"
-                    value={recipeToEdit.price}
-                    onChange={handleInputChange}
-                    style={{ marginLeft: "20px" }}
-                  />
-                </p>
+                <h3>Title:</h3>
+                <textarea
+                  name="title"
+                  value={recipeToEdit.title}
+                  onChange={handleInputChange}
+                  style={{ marginLeft: "20px" }}
+                />
 
-                <p>
-                  <h3>Categories:</h3>
-                  <select
-                    onChange={(e) => handleCategoriesChange(e.target.value)}
-                  >
-                    <option value="Select">Select</option>
-                    <option value="Kött">Kött</option>
-                    <option value="Kyckling">Kyckling</option>
-                    <option value="Fisk">Fisk</option>
-                    <option value="Vego">Vego</option>
-                    <option value="Dessert">Dessert</option>
-                    <option value="Sprängmedel">Sprängmedel</option>
-                    <option value="Övrigt">Övrigt</option>
-                  </select>
-                </p>
+                <h3>Description:</h3>
+                <textarea
+                  name="description"
+                  value={recipeToEdit.description}
+                  onChange={handleInputChange}
+                  style={{ marginLeft: "20px" }}
+                />
+
+                <h3>Time:</h3>
+                <textarea
+                  name="timeInMins"
+                  value={recipeToEdit.timeInMins}
+                  onChange={handleInputChange}
+                  style={{ marginLeft: "20px" }}
+                />
+
+                <h3>Price:</h3>
+                <textarea
+                  name="price"
+                  value={recipeToEdit.price}
+                  onChange={handleInputChange}
+                  style={{ marginLeft: "20px" }}
+                />
+
+                <h3>Categories:</h3>
+                <select
+                  onChange={(e) => handleCategoriesChange(e.target.value)}
+                >
+                  <option value="Select">Select</option>
+                  <option value="Kött">Kött</option>
+                  <option value="Kyckling">Kyckling</option>
+                  <option value="Fisk">Fisk</option>
+                  <option value="Vego">Vego</option>
+                  <option value="Dessert">Dessert</option>
+                  <option value="Sprängmedel">Sprängmedel</option>
+                  <option value="Övrigt">Övrigt</option>
+                </select>
               </div>
             </div>
           </div>
@@ -203,7 +202,7 @@ const EditRecipe = () => {
         onClick={(e) => {
           setSubmitClicked(true);
           handleSubmit(e, true);
-          fetchCategories()          
+          fetchCategories();
         }}
       >
         Submit
