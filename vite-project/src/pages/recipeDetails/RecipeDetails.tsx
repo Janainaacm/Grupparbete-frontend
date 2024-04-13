@@ -13,6 +13,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import RecipeRecommendations from "./components/RecipeRecommendations";
 import RatingStars from "./components/RatingStars";
 import { RecipeInterface } from "../../Types";
+import { IoIosTimer } from "react-icons/io";
 
 const RecipeDetails = () => {
   const [recommendation, setRecommendation] = useState(false);
@@ -20,7 +21,8 @@ const RecipeDetails = () => {
   const location = useLocation();
   const recipe = location.state as RecipeInterface;
   const navigate = useNavigate();
-  
+  const rating = (Math.round(recipe.avgRating * 10) / 10).toFixed(1);
+
   // useEffect(() => {
   //   const fetchRecipeData = async () => {
   //     try {
@@ -33,13 +35,11 @@ const RecipeDetails = () => {
   //   fetchRecipeData();
   // }, [recipeName]);
 
-
   useEffect(() => {
     fetchRecipe(recipe._id);
 
-    console.log("USE EFFECT: Recipe Details")
-    console.log("fetchRecipe")
-
+    console.log("USE EFFECT: Recipe Details");
+    console.log("fetchRecipe");
   }, [recipe.avgRating]);
 
   // Called from PostReview after posting a review
@@ -48,70 +48,98 @@ const RecipeDetails = () => {
   // }
 
   return (
-    <div>
-      <RecipeRecommendations recipe={recipe} visibility={recommendation} onClose={() => setRecommendation(false)} ></RecipeRecommendations>
-
-      <div className="container mt-5">
-        <div className="row">
-          <div className="col-md-5">
-            <div className="card">
-              <img
-                src={recipe.imageUrl}
-                className="card-img-top"
-                alt={recipe.title}
-              />
+    <div className="recipe-details-container">
+      <div className="recipe-details-header">
+        <div className="recipe-details-header-grid-wrapper">
+          <div className="title-side-header">
+            <div className="title-side-header-content">
+              <div className="recipes-btn-header-div">
+                <div className="recipes-btn-header-container">
+                <a className="recipes-btn-header" href="/Recept">
+                  <span>RECEPT</span>
+                </a>
+                </div>
             </div>
-            <div>
-              <DisplayReviews recipeID={recipe._id}/>
+            <h1 className="title-header">{recipe.title}</h1>
+            <div className="categories-header-div">
+            <p className="categories-header">
+              {recipe.categories.join(" | ")}
+            </p>
+            <p className="price-header">{recipe.price} SEK</p>
             </div>
           </div>
-          <div className="col-md-6">
-            <div className="card">
-              <div className="card-body">
-                <div className="card-body">
-                <h5 className="card-title">{recipe.title}</h5>
-                <p className="card-text">{recipe.description}</p>
-                <p className="card-text">Time: {recipe.timeInMins} minutes</p>
-                <p className="card-text">Categories: {recipe.categories.join(', ')}</p>
-                <p className="card-text"><RatingStars></RatingStars></p>
-                <AddToCartButton recipe={recipe} /* recommendation={() => setRecommendation(true)} *//>
-                <button onClick={() => setRecommendation(true)}>Cocktail Recommendationer</button>
-                <PostReview recipeId={recipe._id}/>
+          </div>
+          <div className="picture-side-header">
+            <div className="header-img">
+            <img className="content-img" src={recipe.imageUrl} alt={recipe.title}/>
+            </div>
+          </div>
+        </div>
+
+        <div className="recipe-details-grid-wrapper">
+          <div className="recipe-details-info">
+            <div className="recipe-details-top-info">
+              <div className="recipe-details-top-time-box">
+                <IoIosTimer />
+                <p className="recipe-time">{recipe.timeInMins}</p>
               </div>
+              <div className="stars-box">
+                <div
+                  className="stars"
+                  style={{ "--rating": rating }}
+                  aria-label={`Rating of this product is ${rating} out of 5.`}
+                />
+                <p>rating: {rating}</p>
               </div>
             </div>
-            <div className="card mt-3">
-              <div className="card-body">
-                <h5 className="card-title">Ingredients:</h5>
-                <ul className="list-group list-group-flush">
-                  {recipe.ingredients.map((ingredient, index) => (
-                    <li key={index} className="list-group-item">
-                      {ingredient.amount} {ingredient.unit} {ingredient.name}
+
+            <div className="recipe-description">
+              <p className="text-description">{recipe.description}</p>
+            </div>
+
+            <div className="ingredients-container">
+              <h3 className="ingredients-title">Ingredienser</h3>
+              <ul className="ingredients-list-group">
+                {recipe.ingredients.map((ingredient, index) => (
+                  <li key={index} className="ingredients-list-item">
+                    {ingredient.amount} {ingredient.unit} {ingredient.name}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="instructions-container">
+              <h3 className="instructions-title">Instructions:</h3>
+              <ul className="instructions-list-group">
+                {recipe.instructions &&
+                  recipe.instructions.map((instruction, index) => (
+                    <li key={index} className="instructions-list-item">
+                      {instruction}
                     </li>
                   ))}
-                </ul>
-              </div>
+              </ul>
             </div>
-            <div className="card mt-3">
-              <div className="card-body">
-                <ul className="list-group list-group-flush">
-                  <h5 className="card-title">Instructions:</h5>
-                  {recipe.instructions &&
-                    recipe.instructions.map((instruction, index) => (
-                      <li key={index} className="list-group-item">
-                        {instruction}
-                      </li>
-                    ))}
+
+            <PostReview recipeId={recipe._id} />
+
+            <div className="recirc-list-container">
+              <h4 className="reciric-list-title">Mer från Receptkungen</h4>
+              <div className="reciric-list">
+                <ul className="reciric-list-ul">
+                  <li className="reciric-list-item">
+                    <span className="receric-list-item-image">
+                      <img src="" alt="" />
+                    </span>
+                    <div className="receric-list-overlay">
+                      <h4 className="receric-list-overlay-title"></h4>
+                      <p className="receric-list-overlay-categories"></p>
+                    </div>
+                  </li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
-        <button
-          /* className="btn btn-secondary mt-3" */ onClick={() => navigate(-1)}
-        >
-          Back
-        </button>
       </div>
     </div>
   );
