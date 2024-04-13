@@ -17,11 +17,14 @@ interface APIState {
   recipeList: RecipeInterface[];
   allCategories: CategorieInterface[];
   reviewList: reviewInterface[];
-  //currentRecipe: RecipeInterface | null;
+  filteredRecipeList: RecipeInterface[];
+  currentRecipe: RecipeInterface;
+  recipeID: string;
 
+  setRecipeIDState: (recipeID: string) => void;
   fetchRecipeList: () => Promise<void>;
   postRecipe: (newRecipe: RecipeInterface) => Promise<number>;
-  fetchRecipe: (recipeID: string) => Promise<RecipeInterface>;
+  fetchRecipe: (recipeID: string) => Promise<void>;
   deleteRecipe: (recipeId: string) => Promise<void>;
   fetchCategories: () => Promise<void>;
   fetchRecipesByCategoryName: (
@@ -37,7 +40,7 @@ interface APIState {
   ) => Promise<void>;
   fetchReviews: (recipeId: string) => Promise<void>;
   clearReviewState: () => void;
-  //setCurrentRecipe: (recipe: RecipeInterface) => void;
+  setFilteredRecipeList: (filteredList: RecipeInterface[]) => void;
 }
 
 // skapar global state och fyller 'recipes' med samtliga recept i databasen.
@@ -45,29 +48,41 @@ export const useAPIState = create<APIState>((set) => ({
   recipeList: [],
   allCategories: [],
   reviewList: [],
-  
-  //currentRecipe: null,
-  
-  // currentRecipe: {
-  //   _id: "",
-  //   title: "",
-  //   description: "",
-  //   avgRating: 0,
-  //   ratings: [],
-  //   imageUrl: "",
-  //   timeInMins: 0,
-  //   price: 0,
-  //   categories: [],
-  //   instructions: [],
-  //   password: "",
-  //   ingredients: [],
-  // },
+  filteredRecipeList: [],
+  recipeID: "",
+  currentRecipe: {
+    _id: "",
+    title: "",
+    description: "",
+    avgRating: 0,
+    ratings: [],
+    imageUrl: "",
+    timeInMins: 0,
+    price: 0,
+    categories: [],
+    instructions: [],
+    password: "",
+    ingredients: [],
+  },
 
   // setCurrentRecipe: (recipe: RecipeInterface) => {
   //   set({
   //     currentRecipe: recipe,
   //   });
   // },
+
+  setRecipeIDState: (recipeID: string) => {
+    localStorage.setItem('recipeID', recipeID)
+    set({
+      recipeID: recipeID
+    });
+  },
+
+  setFilteredRecipeList: (filteredList: RecipeInterface[]) => {
+    set({
+      filteredRecipeList: filteredList,
+    });
+  },
 
   fetchRecipeList: async () => {
     try {
@@ -102,18 +117,37 @@ export const useAPIState = create<APIState>((set) => ({
     }
   },
 
+  // LÅT KOMENTAR VARA!!! JONAS BYGGER OM LITE!!!
   fetchRecipe: async (recipeID: string) => {
     try {
       const response = await axios.get(`${API_URL}/recipes/${recipeID}`);
       if (response.status === 200) {
         console.log("Success loading recipe");
-        console.log(response.data);
-        return response.data;
+        set({
+          currentRecipe: response.data,
+        });
       }
     } catch (error) {
       console.log("Error while fetching recipe", error);
     }
   },
+
+  // LÅT KOMENTAR VARA!!! JONAS BYGGER OM LITE!!!
+  // fetchRecipe: async (recipeID: string) => {
+  //   try {
+  //     const response = await axios.get(`${API_URL}/recipes/${recipeID}`);
+  //     if (response.status === 200) {
+  //       console.log("Success loading recipe");
+  //       console.log(response.data);
+  //       set({
+  //           currentRecipe: response.data
+  //       });
+  //       return response.data;
+  //     }
+  //   } catch (error) {
+  //     console.log("Error while fetching recipe", error);
+  //   }
+  // },
 
   deleteRecipe: async (recipeId: string) => {
     try {

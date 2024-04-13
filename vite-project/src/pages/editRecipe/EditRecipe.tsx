@@ -1,19 +1,30 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import NavBar from "../../globalComponents/NavBar";
-import Footer from "../../globalComponents/Footer";
 import { useAPIState } from "../../store/APIState";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import ClearButton from "./components/ClearButton";
 
-const EditRecipe = ({}) => {
-  const { fetchRecipe, updateRecipe } = useAPIState();
-  const { state: recipe } = useLocation();
+const EditRecipe = () => {
+  const { currentRecipe, recipeID, fetchRecipe, updateRecipe } = useAPIState();
+  //const { state: recipe } = useLocation();
   const navigate = useNavigate();
   const [submitClicked, setSubmitClicked] = useState(false);
 
+  useEffect(() => {
+    // hämta local storage
+    console.log("ON LOAD USE EFFECT: ",currentRecipe)
+    const savedRecipeID = localStorage.getItem("recipeID");
+    console.log(savedRecipeID)
+    if (savedRecipeID) {
+      fetchRecipe(savedRecipeID)
+    }else{
+      fetchRecipe(recipeID)
+    }
+    console.log("ON LOAD USE EFFECT (after fetch): ",currentRecipe)
+  },[])
+
+
   // State to hold edited recipe data
-  const [editedRecipe, setEditedRecipe] = useState(recipe);
+  const [editedRecipe, setEditedRecipe] = useState(currentRecipe);
   const [newIngredient, setNewIngredient] = useState("");
   const [newInstructions, setNewInstructions] = useState("")
 
