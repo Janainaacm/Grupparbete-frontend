@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import PostReview from "./components/PostReview";
 import DisplayReviews from "./components/DisplayReviews";
 import "bootstrap/dist/css/bootstrap.min.css";
-import RecipeRecommendations from "./components/RecipeRecommendations";
+import CocktailRecommendation from "./components/CocktailRecommendation";
 import RatingStars from "./components/RatingStars";
 import { RecipeInterface } from "../../Types";
 import { useCocktailAPIState } from "../../store/CocktailAPIState";
@@ -33,11 +33,39 @@ const RecipeDetails = () => {
     fetchRecipe(recipeID)
     fetchReviews(recipeID);
   }
+  fetchCocktails()
  },[])
 
-  useEffect(() => {
-    fetchCocktails()
-  }, []);
+ 
+   
+ //LOGIK
+   const checkCurrentRecipeCategory = () => {
+    switch (currentRecipe.categories[0]) {
+      case "Kött":
+        console.log("Här va det kött");
+        break;
+      case "Fisk":
+        console.log("Här va det Fisk");
+        break;
+      case "Vego":
+        console.log("Här va det Vego");
+        break;
+      case "Kyckling":
+        console.log("Här va det Kyckling");
+        break;
+      case "Dessert":
+        console.log("Här va det Dessert");
+        break;
+      case "Övrigt":
+        console.log("Här va det Övrigt");
+        break;
+     
+      default:
+        console.log("Default!!!!!!!!!!!!");
+        break;
+    }
+  };
+
 
   // Called from PostReview after posting a review
   // const handleRefreshReviews = () => {
@@ -46,7 +74,7 @@ const RecipeDetails = () => {
 
   return (
     <div>
-      <RecipeRecommendations recipe={currentRecipe} visibility={recommendation} onClose={() => setRecommendation(false)} />
+      <CocktailRecommendation recipe={currentRecipe} visibility={recommendation} onClose={() => setRecommendation(false)} />
 
       <div className="container mt-5">
         <div className="row">
@@ -71,7 +99,7 @@ const RecipeDetails = () => {
                 <p className="card-text">Time: {currentRecipe.timeInMins} minutes</p>
                 <p className="card-text">Categories: {currentRecipe.categories.join(', ')}</p>
                 {/* <p className="card-text"><RatingStars></RatingStars></p> */}
-                <AddToCartButton recipe={currentRecipe} recommendation={() => setRecommendation(true)} />
+                <AddToCartButton recipe={currentRecipe} recommendation={() => setRecommendation(true)} checkCategory={() => checkCurrentRecipeCategory()} />
                 {/* <button onClick={() => setRecommendation(true)}>Cocktail Recommendationer</button> */}
                 <PostReview recipeId={currentRecipe._id}/>
               </div>

@@ -27,7 +27,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
     //const recommendedCocktails = getAlcoholicCocktails(); 
 
 
-    console.log("cocktailList",cocktailList)
+   // console.log("cocktailList",cocktailList)
 /*     const recommendedCocktails = getAlcoholicCocktails();
  */
 
