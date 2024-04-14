@@ -7,7 +7,6 @@ const CocktailDetailsPage = () => {
 
   return (
     <div>
-      <p>CocktailDetailsPage</p>
       <div>{/* <Header/> */}</div>
 
       <div style={{ textAlign: "center" }}></div>

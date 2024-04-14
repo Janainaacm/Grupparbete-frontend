@@ -5,6 +5,7 @@ import { useCocktailAPIState } from '../store/CocktailAPI';
 
 
 const FilterCocktailComponent = () => {
+  const navigate = useNavigate();
 
     const {
         cocktailList,
@@ -17,8 +18,6 @@ const FilterCocktailComponent = () => {
         clearFilteredCocktailArray,
 
     } = useCocktailAPIState();
-
-    const navigate = useNavigate();
 
     const displayCocktailDetails = async (cocktailID: string, cocktailName: string) => {
         updateCocktailID(cocktailID)

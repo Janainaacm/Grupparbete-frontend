@@ -13,7 +13,6 @@ interface RecipeRecommendationsProps {
     onClose: () => void;
 }
 
-//const URL3 = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
 
 const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommendationsProps) => {
     const navigate = useNavigate();
@@ -25,6 +24,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
         navigate(`/Cocktails/${cocktailName}`);
     };
 
+    //const recommendedCocktails = getAlcoholicCocktails(); 
 
 
     console.log("cocktailList",cocktailList)
