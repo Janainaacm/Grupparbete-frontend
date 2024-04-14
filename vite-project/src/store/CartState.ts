@@ -7,7 +7,7 @@ interface CartState {
   
     AddToCart: (recipe:RecipeInterface) => void
     RemoveFromCart: (recipeIdToRemove: string) => void
-    ClearCart: () => void
+    clearCart: () => void
     RemoveAllFromCart: (recipeIdToRemove: string) => void
   }
 
@@ -39,7 +39,7 @@ interface CartState {
         }))
     },
 
-    ClearCart: () => {
+    clearCart: () => {
         set(() => ({
             cart: []
         }))

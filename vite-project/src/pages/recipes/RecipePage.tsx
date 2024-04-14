@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import DisplayRecipes from "../../globalComponents/DisplayRecipes";
+import DisplayRecipes from "./components/DisplayRecipes";
 import { useAPIState } from "../../store/APIState";
 import "./RecipePage.css";
 import BackToTopButton from "../../globalComponents/BackToTopButton";
