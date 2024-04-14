@@ -28,7 +28,7 @@ const BackToTopButton = () =>{
   window.addEventListener('scroll', toggleVisible); 
   
   return ( 
-    <button onClick={scrollToTop} style={{position: "sticky", bottom: "0px", left:"90%", display: visible ? 'inline' : 'none' }}>
+    <button id="toggle-filter-button" onClick={scrollToTop} style={{position: "sticky", bottom: "1%", left:"80%", display: visible ? 'inline' : 'none' }}>
      Till Topp
     </button>
   ); 
