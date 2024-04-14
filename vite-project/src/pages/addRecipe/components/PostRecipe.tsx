@@ -88,18 +88,21 @@ const PostRecipe = () => {
         value={recipeName}
         onChange={(event) => setRecipeName(event.target.value)}
         placeholder="Recipe name"
+        id="recipenamefield"
       ></input>
       <input
         type="text"
         value={recipeDescription}
         onChange={(event) => setDescription(event.target.value)}
         placeholder="Description"
+        id="descriptionfield"
       />
       <input
         type="number"
         /* value={timeInMins} */
         onChange={(event) => setTimeInMinutes(event.target.valueAsNumber)}
         placeholder="Time in minutes"
+        id="timefield"
       />
       <br />
       <input
@@ -107,6 +110,7 @@ const PostRecipe = () => {
         value={imageURL}
         onChange={(event) => setImageURL(event.target.value)}
         placeholder="Add picture"
+        id="pictureurlfield"
       />
 
       {/* <input
@@ -125,6 +129,7 @@ const PostRecipe = () => {
         cols={30}
         onChange={(event) => setInstructions(event.target.value)}
         placeholder="Instructions"
+        id="instructionsfield"
       ></textarea>
       <br />
 
@@ -150,6 +155,7 @@ const PostRecipe = () => {
         type="number"
         onChange={(event) => setPrice(event.target.valueAsNumber)}
         placeholder="Pris"
+        id="pricefield"
       />
 
       <br />
@@ -163,6 +169,7 @@ const PostRecipe = () => {
             name="name"
             type="text"
             placeholder="Ingredient"
+            id="ingredientnamefield"
           />
           <input
             /* value={singleIngredient.amount} */
@@ -170,6 +177,7 @@ const PostRecipe = () => {
             name="amount"
             type="number"
             placeholder="Amount"
+            id="ingredientamountfield"
           />
           <input
             value={singleIngredient.unit}
@@ -177,6 +185,7 @@ const PostRecipe = () => {
             name="unit"
             type="text"
             placeholder="Unit"
+            id="ingredientunitfield"
           />
 
           {ingredient.length > 1 && (
@@ -190,7 +199,7 @@ const PostRecipe = () => {
             <div>
               {" "}
               <br />
-              <button type="button" onClick={handleIngredientAdd}>
+              <button type="button" onClick={handleIngredientAdd} id="addingredientbutton">
                 Add Ingredient?
               </button>
             </div>
@@ -200,7 +209,7 @@ const PostRecipe = () => {
 
       <br />
       <br />
-      <button onClick={addRecipe}>Add recipe</button>
+      <button onClick={addRecipe} id="addrecipebutton">Add recipe</button>
       <button onClick={() => navigate(-1)}>Tillbaka</button>
     </div>
   );
