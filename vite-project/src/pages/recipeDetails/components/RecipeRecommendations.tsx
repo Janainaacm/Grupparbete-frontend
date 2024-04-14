@@ -36,11 +36,11 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
         { category: "Kött", recommendedCocktail: "Quick F**K" },
         { category: "Fisk", recommendedCocktail: "Fuzzy Asshole" },
         { category: "Sprängmedel", recommendedCocktail: "Pink Panty Pulldowns" },
-        { category: "Kyckling", recommendedCocktail: "A Piece of ass" },
+        { category: "Kyckling", recommendedCocktail: "A Piece of Ass" },
         { category: "Övrigt", recommendedCocktail: "Death in the Afternoon" },
         { category: "Förrätt", recommendedCocktail: "Foxy Lady" },
         { category: "Bra", recommendedCocktail: "Appello" },
-        { category: "Vego", recommendedCocktail: "After sex" },
+        { category: "Vego", recommendedCocktail: "Pornstar Martini" },
     ];
 
     return (
