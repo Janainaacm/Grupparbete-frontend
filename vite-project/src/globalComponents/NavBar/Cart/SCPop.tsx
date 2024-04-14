@@ -98,7 +98,7 @@ function Cart() {
     <>
       <ShoppingCart visibility={cartsVisibility} onClose={() => setCartVisibility(false)}></ShoppingCart>
 
-      <Button variant="link" className="nav-link">
+      <Button variant="link" className="nav-link" id='cartbutton'>
         <div
           ref={cartRef}
           onMouseEnter={handleMouseEnter}
@@ -136,7 +136,7 @@ function Cart() {
                     <div style={{display: "flex", justifyContent: "flex-end"}}>
                     <button style={{marginLeft:"10px", padding: "5px 12px"}} className='remove-button' onClick={() => RemoveFromCart(product._id)}>-</button>
                     <span>({quantity})</span>
-                    <button style={{marginLeft:"10px", padding: "5px 12px"}} className='add-button' onClick={() => AddToCart(product)}>+</button>
+                    <button style={{marginLeft:"10px", padding: "5px 12px"}} className='add-button' onClick={() => AddToCart(product)} id='addrecipetocart'>+</button>
                     </div>
                   </div>
                 );

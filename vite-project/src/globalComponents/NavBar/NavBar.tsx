@@ -39,9 +39,9 @@ function NavBar() {
                 <Navbar.Collapse className='justify-content-end' style={{ marginRight: '15px' }}>
                     <Nav>
                         <NavLink to="/home" className="nav-link">Hem</NavLink>
-                        <NavLink to="/Recept" className="nav-link">Recept</NavLink>
-                        <NavLink to="/Cocktails" className="nav-link">Cocktails</NavLink>
-                        <NavLink to="/Admin" className="nav-link">Admin</NavLink>
+                        <NavLink to="/Recept" className="nav-link" id='receptbutton'>Recept</NavLink>
+                        <NavLink to="/Cocktails" className="nav-link" id='cocktailsbutton'>Cocktails</NavLink>
+                        <NavLink to="/Admin" className="nav-link" id='adminbutton'>Admin</NavLink>
                         <Cart />
                     </Nav>
                 </Navbar.Collapse>
