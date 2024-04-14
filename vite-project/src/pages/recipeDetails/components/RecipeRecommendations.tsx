@@ -13,19 +13,18 @@ interface RecipeRecommendationsProps {
     onClose: () => void;
 }
 
-const URL3 = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
 
 const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommendationsProps) => {
     const navigate = useNavigate();
     const { AddToCocktailCart } = useCocktailCartStateInterface();
-    const { updateCocktailID } = useCocktailAPIState()
+    const { updateCocktailID, cocktailList } = useCocktailAPIState()
 
     const displayCocktailDetails = async (cocktailID: string, cocktailName: string) => {
         updateCocktailID(cocktailID)
         navigate(`/Cocktails/${cocktailName}`);
-      };
+    };
 
-    const recommendedCocktails = getAlcoholicCocktails(); 
+    //const recommendedCocktails = getAlcoholicCocktails(); 
 
     
     const categories = [
@@ -49,7 +48,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
             {categories.map(({ category, recommendedCocktail }) => (
                 recipe.categories[0] === category && (
                     <div key={category} className='recommended-cocktail'>
-                        {recommendedCocktails.map((recCock) => (
+                        {cocktailList.map((recCock) => (
                             recCock.strDrink === recommendedCocktail && (
                                 <Card key={recCock.idDrink} style={{ width: '18rem' }}>
                                     <Card.Img onClick={() => displayCocktailDetails(recCock.idDrink, recCock.strDrink)} variant="top" src={recCock.strDrinkThumb} alt={recCock.strDrink} />

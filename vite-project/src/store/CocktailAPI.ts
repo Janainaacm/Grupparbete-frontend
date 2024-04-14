@@ -85,7 +85,7 @@ export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
       const response = await axios.get(`${COCKTAIL_API_URL}/search.php?f=a`);
 
       if (response.status === 200) {
-        console.log("fetchCockails SUCCSESS");
+        //console.log("fetchCockails SUCCSESS");
         //console.log(response.data.drinks);
 
         set({
@@ -104,7 +104,7 @@ export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
       );
 
       if (response.status === 200) {
-        console.log("fetchCocktailByID SUCCSESS");
+        //console.log("fetchCocktailByID SUCCSESS");
 
         set({
           cocktailToRender: response.data.drinks[0],

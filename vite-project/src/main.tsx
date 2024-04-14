@@ -12,6 +12,7 @@ import Admin from "./pages/admin/Admin.tsx";
 import EditRecipe from "./pages/editRecipe/EditRecipe.tsx";
 import NavBar from "./globalComponents/NavBar.tsx";
 import Footer from "./globalComponents/Footer.tsx";
+import ScrollToTop from "./globalComponents/ScrollToTop.tsx";
 
 
 
@@ -19,7 +20,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
     <NavBar />
-    
+    <ScrollToTop/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Home" element={<Home />} />

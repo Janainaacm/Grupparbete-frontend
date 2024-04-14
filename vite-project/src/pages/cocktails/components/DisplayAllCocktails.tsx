@@ -4,7 +4,7 @@ import { useCocktailAPIState } from "../../../store/CocktailAPI";
 
 const AllCocktails = () => {
   const navigate = useNavigate();
-  const { cocktailList, updateCocktailID , fetchCocktails,  } =
+  const { cocktailList, updateCocktailID , fetchCocktails } =
     useCocktailAPIState();
 
   useEffect(() => {

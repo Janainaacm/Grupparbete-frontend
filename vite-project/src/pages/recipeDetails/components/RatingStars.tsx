@@ -1,27 +1,20 @@
-import React, { startTransition } from 'react'
-import { FaStar } from "react-icons/fa";
-import { useAPIState } from "../../../store/APIState";
-import RecipeDetails from "../RecipeDetails";
-import { useLocation, useNavigate } from "react-router-dom";
+// import React from 'react'
+// import { FaStar } from "react-icons/fa";
+// import { useAPIState } from "../../../store/APIState";
+// import RecipeDetails from "../RecipeDetails";
+// import { useLocation, useNavigate } from "react-router-dom";
 
-const RatingStars = () => {
-  const { state: recipe } = useLocation();
-  const roundedRating = Math.round(recipe.avgRating);
 
-  return (
-    <div>
-      <div style={{ display: 'inline-block' }}>
-        {[...Array(5)].map((_, index) => (
-          <FaStar
-            key={index}
-            color={index < roundedRating ? 'yellow' : 'gry'}
-            className="star-icon"
-          />
-        ))}
-      </div>
-      <span style={{ marginLeft: '5px' }}>Rating: {roundedRating}</span>
-    </div>
-  );
-};
+// const RatingStars = () => {
+//    const { currentRecipe } = useAPIState()
+//     const roundedRating = Math.round(currentRecipe.avgRating);
+//     const stars = Array.from({ length: roundedRating }, (_, index) => (
+//         <FaStar key={index} className="star-icon" />
+//     ));
 
-export default RatingStars;
+//   return (
+//     <div>Rating:{stars}</div>
+//   )
+// }
+
+// export default RatingStars
