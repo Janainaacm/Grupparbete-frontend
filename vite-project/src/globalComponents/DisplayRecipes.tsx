@@ -5,7 +5,7 @@ import { RecipeInterface } from "../Types";
 import DeleteButton from "./DeleteButton";
 import EditRecipeButton from "./EditRecipeButton";
 import RatingStars from "../pages/recipeDetails/RatingStars";
-import FilterFunction from "./filterFunction/FilterFunction";
+import FilterFunction from "./FilterFunction/FilterFunction";
 import "../pages/recipes/DisplayRecipes.css";
 import { LiaCartPlusSolid } from "react-icons/lia";
 import { Button } from "react-bootstrap";
