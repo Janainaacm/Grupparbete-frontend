@@ -8,11 +8,16 @@ interface CocktailAPIState {
   cocktailList: CocktailInterface[];
   cocktailID: string;
   cocktailToRender: CocktailInterface;
+  cocktailCategories: CocktailInterface[];
+  filteredCocktailArray: CocktailInterface[];
 
   updateCocktailID: (cocktailID: string) => void;
   clearCocktailID: () => void;
   fetchCocktails: () => Promise<void>;
   fetchCocktailByID: (cocktailID: string) => Promise<void>;
+  fetchCocktailCategories: () => Promise<void>;
+  filterCocktailByCategory: (category: string) => Promise<void>;
+  clearFilteredCocktailArray: () => void;
 }
 
 
@@ -20,6 +25,8 @@ interface CocktailAPIState {
 export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
   cocktailList: [],
   cocktailID: "",
+  cocktailCategories: [],
+  filteredCocktailArray: [],
 
   cocktailToRender: {
     idDrink: "",
@@ -70,10 +77,6 @@ export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
     });
   },
 
-  // fetchCocktailByID: () => {
-    
-  // },
-
   clearCocktailID: () => {
     set({
       cocktailID: ""
@@ -82,19 +85,76 @@ export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
 
   fetchCocktails: async () => {
     try {
-      const response = await axios.get(`${COCKTAIL_API_URL}/search.php?f=a`);
+      const response = await axios.get(`${COCKTAIL_API_URL}/filter.php?a=Alcoholic`);
+      const response2 = await axios.get(`${COCKTAIL_API_URL}/search.php?f=a`);
+      const response7 = await axios.get(`${COCKTAIL_API_URL}/search.php?f=f`);
+      const response16 = await axios.get(`${COCKTAIL_API_URL}/search.php?f=o`);
+      const response17 = await axios.get(`${COCKTAIL_API_URL}/search.php?f=p`);
+      const response18 = await axios.get(`${COCKTAIL_API_URL}/search.php?f=q`);
+
 
       if (response.status === 200) {
-        //console.log("fetchCockails SUCCSESS");
-        //console.log(response.data.drinks);
+        console.log("fetchCockails SUCCSESS");
+
+        let responseAll = []
+        responseAll.push(
+          response.data.drinks,
+          response2.data.drinks,
+          response7.data.drinks,
+          response16.data.drinks,
+          response17.data.drinks,
+          response18.data.drinks,
+        );
+
+        const flattenedResponse = responseAll.flatMap((num) => num);
 
         set({
-          cocktailList: response.data.drinks,
+          cocktailList: flattenedResponse,
         });
       }
     } catch (error) {
       console.log("error", error);
     }
+  },
+
+
+  fetchCocktailCategories: async () => {
+    try {
+      const response = await axios.get(`${COCKTAIL_API_URL}/list.php?c=list`);
+
+      if (response.status === 200) {
+
+        set({
+          cocktailCategories: response.data.drinks,
+        });
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+
+  },
+
+  filterCocktailByCategory: async (category: string) => {
+    try {
+      const response = await axios.get(`${COCKTAIL_API_URL}${category}`);
+
+      if (response.status === 200) {
+
+        set({
+          cocktailList: response.data.drinks,
+        });
+      }
+
+    } catch (error) {
+      console.log("error", error);
+    }
+
+  },
+
+  clearFilteredCocktailArray: () => {
+    set({
+      filteredCocktailArray: [],
+    });
   },
 
   fetchCocktailByID: async (cocktailID: string) => {
@@ -114,4 +174,5 @@ export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
       console.log("error", error);
     }
   },
+
 }));

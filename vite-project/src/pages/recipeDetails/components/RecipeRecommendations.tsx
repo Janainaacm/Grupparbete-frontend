@@ -1,11 +1,11 @@
 import React from 'react';
-import { Button, Card} from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import { RecipeInterface } from '../../../Types';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useCocktailCartStateInterface } from '../../../store/CocktailCart';
-import getAlcoholicCocktails from './getAlcoholicCocktails';
-import { useCocktailAPIState } from '../../../store/CocktailAPI';
+/* import getAlcoholicCocktails from './getAlcoholicCocktails';
+ */import { useCocktailAPIState } from '../../../store/CocktailAPI';
 
 interface RecipeRecommendationsProps {
     recipe: RecipeInterface;
@@ -26,25 +26,31 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
 
     //const recommendedCocktails = getAlcoholicCocktails(); 
 
-    
+
+    console.log("cocktailList",cocktailList)
+/*     const recommendedCocktails = getAlcoholicCocktails();
+ */
+
     const categories = [
-        { category: "Dessert", recommendedCocktail: "A Piece of Ass" },
-        { category: "Kött", recommendedCocktail: "Pink Panty Pulldowns" },
-        { category: "Fisk", recommendedCocktail: "110 in the shade" },
-        { category: "Sprängmedel", recommendedCocktail: "Absolut Sex" },
-        { category: "Kyckling", recommendedCocktail: "Quick F**K" },
-        { category: "Övrigt", recommendedCocktail: "Orgasm" },
-        { category: "Förrätt", recommendedCocktail: "Affinity" },
-        { category: "Bra", recommendedCocktail: "Quaker's Cocktail" },
-        { category: "Vego", recommendedCocktail: "After sex" },
+        { category: "Dessert", recommendedCocktail: "Orgasm" },
+        { category: "Kött", recommendedCocktail: "Quick F**K" },
+        { category: "Fisk", recommendedCocktail: "Fuzzy Asshole" },
+        { category: "Sprängmedel", recommendedCocktail: "Pink Panty Pulldowns" },
+        { category: "Kyckling", recommendedCocktail: "A Piece of Ass" },
+        { category: "Övrigt", recommendedCocktail: "Death in the Afternoon" },
+        { category: "Förrätt", recommendedCocktail: "Foxy Lady" },
+        { category: "Bra", recommendedCocktail: "Appello" },
+        { category: "Vego", recommendedCocktail: "Pornstar Martini" },
     ];
 
     return (
-        
-        <div id='modal' style={{ display: visibility ? "flex" : "none",
-        justifyContent: "center",
-        alignItems: "center",
-        position: "fixed",}}>
+
+        <div id='modal' style={{
+            display: visibility ? "flex" : "none",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+        }}>
             {categories.map(({ category, recommendedCocktail }) => (
                 recipe.categories[0] === category && (
                     <div key={category} className='recommended-cocktail'>
@@ -55,9 +61,9 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
                                     <Card.Body>
                                         <Card.Title>{recCock.strDrink}</Card.Title>
                                         {/* <Button style={{marginBottom:"10px"}} variant="primary" onClick={() => seeCocktailDetails(recCock.idDrink)}>Visa detaljer</Button> */}
-                                        <Button style={{marginBottom:"10px"}} variant="primary" onClick={() => navigate("/cocktails")}>Visa fler cocktails</Button>
+                                        <Button style={{ marginBottom: "10px" }} variant="primary" onClick={() => navigate("/cocktails")}>Visa fler cocktails</Button>
                                         <Button variant="success" onClick={() => AddToCocktailCart(recCock)}>Lägg till varukorg</Button>
-                                        <Button style={{marginLeft: "38px"}} variant="danger" onClick={onClose}>Stäng</Button>
+                                        <Button style={{ marginLeft: "38px" }} variant="danger" onClick={onClose}>Stäng</Button>
                                     </Card.Body>
                                 </Card>
                             )

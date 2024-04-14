@@ -71,8 +71,8 @@ const RecipeDetails = () => {
                 <p className="card-text">Time: {currentRecipe.timeInMins} minutes</p>
                 <p className="card-text">Categories: {currentRecipe.categories.join(', ')}</p>
                 {/* <p className="card-text"><RatingStars></RatingStars></p> */}
-                <AddToCartButton recipe={currentRecipe} /* recommendation={() => setRecommendation(true)} *//>
-                <button onClick={() => setRecommendation(true)}>Cocktail Recommendationer</button>
+                <AddToCartButton recipe={currentRecipe} recommendation={() => setRecommendation(true)} />
+                {/* <button onClick={() => setRecommendation(true)}>Cocktail Recommendationer</button> */}
                 <PostReview recipeId={currentRecipe._id}/>
               </div>
               </div>
