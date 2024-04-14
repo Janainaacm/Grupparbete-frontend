@@ -3,9 +3,9 @@ import { Button, Card } from 'react-bootstrap';
 import { RecipeInterface } from '../../../Types';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useCocktailCartStateInterface } from '../../../store/CocktailCart';
+import { useCocktailCartStateInterface } from '../../../store/CocktailCartState';
 /* import getAlcoholicCocktails from './getAlcoholicCocktails';
- */import { useCocktailAPIState } from '../../../store/CocktailAPI';
+ */import { useCocktailAPIState } from '../../../store/CocktailAPIState';
 
 interface RecipeRecommendationsProps {
     recipe: RecipeInterface;

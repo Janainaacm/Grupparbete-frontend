@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCocktailAPIState } from "../../../store/CocktailAPI";
+import { useCocktailAPIState } from "../../../store/CocktailAPIState";
 
 const AllCocktails = () => {
   const navigate = useNavigate();

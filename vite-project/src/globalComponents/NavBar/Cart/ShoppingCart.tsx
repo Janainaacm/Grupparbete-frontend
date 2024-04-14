@@ -1,15 +1,15 @@
 import { CgCloseR } from "react-icons/cg";
 import "./ShoppingCart.css"
-import { useCartState } from '../../store/CartState'
-import { CocktailInterface } from '../../pages/cocktails/components/DisplayAllCocktails'
-import { RecipeInterface } from '../../Types'
-import { useCocktailCartStateInterface } from '../../store/CocktailCart'
+import { useCartState } from '../../../store/CartState'
+import { CocktailInterface } from '../../../pages/cocktails/components/DisplayAllCocktails'
+import { RecipeInterface } from '../../../Types'
+import { useCocktailCartStateInterface } from '../../../store/CocktailCartState'
 import BuyButton from './BuyButton'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, CardBody } from "react-bootstrap"
-import { useCocktailAPIState } from "../../store/CocktailAPI";
+import { useCocktailAPIState } from "../../../store/CocktailAPIState";
 import { useNavigate } from "react-router-dom";
-import { useAPIState } from "../../store/APIState";
+import { useAPIState } from "../../../store/APIState";
 import { useEffect } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import { CiCircleMinus } from "react-icons/ci";
@@ -23,7 +23,6 @@ import { MdDeleteForever } from "react-icons/md";
 interface ShoppingCartProps {
     visibility: boolean
     onClose: any
-
 };
 
 const ShoppingCart = ({
@@ -32,7 +31,7 @@ const ShoppingCart = ({
 
 }: ShoppingCartProps) => {
 
-    const { cart, ClearCart, RemoveFromCart, RemoveAllFromCart, AddToCart } = useCartState();
+    const { cart, clearCart, RemoveFromCart, RemoveAllFromCart, AddToCart } = useCartState();
     const { setRecipeIDState } = useAPIState();
 
 
@@ -51,7 +50,7 @@ const ShoppingCart = ({
 
     const clearShoppingCart = () => {
 
-        ClearCart();
+        clearCart();
         ClearCocktailCart();
     };
 
@@ -126,11 +125,18 @@ const ShoppingCart = ({
                                             <br />
                                             
                                             <div className="cart-amount">
-                                            <span className="minusbutton" onClick={() => RemoveFromCart(product._id)}><CiCircleMinus/></span><span className="quantity">{quantity}</span><span className="plusbutton" onClick={() => AddToCart(product)}><CiCirclePlus/></span>
+                                            <span className="minusbutton" onClick={() => RemoveFromCart(product._id)}><CiCircleMinus/></span><span className="quantity">{quantity}</span><span className="plusbutton" id="increasequantitybutton" onClick={() => AddToCart(product)}><CiCirclePlus/></span>
                                             </div>
 
                                             <div className="price">{Number.isNaN(product.price + 0) ? product.price = 0 : product.price * quantity + " Sek"}</div>
                                             <span onClick={() => RemoveAllFromCart(product._id)} className="delete-button"><MdDeleteForever></MdDeleteForever></span>
+                                            <p>Pris: {Number.isNaN(product.price + 0) ? product.price = 0 : product.price * quantity + " Sek"}</p>
+                                            <p>Antal: {quantity}</p>
+
+                                            {/* <button className='remove-button' onClick={() => RemoveFromCart(product._id)}>-</button>
+                                            <button className='add-button' onClick={() => AddToCart(product)} id="increasequantitybutton">+</button>
+                                            <button className="remove-all-button" onClick={() => RemoveAllFromCart(product._id)}>Ta bort</button> */}
+
 
                                         </Card.Body>
                                     </Card>

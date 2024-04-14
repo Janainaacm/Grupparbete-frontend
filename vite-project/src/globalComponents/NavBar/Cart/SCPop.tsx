@@ -2,10 +2,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useRef, useEffect } from 'react';
 import { Overlay, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import cartLogo from "../../assets/images/shopping-cart.png";
+import cartLogo from "../../../assets/images/shopping-cart.png";
 import ShoppingCart from './ShoppingCart';
-import { useCartState } from '../../store/CartState';
-import { useCocktailCartStateInterface } from '../../store/CocktailCart';
+import { useCartState } from '../../../store/CartState';
+import { useCocktailCartStateInterface } from '../../../store/CocktailCartState';
 
 function Cart() {
   const [showPopover, setShowPopover] = useState(false);
@@ -98,7 +98,7 @@ function Cart() {
     <>
       <ShoppingCart visibility={cartsVisibility} onClose={() => setCartVisibility(false)}></ShoppingCart>
 
-      <Button variant="link" className="nav-link">
+      <Button variant="link" className="nav-link" id='cartbutton'>
         <div
           ref={cartRef}
           onMouseEnter={handleMouseEnter}
@@ -136,7 +136,7 @@ function Cart() {
                     <div style={{display: "flex", justifyContent: "flex-end"}}>
                     <button style={{marginLeft:"10px", padding: "5px 12px"}} className='remove-button' onClick={() => RemoveFromCart(product._id)}>-</button>
                     <span>({quantity})</span>
-                    <button style={{marginLeft:"10px", padding: "5px 12px"}} className='add-button' onClick={() => AddToCart(product)}>+</button>
+                    <button style={{marginLeft:"10px", padding: "5px 12px"}} className='add-button' onClick={() => AddToCart(product)} id='addrecipetocart'>+</button>
                     </div>
                   </div>
                 );
