@@ -36,7 +36,7 @@ const FilterCocktailComponent = () => {
     return (
         <div >
             FilterCocktailComponent
-            <div className='category-bubbles2'>
+            <div  >
                 <button className='button-1' onClick={() => filterCocktailByCategory("/filter.php?a=alcoholic")} >Alcoholic</button>
                 <button className='button-1' onClick={() => filterCocktailByCategory("/filter.php?a=non_alcoholic")} >Non Alcoholic</button>
                 <button className='button-1' onClick={() => filterCocktailByCategory("/filter.php?a=optional_alcohol")} >Optional alcohol</button>
@@ -57,6 +57,7 @@ const FilterCocktailComponent = () => {
                     <button key={index} className='button-1' onClick={() => filterCocktailByCategory("/search.php?f=" + letter)}>{letter}</button>
 
                 ))}
+                <br />
                 <br />
 
                 <button className='button-1' onClick={() => fetchCocktails()} >Visa alla</button>
