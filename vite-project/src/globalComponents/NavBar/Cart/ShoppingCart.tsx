@@ -130,8 +130,7 @@ const ShoppingCart = ({
 
                                             <div className="price">{Number.isNaN(product.price + 0) ? product.price = 0 : product.price * quantity + " Sek"}</div>
                                             <span onClick={() => RemoveAllFromCart(product._id)} className="delete-button"><MdDeleteForever></MdDeleteForever></span>
-                                            <p>Pris: {Number.isNaN(product.price + 0) ? product.price = 0 : product.price * quantity + " Sek"}</p>
-                                            <p>Antal: {quantity}</p>
+                                            
 
                                             {/* <button className='remove-button' onClick={() => RemoveFromCart(product._id)}>-</button>
                                             <button className='add-button' onClick={() => AddToCart(product)} id="increasequantitybutton">+</button>
