@@ -1,121 +1,66 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
-import { CocktailInterface } from '../pages/cocktails/components/DisplayAllCocktails';
 import { useCocktailAPIState } from '../store/CocktailAPI';
-
-
-
-const URL3 = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
-
 
 
 
 const FilterCocktailComponent = () => {
 
-    const { cocktailList, updateCocktailID , fetchCocktails,  } =
-    useCocktailAPIState();
+    const {
+        cocktailList,
+        updateCocktailID,
+        fetchCocktailCategories,
+        fetchCocktails,
+        cocktailCategories,
+        filterCocktailByCategory,
+        filteredCocktailArray,
+        clearFilteredCocktailArray,
+
+    } = useCocktailAPIState();
+
     const navigate = useNavigate();
 
     const displayCocktailDetails = async (cocktailID: string, cocktailName: string) => {
         updateCocktailID(cocktailID)
         navigate(`/Cocktails/${cocktailName}`);
-      };
-
-    /* const seeCocktailDetails = async (idDrink: string) => {
-
-        const response = await axios.get(`${URL3 + idDrink}`);
-
-        if (response.status === 200) {
-
-            const cocktail = response.data.drinks;
-            const selectedCocktail = cocktail[0];
-            const encodedCocktail = encodeURIComponent(selectedCocktail.strDrink);
-
-            navigate(`/Cocktails/${encodedCocktail}`, {
-                state: { cocktail: selectedCocktail },
-            });
-
-            console.log("selectedCocktail.strDrink", selectedCocktail.strDrink);
-
-        };
-
-    }; */
-
-    const [filteredCocktailArray, setFilteredCocktailArray] = useState<CocktailInterface[]>([]);
-
-    const URL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?";
-    const URL2 = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=";
-
-    const filterByAlcohol = async (alcohol: string) => {
-
-        const response = await axios.get(`${URL + alcohol}`);
-
-        if (response.status === 200) {
-            setFilteredCocktailArray(response.data.drinks);
-            console.log("response.data.drinks", response.data.drinks);
-        };
-
-
     };
 
-    const filterByCategory = async (category: string) => {
 
-        const response = await axios.get(`${URL2 + category}`);
+    useEffect(() => {
+        fetchCocktailCategories();
+        fetchCocktails();
+    }, []);
 
-        if (response.status === 200) {
-            setFilteredCocktailArray(response.data.drinks);
-        }
-
-    };
-
-    function getAllCocktailCategories() {
-
-        const [categories, setCategories] = useState<CocktailInterface[]>([]);
-
-        async function getCategories() {
-            try {
-                const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list`);
-
-                if (response.status === 200) {
-                    setCategories(response.data.drinks);
-                    console.log("allCategories", response.data.drinks);
-                }
-            } catch (error) {
-                console.error('Error', error)
-            }
-        }
-
-        useEffect(() => {
-            getCategories();
-        }, []);
-
-        return categories
-
-    };
-
-    const allCategories = getAllCocktailCategories();
+    const letterButtons = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "V", "W", "Y", "Z" ];
 
 
     return (
         <div >
             FilterCocktailComponent
             <div className='category-bubbles2'>
-                <button className='button-1' onClick={() => filterByAlcohol("a=alcoholic")} >Alcoholic</button>
-                <button className='button-1' onClick={() => filterByAlcohol("a=non_alcoholic")} >Non Alcoholic</button>
-                <button className='button-1' onClick={() => filterByAlcohol("a=optional_alcohol")} >Optional alcohol</button>
+                <button className='button-1' onClick={() => filterCocktailByCategory("/filter.php?a=alcoholic")} >Alcoholic</button>
+                <button className='button-1' onClick={() => filterCocktailByCategory("/filter.php?a=non_alcoholic")} >Non Alcoholic</button>
+                <button className='button-1' onClick={() => filterCocktailByCategory("/filter.php?a=optional_alcohol")} >Optional alcohol</button>
                 <br />
                 <br />
 
-                {allCategories.map((category, index) => (
+                {cocktailCategories.map((category, index) => (
 
-                    <button key={index} className='button-1' onClick={() => filterByCategory(category.strCategory)} >{category.strCategory}</button>
+                    <button key={index} className='button-1' onClick={() => filterCocktailByCategory("/filter.php?c=" + category.strCategory)} >{category.strCategory}</button>
 
                 ))}
 
-                    <br />
-                    <br />
-                <button className='button-1' onClick={() => setFilteredCocktailArray([])} >Återställ</button>
+                <br />
+                <br />
+
+                {letterButtons.map((letter, index) => (
+
+                    <button key={index} className='button-1' onClick={() => filterCocktailByCategory("/search.php?f=" + letter)}>{letter}</button>
+
+                ))}
+                <br />
+
+                <button className='button-1' onClick={() => fetchCocktails()} >Återställ</button>
             </div>
 
             <br />
@@ -123,7 +68,7 @@ const FilterCocktailComponent = () => {
 
             <div style={{ display: "flex", flexWrap: "wrap" }}>
 
-                {filteredCocktailArray.map((cocktail, index) => {
+                {cocktailList.map((cocktail, index) => {
 
 
 

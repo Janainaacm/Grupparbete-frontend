@@ -36,10 +36,10 @@ const CocktailsPage = () => {
         <FilterCocktailComponent></FilterCocktailComponent>
         <br />
         <br />
-        <h2>Alla cocktails</h2>
+        {/* <h2>Alla cocktails</h2> */}
         <br />
         <br />
-        <DisplayCocktails />
+        {/* <DisplayCocktails /> */}
       </div>
       {/* <div style={{bottom: "0", justifyContent: "center", width: "100%", padding: "10px", height: "50px" }}>
       </div> */}
