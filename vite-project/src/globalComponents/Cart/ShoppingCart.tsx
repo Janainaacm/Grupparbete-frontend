@@ -29,7 +29,7 @@ const ShoppingCart = ({
 }: ShoppingCartProps) => {
 
     const { cart, ClearCart, RemoveFromCart, RemoveAllFromCart, AddToCart } = useCartState();
-    const { fetchRecipe } = useAPIState();
+    const { setRecipeIDState } = useAPIState();
 
 
     const { coctailCart, RemoveOneFromCocktailCart, AddToCocktailCart, ClearCocktailCart, RemoveAllFromCocktailCart } = useCocktailCartStateInterface();
@@ -57,24 +57,23 @@ const ShoppingCart = ({
         navigate(`/Cocktails`);
 
 
-        function redirectCocktailDetails () {
+        function redirectCocktailDetails() {
             navigate(`/Cocktails/${cocktailName}`);
         }
         // setTimeout used to navigate to selected cocktail.
         setTimeout(redirectCocktailDetails, 1);
     };
 
-    const seeRecipeDetails = async (recipeId: string) => {
+    const seeRecipeDetails = async (recipeId: string, recipeName: string) => {
         onClose();
-        try {
-            const selectedRecipe = await fetchRecipe(recipeId);
-            const encodedTitle = encodeURIComponent(selectedRecipe.title);
-            navigate(`/Recept/${encodedTitle}`, {
-                state: selectedRecipe,
-            });
-        } catch (error) {
-            console.error('Error fetching recipe:', error);
-        }
+        setRecipeIDState(recipeId)
+        navigate(`/Recept`)
+
+        function redirectRecipeDetails () {
+           navigate(`/Recept/${recipeName}`); 
+        };
+
+        setTimeout(redirectRecipeDetails, 1);
     };
 
 
@@ -113,7 +112,7 @@ const ShoppingCart = ({
                                     <Card className='cart-product' key={index} >
                                         <Card.Body className="product-body">
                                             <Card.Title>{product.title.length > 10 ? product.title.substring(0, 10) + "..." : product.title}</Card.Title>
-                                            <Card.Img style={{cursor: "pointer"}} onClick={() => (seeRecipeDetails(product._id ?? ''))} className='product-image' src={product.imageUrl} alt={product.title} />
+                                            <Card.Img style={{ cursor: "pointer" }} onClick={() => (seeRecipeDetails(product._id, product.title))} className='product-image' src={product.imageUrl} alt={product.title} />
 
 
                                             {/* <h5>Ingredienter</h5>
@@ -156,14 +155,14 @@ const ShoppingCart = ({
                                             <Card.Title>{cocktail.strDrink.length > 10 ? cocktail.strDrink.substring(0, 10) + "..." : cocktail.strDrink}</Card.Title>
                                             {/* <Card.Title>{cocktail.strDrink}</Card.Title> */}
 
-                                            
-                                            <img style={{cursor:"pointer"}} onClick={() => displayCocktailDetails(cocktail.idDrink, cocktail.strDrink)} className='product-image' src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
+
+                                            <img style={{ cursor: "pointer" }} onClick={() => displayCocktailDetails(cocktail.idDrink, cocktail.strDrink)} className='product-image' src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
 
                                             <p>pris:</p>
 
                                             <p>Antal: {cocktailQuantity}</p>
                                             <div>
-                                                
+
                                                 <button className='remove-button' onClick={() => RemoveOneFromCocktailCart(cocktail.idDrink)}>-</button>
 
                                                 <button className='add-button' onClick={() => AddToCocktailCart(cocktail)}>+</button>

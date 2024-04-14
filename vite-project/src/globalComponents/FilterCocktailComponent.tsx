@@ -59,7 +59,7 @@ const FilterCocktailComponent = () => {
                 ))}
                 <br />
 
-                <button className='button-1' onClick={() => fetchCocktails()} >Återställ</button>
+                <button className='button-1' onClick={() => fetchCocktails()} >Visa alla</button>
             </div>
 
             <br />

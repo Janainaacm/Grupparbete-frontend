@@ -4,6 +4,7 @@ import Footer from "../../globalComponents/Footer";
 import FilterCocktailComponent from "../../globalComponents/FilterCocktailComponent";
 import { useEffect } from "react";
 import { useAPIState } from "../../store/APIState";
+import BackToTopButton from "../../globalComponents/BackToTopButton";
 
 const CocktailsPage = () => {
   //const { recipeList,fetchRecipeList, fetchCategories } = useAPIState();
@@ -41,6 +42,7 @@ const CocktailsPage = () => {
           height: "50px",
         }}
       ></div>
+      <BackToTopButton></BackToTopButton>
     </div>
   );
 };
