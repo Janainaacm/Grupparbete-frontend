@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useCartState } from "../../store/CartState";
+import { useCartState } from "../../../store/CartState";
 
 const AddToCartButton = ({ recipe, recommendation }) => {
   const addToCart = useCartState(state => state.AddToCart);

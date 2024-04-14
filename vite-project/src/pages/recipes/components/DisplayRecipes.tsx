@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router";
-import { useAPIState } from "../store/APIState";
+import { useAPIState } from "../../../store/APIState";
 import { useEffect, useState } from "react";
-import { RecipeInterface } from "../Types";
-import DeleteButton from "./DeleteButton";
-import EditRecipeButton from "./EditRecipeButton";
+import { RecipeInterface } from "../../../Types";
+import DeleteButton from "./DeleteRecipeButton";
+import EditRecipeButton from "../../../globalComponents/EditRecipeButton";
 import RatingStars from "../pages/recipeDetails/RatingStars";
-import FilterFunction from "./filterFunction/FilterFunction";
-import "../pages/recipes/DisplayRecipes.css";
+import FilterFunction from "./FilterFunction";
+import "../components/DisplayRecipes.css"
 import { LiaCartPlusSolid } from "react-icons/lia";
 import { Button } from "react-bootstrap";
 
@@ -32,9 +32,7 @@ const DisplayRecipes = (props: DisplayRecipesProps) => {
     if (recipeList.length == 0) {
       fetchRecipeList();
     }
-    if (recipeList.length == 0) {
-      fetchCategories();
-    }
+    fetchCategories();
   }, []);
 
   useEffect(() => {
@@ -90,7 +88,6 @@ const DisplayRecipes = (props: DisplayRecipesProps) => {
               <p className="recipe-description">{recipe.description}</p>
 
               {props.showEditButton && <Button onClick={() => handleEditClick(recipe._id, recipe.title)}>Edit Recipe</Button>}
-              {/* {props.showEditButton && <EditRecipeButton recipeID={recipe._id} recipeName={recipe.title}/>} */}
               {props.showDeleteButton && <DeleteButton recipeId={recipe._id}/>}
               <button className="recipe-card-buy-btn">
                 <LiaCartPlusSolid />
