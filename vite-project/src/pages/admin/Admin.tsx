@@ -18,8 +18,10 @@ const Admin=(): JSX.Element=>{
     return(
         <>
       <div>
-        <button onClick={handleClick}>Add recipe</button>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50px' }}>
+        <button onClick={handleClick} style={{ margin: '5px' }}>Add recipe</button>
         <ClearButton/>
+        </div>
         <DisplayRecipes showDeleteButton={true} showEditButton={true} />
       </div>
     </>

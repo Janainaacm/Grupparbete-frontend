@@ -83,7 +83,7 @@ function getAlcoholicCocktails() {
                 setCocktails3(response3.data.drinks);
                 setCocktails4(response4.data.drinks);
                 /*setCocktails5(response5.data.drinks); */
-                console.log(response.data);
+                //console.log(response.data);
             }
         } catch (error) {
             console.error('Error', error)

@@ -60,12 +60,12 @@ const EditRecipe = () => {
 
   return (
     <div>
-      <div>
+      {/* <div>
         <p>currentRecipe: </p>
         {currentRecipe.title}
         <p>recipeToEdit: </p>
         {recipeToEdit.title}
-      </div>
+      </div> */}
       <form onSubmit={handleSubmit}>
         <div>
           <div>
@@ -171,7 +171,7 @@ const EditRecipe = () => {
             </div>
             <p>---------------------------------------------------</p>
             <div>
-              <h3>Ingredients:</h3>
+              <h3>Ingredients: (Amount, unit, name)</h3>
               <ul>
                 {recipeToEdit.ingredients.map((ingredient, index) => (
                   <li key={index}>
