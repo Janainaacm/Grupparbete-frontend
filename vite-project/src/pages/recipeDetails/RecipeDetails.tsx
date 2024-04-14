@@ -14,6 +14,10 @@ import RecipeRecommendations from "./components/RecipeRecommendations";
 import RatingStars from "./components/RatingStars";
 import { RecipeInterface } from "../../Types";
 import { IoIosTimer } from "react-icons/io";
+import Button from "react-bootstrap/esm/Button";
+import Collapse from "react-bootstrap/esm/Collapse";
+import { FaAngleDown } from "react-icons/fa6";
+
 
 const RecipeDetails = () => {
   const [recommendation, setRecommendation] = useState(false);
@@ -22,6 +26,11 @@ const RecipeDetails = () => {
   const recipe = location.state as RecipeInterface;
   const navigate = useNavigate();
   const rating = (Math.round(recipe.avgRating * 10) / 10).toFixed(1);
+  const [open, setOpen] = useState(false);
+
+  const handleDropDownFocus = () => {
+    setOpen(!open);
+  };
 
   // useEffect(() => {
   //   const fetchRecipeData = async () => {
@@ -55,89 +64,127 @@ const RecipeDetails = () => {
             <div className="title-side-header-content">
               <div className="recipes-btn-header-div">
                 <div className="recipes-btn-header-container">
-                <a className="recipes-btn-header" href="/Recept">
-                  <span>RECEPT</span>
-                </a>
+                  <a className="recipes-btn-header" href="/Recept">
+                    <span>RECEPT</span>
+                  </a>
                 </div>
+              </div>
+              <h1 className="title-header">{recipe.title}</h1>
+              <div className="categories-header-div">
+                <p className="categories-header">
+                  {recipe.categories.join(" | ")}
+                </p>
+                <p className="price-header">{recipe.price} SEK</p>
+              </div>
             </div>
-            <h1 className="title-header">{recipe.title}</h1>
-            <div className="categories-header-div">
-            <p className="categories-header">
-              {recipe.categories.join(" | ")}
-            </p>
-            <p className="price-header">{recipe.price} SEK</p>
-            </div>
-          </div>
           </div>
           <div className="picture-side-header">
             <div className="header-img">
-            <img className="content-img" src={recipe.imageUrl} alt={recipe.title}/>
+              <img
+                className="content-img"
+                src={recipe.imageUrl}
+                alt={recipe.title}
+              />
             </div>
           </div>
         </div>
 
-        <div className="recipe-details-grid-wrapper">
-          <div className="recipe-details-info">
-            <div className="recipe-details-top-info">
-              <div className="recipe-details-top-time-box">
-                <IoIosTimer />
-                <p className="recipe-time">{recipe.timeInMins}</p>
-              </div>
-              <div className="stars-box">
-                <div
-                  className="stars"
-                  style={{ "--rating": rating }}
-                  aria-label={`Rating of this product is ${rating} out of 5.`}
-                />
-                <p>rating: {rating}</p>
-              </div>
-            </div>
-
-            <div className="recipe-description">
-              <p className="text-description">{recipe.description}</p>
-            </div>
-
-            <div className="ingredients-container">
-              <h3 className="ingredients-title">Ingredienser</h3>
-              <ul className="ingredients-list-group">
-                {recipe.ingredients.map((ingredient, index) => (
-                  <li key={index} className="ingredients-list-item">
-                    {ingredient.amount} {ingredient.unit} {ingredient.name}
+        <div className="recipe-details-info">
+          <div className="recipe-details-grid-wrapper">
+            <div className="recipe-details-main-grid">
+              <div className="recipe-details-top-info">
+                <ul className="recipe-details-top-info-list">
+                  <li className="list-items">
+                    <div className="stars-box">
+                      <p>
+                        <div
+                          className="stars"
+                          style={{ "--rating": rating }}
+                          aria-label={`Rating of this product is ${rating} out of 5.`}
+                        />{" "}
+                        rating: {rating}
+                      </p>
+                    </div>
                   </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="instructions-container">
-              <h3 className="instructions-title">Instructions:</h3>
-              <ul className="instructions-list-group">
-                {recipe.instructions &&
-                  recipe.instructions.map((instruction, index) => (
-                    <li key={index} className="instructions-list-item">
-                      {instruction}
-                    </li>
-                  ))}
-              </ul>
-            </div>
-
-            <PostReview recipeId={recipe._id} />
-
-            <div className="recirc-list-container">
-              <h4 className="reciric-list-title">Mer från Receptkungen</h4>
-              <div className="reciric-list">
-                <ul className="reciric-list-ul">
-                  <li className="reciric-list-item">
-                    <span className="receric-list-item-image">
-                      <img src="" alt="" />
-                    </span>
-                    <div className="receric-list-overlay">
-                      <h4 className="receric-list-overlay-title"></h4>
-                      <p className="receric-list-overlay-categories"></p>
+                  <li className="list-items">
+                    <div className="time-box">
+                      <p className="recipe-time">
+                        <IoIosTimer /> {recipe.timeInMins} min
+                      </p>
                     </div>
                   </li>
                 </ul>
               </div>
+
+              <div className="recipe-description-div">
+                <div className="recipe-description-grid">
+                  <div className="recipe-description-style">
+                    <p className="recipe-description-text">
+                      {recipe.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="ingredients-container">
+                <h3 className="ingredients-title">Ingredienser</h3>
+                <div className="ingredients-list-group">
+                  {recipe.ingredients.map((ingredient, index) => (
+                    <div key={index} className="ingredients-list-item">
+                      <p className="ingredient-amount">
+                        {ingredient.amount} {ingredient.unit}
+                      </p>
+                      <p className="ingredient-name">{ingredient.name}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
+
+            <div className="recipe-details-side-grid">
+              <div className="instructions-container">
+                <Button
+                  id="toggle-filter-button-rd"
+                  onClick={() => handleDropDownFocus()}
+                  aria-controls="example-collapse-text"
+                  aria-expanded={open}
+                >
+                  <h3 className="instructions-title">Instruktioner <FaAngleDown /></h3>{" "}
+                </Button>
+                <Collapse in={open}>
+                  <div id="filter-inside-collapse">
+                    <ul className="instructions-list-group">
+                      {recipe.instructions &&
+                        recipe.instructions.map((instruction, index) => (
+                          <li key={index} className="instructions-list-item">
+                            <h6 className="steg-titel">Steg {index}</h6>
+                            <p>{instruction}</p>
+                          </li>
+                        ))}
+                    </ul>
+                  </div>
+                </Collapse>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <PostReview recipeId={recipe._id} />
+
+        <div className="recirc-list-container">
+          <h4 className="reciric-list-title">Mer från Receptkungen</h4>
+          <div className="reciric-list">
+            <ul className="reciric-list-ul">
+              <li className="reciric-list-item">
+                <span className="receric-list-item-image">
+                  <img src="" alt="" />
+                </span>
+                <div className="receric-list-overlay">
+                  <h4 className="receric-list-overlay-title"></h4>
+                  <p className="receric-list-overlay-categories"></p>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
