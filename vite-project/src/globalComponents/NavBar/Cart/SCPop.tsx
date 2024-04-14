@@ -2,10 +2,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useRef, useEffect } from 'react';
 import { Overlay, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import cartLogo from "../../assets/images/shopping-cart.png";
+import cartLogo from "../../../assets/images/shopping-cart.png";
 import ShoppingCart from './ShoppingCart';
-import { useCartState } from '../../store/CartState';
-import { useCocktailCartStateInterface } from '../../store/CocktailCart';
+import { useCartState } from '../../../store/CartState';
+import { useCocktailCartStateInterface } from '../../../store/CocktailCartState';
 
 function Cart() {
   const [showPopover, setShowPopover] = useState(false);

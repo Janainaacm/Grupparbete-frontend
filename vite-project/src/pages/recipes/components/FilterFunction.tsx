@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useAPIState } from "../../store/APIState";
+import { useAPIState } from "../../../store/APIState";
 import "./FilterFunction.css";
-import { RecipeInterface, CategorieInterface } from "../../Types";
+import { RecipeInterface, CategorieInterface } from "../../../Types";
 import Button from 'react-bootstrap/Button';
 import Collapse from 'react-bootstrap/Collapse';
 import ToggleButton from 'react-bootstrap/ToggleButton';

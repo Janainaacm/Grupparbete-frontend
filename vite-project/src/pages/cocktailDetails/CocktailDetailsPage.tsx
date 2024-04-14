@@ -1,4 +1,4 @@
-import NavBar from "../../globalComponents/NavBar";
+import NavBar from "../../globalComponents/NavBar/NavBar";
 import Footer from "../../globalComponents/Footer";
 import { useLocation, useNavigate } from "react-router-dom";
 import CocktailDetails from "./components/CocktailDetails";
@@ -7,14 +7,13 @@ const CocktailDetailsPage = () => {
 
   return (
     <div>
-      <p>CocktailDetailsPage</p>
-      <div>{/* <Header/> */}</div>
+  
 
       <div style={{ textAlign: "center" }}></div>
 
       <div>
         <CocktailDetails />
-        <Footer />
+     
       </div>
 
       <div

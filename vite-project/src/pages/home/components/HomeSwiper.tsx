@@ -60,8 +60,8 @@ const HomeSwiper = ({recipeList}: HomeSwiperProps) => {
     >
       
         {recipeList.map((recipe) => (
-            <SwiperSlide>
-          <div key={recipe._id} className="col-md-8 mb-4">
+            <SwiperSlide key={recipe._id}>
+          <div className="col-md-8 mb-4">
             <Card style={{ width: '100%', border: "none" }}>
               <Card.Img variant="top" src={recipe.imageUrl}/>
               <Card.Body>
