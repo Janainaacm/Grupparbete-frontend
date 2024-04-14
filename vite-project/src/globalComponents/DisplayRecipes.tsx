@@ -69,7 +69,7 @@ const DisplayRecipes = (props: DisplayRecipesProps) => {
         />
       </div>
       <div className="recipe-list">
-        {showRecipes.map((recipe) => (
+        {showRecipes.map((recipe,index) => (
           <div className="recipe-box" key={recipe._id}>
             <img
               className="recipe-card-img"
@@ -82,6 +82,7 @@ const DisplayRecipes = (props: DisplayRecipesProps) => {
               </p>
               <h4
                 className="recipe-title"
+                id={recipe._id}
                 onClick={() => handleClick(recipe._id, recipe.title)}
               >
                 {recipe.title}

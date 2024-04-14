@@ -125,7 +125,7 @@ const ShoppingCart = ({
                                             <p>Antal: {quantity}</p>
 
                                             <button className='remove-button' onClick={() => RemoveFromCart(product._id)}>-</button>
-                                            <button className='add-button' onClick={() => AddToCart(product)}>+</button>
+                                            <button className='add-button' onClick={() => AddToCart(product)} id="increasequantitybutton">+</button>
                                             <button className="remove-all-button" onClick={() => RemoveAllFromCart(product._id)}>Ta bort</button>
 
 

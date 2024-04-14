@@ -98,7 +98,7 @@ function Cart() {
     <>
       <ShoppingCart visibility={cartsVisibility} onClose={() => setCartVisibility(false)}></ShoppingCart>
 
-      <Button variant="link" className="nav-link">
+      <Button variant="link" className="nav-link" id='cartbutton'>
         <div
           ref={cartRef}
           onMouseEnter={handleMouseEnter}
