@@ -4,6 +4,7 @@ import Footer from "../../globalComponents/Footer";
 import FilterCocktailComponent from "../../globalComponents/FilterCocktailComponent";
 import { useEffect } from "react";
 import { useAPIState } from "../../store/APIState";
+import BackToTopButton from "../../globalComponents/BackToTopButton";
 
 const CocktailsPage = () => {
   //const { recipeList,fetchRecipeList, fetchCategories } = useAPIState();
@@ -27,10 +28,10 @@ const CocktailsPage = () => {
         <FilterCocktailComponent />
         <br />
         <br />
-        <h2>Alla cocktails</h2>
+        {/* <h2>Alla cocktails</h2> */}
         <br />
         <br />
-        <DisplayCocktails />
+        {/* <DisplayCocktails /> */}
       </div>
       <div
         style={{
@@ -41,39 +42,9 @@ const CocktailsPage = () => {
           height: "50px",
         }}
       ></div>
+      <BackToTopButton></BackToTopButton>
     </div>
   );
 };
 
 export default CocktailsPage;
-
-{
-  /* <>
-    <NavBar/>
-    <div style={{backgroundColor: ''}}>
-      <p>DrinkPage</p>
-      <AllCocktails></AllCocktails>
-    </div>
-    </> */
-}
-
-{
-  /* <div>
-      <div>
-        <Header/>
-      </div>
-      <div>
-        <NavBar/>
-      </div>
-      <div style={{textAlign: "center"}}>
-        
-      </div>
-      <div>
-        <RecipeDetails recipe={recipe} navigate={navigate}/>
-        <Footer />
-      </div>
-      <div style={{position: "fixed", bottom: "0", justifyContent: "center", width:"100%", padding: "10px",height:"50px"}}>
-        
-      </div>
-    </div> */
-}

@@ -13,7 +13,7 @@ const CocktailDetailsPage = () => {
 
       <div>
         <CocktailDetails />
-        <Footer />
+        {/* <Footer /> */}
       </div>
 
       <div
