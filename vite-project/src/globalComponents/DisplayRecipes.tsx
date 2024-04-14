@@ -32,9 +32,7 @@ const DisplayRecipes = (props: DisplayRecipesProps) => {
     if (recipeList.length == 0) {
       fetchRecipeList();
     }
-    if (recipeList.length == 0) {
-      fetchCategories();
-    }
+    fetchCategories();
   }, []);
 
   useEffect(() => {
