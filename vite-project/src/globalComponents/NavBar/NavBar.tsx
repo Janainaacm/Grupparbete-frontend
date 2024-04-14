@@ -1,7 +1,7 @@
 import { useLocation, NavLink } from 'react-router-dom';
-import SearchBar from './SearchBar/SearchBar.tsx';
+import SearchBar from '../SearchBar/SearchBar.tsx';
 import "bootstrap/dist/css/bootstrap.css"
-import burger from "../assets/images/burger_10531010.png";
+import burger from "../../assets/images/burger_10531010.png";
 import { Nav, Navbar, Button } from "react-bootstrap"
 import ShoppingCart from './Cart/ShoppingCart.tsx';
 import { useState } from 'react';

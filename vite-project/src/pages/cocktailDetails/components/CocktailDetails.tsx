@@ -3,7 +3,6 @@ import { CocktailInterface } from "../../cocktails/components/DisplayAllCocktail
 import { NavigateFunction, Navigate, useNavigate } from "react-router-dom";
 import { useCocktailCartStateInterface } from "../../../store/CocktailCart";
 import { useCocktailAPIState } from "../../../store/CocktailAPI";
-import Cart from "../../../globalComponents/Cart/SCPop";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Card } from "react-bootstrap";
 
@@ -26,7 +25,6 @@ const CocktailDetails = () => {
   return (
     <div>
       <div>
-        <p>CocktailDetails</p>
         <button onClick={() => navigate("/Cocktails")}>Tillbaka</button>
       </div>
 

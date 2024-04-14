@@ -1,15 +1,15 @@
 import { CgCloseR } from "react-icons/cg";
 import "./ShoppingCart.css"
-import { useCartState } from '../../store/CartState'
-import { CocktailInterface } from '../../pages/cocktails/components/DisplayAllCocktails'
-import { RecipeInterface } from '../../Types'
-import { useCocktailCartStateInterface } from '../../store/CocktailCart'
+import { useCartState } from '../../../store/CartState'
+import { CocktailInterface } from '../../../pages/cocktails/components/DisplayAllCocktails'
+import { RecipeInterface } from '../../../Types'
+import { useCocktailCartStateInterface } from '../../../store/CocktailCart'
 import BuyButton from './BuyButton'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, CardBody } from "react-bootstrap"
-import { useCocktailAPIState } from "../../store/CocktailAPI";
+import { useCocktailAPIState } from "../../../store/CocktailAPI";
 import { useNavigate } from "react-router-dom";
-import { useAPIState } from "../../store/APIState";
+import { useAPIState } from "../../../store/APIState";
 import { useEffect } from "react";
 
 
@@ -19,7 +19,6 @@ import { useEffect } from "react";
 interface ShoppingCartProps {
     visibility: boolean
     onClose: any
-
 };
 
 const ShoppingCart = ({
@@ -28,7 +27,7 @@ const ShoppingCart = ({
 
 }: ShoppingCartProps) => {
 
-    const { cart, ClearCart, RemoveFromCart, RemoveAllFromCart, AddToCart } = useCartState();
+    const { cart, clearCart, RemoveFromCart, RemoveAllFromCart, AddToCart } = useCartState();
     const { setRecipeIDState } = useAPIState();
 
 
@@ -47,7 +46,7 @@ const ShoppingCart = ({
 
     const clearShoppingCart = () => {
 
-        ClearCart();
+        clearCart();
         ClearCocktailCart();
     };
 

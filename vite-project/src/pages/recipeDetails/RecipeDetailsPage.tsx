@@ -1,14 +1,14 @@
 //Joel
-import DeleteButton from "../../globalComponents/DeleteButton";
-import NavBar from "../../globalComponents/NavBar";
-import EmptyCartButton from "../../globalComponents/Cart/EmptyCartButton";
-import "./RecipeDetails.css";
+import DeleteButton from "../recipes/components/DeleteRecipeButton";
+import NavBar from "../../globalComponents/NavBar/NavBar";
+import EmptyCartButton from "../../globalComponents/NavBar/Cart/EmptyCartButton";
+import "./RecipeDetailsPage.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import AddToCartButton from "../../globalComponents/Cart/AddToCartButton";
+import AddToCartButton from "./components/AddToCartButton";
 import { useAPIState } from "../../store/APIState";
 import { useEffect, useState } from "react";
-import PostReview from "../../globalComponents/PostReview";
-import DisplayReviews from "../../globalComponents/DisplayReviews";
+import PostReview from "./components/PostReview";
+import DisplayReviews from "./components/DisplayReviews";
 import "bootstrap/dist/css/bootstrap.min.css";
 import RecipeRecommendations from "./components/RecipeRecommendations";
 import RatingStars from "./components/RatingStars";

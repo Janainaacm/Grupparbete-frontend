@@ -1,7 +1,7 @@
-import NavBar from "../../globalComponents/NavBar";
+import NavBar from "../../globalComponents/NavBar/NavBar";
 import DisplayCocktails from "./components/DisplayAllCocktails";
 import Footer from "../../globalComponents/Footer";
-import FilterCocktailComponent from "../../globalComponents/FilterCocktailComponent";
+import FilterCocktail from "./components/FilterCocktail";
 import { useEffect } from "react";
 import { useAPIState } from "../../store/APIState";
 import BackToTopButton from "../../globalComponents/BackToTopButton";
@@ -25,7 +25,7 @@ const CocktailsPage = () => {
         <br />
       </div>
       <div>
-        <FilterCocktailComponent />
+        <FilterCocktail />
         <br />
         <br />
         {/* <h2>Alla cocktails</h2> */}
