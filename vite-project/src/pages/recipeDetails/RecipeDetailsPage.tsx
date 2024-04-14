@@ -1,7 +1,4 @@
-//Joel
-import DeleteButton from "../recipes/components/DeleteRecipeButton";
-import NavBar from "../../globalComponents/NavBar/NavBar";
-import EmptyCartButton from "../../globalComponents/NavBar/Cart/EmptyCartButton";
+
 import "./RecipeDetailsPage.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import AddToCartButton from "./components/AddToCartButton";
@@ -10,8 +7,6 @@ import { useEffect, useState } from "react";
 import PostReview from "./components/PostReview";
 import DisplayReviews from "./components/DisplayReviews";
 import "bootstrap/dist/css/bootstrap.min.css";
-import RecipeRecommendations from "./components/RecipeRecommendations";
-import RatingStars from "./components/RatingStars";
 import { RecipeInterface } from "../../Types";
 import { useCocktailAPIState } from "../../store/CocktailAPIState";
 import { IoIosTimer } from "react-icons/io";
@@ -22,13 +17,10 @@ import { FaAngleDown } from "react-icons/fa6";
 
 const RecipeDetails = () => {
   const [recommendation, setRecommendation] = useState(false);
-
   const { recipeID, currentRecipe, fetchRecipe, fetchReviews } = useAPIState();
   const { fetchCocktails } = useCocktailAPIState();
-  const location = useLocation();
-  const recipe = location.state as RecipeInterface;
   const navigate = useNavigate();
-  const rating = (Math.round(recipe.avgRating * 10) / 10).toFixed(1);
+  const rating = (Math.round(currentRecipe.avgRating * 10) / 10).toFixed(1);
   const [open, setOpen] = useState(false);
 
 
@@ -62,19 +54,12 @@ const RecipeDetails = () => {
             <div className="reciric-list-all-recipes-button">
               <span className="noselect">RECEPT</span>
             </div>
-            {/* <div className="recipes-btn-header-div">
-              <div className="recipes-btn-header-container">
-                <a className="recipes-btn-header" href="/Recept">
-                  <span>RECEPT</span>
-                </a>
-              </div>
-            </div> */}
-            <h1 className="title-header">{recipe.title}</h1>
+            <h1 className="title-header">{currentRecipe.title}</h1>
             <div className="categories-header-div">
               <p className="categories-header">
-                {recipe.categories.join(" | ")}
+                {currentRecipe.categories.join(" | ")}
               </p>
-              <p className="price-header">{recipe.price} SEK</p>
+              <p className="price-header">{currentRecipe.price} SEK</p>
             </div>
           </div>
         </div>
@@ -82,8 +67,8 @@ const RecipeDetails = () => {
           <div className="header-img">
             <img
               className="content-img"
-              src={recipe.imageUrl}
-              alt={recipe.title}
+              src={currentRecipe.imageUrl}
+              alt={currentRecipe.title}
             />
           </div>
         </div>
@@ -110,7 +95,7 @@ const RecipeDetails = () => {
                 <li className="list-items">
                   <div className="time-box">
                     <p className="recipe-time">
-                      <IoIosTimer /> {recipe.timeInMins} min
+                      <IoIosTimer /> {currentRecipe.timeInMins} min
                     </p>
                   </div>
                 </li>
@@ -121,7 +106,7 @@ const RecipeDetails = () => {
               <div className="recipe-description-grid">
                 <div className="recipe-description-style">
                   <p className="recipe-description-text">
-                    {recipe.description}
+                    {currentRecipe.description}
                   </p>
                 </div>
               </div>
@@ -130,7 +115,7 @@ const RecipeDetails = () => {
             <div className="ingredients-container">
               <h3 className="ingredients-title">Ingredienser</h3>
               <div className="ingredients-list-group">
-                {recipe.ingredients.map((ingredient, index) => (
+                {currentRecipe.ingredients.map((ingredient, index) => (
                   <div key={index} className="ingredients-list-item">
                     <p className="ingredient-amount">
                       {ingredient.amount} {ingredient.unit}
@@ -144,8 +129,8 @@ const RecipeDetails = () => {
             <div className="instructions-container">
             <h3 className="instructions-title">Instruktioner</h3>
             <ol className="instructions-list-group">
-                    {recipe.instructions &&
-                      recipe.instructions.map((instruction, index) => (
+                    {currentRecipe.instructions &&
+                      currentRecipe.instructions.map((instruction, index) => (
                         <li key={index} className="instructions-list-item">
                           <h6 className="step-title">Steg {index + 1}</h6>
                           <p className="instruction-title">{instruction}</p>
@@ -158,7 +143,7 @@ const RecipeDetails = () => {
           
 
           <div className="recipe-details-side-grid">
-            <PostReview recipeId={recipe._id} recipeName={recipe.title} />
+            <PostReview recipeId={currentRecipe._id} recipeName={currentRecipe.title} />
             <div className="reviews-container">
               <Button
                 id="toggle-reviews-button-rd"
@@ -170,7 +155,7 @@ const RecipeDetails = () => {
               </Button>
               <Collapse in={open}>
                 <div id="reviews-inside-collapse">
-                  <DisplayReviews recipeID={recipe._id}/>
+                  <DisplayReviews recipeID={currentRecipe._id}/>
                 </div>
               </Collapse>
             </div>
