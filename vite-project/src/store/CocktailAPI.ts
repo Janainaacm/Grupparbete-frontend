@@ -164,7 +164,7 @@ export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
       );
 
       if (response.status === 200) {
-        console.log("fetchCocktailByID SUCCSESS");
+        //console.log("fetchCocktailByID SUCCSESS");
 
         set({
           cocktailToRender: response.data.drinks[0],
