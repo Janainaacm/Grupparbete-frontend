@@ -28,19 +28,21 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
 
 
     console.log("cocktailList",cocktailList)
+    console.log("Math.floor( Math.random() * 2)", Math.floor( Math.random() * 2))
+    const random = Math.floor( Math.random() * 2)
 /*     const recommendedCocktails = getAlcoholicCocktails();
  */
 
     const categories = [
-        { category: "Dessert", recommendedCocktail: "Orgasm" },
-        { category: "Kött", recommendedCocktail: "Quick F**K" },
-        { category: "Fisk", recommendedCocktail: "Fuzzy Asshole" },
-        { category: "Sprängmedel", recommendedCocktail: "Pink Panty Pulldowns" },
-        { category: "Kyckling", recommendedCocktail: "A Piece of Ass" },
-        { category: "Övrigt", recommendedCocktail: "Death in the Afternoon" },
-        { category: "Förrätt", recommendedCocktail: "Foxy Lady" },
-        { category: "Bra", recommendedCocktail: "Appello" },
-        { category: "Vego", recommendedCocktail: "Pornstar Martini" },
+        { category: "Dessert", recommendedCocktail: ["Orgasm", "Quick F**K"] },
+        { category: "Kött", recommendedCocktail: ["Quick F**K", "Pink Panty Pulldowns"] },
+        { category: "Fisk", recommendedCocktail: ["Fuzzy Asshole", "Popped cherry"] },
+        { category: "Sprängmedel", recommendedCocktail: ["Pink Panty Pulldowns", "Pink Moon"]},
+        { category: "Kyckling", recommendedCocktail: ["A Piece of Ass", "Foxy Lady"] },
+        { category: "Övrigt", recommendedCocktail: ["Death in the Afternoon", "Appello"]},
+        { category: "Förrätt", recommendedCocktail: ["Death in the Afternoon", "Appello"] },
+        { category: "Bra", recommendedCocktail: ["Death in the Afternoon", "Appello"] },
+        { category: "Vego", recommendedCocktail: ["Pornstar Martini", "Orgasm" ] },
     ];
 
     return (
@@ -55,7 +57,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
                 recipe.categories[0] === category && (
                     <div key={category} className='recommended-cocktail'>
                         {cocktailList.map((recCock) => (
-                            recCock.strDrink === recommendedCocktail && (
+                            recCock.strDrink === recommendedCocktail[random] && (
                                 <Card key={recCock.idDrink} style={{ width: '18rem' }}>
                                     <Card.Img onClick={() => displayCocktailDetails(recCock.idDrink, recCock.strDrink)} variant="top" src={recCock.strDrinkThumb} alt={recCock.strDrink} />
                                     <Card.Body>
