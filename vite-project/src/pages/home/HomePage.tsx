@@ -54,9 +54,9 @@ const Home = () => {
 
       <div className="divider"></div>
         
-
+      <div style={{display:"flex", alignItems: "center", justifyContent: "center"}}>
         <Carousel images={CarouselData}/>
-
+        </div>
         <div className="section-2">
       <h2>Vet inte vad du ska laga till middag?</h2>
       <p>Bläddra bland alla recept och hitta din nya favorit</p>
