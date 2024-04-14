@@ -5,6 +5,8 @@ import { RecipeInterface } from '../../../Types';
 import {Pagination, EffectCoverflow, Autoplay} from "swiper/modules"
 
 import 'swiper/css/pagination';
+import { useAPIState } from '../../../store/APIState';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -13,6 +15,17 @@ interface HomeSwiperProps {
   }
 
 const HomeSwiper = ({recipeList}: HomeSwiperProps) => {
+  const navigate = useNavigate();
+
+
+  const {
+    setRecipeIDState,
+  } = useAPIState();
+
+  const handleClick = (recipeId: string, recipeName: string) => {
+    setRecipeIDState(recipeId)
+    navigate(`/Recept/${recipeName}`);
+  };
 
   
   return (
@@ -66,7 +79,7 @@ const HomeSwiper = ({recipeList}: HomeSwiperProps) => {
               <Card.Img variant="top" src={recipe.imageUrl}/>
               <Card.Body>
                 <Card.Title>{recipe.title}</Card.Title>
-                <Button variant="primary" className="btn-block">Go somewhere</Button>
+                <Button onClick={() => handleClick(recipe._id, recipe.title)} variant="primary" className="btn-block">Go somewhere</Button>
               </Card.Body>
             </Card>
           </div>
