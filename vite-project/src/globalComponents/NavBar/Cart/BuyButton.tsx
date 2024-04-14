@@ -13,7 +13,9 @@ const BuyButton = () => {
     };
 
   return (
-    <button onClick={handleClick}>Lägg beställning</button>
+   
+    <div className="buy-button" onClick={handleClick}>Lägg beställning</div>
+    
   )
 }
 
