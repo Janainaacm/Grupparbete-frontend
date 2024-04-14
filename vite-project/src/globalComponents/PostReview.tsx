@@ -13,6 +13,7 @@ const PostReview = (props: PostReviewProps) => {
   const [name, setName] = useState<string>("");
   const [comment, setComment] = useState<string>("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [chosenRating, setChosenRating] = useState(0);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -36,6 +37,7 @@ const PostReview = (props: PostReviewProps) => {
   const handleRatingButton = async (rating: number) => {
     postRating(props.recipeId, rating);
     setIsButtonDisabled(true);
+    setChosenRating(0);
   };
 
   //console.log("Rating: ", rating);
@@ -50,40 +52,78 @@ const PostReview = (props: PostReviewProps) => {
             Hur skulle du betygsätta {props.recipeName}?
           </p>
           <div className="recipe-submit-rating-stars-container">
-            <div className="recipe-submit-rating-stars">
-              <button
-                onClick={() => handleRatingButton(1)}
-                disabled={isButtonDisabled}
-              >
-                ★
-              </button>
-              <button
-                onClick={() => handleRatingButton(2)}
-                disabled={isButtonDisabled}
-              >
-                ★
-              </button>
-              <button
-                onClick={() => handleRatingButton(3)}
-                disabled={isButtonDisabled}
-              >
-                ★
-              </button>
-              <button
-                onClick={() => handleRatingButton(4)}
-                disabled={isButtonDisabled}
-              >
-                ★
-              </button>
-              <button
-                onClick={() => handleRatingButton(5)}
-                disabled={isButtonDisabled}
-              >
-                ★
-              </button>
+            <div className="star-ratings-container">
+              <div className="star-ratings-items">
+                <input
+                  type="radio"
+                  name="ratings-stars"
+                  id="st1"
+                  onClick={() => setChosenRating(1)}
+                  disabled={isButtonDisabled}
+                />
+                <label htmlFor="st1">
+                  <div className="ratings-star-stroke">
+                    <div className="ratings-star-fill" />
+                  </div>
+                </label>
+
+                <input
+                  type="radio"
+                  name="ratings-stars"
+                  id="st2"
+                  onClick={() => setChosenRating(2)}
+                  disabled={isButtonDisabled}
+                />
+                <label htmlFor="st2">
+                  <div className="ratings-star-stroke">
+                    <div className="ratings-star-fill" />
+                  </div>
+                </label>
+
+                <input
+                  type="radio"
+                  name="ratings-stars"
+                  id="st3"
+                  onClick={() => setChosenRating(3)}
+                  disabled={isButtonDisabled}
+                />
+                <label htmlFor="st3">
+                  <div className="ratings-star-stroke">
+                    <div className="ratings-star-fill" />
+                  </div>
+                </label>
+
+                <input
+                  type="radio"
+                  name="ratings-stars"
+                  id="st4"
+                  onClick={() => setChosenRating(4)}
+                  disabled={isButtonDisabled}
+                />
+                <label htmlFor="st4">
+                  <div className="ratings-star-stroke">
+                    <div className="ratings-star-fill" />
+                  </div>
+                </label>
+
+                <input
+                  type="radio"
+                  name="ratings-stars"
+                  id="st5"
+                  onClick={() => setChosenRating(5)}
+                  disabled={isButtonDisabled}
+                />
+                <label htmlFor="st5">
+                  <div className="ratings-star-stroke">
+                    <div className="ratings-star-fill" />
+                  </div>
+                </label>
+              </div>
             </div>
           </div>
-          <button className="submit-rating-button-div">
+          <button 
+          className="submit-rating-button-div"
+          onClick={() => handleRatingButton(chosenRating)}>
             <span className="submit-rating-button">SKICKA</span>
           </button>
         </div>
@@ -95,37 +135,37 @@ const PostReview = (props: PostReviewProps) => {
           <div className="submit-review-form">
             <form>
               <div className="submit-review-form-name-div">
-              <input
-                className="submit-review-form-name"
-                type="text"
-                name="name"
-                value={name}
-                placeholder="Namn"
-                onChange={handleInputChange}
-              />
+                <input
+                  className="submit-review-form-name"
+                  type="text"
+                  name="name"
+                  value={name}
+                  placeholder="Namn"
+                  onChange={handleInputChange}
+                />
               </div>
               <div className="submit-review-form-input-div">
-              <input
-                className="submit-review-form-input"
-                type="text"
-                name="comment"
-                value={comment}
-                placeholder="Kommentar"
-                onChange={handleInputChange}
-              />
+                <input
+                  className="submit-review-form-input"
+                  type="text"
+                  name="comment"
+                  value={comment}
+                  placeholder="Kommentar"
+                  onChange={handleInputChange}
+                />
               </div>
             </form>
           </div>
           <div className="submit-review-form-button-div">
-                <button
-                  className="submit-review-form-button"
-                  type="button"
-                  value="Submit"
-                  onClick={handleReviewSubmit}
-                >
-                  <span className="submit-review-button-text">SKICKA</span>
-                </button>
-              </div>
+            <button
+              className="submit-review-form-button"
+              type="button"
+              value="Submit"
+              onClick={handleReviewSubmit}
+            >
+              <span className="submit-review-button-text">SKICKA</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -91,6 +91,7 @@ const RecipeDetails = () => {
             </div>
           </div>
         </div>
+        </div>
 
         <div className="recipe-details-info">
           <div className="recipe-details-grid-wrapper">
@@ -203,7 +204,7 @@ const RecipeDetails = () => {
             </ul>
           </div>
         </div>
-      </div>
+      
     </div>
   );
 };

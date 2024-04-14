@@ -1,7 +1,10 @@
 :root {
   --star-size: 25px;
   --star-color: #fff;
-  --star-background: rgb(255, 227, 116);
+  --star-background: #ffe374;
+  --primary-colour: #ffffff;
+  --secondary-colour: hsl(0, 0%, 0%);
+  --star-ratings-colour: #ffe374;
 }
 
 .recipe-details-header {
@@ -419,7 +422,6 @@
   display: grid;
   grid-template-columns: max-content 1fr;
   gap: 1rem;
-  --type-token: consumptionEditorial . description-core;
   text-transform: none;
   font-family: FuturaPT, helvetica, sans-serif;
   font-feature-settings: normal;
@@ -491,18 +493,92 @@
     align-items: center;
     -webkit-box-pack: center;
     justify-content: center;
-    padding: 1.5rem 0px 1rem;
+    padding: 0rem 0px 1rem;
     width: 100%;
 }
 
-.recipe-submit-rating-stars {
+
+
+/* .stars-ratings-box {
+  background: transparent;
   display: flex;
-  flex-direction: row;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
   justify-content: center;
+  align-items: center;
 }
+
+.stars-ratings {
+  --percent: calc(var(--rating) / 5 * 100%);
+  display: inline-block;
+  font-size: var(--star-ratings-size);
+  font-family: Times;
+  line-height: 1;
+}
+
+.stars-ratings:before {
+  content: "★★★★★";
+  letter-spacing: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--star-ratings-background) var(--percent),
+    var(--star-ratings-color) var(--percent)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-stroke: 0.4px black;
+  -webkit-text-fill-color: transparent;
+} */
+
+
+.star-ratings-container{
+  width: 80%;
+  height: 20%;
+  transform:  rotateY(180deg);
+}
+
+.star-ratings-container .star-ratings-items{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  gap: 0 .5em;
+  
+  width: 100%;
+  height: 100%;
+}
+
+.star-ratings-container .star-ratings-items input{
+  display: none;
+}
+
+.star-ratings-container .star-ratings-items label{
+  width: 20%;
+  aspect-ratio: 1;
+  cursor: pointer;
+}
+
+.star-ratings-container .star-ratings-items label .ratings-star-stroke{
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  background: var(--secondary-colour);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.star-ratings-container .star-ratings-items label .ratings-star-stroke .ratings-star-fill{
+  width: 70%;
+  aspect-ratio: 1;
+  background: var(--primary-colour);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.star-ratings-container .star-ratings-items input:hover ~ label .ratings-star-stroke,.star-ratings-container .star-ratings-items input:checked ~ label .ratings-star-stroke{
+  background: var(--star-ratings-colour);
+}
+
+.star-ratings-container .star-ratings-items input:checked ~ label .ratings-star-stroke .ratings-star-fill{
+  background: var(--star-ratings-colour);
+}
+
 
 .submit-rating-button-div {
   -webkit-box-pack: center;
@@ -539,6 +615,10 @@
 .submit-rating-button {
   font-variant-ligatures: none;
   padding: 0.5rem 0px;
+}
+
+.submit-rating-button:hover {
+  text-decoration: underline;
 }
 
 .submit-review-field {
@@ -661,6 +741,10 @@
     color: rgb(255, 255, 255);
 }
 
+.submit-review-form-button:hover {
+  text-decoration: underline;
+}
+
 
 
 
@@ -711,13 +795,11 @@
 #reviews-inside-collapse {
   padding-top: 0.5rem;
   border-top: solid black;
-  width: 300px;
+  width: 100%;
   border-width: 2px 0px;
   background-color: rgb(250, 250, 241);
 }
 
-
-/*---------------------------------------------------------------------------------------*/
 
 .recipe-details-container {
   box-sizing: border-box;
@@ -743,6 +825,10 @@
 .recipe-details-info {
   grid-column: 1 / -1;
 }
+
+
+/*---------------------------------------------------------------------------------------*/
+
 
 
 
@@ -897,7 +983,6 @@
 
 }
 
-
 @media (min-width: 1024px) {
   .recipe-details-grid-wrapper {
     grid-template-columns: repeat(8, 1fr);
@@ -912,6 +997,7 @@
     grid-column: 9 / -1;
     display: block;
     justify-self: start;
+    margin-right: 6rem;
   }
 
   .recipe-description-grid {
