@@ -62,13 +62,16 @@ const RecipeDetails = () => {
         <div className="recipe-details-header-grid-wrapper">
           <div className="title-side-header">
             <div className="title-side-header-content">
-              <div className="recipes-btn-header-div">
+              <div className="reciric-list-all-recipes-button">
+                <span className="noselect">RECEPT</span>
+              </div>
+              {/* <div className="recipes-btn-header-div">
                 <div className="recipes-btn-header-container">
                   <a className="recipes-btn-header" href="/Recept">
                     <span>RECEPT</span>
                   </a>
                 </div>
-              </div>
+              </div> */}
               <h1 className="title-header">{recipe.title}</h1>
               <div className="categories-header-div">
                 <p className="categories-header">
@@ -139,29 +142,37 @@ const RecipeDetails = () => {
                   ))}
                 </div>
               </div>
+
+              <div className="instructions-container">
+              <h3 className="instructions-title">Instruktioner</h3>
+              <ol className="instructions-list-group">
+                      {recipe.instructions &&
+                        recipe.instructions.map((instruction, index) => (
+                          <li key={index} className="instructions-list-item">
+                            <h6 className="step-title">Steg {index + 1}</h6>
+                            <p className="instruction-title">{instruction}</p>
+                          </li>
+                        ))}
+                    </ol>
+              </div>
             </div>
 
+            
+
             <div className="recipe-details-side-grid">
-              <div className="instructions-container">
+              <PostReview recipeId={recipe._id} recipeName={recipe.title} />
+              <div className="reviews-container">
                 <Button
-                  id="toggle-filter-button-rd"
+                  id="toggle-reviews-button-rd"
                   onClick={() => handleDropDownFocus()}
                   aria-controls="example-collapse-text"
                   aria-expanded={open}
                 >
-                  <h3 className="instructions-title">Instruktioner <FaAngleDown /></h3>{" "}
+                  <h3 className="reviews-title">Omdömen <FaAngleDown /></h3>{""}
                 </Button>
                 <Collapse in={open}>
-                  <div id="filter-inside-collapse">
-                    <ul className="instructions-list-group">
-                      {recipe.instructions &&
-                        recipe.instructions.map((instruction, index) => (
-                          <li key={index} className="instructions-list-item">
-                            <h6 className="steg-titel">Steg {index}</h6>
-                            <p>{instruction}</p>
-                          </li>
-                        ))}
-                    </ul>
+                  <div id="reviews-inside-collapse">
+                    <DisplayReviews recipeID={recipe._id}/>
                   </div>
                 </Collapse>
               </div>
@@ -169,10 +180,15 @@ const RecipeDetails = () => {
           </div>
         </div>
 
-        <PostReview recipeId={recipe._id} />
+        
 
         <div className="recirc-list-container">
           <h4 className="reciric-list-title">Mer från Receptkungen</h4>
+          <div className="reciric-list-all-recipes-button-div">
+          <div className="reciric-list-all-recipes-button">
+            <span className="noselect">Alla recept</span>
+          </div>
+          </div>
           <div className="reciric-list">
             <ul className="reciric-list-ul">
               <li className="reciric-list-item">
