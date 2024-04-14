@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import cartLogo from "../../../assets/images/shopping-cart.png";
 import ShoppingCart from './ShoppingCart';
 import { useCartState } from '../../../store/CartState';
-import { useCocktailCartStateInterface } from '../../../store/CocktailCart';
+import { useCocktailCartStateInterface } from '../../../store/CocktailCartState';
 
 function Cart() {
   const [showPopover, setShowPopover] = useState(false);

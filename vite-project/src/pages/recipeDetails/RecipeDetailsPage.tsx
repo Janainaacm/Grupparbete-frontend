@@ -13,7 +13,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import RecipeRecommendations from "./components/RecipeRecommendations";
 import RatingStars from "./components/RatingStars";
 import { RecipeInterface } from "../../Types";
-import { useCocktailAPIState } from "../../store/CocktailAPI";
+import { useCocktailAPIState } from "../../store/CocktailAPIState";
 
 const RecipeDetails = () => {
   

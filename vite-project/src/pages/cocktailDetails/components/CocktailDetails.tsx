@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { CocktailInterface } from "../../cocktails/components/DisplayAllCocktails";
 import { NavigateFunction, Navigate, useNavigate } from "react-router-dom";
-import { useCocktailCartStateInterface } from "../../../store/CocktailCart";
-import { useCocktailAPIState } from "../../../store/CocktailAPI";
+import { useCocktailCartStateInterface } from "../../../store/CocktailCartState";
+import { useCocktailAPIState } from "../../../store/CocktailAPIState";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Card } from "react-bootstrap";
 

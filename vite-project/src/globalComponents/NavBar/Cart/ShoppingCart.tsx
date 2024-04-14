@@ -3,11 +3,11 @@ import "./ShoppingCart.css"
 import { useCartState } from '../../../store/CartState'
 import { CocktailInterface } from '../../../pages/cocktails/components/DisplayAllCocktails'
 import { RecipeInterface } from '../../../Types'
-import { useCocktailCartStateInterface } from '../../../store/CocktailCart'
+import { useCocktailCartStateInterface } from '../../../store/CocktailCartState'
 import BuyButton from './BuyButton'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, CardBody } from "react-bootstrap"
-import { useCocktailAPIState } from "../../../store/CocktailAPI";
+import { useCocktailAPIState } from "../../../store/CocktailAPIState";
 import { useNavigate } from "react-router-dom";
 import { useAPIState } from "../../../store/APIState";
 import { useEffect } from "react";

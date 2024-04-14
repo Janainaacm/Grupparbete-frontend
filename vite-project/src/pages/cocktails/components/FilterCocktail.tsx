@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCocktailAPIState } from "../../../store/CocktailAPI";
+import { useCocktailAPIState } from "../../../store/CocktailAPIState";
 
 const FilterCocktail = () => {
   const navigate = useNavigate();
