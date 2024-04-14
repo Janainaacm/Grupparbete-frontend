@@ -43,75 +43,89 @@ const PostReview = (props: PostReviewProps) => {
   // console.log("setComment", comment);
 
   return (
-    <div className="recipe-rating-review-wrapper">
-      <div className="recipe-rating-review-container">
-        <div className="recipe-submit-rating">
+    <div className="recipe-rating-review-container">
+      <div className="recipe-rating-rating-container">
+        <div className="recipe-submit-rating-wrapper">
           <p className="recipe-submit-rating-title">
-            Hur skulle du betygsätta {props.recipeName}
+            Hur skulle du betygsätta {props.recipeName}?
           </p>
-          <div className="recipe-submit-rating-stars">
-            <button
-              onClick={() => handleRatingButton(1)}
-              disabled={isButtonDisabled}
-            >
-              ★
-            </button>
-            <button
-              onClick={() => handleRatingButton(2)}
-              disabled={isButtonDisabled}
-            >
-              ★
-            </button>
-            <button
-              onClick={() => handleRatingButton(3)}
-              disabled={isButtonDisabled}
-            >
-              ★
-            </button>
-            <button
-              onClick={() => handleRatingButton(4)}
-              disabled={isButtonDisabled}
-            >
-              ★
-            </button>
-            <button
-              onClick={() => handleRatingButton(5)}
-              disabled={isButtonDisabled}
-            >
-              ★
-            </button>
+          <div className="recipe-submit-rating-stars-container">
+            <div className="recipe-submit-rating-stars">
+              <button
+                onClick={() => handleRatingButton(1)}
+                disabled={isButtonDisabled}
+              >
+                ★
+              </button>
+              <button
+                onClick={() => handleRatingButton(2)}
+                disabled={isButtonDisabled}
+              >
+                ★
+              </button>
+              <button
+                onClick={() => handleRatingButton(3)}
+                disabled={isButtonDisabled}
+              >
+                ★
+              </button>
+              <button
+                onClick={() => handleRatingButton(4)}
+                disabled={isButtonDisabled}
+              >
+                ★
+              </button>
+              <button
+                onClick={() => handleRatingButton(5)}
+                disabled={isButtonDisabled}
+              >
+                ★
+              </button>
+            </div>
           </div>
-          <button className="submit-rating-button">SKICKA</button>
+          <button className="submit-rating-button-div">
+            <span className="submit-rating-button">SKICKA</span>
+          </button>
         </div>
+      </div>
 
-        <div className="submit-review-field">
-          <h3 className="submit-review-title">Lämna ett omdöme</h3>
+      <div className="submit-review-field">
+        <h3 className="submit-review-title">Lämna ett omdöme</h3>
+        <div className="submit-review-form-container">
           <div className="submit-review-form">
             <form>
-              <input 
+              <div className="submit-review-form-name-div">
+              <input
                 className="submit-review-form-name"
                 type="text"
                 name="name"
                 value={name}
-                placeholder="Name"
+                placeholder="Namn"
                 onChange={handleInputChange}
               />
+              </div>
+              <div className="submit-review-form-input-div">
               <input
-                className="submit-review-form-text"
+                className="submit-review-form-input"
                 type="text"
                 name="comment"
                 value={comment}
-                placeholder="Comment"
+                placeholder="Kommentar"
                 onChange={handleInputChange}
               />
-              <button
-                className="submit-review-form-button"
-                type="button"
-                value="Submit"
-                onClick={handleReviewSubmit}
-              />
+              </div>
             </form>
           </div>
+          <div className="submit-review-form-button-div">
+                <button
+                  className="submit-review-form-button"
+                  type="button"
+                  value="Submit"
+                  onClick={handleReviewSubmit}
+                >
+                  <span className="submit-review-button-text">SKICKA</span>
+                </button>
+              </div>
         </div>
       </div>
     </div>
