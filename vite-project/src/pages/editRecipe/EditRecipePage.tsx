@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { useAPIState } from "../../store/APIState";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
-import ClearButton from "./components/ClearButton";
+import ClearButton from "../admin/components/ClearButton";
 import { RecipeInterface } from "../../Types";
 import { useEditRecipeState } from "../../store/EditRecipeState";
 

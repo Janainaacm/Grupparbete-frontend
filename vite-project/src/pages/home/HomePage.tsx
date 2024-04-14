@@ -1,12 +1,12 @@
-import NavBar from "../../globalComponents/NavBar.tsx";
+import NavBar from "../../globalComponents/NavBar/NavBar.tsx";
 import Footer from "../../globalComponents/Footer.tsx";
-import SearchBar from "../../globalComponents/searchBar/SearchBar.tsx";
-import DisplayRecipes from "../../globalComponents/DisplayRecipes.tsx";
+import SearchBar from "../../globalComponents/SearchBar/SearchBar.tsx";
+import DisplayRecipes from "../recipes/components/DisplayRecipes.tsx";
 import { useNavigate } from "react-router-dom";
-import "./HomeStyles.css";
+import "./HomePage.css";
 import { useAPIState } from "../../store/APIState.ts";
 import { useEffect, useState } from "react";
-import SearchResultsList from "../../globalComponents/searchBar/SearchResultsList.tsx";
+import SearchResultsList from "../../globalComponents/SearchBar/SearchResultsList.tsx";
 import Carousel from "./components/Carousel.tsx"
 import {CarouselData} from "../../assets/data/carousel_data.ts"
 import HomeSwiper from "./components/HomeSwiper.tsx";
