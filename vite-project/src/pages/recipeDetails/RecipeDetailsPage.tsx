@@ -7,7 +7,6 @@ import PostReview from "./components/PostReview";
 import DisplayReviews from "./components/DisplayReviews";
 import "bootstrap/dist/css/bootstrap.min.css";
 import CocktailRecommendation from "./components/CocktailRecommendation";
-import RatingStars from "./components/RatingStars";
 import { RecipeInterface } from "../../Types";
 import { useCocktailAPIState } from "../../store/CocktailAPIState";
 import { IoIosTimer } from "react-icons/io";
@@ -244,7 +243,7 @@ const chooseFromRecericList = (recipeId: string, recipeName: string) => {
                   <div className="receric-list-overlay">
                     <div className="receric-list-overlay-grid">
                     <h4 className="receric-list-overlay-title">{item.title}</h4>
-                    <p className="receric-list-overlay-categories">{currentRecipe.categories.join(" | ")}</p>
+                    <p className="receric-list-overlay-categories">{item.categories.join(" | ")}</p>
                     </div>
                   </div>
                   </div>

@@ -1,6 +1,8 @@
 //import deleteRecipe from '../api/deleteRecipe'; // Importing the deleteRecipe function
 import { useNavigate } from 'react-router-dom';
 import { useAPIState } from '../../../store/APIState';
+import { GiTrashCan } from "react-icons/gi";
+
 
 
 
@@ -12,15 +14,14 @@ const DeleteButton = ({ recipeId }) => {
     try {
       await deleteRecipe(recipeId);
       console.log("Recipe deleted");
-      navigate('/');
-      
+      window.location.reload();
     } catch (error) {
       console.error("Error deleting recipe:", error);
     }
   };
 
   return (
-    <button onClick={handleClick} style={{padding:"3px",fontSize:"14px",borderRadius:"5px"}}>Delete Recipe</button>
+    <button className="delete-recipe-button" onClick={handleClick}>Delete recipe<GiTrashCan /></button>
   );
 };
 
