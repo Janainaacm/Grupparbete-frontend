@@ -29,26 +29,27 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
         AddToCocktailCart(cocktail);
         onClose();
     };
- 
-    
-    const random = Math.floor( Math.random() * 2)
+
+
+    const random = Math.floor(Math.random() * 2)
 
     const categories = [
         { category: "Dessert", recommendedCocktail: ["Orgasm", "Quick F**K"] },
         { category: "Kött", recommendedCocktail: ["Quick F**K", "Pink Panty Pulldowns"] },
         { category: "Fisk", recommendedCocktail: ["Fuzzy Asshole", "Popped cherry"] },
-        { category: "Sprängmedel", recommendedCocktail: ["Pink Panty Pulldowns", "Pink Moon"]},
+        { category: "Sprängmedel", recommendedCocktail: ["Pink Panty Pulldowns", "Pink Moon"] },
         { category: "Kyckling", recommendedCocktail: ["A Piece of Ass", "Foxy Lady"] },
-        { category: "Övrigt", recommendedCocktail: ["Absolut Sex", "Pure Passion"]},
+        { category: "Övrigt", recommendedCocktail: ["Absolut Sezx", "Pure Passion"] },
         { category: "Förrätt", recommendedCocktail: ["Pure Passion", "Pink Penocha"] },
         { category: "Bra", recommendedCocktail: ["Paradise", "Pink Penocha"] },
-        { category: "Vego", recommendedCocktail: ["Pornstar Martini", "Orgasm" ] },
+        { category: "Vego", recommendedCocktail: ["Pornstar Martini", "Orgasm"] },
     ];
 
     return (
-
         <div id='modal-cocktail' style={{
-            display: visibility ? "flex" : "none",
+            display: visibility && categories.some(({ category, recommendedCocktail }) =>
+                recipe.categories[0] === category && cocktailList.some(recCock => recCock.strDrink === recommendedCocktail[random])
+            ) ? "flex" : "none",
             justifyContent: "center",
             alignItems: "center",
             position: "fixed",
@@ -75,7 +76,6 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
             ))}
         </div>
     );
-};
-
+}
 export default RecipeRecommendations;
 
