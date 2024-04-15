@@ -106,9 +106,9 @@ const chooseFromRecericList = (recipeId: string, recipeName: string) => {
         <div className="title-side-header">
           <div className="title-side-header-content">
             <div onClick={()=>navigate("/Recept")} className="reciric-list-all-recipes-button">
-            <CocktailRecommendation recipe={currentRecipe} visibility={recommendation} onClose={() => setRecommendation(false)} />
               <span className="noselect">RECEPT</span>
             </div>
+            <CocktailRecommendation recipe={currentRecipe} visibility={recommendation} onClose={() => setRecommendation(false)} />
             <h1 className="title-header">{currentRecipe.title}</h1>
             <div className="categories-header-div">
               <p className="categories-header">
