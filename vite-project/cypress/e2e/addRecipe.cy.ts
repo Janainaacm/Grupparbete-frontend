@@ -43,7 +43,6 @@ describe("AddRecipe", () => {
     });
 
     cy.get("#adminbutton").click();
-
     
   });
 });
