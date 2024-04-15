@@ -81,3 +81,5 @@ export interface CocktailInterface {
   strMeasure15: string,
 
 };
+
+export interface Cocktail
