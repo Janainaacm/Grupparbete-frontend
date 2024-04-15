@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { NavigateFunction, Navigate, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useCocktailCartStateInterface } from "../../../store/CocktailCartState";
 import { useCocktailAPIState } from "../../../store/CocktailAPIState";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Col, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 
 const CocktailDetails = () => {
   const { cocktailID, cocktailToRender, fetchCocktailByID } =
@@ -18,7 +18,6 @@ const CocktailDetails = () => {
     } else {
       fetchCocktailByID(cocktailID);
     }
-    console.log(cocktailID);
   }, []);
 
   return (

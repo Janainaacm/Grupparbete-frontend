@@ -2,51 +2,164 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCocktailAPIState } from "../../../store/CocktailAPIState";
 
-const AllCocktails = () => {
+const DisplayAllCocktails = () => {
   const navigate = useNavigate();
-  const { cocktailList, updateCocktailID , fetchCocktails } =
-    useCocktailAPIState();
 
-  useEffect(() => {
-    fetchCocktails();
-  }, []);
+  const {
+    cocktailList,
+    cocktailCategories,
+    updateCocktailID,
+    fetchCocktailCategories,
+    fetchCocktails,
+    filterCocktailByCategory,
+  } = useCocktailAPIState();
 
-  const displayCocktailDetails = async (cocktailID: string, cocktailName: string) => {
-    updateCocktailID(cocktailID)
+  const displayCocktailDetails = async (
+    cocktailID: string,
+    cocktailName: string
+  ) => {
+    updateCocktailID(cocktailID);
     navigate(`/Cocktails/${cocktailName}`);
   };
 
+  useEffect(() => {
+    fetchCocktailCategories();
+    fetchCocktails();
+  }, []);
+
+  const letterButtons = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "V",
+    "W",
+    "Y",
+    "Z",
+  ];
+
   return (
-    <div style={{ display: "flex", flexWrap: "wrap" }}>
-      {cocktailList.map((cocktail, index) => (
-        <div
-          key={index}
-          style={{
-            width: "200px",
-            marginBottom: "20px",
-            marginRight: "20px",
-            textAlign: "center",
-          }}
+    <div>
+      <div>
+        <button
+          className="button-1"
+          onClick={() => filterCocktailByCategory("/filter.php?a=alcoholic")}
         >
+          Alcoholic
+        </button>
+        <button
+          className="button-1"
+          onClick={() =>
+            filterCocktailByCategory("/filter.php?a=non_alcoholic")
+          }
+        >
+          Non Alcoholic
+        </button>
+        <button
+          className="button-1"
+          onClick={() =>
+            filterCocktailByCategory("/filter.php?a=optional_alcohol")
+          }
+        >
+          Optional alcohol
+        </button>
+        <br />
+        <br />
+
+        {cocktailCategories.map((category, index) => (
           <button
-            onClick={() => displayCocktailDetails(cocktail.idDrink, cocktail.strDrink)}
-            style={{
-              border: "none",
-              background: "none",
-              padding: "0",
-              cursor: "pointer",
-            }}
+            key={index}
+            className="button-1"
+            onClick={() =>
+              filterCocktailByCategory("/filter.php?c=" + category.strCategory)
+            }
           >
-            <img
-              src={cocktail.strDrinkThumb}
-              alt={cocktail.strDrink}
-              style={{ width: "100px", height: "100px", marginBottom: "5px" }}
-            />
+            {category.strCategory}
           </button>
-          <div>{cocktail.strDrink}</div>
-        </div>
-      ))}
+        ))}
+
+        <br />
+        <br />
+
+        {letterButtons.map((letter, index) => (
+          <button
+            key={index}
+            className="button-1"
+            onClick={() => filterCocktailByCategory("/search.php?f=" + letter)}
+          >
+            {letter}
+          </button>
+        ))}
+        <br />
+        <br />
+
+        <button className="button-1" onClick={() => fetchCocktails()}>
+          Visa alla
+        </button>
+      </div>
+      <br />
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+        {cocktailList.map((cocktail, index) => {
+          if (true) {
+            return (
+              <div key={index} style={{ display: "flex", flexWrap: "wrap" }}>
+                <div
+                  style={{
+                    width: "200px",
+                    marginBottom: "20px",
+                    marginRight: "20px",
+                    textAlign: "center",
+                  }}
+                >
+                  <button
+                    onClick={() =>
+                      displayCocktailDetails(
+                        cocktail.idDrink,
+                        cocktail.strDrink
+                      )
+                    }
+                    style={{
+                      border: "none",
+                      background: "none",
+                      padding: "0",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <img
+                      src={cocktail.strDrinkThumb}
+                      alt={cocktail.strDrink}
+                      style={{
+                        width: "100px",
+                        height: "100px",
+                        marginBottom: "5px",
+                      }}
+                    />
+                  </button>
+                  <div>{cocktail.strDrink}</div>
+                </div>
+              </div>
+            );
+          }
+        })}
+      </div>
     </div>
   );
 };
-export default AllCocktails;
+
+export default DisplayAllCocktails;
