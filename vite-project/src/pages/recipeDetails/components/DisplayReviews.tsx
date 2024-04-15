@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useAPIState } from "../store/APIState";
-import { reviewInterface } from "../Types";
+import { useAPIState } from "../../../store/APIState";
+import { reviewInterface } from "../../../Types";
 
 const DisplayReviews = () => {
   const { recipeID, currentRecipe, fetchReviews, reviewList } = useAPIState();

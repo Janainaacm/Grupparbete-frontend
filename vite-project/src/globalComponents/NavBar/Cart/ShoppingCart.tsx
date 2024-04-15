@@ -1,16 +1,20 @@
 import { CgCloseR } from "react-icons/cg";
 import "./ShoppingCart.css"
-import { useCartState } from '../../store/CartState'
-import { CocktailInterface } from '../../pages/cocktails/components/DisplayAllCocktails'
-import { RecipeInterface } from '../../Types'
-import { useCocktailCartStateInterface } from '../../store/CocktailCart'
+import { useCartState } from '../../../store/CartState'
+import { CocktailInterface } from '../../../pages/cocktails/components/DisplayAllCocktails'
+import { RecipeInterface } from '../../../Types'
+import { useCocktailCartStateInterface } from '../../../store/CocktailCartState'
 import BuyButton from './BuyButton'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, CardBody } from "react-bootstrap"
-import { useCocktailAPIState } from "../../store/CocktailAPI";
+import { useCocktailAPIState } from "../../../store/CocktailAPIState";
 import { useNavigate } from "react-router-dom";
-import { useAPIState } from "../../store/APIState";
+import { useAPIState } from "../../../store/APIState";
 import { useEffect } from "react";
+import { CiCirclePlus } from "react-icons/ci";
+import { CiCircleMinus } from "react-icons/ci";
+import { MdDeleteForever } from "react-icons/md";
+
 
 
 
@@ -19,7 +23,6 @@ import { useEffect } from "react";
 interface ShoppingCartProps {
     visibility: boolean
     onClose: any
-
 };
 
 const ShoppingCart = ({
@@ -28,7 +31,7 @@ const ShoppingCart = ({
 
 }: ShoppingCartProps) => {
 
-    const { cart, ClearCart, RemoveFromCart, RemoveAllFromCart, AddToCart } = useCartState();
+    const { cart, clearCart, RemoveFromCart, RemoveAllFromCart, AddToCart } = useCartState();
     const { setRecipeIDState } = useAPIState();
 
 
@@ -47,7 +50,7 @@ const ShoppingCart = ({
 
     const clearShoppingCart = () => {
 
-        ClearCart();
+        clearCart();
         ClearCocktailCart();
     };
 
@@ -111,22 +114,27 @@ const ShoppingCart = ({
                                 return (
                                     <Card className='cart-product' key={index} >
                                         <Card.Body className="product-body">
-                                            <Card.Title>{product.title.length > 10 ? product.title.substring(0, 10) + "..." : product.title}</Card.Title>
+                                            
                                             <Card.Img style={{ cursor: "pointer" }} onClick={() => (seeRecipeDetails(product._id, product.title))} className='product-image' src={product.imageUrl} alt={product.title} />
-
-
+                                            <Card.Title>{product.title.length  > 30 ? product.title.split(" ")[0] : product.title}</Card.Title>
+                                            {/* product.title.length > 10 ? product.title.substring(0, 10) + "..." :  */}
                                             {/* <h5>Ingredienter</h5>
                                             {product.ingredients.map((ingredient, index) => (
                                                 <li key={index}>{ingredient.amount} {ingredient.unit} {ingredient.name}</li>
                                             ))} */}
                                             <br />
+                                            
+                                            <div className="cart-amount">
+                                            <span className="minusbutton" onClick={() => RemoveFromCart(product._id)}><CiCircleMinus/></span><span className="quantity">{quantity}</span><span className="plusbutton" id="increasequantitybutton" onClick={() => AddToCart(product)}><CiCirclePlus/></span>
+                                            </div>
 
-                                            <p>Pris: {Number.isNaN(product.price + 0) ? product.price = 0 : product.price * quantity + " Sek"}</p>
-                                            <p>Antal: {quantity}</p>
+                                            <div className="price">{Number.isNaN(product.price + 0) ? product.price = 0 : product.price * quantity + " Sek"}</div>
+                                            <span onClick={() => RemoveAllFromCart(product._id)} className="delete-button"><MdDeleteForever></MdDeleteForever></span>
+                                            
 
-                                            <button className='remove-button' onClick={() => RemoveFromCart(product._id)}>-</button>
-                                            <button className='add-button' onClick={() => AddToCart(product)}>+</button>
-                                            <button className="remove-all-button" onClick={() => RemoveAllFromCart(product._id)}>Ta bort</button>
+                                            {/* <button className='remove-button' onClick={() => RemoveFromCart(product._id)}>-</button>
+                                            <button className='add-button' onClick={() => AddToCart(product)} id="increasequantitybutton">+</button>
+                                            <button className="remove-all-button" onClick={() => RemoveAllFromCart(product._id)}>Ta bort</button> */}
 
 
                                         </Card.Body>
@@ -152,23 +160,20 @@ const ShoppingCart = ({
 
 
                                         <Card.Body className="product-body">
-                                            <Card.Title>{cocktail.strDrink.length > 10 ? cocktail.strDrink.substring(0, 10) + "..." : cocktail.strDrink}</Card.Title>
-                                            {/* <Card.Title>{cocktail.strDrink}</Card.Title> */}
+                                            
 
 
                                             <img style={{ cursor: "pointer" }} onClick={() => displayCocktailDetails(cocktail.idDrink, cocktail.strDrink)} className='product-image' src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
 
-                                            <p>pris:</p>
-
-                                            <p>Antal: {cocktailQuantity}</p>
-                                            <div>
-
-                                                <button className='remove-button' onClick={() => RemoveOneFromCocktailCart(cocktail.idDrink)}>-</button>
-
-                                                <button className='add-button' onClick={() => AddToCocktailCart(cocktail)}>+</button>
-                                                <button className="remove-all-button" onClick={() => RemoveAllFromCocktailCart(cocktail.idDrink)}>Ta bort</button>
-
+                                            <Card.Title>{cocktail.strDrink.length > 15 ? cocktail.strDrink.substring(0, 10) + "..." : cocktail.strDrink}</Card.Title>
+                                            {/* <Card.Title>{cocktail.strDrink}</Card.Title> */}
+                                            
+                                            <div className="cart-amount">
+                                            <span className="minusbutton" onClick={() => RemoveOneFromCocktailCart(cocktail.idDrink)}><CiCircleMinus/></span><span className="quantity">{cocktailQuantity}</span><span className="plusbutton" onClick={() => AddToCocktailCart(cocktail)}><CiCirclePlus/></span>
                                             </div>
+
+                                            <div className="price">{Number.isNaN(cocktail.price + 0) ? cocktail.price = 0 : cocktail.price * cocktail.quantity + " Sek"}</div>
+                                            <span onClick={() => RemoveAllFromCocktailCart(cocktail.idDrink)} className="delete-button"><MdDeleteForever></MdDeleteForever></span>
 
                                         </Card.Body>
                                     </Card>
@@ -185,10 +190,8 @@ const ShoppingCart = ({
                 <div className='content-container'>
                     {sortedProducts.length + sortedCocktails.length > 0 && <div className='checkout-clear'>
                         <h3>Totalt pris: {sum + " Sek"}</h3>
-                        <br />
                         <BuyButton />
-                        <button onClick={onClose}>Fortsätt handla</button>
-                        <button onClick={clearShoppingCart}>Töm varukorg</button></div>
+                        </div>
                     }
                 </div>
             </div>

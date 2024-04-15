@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useAPIState } from "../store/APIState";
-import { reviewInterface } from "../Types";
+import { useAPIState } from "../../../store/APIState";
+import { reviewInterface } from "../../../Types";
 
 interface PostReviewProps {
   recipeId: string;

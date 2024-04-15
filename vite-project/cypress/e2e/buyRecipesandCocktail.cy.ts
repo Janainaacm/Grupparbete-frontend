@@ -1,34 +1,27 @@
 describe('BuyRecipesandCocktail', () => {
-    it('passes', () => {
-      cy.visit('http://localhost:5173/')
+  it('passes', () => {
+    cy.visit('http://localhost:5173/')
 
-      cy.get('[href="/Recept"]').click()
+    cy.get('#receptbutton').click()
 
-      cy.get(':nth-child(1) > .product-card-bottom > .product-card__brand').click()
+    cy.contains('Köttbullar').click()
 
-      cy.get('.card-body > :nth-child(6)').click()
+    cy.get('#addrecipetocart').click()
 
-      cy.get('.btn > div > img').click()
+    cy.get('.btn-success').click()
 
-      for (let i = 0; i < 4; i++) {
-      cy.get('.navbar-nav > #modal > .shoppingCart > .cart-products > .cart-product > :nth-child(3)').click()
-      }
-      
-      cy.get('.navbar-nav > #modal > .shoppingCart > .cart-products > .checkout-clear > :nth-child(4)').click()
+    cy.get('.btn-danger').click()
 
-      cy.get('.card-body > :nth-child(8)').click()
+    cy.get('#cartbutton').click()
+     for (let i = 0; i < 4; i++) {
+     cy.get('.navbar-nav > #modal > .shoppingCart > .cart-products > .product-container > :nth-child(1) > .product-body > .cart-amount > #increasequantitybutton').click()
+    }
+    
+    cy.get('.navbar-nav > #modal > .shoppingCart > .content-container > .checkout-clear > .buy-button').click()
 
-      cy.get('.btn-success').click()
-
-      cy.get('.btn-primary').click()
-
-      cy.get('.btn > div > img').click()
-
-
-      cy.on('window:alert', (text) => {
-        expect(text).to.contains('Tack för din beställning!')
-      })
-      cy.get('.navbar-nav > #modal > .shoppingCart > .cart-products > .checkout-clear > :nth-child(3)').click()
-      
-      })
+    cy.on('window:alert', (text) => {
+    expect(text).to.contains('Tack för din beställning!')
+     })
+    
+     })
 })
