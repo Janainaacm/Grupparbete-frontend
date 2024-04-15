@@ -741,6 +741,29 @@
     color: rgb(255, 255, 255);
 }
 
+.submit-addtocart-button {
+  padding: 0px 0.75rem;
+  min-width: 2.5rem;
+  height: 2.3rem;
+  min-height: 0px;
+  color: rgb(255, 255, 255);
+  border-color: rgb(0, 0, 0);
+  border-width: 2px;
+  border-style: solid;
+  background-color: rgb(0, 0, 0);
+  text-transform: uppercase;
+  font-family: FuturaPT, helvetica, sans-serif;
+  font-feature-settings: normal;
+  font-style: normal;
+  letter-spacing: 0.0833333em;
+  line-break: auto;
+  line-height: 1.5em;
+  font-size: 12px;
+  font-weight: 600;
+  overflow-wrap: normal;
+  color: rgb(255, 255, 255);
+}
+
 .submit-review-form-button:hover {
   text-decoration: underline;
 }

@@ -1,6 +1,6 @@
 
 import "./RecipeDetailsPage.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation,Link, useNavigate } from "react-router-dom";
 import AddToCartButton from "./components/AddToCartButton";
 import { useAPIState } from "../../store/APIState";
 import { useEffect, useState } from "react";
@@ -210,7 +210,7 @@ const RecipeDetails = () => {
       <div className="recirc-list-container">
         <h4 className="reciric-list-title">Mer från Receptkungen</h4>
         <div className="reciric-list-all-recipes-button-div">
-        <div className="reciric-list-all-recipes-button">
+        <div onClick={()=>navigate("/Recept")} className="reciric-list-all-recipes-button">
           <span className="noselect" >Alla recept</span>
         </div>
         </div>
