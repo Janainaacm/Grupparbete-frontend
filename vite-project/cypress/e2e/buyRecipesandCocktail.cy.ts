@@ -8,6 +8,8 @@ describe('BuyRecipesandCocktail', () => {
 
     cy.get('#addrecipetocart').click()
 
+    cy.get('#addrecipetocart').click()
+
     cy.get('.cocktail-buttons > .buy-button').click()
 
     cy.get('#cartbutton').click()
