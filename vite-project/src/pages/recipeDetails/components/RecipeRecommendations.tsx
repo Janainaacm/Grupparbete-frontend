@@ -24,14 +24,14 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
         navigate(`/Cocktails/${cocktailName}`);
     };
 
-    //const recommendedCocktails = getAlcoholicCocktails(); 
 
-
-    console.log("cocktailList",cocktailList)
-    console.log("Math.floor( Math.random() * 2)", Math.floor( Math.random() * 2))
+    const addCocktailToCart = (cocktail) => {
+        AddToCocktailCart(cocktail);
+        onClose();
+    };
+ 
+    
     const random = Math.floor( Math.random() * 2)
-/*     const recommendedCocktails = getAlcoholicCocktails();
- */
 
     const categories = [
         { category: "Dessert", recommendedCocktail: ["Orgasm", "Quick F**K"] },
@@ -64,7 +64,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
                                         <Card.Title>{recCock.strDrink}</Card.Title>
                                         {/* <Button style={{marginBottom:"10px"}} variant="primary" onClick={() => seeCocktailDetails(recCock.idDrink)}>Visa detaljer</Button> */}
                                         <Button style={{ marginBottom: "10px" }} variant="primary" onClick={() => navigate("/cocktails")}>Visa fler cocktails</Button>
-                                        <Button variant="success" onClick={() => AddToCocktailCart(recCock)}>Lägg till varukorg</Button>
+                                        <Button variant="success" onClick={() => addCocktailToCart(recCock)}>Lägg till varukorg</Button>
                                         <Button style={{ marginLeft: "38px" }} variant="danger" onClick={onClose}>Stäng</Button>
                                     </Card.Body>
                                 </Card>
