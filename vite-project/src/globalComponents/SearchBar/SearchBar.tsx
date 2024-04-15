@@ -21,9 +21,10 @@ const SearchBar = ({ setSearchResults }: { setSearchResults?: any }) => {
     });
     
     setFilteredRecipeList(filteredList);
-    
     setSearch("");
+    
     navigate("/Recept");
+   
   };
 
   const fetchData = (value: string) => {

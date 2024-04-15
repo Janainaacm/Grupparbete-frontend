@@ -50,10 +50,7 @@ const EditRecipe = () => {
     getCurrentRecipeToEdit(currentRecipe);
   }, [currentRecipe]);
 
-  // Function to handle form submission
-  const handleSubmit = async (
-    e: { preventDefault: () => void },
-    shouldNavigate: boolean
+  const handleSubmit = async (e:{ preventDefault: () => void },shouldNavigate: boolean
   ) => {
     e.preventDefault();
     try {
@@ -61,7 +58,6 @@ const EditRecipe = () => {
       if (shouldNavigate) {
         navigate(-1);
       }
-      //  navigate(-1);
     } catch (error) {
       console.error("Error updating recipe:", error);
     }
@@ -72,14 +68,7 @@ const EditRecipe = () => {
       <div className="edit-recipe-header">
         <h1 className="edit-recipe-title">Edit recipe</h1>
       </div>
-      {/* <div>
-        <p>currentRecipe: </p>
-        {currentRecipe.title}
-        <p>recipeToEdit: </p>
-        {recipeToEdit.title}
-      </div> */}
-      <div className="edit-recipe-form">
-      <form onSubmit={() => handleSubmit}>
+      <div className="edit-recipe-form">    
         <div>
           <div>
             <div>
@@ -125,7 +114,7 @@ const EditRecipe = () => {
                   value={recipeToEdit.timeInMins}
                   onChange={handleInputChange}
                 />
-</div>
+                </div>
                 <div className="omfg">
                 <h3 className="edit-recipe-section-title">Price:</h3>
                 <textarea
@@ -134,7 +123,7 @@ const EditRecipe = () => {
                   value={recipeToEdit.price}
                   onChange={handleInputChange}
                 />
-</div>
+                </div>
                 <div className="omfg">
                 <h3 className="edit-recipe-section-title">Categories:</h3>
                 <select
@@ -215,7 +204,6 @@ const EditRecipe = () => {
             </div>
           </div>
         </div>
-      </form>
       </div>
       <button
        className="edit-recipe-submit-button"

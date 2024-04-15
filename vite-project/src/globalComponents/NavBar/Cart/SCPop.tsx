@@ -15,9 +15,9 @@ function Cart() {
   const cartRef = useRef(null);
 
   // Inuti din funktionella komponent
-/* const location = useLocation();
-const isHomeRoute = location.pathname === '/Home';
-const badgeClassName = isHomeRoute ? 'home-badge' : 'other-badge'; */
+  /* const location = useLocation();
+  const isHomeRoute = location.pathname === '/Home';
+  const badgeClassName = isHomeRoute ? 'home-badge' : 'other-badge'; */
 
 
 
@@ -41,7 +41,7 @@ const badgeClassName = isHomeRoute ? 'home-badge' : 'other-badge'; */
 
 
   /* const allRecipes = useGetAllRecipes(); */
- /*  const { cart } = useCartState(); */
+  /*  const { cart } = useCartState(); */
   /* const { coctailCart, RemoveOneFromCocktailCart, AddToCocktailCart } = useCocktailCartStateInterface(); */
   const [cart4, setCart4] = useState<RecipeInterface[]>([]);
   const [cocktailCart4, setCocktailCart4] = useState<CocktailInterface[]>([]);
@@ -109,16 +109,21 @@ const badgeClassName = isHomeRoute ? 'home-badge' : 'other-badge'; */
       <ShoppingCart visibility={cartsVisibility} onClose={() => setCartVisibility(false)}></ShoppingCart>
 
       <Button variant="link" className="nav-link" id='cartbutton'>
-        
+
         <div
           ref={cartRef}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           onClick={() => setCartVisibility(true)}
-        > {/* style={{ display: cart.length+cocktailCart4.length===0 && "none", position: "absolute", bottom: "66px", top: "20px", right: "20px"}} */}
-          {/* <Badge className='home-badge'>{cart.length+cocktailCart4.length}</Badge> */}
-          {/* <Badge className={badgeClassName} style={{ display: cart.length+cocktailCart4.length===0 && "none", position: "absolute", bottom: "66px", top: "20px", right: "20px"}}>{cart.length + cocktailCart4.length}</Badge> */}
-          <img src={cartLogo} alt="Cart" style={{ maxWidth: '40px', marginRight: '5px', marginLeft: '5px' }} />
+        > <div>
+            <div style={{ position: 'relative', maxWidth: "45px", margin: "auto" }}>
+              <img src={cartLogo} alt="Cart" style={{ maxWidth: '40px', marginRight: '5px', marginLeft: '5px' }} />
+              <Badge style={{ display: cart.length + cocktailCart4.length === 0 && "none", position: 'absolute', top: -7, right: 0 }}>
+                {cart.length + cocktailCart4.length}
+              </Badge>
+            </div>
+          </div>
+
         </div>
       </Button>
       <Overlay show={showPopover} placement="bottom" target={cartRef.current}>
@@ -143,13 +148,13 @@ const badgeClassName = isHomeRoute ? 'home-badge' : 'other-badge'; */
               if (index === sortedCart.findIndex((p) => p._id === product._id)) {
                 return (
                   <div key={product._id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <img style={{width:"80px"}}  src={product.imageUrl} alt={product.title} />
+                    <img style={{ width: "80px" }} src={product.imageUrl} alt={product.title} />
                     {/* {product.title} */}
-                    
-                    <div className='cart-amount' style={{marginLeft:"0px"}}>
-                    <span className="minusbutton" onClick={() => RemoveFromCart(product._id)}><CiCircleMinus/></span>
-                    <span className='quantity'>({quantity})</span>
-                    <span className="plusbutton" id="increasequantitybutton" onClick={() => AddToCart(product)}><CiCirclePlus/></span>
+
+                    <div className='cart-amount' style={{ marginLeft: "0px" }}>
+                      <span className="minusbutton" onClick={() => RemoveFromCart(product._id)}><CiCircleMinus /></span>
+                      <span className='quantity'>({quantity})</span>
+                      <span className="plusbutton" id="increasequantitybutton" onClick={() => AddToCart(product)}><CiCirclePlus /></span>
                     </div>
                   </div>
                 );
@@ -171,15 +176,15 @@ const badgeClassName = isHomeRoute ? 'home-badge' : 'other-badge'; */
               if (index === sortedCocktails.findIndex((p) => p.idDrink === product.idDrink)) {
                 return (
                   <div key={product.idDrink} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <img style={{width:"80px"}} src={product.strDrinkThumb} alt={product.strDrink} />
-                    
-                    <div className='cart-amount' style={{marginLeft:"0px"}}>
-                    <span className="minusbutton" onClick={() => RemoveOneFromCocktailCart(product.idDrink)}><CiCircleMinus/></span>
-                    <span className='quantity'>({quantity})</span>
-                    
-                    <span className="plusbutton" id="increasequantitybutton" onClick={() => AddToCocktailCart(product)}><CiCirclePlus/></span>
+                    <img style={{ width: "80px" }} src={product.strDrinkThumb} alt={product.strDrink} />
+
+                    <div className='cart-amount' style={{ marginLeft: "0px" }}>
+                      <span className="minusbutton" onClick={() => RemoveOneFromCocktailCart(product.idDrink)}><CiCircleMinus /></span>
+                      <span className='quantity'>({quantity})</span>
+
+                      <span className="plusbutton" id="increasequantitybutton" onClick={() => AddToCocktailCart(product)}><CiCirclePlus /></span>
                     </div>
-                    
+
                   </div>
                 );
               }
