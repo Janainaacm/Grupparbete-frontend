@@ -71,11 +71,14 @@ const HomeSwiper = ({recipeList}: HomeSwiperProps) => {
         {recipeList.map((recipe) => (
             <SwiperSlide key={recipe._id}>
           <div className="" style={{height:"350px", width:"250px"}} >
-          <Card style={{ }}>
+          <Card 
+          style={{cursor: "pointer" }}
+          onClick={() => handleClick(recipe._id, recipe.title)}
+          >
         <Card.Img variant="top" src={recipe.imageUrl} className="img-fluid" style={{height:"150px"}}/>
         <Card.Body style={{height:"160px"}}>
           <h4 style={{height:"86px"}}>{recipe.title}</h4>
-          <Button onClick={() => handleClick(recipe._id, recipe.title)} variant="primary" className="">Go somewhere</Button>
+          {/* <Button variant="primary" className="">Go to recipe</Button> */}
         </Card.Body>
       </Card>
           </div>
