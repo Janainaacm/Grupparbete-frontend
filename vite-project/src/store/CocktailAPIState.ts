@@ -10,6 +10,7 @@ interface CocktailAPIState {
   cocktailToRender: CocktailInterface;
   cocktailCategories: CocktailInterface[];
   filteredCocktailArray: CocktailInterface[];
+  recommendedListByIngredient: CocktailInterface[]
 
   updateCocktailID: (cocktailID: string) => void;
   clearCocktailID: () => void;
@@ -18,6 +19,7 @@ interface CocktailAPIState {
   fetchCocktailCategories: () => Promise<void>;
   filterCocktailByCategory: (category: string) => Promise<void>;
   clearFilteredCocktailArray: () => void;
+  fetchCocktailListByIngredient: (ingredient: string) => Promise<void>
 }
 
 
@@ -27,6 +29,7 @@ export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
   cocktailID: "",
   cocktailCategories: [],
   filteredCocktailArray: [],
+  recommendedListByIngredient: [],
 
   cocktailToRender: {
     idDrink: "",
@@ -68,6 +71,20 @@ export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
     strMeasure13: "",
     strMeasure14: "",
     strMeasure15: "",
+  },
+
+  fetchCocktailListByIngredient: async (ingredient: string) => {
+    try {
+      const response = await axios.get(`${COCKTAIL_API_URL}/filter.php?i=${ingredient}`)
+      if (response.status === 200) {
+        console.log("fetchCocktailListByIngredient SUCCESS")
+        set({
+          recommendedListByIngredient: response.data.drinks
+        })
+      }
+    } catch (error) {
+      console.log("error", error)
+    }
   },
 
   updateCocktailID: (cocktailID: string) => {
