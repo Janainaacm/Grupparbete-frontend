@@ -36,7 +36,7 @@ const DisplayRecipes = (props: DisplayRecipesProps) => {
   }, []);
 
   useEffect(() => {
-    console.log(showRecipes, "b4 anything");
+    console.log(filteredRecipeList, "b4 anything lol");
     if (filteredRecipeList.length > 0) {
       setShowRecipes(filteredRecipeList);
     } else {
