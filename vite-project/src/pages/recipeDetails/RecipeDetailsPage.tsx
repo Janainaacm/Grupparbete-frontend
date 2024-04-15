@@ -17,7 +17,7 @@ import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 const RecipeDetails = () => {
   const [recommendation, setRecommendation] = useState(false);
   const { recipeID, currentRecipe, fetchRecipe, fetchReviews, recipeList, setRecipeIDState } = useAPIState();
-  const { recommendedListByIngredient,fetchCocktails, fetchCocktailListByIngredient } = useCocktailAPIState();
+  const { fetchCocktails, fetchCocktailListByIngredient } = useCocktailAPIState();
   const navigate = useNavigate();
   const rating = (Math.round(currentRecipe.avgRating * 10) / 10).toFixed(1);
   const [open, setOpen] = useState(false);
@@ -62,7 +62,7 @@ const RecipeDetails = () => {
         fetchCocktailListByIngredient("ice");
         break;
       case "Övrigt":
-        fetchCocktailListByIngredient("milk"); //finns
+        fetchCocktailListByIngredient("milk") 
         break;
 
       default:
