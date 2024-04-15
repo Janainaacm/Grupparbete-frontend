@@ -31,7 +31,7 @@ function NavBar() {
 
                 {location.pathname !== '/' && location.pathname !== '/home' && (
                     <div style={{ display: 'flex', justifyContent: 'center', width: '100%', marginLeft: '30px', marginRight: '30px', marginBottom: '10px', marginTop: '10px'}}>
-                        <SearchBar />
+                        {/* <SearchBar /> */}
                     </div>
                 )}
 
