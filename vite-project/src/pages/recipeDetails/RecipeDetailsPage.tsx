@@ -17,7 +17,7 @@ import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 
 const RecipeDetails = () => {
   const [recommendation, setRecommendation] = useState(false);
-  const { recipeID, currentRecipe, fetchRecipe, fetchReviews } = useAPIState();
+  const { recipeID, currentRecipe, fetchRecipe, fetchReviews, recipeList, setRecipeIDState } = useAPIState();
   const { recommendedListByIngredient,fetchCocktails, fetchCocktailListByIngredient } = useCocktailAPIState();
   const navigate = useNavigate();
   const rating = (Math.round(currentRecipe.avgRating * 10) / 10).toFixed(1);
@@ -85,7 +85,13 @@ const getRecericList = () => {
   const filteredRecipes = recipeList.filter((item) => item._id !== currentRecipe._id);
   const shuffledRecipes = shuffle(filteredRecipes).slice(0, 6);
   setRecericList(shuffledRecipes);
+  console.log(recericList)
 }
+
+const chooseFromRecericList = (recipeId: string, recipeName: string) => {
+  setRecipeIDState(recipeId)
+  window.location.reload(); 
+};
 
 
   // Called from PostReview after posting a review
@@ -100,7 +106,7 @@ const getRecericList = () => {
       <div className="recipe-details-header-grid-wrapper">
         <div className="title-side-header">
           <div className="title-side-header-content">
-            <div className="reciric-list-all-recipes-button">
+            <div onClick={()=>navigate("/Recept")} className="reciric-list-all-recipes-button">
             <CocktailRecommendation recipe={currentRecipe} visibility={recommendation} onClose={() => setRecommendation(false)} />
               <span className="noselect">RECEPT</span>
             </div>
@@ -171,7 +177,6 @@ const getRecericList = () => {
                     <>
                       <p
                         className="ingredient-amount"
-                        style={{ textAlign: "left" }}
                       >
                         {ingredient.amount} {ingredient.unit}
                       </p>
@@ -232,7 +237,7 @@ const getRecericList = () => {
           <ul className="reciric-list-ul">
             {recericList.map((item, index) => (
                 <li className="reciric-list-item">
-                  <a href={"/Recept/" + item.title} className="receric-list-title-a">
+                  <div onClick={() => chooseFromRecericList(item._id, item.title)} className="receric-list-title-a">
                   <span className="receric-list-item-image">
                     <img className="receric-list-img" src={item.imageUrl} alt={item.title} />
                   </span>
@@ -242,7 +247,7 @@ const getRecericList = () => {
                     <p className="receric-list-overlay-categories">{currentRecipe.categories.join(" | ")}</p>
                     </div>
                   </div>
-                  </a>
+                  </div>
                 </li>
               ))}
           </ul>
