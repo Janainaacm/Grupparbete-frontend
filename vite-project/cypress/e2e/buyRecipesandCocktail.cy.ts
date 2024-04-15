@@ -4,7 +4,7 @@ describe('BuyRecipesandCocktail', () => {
 
     cy.get('#receptbutton').click()
 
-    cy.contains('Köttbullar').click()
+    cy.get(':nth-child(1) > .recipe-info-container > .recipe-title').click()
 
     cy.get('#addrecipetocart').click()
 
