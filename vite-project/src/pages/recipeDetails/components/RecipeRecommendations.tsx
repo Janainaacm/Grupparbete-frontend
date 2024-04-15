@@ -27,8 +27,8 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
 
     const addCocktailToCart = (cocktail) => {
         AddToCocktailCart(cocktail);
-        onClose();
-    };
+/*         onClose();
+ */    };
 
 
     const random = Math.floor(Math.random() * 2)
