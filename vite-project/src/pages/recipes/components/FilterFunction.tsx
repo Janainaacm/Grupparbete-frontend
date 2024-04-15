@@ -6,12 +6,19 @@ import Button from 'react-bootstrap/Button';
 import Collapse from 'react-bootstrap/Collapse';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
+import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 
 
-const FilterFunction = ({ setShowRecipes, setHeadlineTag }: { setShowRecipes: any, setHeadlineTag: any }) => {
+ interface FilterFunctionProps {
+  setShowRecipes: any,
+  setHeadlineTag: any,
+ }
+
+const FilterFunction = (props: FilterFunctionProps) => {
   const { recipeList, fetchRecipesByCategoryName, allCategories } = useAPIState();
   let [filteredCategories, setFilteredCategories] = useState<string[]>([]);
   const [open, setOpen] = useState(false);
+
 
   const handleDropDownFocus = () => {
     setOpen(!open);
@@ -31,7 +38,6 @@ const FilterFunction = ({ setShowRecipes, setHeadlineTag }: { setShowRecipes: an
     }
     setFilteredCategories(updatedCategories);
   };
-
 
   useEffect(() => {
     chosenCategory();
@@ -59,8 +65,8 @@ const FilterFunction = ({ setShowRecipes, setHeadlineTag }: { setShowRecipes: an
         return index === self.findIndex(obj => obj._id === value._id);
     });
       if (distinctArray.length > 0) {
-        setShowRecipes(distinctArray);
-        setHeadlineTag("Visar alla recept inom: " + filteredCategories.join(", "))
+        props.setShowRecipes(distinctArray);
+        props.setHeadlineTag("Visar alla recept inom: " + filteredCategories.join(", "))
       } else {
         resetLists();
       }
@@ -72,15 +78,22 @@ const FilterFunction = ({ setShowRecipes, setHeadlineTag }: { setShowRecipes: an
   };
 
   const resetFilter = () => {
-    setShowRecipes(recipeList);
-    setHeadlineTag("Alla recept");
+    props.setShowRecipes(recipeList);
+    props.setHeadlineTag("Alla recept");
     setOpen(false);
+    resetClick();
   };
 
   const resetLists = () => {
-    setShowRecipes(recipeList);
-    setHeadlineTag("Alla recept");
+    props.setShowRecipes(recipeList);
+    props.setHeadlineTag("Alla recept");
   }
+
+  const resetClick = () => {
+    for (const item of allCategories) {
+      item.selected = false;
+    }
+  };
   
 
   return (
@@ -90,7 +103,7 @@ const FilterFunction = ({ setShowRecipes, setHeadlineTag }: { setShowRecipes: an
         aria-controls="example-collapse-text"
         aria-expanded={open}
       >
-      FILTER <i className="bi bi-caret-down"></i>
+      FILTER
       </Button>
       <Collapse in={open}>
         <div id="filter-inside-collapse">

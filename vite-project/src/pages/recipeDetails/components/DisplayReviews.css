@@ -1,0 +1,69 @@
+.reviews-list-container {
+    max-height: 350px;
+    overflow-y: scroll;
+    background-color: rgb(255, 255, 243);
+}
+
+.reviews-list {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#reviews-inside-collapse-rd {
+    padding-top: 0.5rem;
+    border-top: solid black;
+    width: 100%;
+    border-width: 2px 0px;
+}
+
+
+.review-list-item {
+    margin: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    background-color: white;
+
+}
+
+.review-list-name-div {
+ display: flex;
+ margin-left: 1rem;
+ margin-right: 1rem;
+ border-bottom: 0.7px solid #979797;
+}
+
+.review-list-name {
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-bottom: 3px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #2a2a2a;
+    text-transform: capitalize;
+}
+
+.review-list-comment-div {
+    margin-top: 7px;
+    margin-left: 10px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #535353;
+}
+
+.review-list-comment {
+    display: flex;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.review-list-date-div {
+  display: flex;
+  padding: 2px 1rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.review-list-date {
+    font-size: 12px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #959595;
+}
+
+

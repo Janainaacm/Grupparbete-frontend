@@ -4,17 +4,17 @@ import { reviewInterface } from "../../../Types";
 
 interface PostReviewProps {
   recipeId: string;
+  recipeName: string;
+  recipeName: string;
 }
 
-const PostReview = ({ recipeId }: PostReviewProps) => {
-  
-
+const PostReview = (props: PostReviewProps) => {
   //const [rating, setRating] = useState<number>();
   const { postReview, postRating } = useAPIState();
   const [name, setName] = useState<string>("");
   const [comment, setComment] = useState<string>("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-  
+  const [chosenRating, setChosenRating] = useState(0);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -27,7 +27,7 @@ const PostReview = ({ recipeId }: PostReviewProps) => {
 
   const handleReviewSubmit = async () => {
     if (name !== "" && comment !== "") {
-      postReview(recipeId, name, comment);
+      postReview(props.recipeId, name, comment);
       setName("");
       setComment("");
     } else {
@@ -36,8 +36,9 @@ const PostReview = ({ recipeId }: PostReviewProps) => {
   };
 
   const handleRatingButton = async (rating: number) => {
-    postRating(recipeId, rating);
+    postRating(props.recipeId, rating);
     setIsButtonDisabled(true);
+    setChosenRating(0);
   };
 
   //console.log("Rating: ", rating);
@@ -47,69 +48,56 @@ const PostReview = ({ recipeId }: PostReviewProps) => {
   return (
     <div>
       <div>
-        
         {/* buttons for rating*/}
         <button
-          className="rating-button"
           onClick={() => handleRatingButton(1)}
           disabled={isButtonDisabled}
         >
           1
         </button>
         <button
-          className="rating-button"
           onClick={() => handleRatingButton(2)}
           disabled={isButtonDisabled}
         >
           2
         </button>
         <button
-          className="rating-button"
           onClick={() => handleRatingButton(3)}
           disabled={isButtonDisabled}
         >
           3
         </button>
         <button
-          className="rating-button"
           onClick={() => handleRatingButton(4)}
           disabled={isButtonDisabled}
         >
           4
         </button>
         <button
-          className="rating-button"
           onClick={() => handleRatingButton(5)}
           disabled={isButtonDisabled}
         >
           5
         </button>
       </div>
-      <br />
       <div>
         {/*Input field för name */}
         <form>
           <input
             type="text"
-            className="name-button"
             name="name"
             value={name}
-            placeholder="Name..."
+            placeholder="Name"
             onChange={handleInputChange}
           />
           <input
             type="text"
-            className="comment-button"
             name="comment"
             value={comment}
-            placeholder="Comment..."
+            placeholder="Comment"
             onChange={handleInputChange}
           />
-          <input 
-          type="button"
-          className="submit-button"
-          value="Submit"
-          onClick={handleReviewSubmit} />
+          <input type="button" value="Submit" onClick={handleReviewSubmit} />
         </form>
       </div>
     </div>

@@ -1025,5 +1025,4 @@
   .recipe-details-grid-wrapper {
     grid-template-columns: repeat(8, 1fr) minmax(300px, 4fr);
   }
-
-  
+}
