@@ -21,7 +21,7 @@ const AddToCartButton = ({ recipe, recommendation, checkCategory }) => {
 
   };
   return (
-    <button onClick={handleClick} className="submit-review-form-button" id="addrecipetocart">Add to Cart</button>
+    <button onClick={handleClick} className="submit-addtocart-button" id="addrecipetocart">Add to Cart</button>
   )
 }
 
