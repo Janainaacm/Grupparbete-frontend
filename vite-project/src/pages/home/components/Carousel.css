@@ -60,8 +60,8 @@
     font-size: 40px;
     top: 50%;
     transform: translate(0, -50%);
-    background-color: rgb(157, 28, 28);
-    color: aqua;
+    
+    color: rgb(169, 184, 137);
     display: flex;
     justify-content: center;
     align-items: center;
