@@ -47,7 +47,7 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
 
     return (
 
-        <div id='modal' style={{
+        <div id='modal-cocktail' style={{
             display: visibility ? "flex" : "none",
             justifyContent: "center",
             alignItems: "center",

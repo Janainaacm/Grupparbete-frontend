@@ -4,7 +4,7 @@ import {Container, Row, Col, Button} from "react-bootstrap"
 
 const Footer = () => {
   return (
-    <footer style={{ backgroundColor: "#efede0", padding: "20px 0" }}>
+    <footer style={{ backgroundColor: "#efede0", padding: "20px 0", display:"flex", justifyContent:"center"}}>
       <Container>
         <Row>
           <Col md={6}>
