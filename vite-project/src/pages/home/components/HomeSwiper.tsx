@@ -26,49 +26,45 @@ const HomeSwiper = ({recipeList}: HomeSwiperProps) => {
           0: {
             slidesPerView: 1,
           },
-          400:{
+          450:{
             slidesPerView:2,
           },
           639: {
-            slidesPerView: 3,
+            slidesPerView: 2,
           },
           865:{
             slidesPerView:3
           },
           1000:{
-            slidesPerView:3
+            slidesPerView:4
           },
           1500:{
-            slidesPerView:3
+            slidesPerView:5
           },
           1700:{
-            slidesPerView:3
+            slidesPerView:5
           }
         }}
       spaceBetween={50}
-      centeredSlides
       /* effect={"coverflow"} */
       /* slidesPerView={3} */
       pagination={{ clickable: true }}
       /* onSlideChange={() => console.log('slide change')}
       onSwiper={(swiper) => console.log(swiper)} */
-      coverflowEffect={{
-        rotate: 50, stretch: 0, depth: 100, modifier: 1,
-        slideShadows: true
-      }}
+      
       
     >
       
         {recipeList.map((recipe) => (
             <SwiperSlide key={recipe._id}>
-          <div className="col-md-8 mb-4">
-            <Card style={{ width: '100%', border: "none" }}>
-              <Card.Img variant="top" src={recipe.imageUrl}/>
-              <Card.Body>
-                <Card.Title>{recipe.title}</Card.Title>
-                <Button variant="primary" className="btn-block">Go somewhere</Button>
-              </Card.Body>
-            </Card>
+          <div className="" style={{height:"350px", width:"250px"}} >
+          <Card style={{ }}>
+        <Card.Img variant="top" src={recipe.imageUrl} className="img-fluid" style={{height:"150px"}}/>
+        <Card.Body style={{height:"160px"}}>
+          <h4 style={{height:"86px"}}>{recipe.title}</h4>
+          <Button variant="primary" className="">Go somewhere</Button>
+        </Card.Body>
+      </Card>
           </div>
           </SwiperSlide>
         ))}

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import "../components/Carousel.css";
 import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css"
+import { FaCircleArrowRight } from "react-icons/fa6";
+import { FaCircleArrowLeft } from "react-icons/fa6";
 
 
 interface CaruselProps {
@@ -30,7 +32,7 @@ interface CaruselProps {
     };
   
     return (
-      <Container className="carousel">
+      <div className="carousel">
         <div
           className="carousel"
           onMouseEnter={() => {
@@ -61,10 +63,10 @@ interface CaruselProps {
               ))}
             </Row>
             <div className="carousel_arrow_left" onClick={slideLeft}>
-              &#9664;
+             <FaCircleArrowLeft/>
             </div>
             <div className="carousel_arrow_right" onClick={slideRight}>
-              &#9654;
+              <FaCircleArrowRight/>
             </div>
             <div className="carousel_pagination">
               {images.map((_, index) => (
@@ -81,7 +83,7 @@ interface CaruselProps {
             </div>
           </div>
         </div>
-      </Container>
+      </div>
     );
   }
   
