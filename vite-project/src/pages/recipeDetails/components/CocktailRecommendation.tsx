@@ -16,7 +16,6 @@ interface CocktailRecommendationProps {
 
 const CocktailRecommendation = (props: CocktailRecommendationProps) => {
   const navigate = useNavigate();
-  //const { currentRecipe } = useAPIState();
 
   const { randomCocktailIndex, recommendedListByIngredient, updateCocktailID, cocktailList } =
     useCocktailAPIState();
