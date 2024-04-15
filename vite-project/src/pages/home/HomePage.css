@@ -124,3 +124,21 @@
     margin-left: 10px;
   }
 
+  .home-badge {
+    background-color: red;
+    position: absolute;
+    bottom: 66px; 
+    top: 20px;
+    right: 2px;
+  }
+
+  .other-badge {
+    /* display: cart.length+cocktailCart4.length===0 && none; */
+    background-color: red;
+    position: absolute;
+    bottom: 66%; 
+    top: 20px;
+    right: 20px;
+  }
+
+ 

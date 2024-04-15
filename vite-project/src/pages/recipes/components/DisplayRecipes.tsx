@@ -5,6 +5,8 @@ import { RecipeInterface } from "../../../Types";
 import FilterFunction from "./FilterFunction";
 import "../components/DisplayRecipes.css"
 import { LiaCartPlusSolid } from "react-icons/lia";
+import { Button } from "react-bootstrap";
+import { useCartState } from "../../../store/CartState";
 
 interface DisplayRecipesProps {
   showDeleteButton?: boolean;
@@ -20,9 +22,11 @@ const DisplayRecipes = (props: DisplayRecipesProps) => {
     clearReviewState,
     fetchCategories,
   } = useAPIState();
+  const { AddToCart } = useCartState()
   const [showRecipes, setShowRecipes] = useState<RecipeInterface[]>([]);
   const [headlinetag, setHeadlineTag] = useState("Alla recept");
   const navigate = useNavigate();
+
 
   useEffect(() => {
     if (recipeList.length == 0) {
@@ -45,6 +49,10 @@ const DisplayRecipes = (props: DisplayRecipesProps) => {
     navigate(`/Recept/${recipeName}`);
   };
   
+
+  const handleClickAddToCart = (recipe: RecipeInterface) => {
+    AddToCart(recipe);
+  };
 
   return (
     <div className="container">
@@ -79,7 +87,7 @@ const DisplayRecipes = (props: DisplayRecipesProps) => {
               <p className="recipe-description">{recipe.description}</p>
 
               <button className="recipe-card-buy-btn">
-                <LiaCartPlusSolid />
+                <LiaCartPlusSolid onClick={() => handleClickAddToCart(recipe)} />
               </button>
             </div>
           </div>

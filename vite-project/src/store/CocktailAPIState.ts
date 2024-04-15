@@ -116,7 +116,7 @@ export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
       if (response.status === 200) {
         console.log("fetchCockails SUCCSESS");
 
-        let responseAll = []
+        const responseAll = []
         responseAll.push(
           response.data.drinks,
           response2.data.drinks,
