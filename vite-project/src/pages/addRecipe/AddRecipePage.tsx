@@ -1,19 +1,20 @@
 import NavBar from "../../globalComponents/NavBar/NavBar";
 import Footer from "../../globalComponents/Footer";
 import PostRecipe from "./components/PostRecipe";
+import "./AddRecipePage.css"
 
 const AddRecipePage = () => {
 
  
   return (
     <div>
-      <div style={{textAlign: "center"}}>
-       Lägg till recept
+      <div className="page-title">
+       <h1 className="title">Lägg till recept</h1>
       </div>
-      <div>
+      <div className="post-recipe-container">
         <PostRecipe/>       
       </div>
-      <div style={{position: "fixed", bottom: "0", justifyContent: "center", width:"100%", padding: "10px",height:"50px"}}>
+      <div>
         
       </div>
     </div>
