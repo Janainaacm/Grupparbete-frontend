@@ -20,7 +20,7 @@ import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 const RecipeDetails = () => {
   const [recommendation, setRecommendation] = useState(false);
   const { recipeID, currentRecipe, fetchRecipe, fetchReviews } = useAPIState();
-  const { fetchCocktails } = useCocktailAPIState();
+  const { recommendedListByIngredient,fetchCocktails, fetchCocktailListByIngredient } = useCocktailAPIState();
   const navigate = useNavigate();
   const rating = (Math.round(currentRecipe.avgRating * 10) / 10).toFixed(1);
   const [open, setOpen] = useState(false);
@@ -86,12 +86,14 @@ const RecipeDetails = () => {
   // }
 
   return (
+    
     <div className="recipe-details-container">
     <div className="recipe-details-header">
       <div className="recipe-details-header-grid-wrapper">
         <div className="title-side-header">
           <div className="title-side-header-content">
             <div className="reciric-list-all-recipes-button">
+            <CocktailRecommendation recipe={currentRecipe} visibility={recommendation} onClose={() => setRecommendation(false)} />
               <span className="noselect">RECEPT</span>
             </div>
             <h1 className="title-header">{currentRecipe.title}</h1>
@@ -101,6 +103,7 @@ const RecipeDetails = () => {
               </p>
               <p className="price-header">{currentRecipe.price} SEK</p>
             </div>
+              <AddToCartButton recipe={currentRecipe} recommendation={() => setRecommendation(true)} checkCategory={() => checkCurrentRecipeCategory()} />
           </div>
         </div>
         <div className="picture-side-header">
@@ -208,7 +211,7 @@ const RecipeDetails = () => {
         <h4 className="reciric-list-title">Mer från Receptkungen</h4>
         <div className="reciric-list-all-recipes-button-div">
         <div className="reciric-list-all-recipes-button">
-          <span className="noselect">Alla recept</span>
+          <span className="noselect" >Alla recept</span>
         </div>
         </div>
         <div className="reciric-list">
