@@ -39,9 +39,9 @@ const RecipeRecommendations = ({ recipe, visibility, onClose }: RecipeRecommenda
         { category: "Fisk", recommendedCocktail: ["Fuzzy Asshole", "Popped cherry"] },
         { category: "Sprängmedel", recommendedCocktail: ["Pink Panty Pulldowns", "Pink Moon"]},
         { category: "Kyckling", recommendedCocktail: ["A Piece of Ass", "Foxy Lady"] },
-        { category: "Övrigt", recommendedCocktail: ["Death in the Afternoon", "Appello"]},
-        { category: "Förrätt", recommendedCocktail: ["Death in the Afternoon", "Appello"] },
-        { category: "Bra", recommendedCocktail: ["Death in the Afternoon", "Appello"] },
+        { category: "Övrigt", recommendedCocktail: ["Absolut Sex", "Pure Passion"]},
+        { category: "Förrätt", recommendedCocktail: ["Pure Passion", "Pink Penocha"] },
+        { category: "Bra", recommendedCocktail: ["Paradise", "Pink Penocha"] },
         { category: "Vego", recommendedCocktail: ["Pornstar Martini", "Orgasm" ] },
     ];
 
