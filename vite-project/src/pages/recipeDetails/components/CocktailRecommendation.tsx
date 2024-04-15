@@ -5,7 +5,7 @@ import { useCocktailCartStateInterface } from "../../../store/CocktailCartState"
 import { Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { CocktailInterface, RecipeInterface } from "../../../Types";
-import drink from "../../../assets/images/images.webp";
+
 
 interface CocktailRecommendationProps {
   recipe: RecipeInterface;
@@ -15,7 +15,6 @@ interface CocktailRecommendationProps {
 
 const CocktailRecommendation = (props: CocktailRecommendationProps) => {
   const navigate = useNavigate();
-  //const { currentRecipe } = useAPIState();
 
   const { randomCocktailIndex, recommendedListByIngredient, updateCocktailID, cocktailList } =
     useCocktailAPIState();
@@ -29,13 +28,7 @@ const CocktailRecommendation = (props: CocktailRecommendationProps) => {
     navigate(`/Cocktails/${cocktailName}`);
   };
 
-  useEffect(() => {}, []);
 
-
-  // LOGIK SLUMPAA FRÅN ARRAY recommendedListByIngredient
-const pickRandomFromList = () => {
-    
-}
 
 
   return (

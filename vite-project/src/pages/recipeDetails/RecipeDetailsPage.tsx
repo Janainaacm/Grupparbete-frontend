@@ -20,7 +20,7 @@ const RecipeDetails = () => {
   const navigate = useNavigate();
   const [recommendation, setRecommendation] = useState(false);
   const { recipeID, currentRecipe, fetchRecipe, fetchReviews } = useAPIState();
-  const { recommendedListByIngredient,fetchCocktails, fetchCocktailListByIngredient } = useCocktailAPIState();
+  const { fetchCocktails, fetchCocktailListByIngredient } = useCocktailAPIState();
   
   
  useEffect(() => {
@@ -38,11 +38,10 @@ const RecipeDetails = () => {
 
  
    
- //LOGIK
    const checkCurrentRecipeCategory = () => {
     switch (currentRecipe.categories[0]) {
       case "Kött":
-        fetchCocktailListByIngredient("orange") // finns
+        fetchCocktailListByIngredient("orange")
         break;
       case "Fisk":
         fetchCocktailListByIngredient("lemon") 
@@ -57,7 +56,7 @@ const RecipeDetails = () => {
         fetchCocktailListByIngredient("ice")
         break;
       case "Övrigt":
-        fetchCocktailListByIngredient("milk") //finns
+        fetchCocktailListByIngredient("milk") 
         break;
      
       default:
@@ -67,14 +66,6 @@ const RecipeDetails = () => {
   };
 
 
-  
- 
-
-
-  // Called from PostReview after posting a review
-  // const handleRefreshReviews = () => {
-  //   setRefreshReviews(state => state +1)
-  // }
 
   return (
     <div>
