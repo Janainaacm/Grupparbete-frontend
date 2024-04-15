@@ -11,6 +11,7 @@ interface CocktailAPIState {
   cocktailCategories: CocktailInterface[];
   filteredCocktailArray: CocktailInterface[];
   recommendedListByIngredient: CocktailInterface[]
+  randomCocktailIndex: number;
 
   updateCocktailID: (cocktailID: string) => void;
   clearCocktailID: () => void;
@@ -30,6 +31,7 @@ export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
   cocktailCategories: [],
   filteredCocktailArray: [],
   recommendedListByIngredient: [],
+  randomCocktailIndex: 0,
 
   cocktailToRender: {
     idDrink: "",
@@ -79,7 +81,8 @@ export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
       if (response.status === 200) {
         console.log("fetchCocktailListByIngredient SUCCESS")
         set({
-          recommendedListByIngredient: response.data.drinks
+          recommendedListByIngredient: response.data.drinks,
+          randomCocktailIndex: Math.floor(Math.random() * response.data.drinks.length),
         })
       }
     } catch (error) {

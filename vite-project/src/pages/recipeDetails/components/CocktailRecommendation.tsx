@@ -4,7 +4,7 @@ import { useCocktailAPIState } from "../../../store/CocktailAPIState";
 import { useCocktailCartStateInterface } from "../../../store/CocktailCartState";
 import { Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { RecipeInterface } from "../../../Types";
+import { CocktailInterface, RecipeInterface } from "../../../Types";
 import drink from "../../../assets/images/images.webp";
 
 interface CocktailRecommendationProps {
@@ -17,7 +17,7 @@ const CocktailRecommendation = (props: CocktailRecommendationProps) => {
   const navigate = useNavigate();
   //const { currentRecipe } = useAPIState();
 
-  const { recommendedListByIngredient, updateCocktailID, cocktailList } =
+  const { randomCocktailIndex, recommendedListByIngredient, updateCocktailID, cocktailList } =
     useCocktailAPIState();
   const { AddToCocktailCart } = useCocktailCartStateInterface();
 
@@ -31,19 +31,12 @@ const CocktailRecommendation = (props: CocktailRecommendationProps) => {
 
   useEffect(() => {}, []);
 
-  //   const categories = [
-  //     { category: "Dessert", recommendedCocktail: "Orgasm" },
-  //     { category: "Kött", recommendedCocktail: "Quick F**K" },
-  //     { category: "Fisk", recommendedCocktail: "Fuzzy Asshole" },
-  //     { category: "Sprängmedel", recommendedCocktail: "Pink Panty Pulldowns" },
-  //     { category: "Kyckling", recommendedCocktail: "A Piece of Ass" },
-  //     { category: "Övrigt", recommendedCocktail: "Death in the Afternoon" },
-  //     { category: "Förrätt", recommendedCocktail: "Foxy Lady" },
-  //     { category: "Bra", recommendedCocktail: "Appello" },
-  //     { category: "Vego", recommendedCocktail: "Pornstar Martini" },
-  //   ];
 
   // LOGIK SLUMPAA FRÅN ARRAY recommendedListByIngredient
+const pickRandomFromList = () => {
+    
+}
+
 
   return (
     <>
@@ -58,22 +51,27 @@ const CocktailRecommendation = (props: CocktailRecommendationProps) => {
           }}
         >
           <Card
-            key={recommendedListByIngredient[0].idDrink}
+            key={recommendedListByIngredient[randomCocktailIndex].idDrink}
             style={{ width: "18rem" }}
           >
+             {recommendedListByIngredient.map((object: CocktailInterface) => 
+            <div>
+              {object.strDrink}
+            </div>
+            )}
             <Card.Img
               onClick={() =>
                 displayCocktailDetails(
-                  recommendedListByIngredient[0].idDrink,
-                  recommendedListByIngredient[0].strDrink
+                  recommendedListByIngredient[randomCocktailIndex].idDrink,
+                  recommendedListByIngredient[randomCocktailIndex].strDrink
                 )
               }
               variant="top"
-              src={recommendedListByIngredient[0].strDrinkThumb}
-              alt={recommendedListByIngredient[0].strDrink}
+              src={recommendedListByIngredient[randomCocktailIndex].strDrinkThumb}
+              alt={recommendedListByIngredient[randomCocktailIndex].strDrink}
             />
             <Card.Body>
-              <Card.Title>{recommendedListByIngredient[0].strDrink}</Card.Title>
+              <Card.Title>{recommendedListByIngredient[randomCocktailIndex].strDrink}</Card.Title>
               {/* <Button style={{marginBottom:"10px"}} variant="primary" onClick={() => seeCocktailDetails(recommendedListByIngredient[0].idDrink)}>Visa detaljer</Button> */}
               <Button
                 style={{ marginBottom: "10px" }}
@@ -85,7 +83,7 @@ const CocktailRecommendation = (props: CocktailRecommendationProps) => {
               <Button
                 variant="success"
                 onClick={() =>
-                  AddToCocktailCart(recommendedListByIngredient[0])
+                  AddToCocktailCart(recommendedListByIngredient[randomCocktailIndex])
                 }
               >
                 Lägg till varukorg
