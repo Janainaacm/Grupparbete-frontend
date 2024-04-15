@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { useCartState } from "../../../store/CartState";
+import "../RecipeDetailsPage.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const AddToCartButton = ({ recipe, recommendation, checkCategory }) => {
   const addToCart = useCartState(state => state.AddToCart);
@@ -19,7 +21,7 @@ const AddToCartButton = ({ recipe, recommendation, checkCategory }) => {
 
   };
   return (
-    <button onClick={handleClick} id="addrecipetocart">Add to Cart</button>
+    <button onClick={handleClick} className="submit-review-form-button" id="addrecipetocart">Add to Cart</button>
   )
 }
 
