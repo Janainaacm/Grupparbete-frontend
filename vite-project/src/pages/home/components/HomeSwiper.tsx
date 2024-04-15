@@ -36,7 +36,7 @@ const HomeSwiper = ({recipeList}: HomeSwiperProps) => {
             slidesPerView:3
           },
           1000:{
-            slidesPerView:3
+            slidesPerView:4
           },
           1500:{
             slidesPerView:5
