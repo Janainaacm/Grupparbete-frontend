@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useRef, useEffect } from 'react';
-import { Overlay, Row, Col, Button } from 'react-bootstrap';
+import { Overlay, Row, Col, Button, Badge } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import cartLogo from "../../../assets/images/shopping-cart.png";
 import ShoppingCart from './ShoppingCart';
@@ -13,6 +13,13 @@ import { CiCircleMinus } from 'react-icons/ci';
 function Cart() {
   const [showPopover, setShowPopover] = useState(false);
   const cartRef = useRef(null);
+
+  // Inuti din funktionella komponent
+/* const location = useLocation();
+const isHomeRoute = location.pathname === '/Home';
+const badgeClassName = isHomeRoute ? 'home-badge' : 'other-badge'; */
+
+
 
   const handleMouseEnter = () => {
     setShowPopover(true);
@@ -102,12 +109,15 @@ function Cart() {
       <ShoppingCart visibility={cartsVisibility} onClose={() => setCartVisibility(false)}></ShoppingCart>
 
       <Button variant="link" className="nav-link" id='cartbutton'>
+        
         <div
           ref={cartRef}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           onClick={() => setCartVisibility(true)}
-        >
+        > {/* style={{ display: cart.length+cocktailCart4.length===0 && "none", position: "absolute", bottom: "66px", top: "20px", right: "20px"}} */}
+          {/* <Badge className='home-badge'>{cart.length+cocktailCart4.length}</Badge> */}
+          {/* <Badge className={badgeClassName} style={{ display: cart.length+cocktailCart4.length===0 && "none", position: "absolute", bottom: "66px", top: "20px", right: "20px"}}>{cart.length + cocktailCart4.length}</Badge> */}
           <img src={cartLogo} alt="Cart" style={{ maxWidth: '40px', marginRight: '5px', marginLeft: '5px' }} />
         </div>
       </Button>

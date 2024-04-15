@@ -172,7 +172,7 @@ const ShoppingCart = ({
                                             <span className="minusbutton" onClick={() => RemoveOneFromCocktailCart(cocktail.idDrink)}><CiCircleMinus/></span><span className="quantity">{cocktailQuantity}</span><span className="plusbutton" onClick={() => AddToCocktailCart(cocktail)}><CiCirclePlus/></span>
                                             </div>
 
-                                            <div className="price">{Number.isNaN(cocktail.price + 0) ? cocktail.price = 0 : cocktail.price * cocktail.quantity + " Sek"}</div>
+                                            <div className="price">{0 +" Sek"}</div>
                                             <span onClick={() => RemoveAllFromCocktailCart(cocktail.idDrink)} className="delete-button"><MdDeleteForever></MdDeleteForever></span>
 
                                         </Card.Body>

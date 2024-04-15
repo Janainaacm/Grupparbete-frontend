@@ -27,6 +27,7 @@ const DisplayRecipes = (props: DisplayRecipesProps) => {
   const [headlinetag, setHeadlineTag] = useState("Alla recept");
   const navigate = useNavigate();
 
+
   useEffect(() => {
     if (recipeList.length == 0) {
       fetchRecipeList();
