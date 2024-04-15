@@ -1,6 +1,8 @@
 import {useState} from 'react'
 import { useAPIState } from '../../../store/APIState';
 import "./ClearButton.css"
+import { IoWarningSharp } from "react-icons/io5";
+
 
 const ClearButton = () => {
     const [showPopup, setShowPopup] = useState(false);
@@ -25,7 +27,7 @@ const ClearButton = () => {
   
     return (
       <div>
-        <button onClick={handleClear} className="danger-button">Clear Database</button>
+        <button onClick={handleClear} className="danger-button"><IoWarningSharp /> Clear Database <IoWarningSharp /></button>
         {showPopup && (
           <div className="popup-background">
             <div className="popup">
