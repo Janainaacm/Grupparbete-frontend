@@ -1,4 +1,3 @@
-
 import "./RecipeDetailsPage.css";
 import { useLocation,Link, useNavigate } from "react-router-dom";
 import AddToCartButton from "./components/AddToCartButton";
@@ -16,7 +15,6 @@ import Button from "react-bootstrap/esm/Button";
 import Collapse from "react-bootstrap/esm/Collapse";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 
-
 const RecipeDetails = () => {
   const [recommendation, setRecommendation] = useState(false);
   const { recipeID, currentRecipe, fetchRecipe, fetchReviews } = useAPIState();
@@ -24,60 +22,70 @@ const RecipeDetails = () => {
   const navigate = useNavigate();
   const rating = (Math.round(currentRecipe.avgRating * 10) / 10).toFixed(1);
   const [open, setOpen] = useState(false);
-  const [toggleDropDown, setToggleDropDown] = useState(<FaAngleDown />)
-
+  const [toggleDropDown, setToggleDropDown] = useState(<FaAngleDown />);
+  const [recericList, setRecericList] = useState<RecipeInterface[]>([]);
 
   const handleDropDownFocus = () => {
     setOpen(!open);
-    setToggleDropDown(open ? <FaAngleDown /> : <FaAngleUp />)
+    setToggleDropDown(open ? <FaAngleDown /> : <FaAngleUp />);
   };
-  
- useEffect(() => {
-  const savedRecipeID = localStorage.getItem("recipeID");
-  if (savedRecipeID) {
-    console.log("fetching local storage")
-    fetchRecipe(savedRecipeID)    
-    fetchReviews(savedRecipeID);
-  }else{
-    fetchRecipe(recipeID)
-    fetchReviews(recipeID);
-  }
-  fetchCocktails()
- },[])
 
- 
-   
- //LOGIK
-   const checkCurrentRecipeCategory = () => {
+  useEffect(() => {
+    const savedRecipeID = localStorage.getItem("recipeID");
+    if (savedRecipeID) {
+      console.log("fetching local storage");
+      fetchRecipe(savedRecipeID);
+      fetchReviews(savedRecipeID);
+    } else {
+      fetchRecipe(recipeID);
+      fetchReviews(recipeID);
+    }
+    fetchCocktails();
+    getRecericList();
+  }, []);
+
+  //LOGIK
+  const checkCurrentRecipeCategory = () => {
     switch (currentRecipe.categories[0]) {
       case "Kött":
-        fetchCocktailListByIngredient("orange") // finns
+        fetchCocktailListByIngredient("orange"); // finns
         break;
       case "Fisk":
-        fetchCocktailListByIngredient("lemon") 
+        fetchCocktailListByIngredient("lemon");
         break;
       case "Vego":
-        fetchCocktailListByIngredient("lime")
+        fetchCocktailListByIngredient("lime");
         break;
       case "Kyckling":
-        fetchCocktailListByIngredient("banana")
+        fetchCocktailListByIngredient("banana");
         break;
       case "Dessert":
-        fetchCocktailListByIngredient("ice")
+        fetchCocktailListByIngredient("ice");
         break;
       case "Övrigt":
-        fetchCocktailListByIngredient("milk") //finns
+        fetchCocktailListByIngredient("milk"); //finns
         break;
-     
+
       default:
         console.log("Default!");
         break;
     }
   };
 
+  function shuffle<T>(array: T[]): T[] {
+    const newArray = [...array]; 
+    for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]]; 
+    }
+    return newArray;
+}
 
-  
- 
+const getRecericList = () => {
+  const filteredRecipes = recipeList.filter((item) => item._id !== currentRecipe._id);
+  const shuffledRecipes = shuffle(filteredRecipes).slice(0, 6);
+  setRecericList(shuffledRecipes);
+}
 
 
   // Called from PostReview after posting a review
@@ -158,34 +166,41 @@ const RecipeDetails = () => {
             <div className="ingredients-container">
               <h3 className="ingredients-title">Ingredienser</h3>
               <div className="ingredients-list-group">
-                <div className="ingredients-list-grid" style={{display: 'grid', gridTemplateColumns: 'max-content 1fr', gap: '1rem', fontFamily: 'sans-serif'}}>
-                {currentRecipe.ingredients.map((ingredient) => (
-                    <><p className="ingredient-amount" style={{textAlign: 'left'}}>
-                    {ingredient.amount} {ingredient.unit}
-                  </p><p className="ingredient-name">{ingredient.name}</p></>
-                ))}
+                <div className="ingredients-list-grid">
+                  {currentRecipe.ingredients.map((ingredient) => (
+                    <>
+                      <p
+                        className="ingredient-amount"
+                        style={{ textAlign: "left" }}
+                      >
+                        {ingredient.amount} {ingredient.unit}
+                      </p>
+                      <p className="ingredient-name">{ingredient.name}</p>
+                    </>
+                  ))}
                 </div>
               </div>
             </div>
 
             <div className="instructions-container">
-            <h3 className="instructions-title">Instruktioner</h3>
-            <ol className="instructions-list-group">
-                    {currentRecipe.instructions &&
-                      currentRecipe.instructions.map((instruction, index) => (
-                        <li key={index} className="instructions-list-item">
-                          <h6 className="step-title">Steg {index + 1}</h6>
-                          <p className="instruction-title">{instruction}</p>
-                        </li>
-                      ))}
-                  </ol>
+              <h3 className="instructions-title">Instruktioner</h3>
+              <ol className="instructions-list-group">
+                {currentRecipe.instructions &&
+                  currentRecipe.instructions.map((instruction, index) => (
+                    <li key={index} className="instructions-list-item">
+                      <h6 className="step-title">Steg {index + 1}</h6>
+                      <p className="instruction-title">{instruction}</p>
+                    </li>
+                  ))}
+              </ol>
             </div>
           </div>
 
-          
-
           <div className="recipe-details-side-grid">
-            <PostReview recipeId={currentRecipe._id} recipeName={currentRecipe.title} />
+            <PostReview
+              recipeId={currentRecipe._id}
+              recipeName={currentRecipe.title}
+            />
             <div className="reviews-container">
               <Button
                 id="toggle-reviews-button-rd"
@@ -193,19 +208,18 @@ const RecipeDetails = () => {
                 aria-controls="example-collapse-text"
                 aria-expanded={open}
               >
-                <h3 className="reviews-title">Omdömen {toggleDropDown}</h3>{""}
+                <h3 className="reviews-title">Omdömen {toggleDropDown}</h3>
+                {""}
               </Button>
               <Collapse in={open}>
                 <div id="reviews-inside-collapse-rd">
-                  <DisplayReviews recipeID={currentRecipe._id}/>
+                  <DisplayReviews recipeID={currentRecipe._id} />
                 </div>
               </Collapse>
             </div>
           </div>
         </div>
       </div>
-
-      
 
       <div className="recirc-list-container">
         <h4 className="reciric-list-title">Mer från Receptkungen</h4>
@@ -216,21 +230,26 @@ const RecipeDetails = () => {
         </div>
         <div className="reciric-list">
           <ul className="reciric-list-ul">
-            <li className="reciric-list-item">
-              <span className="receric-list-item-image">
-                <img src="" alt="" />
-              </span>
-              <div className="receric-list-overlay">
-                <h4 className="receric-list-overlay-title"></h4>
-                <p className="receric-list-overlay-categories"></p>
-              </div>
-            </li>
+            {recericList.map((item, index) => (
+                <li className="reciric-list-item">
+                  <a href={"/Recept/" + item.title} className="receric-list-title-a">
+                  <span className="receric-list-item-image">
+                    <img className="receric-list-img" src={item.imageUrl} alt={item.title} />
+                  </span>
+                  <div className="receric-list-overlay">
+                    <div className="receric-list-overlay-grid">
+                    <h4 className="receric-list-overlay-title">{item.title}</h4>
+                    <p className="receric-list-overlay-categories">{currentRecipe.categories.join(" | ")}</p>
+                    </div>
+                  </div>
+                  </a>
+                </li>
+              ))}
           </ul>
         </div>
       </div>
-    
-  </div>
-);
+    </div>
+  );
 };
 
 export default RecipeDetails;
