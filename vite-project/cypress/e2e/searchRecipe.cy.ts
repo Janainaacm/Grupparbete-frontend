@@ -4,6 +4,6 @@ describe('Searchbar', () => {
 
       cy.get('input').type('Kött{enter}')
       
-      cy.contains('Köttbullar')
+      cy.get(':nth-child(1) > .recipe-info-container > .recipe-title')
        })
 })

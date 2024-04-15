@@ -6,9 +6,8 @@ import cartLogo from "../../../assets/images/shopping-cart.png";
 import ShoppingCart from './ShoppingCart';
 import { useCartState } from '../../../store/CartState';
 import { useCocktailCartStateInterface } from '../../../store/CocktailCartState';
-/* import { useLocation } from 'react-router-dom'; */
-
-
+import { CiCirclePlus } from 'react-icons/ci';
+import { CiCircleMinus } from 'react-icons/ci';
 
 
 function Cart() {
@@ -147,10 +146,10 @@ const badgeClassName = isHomeRoute ? 'home-badge' : 'other-badge'; */
                     <img style={{width:"80px"}}  src={product.imageUrl} alt={product.title} />
                     {/* {product.title} */}
                     
-                    <div style={{display: "flex", justifyContent: "flex-end"}}>
-                    <button style={{marginLeft:"10px", padding: "5px 12px"}} className='remove-button' onClick={() => RemoveFromCart(product._id)}>-</button>
-                    <span>({quantity})</span>
-                    <button style={{marginLeft:"10px", padding: "5px 12px"}} className='add-button' onClick={() => AddToCart(product)} id='addrecipetocart'>+</button>
+                    <div className='cart-amount' style={{marginLeft:"0px"}}>
+                    <span className="minusbutton" onClick={() => RemoveFromCart(product._id)}><CiCircleMinus/></span>
+                    <span className='quantity'>({quantity})</span>
+                    <span className="plusbutton" id="increasequantitybutton" onClick={() => AddToCart(product)}><CiCirclePlus/></span>
                     </div>
                   </div>
                 );
@@ -174,10 +173,11 @@ const badgeClassName = isHomeRoute ? 'home-badge' : 'other-badge'; */
                   <div key={product.idDrink} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                     <img style={{width:"80px"}} src={product.strDrinkThumb} alt={product.strDrink} />
                     
-                    <div style={{display: "flex", justifyContent: "flex-end"}}>
-                    <button style={{marginLeft:"10px", padding: "5px 12px"}} className='remove-button' onClick={() => RemoveOneFromCocktailCart(product.idDrink)}>-</button>
-                    <span>({quantity})</span>
-                    <button style={{marginLeft:"10px", padding: "5px 12px"}} className='add-button' onClick={() => AddToCocktailCart(product)}>+</button>
+                    <div className='cart-amount' style={{marginLeft:"0px"}}>
+                    <span className="minusbutton" onClick={() => RemoveOneFromCocktailCart(product.idDrink)}><CiCircleMinus/></span>
+                    <span className='quantity'>({quantity})</span>
+                    
+                    <span className="plusbutton" id="increasequantitybutton" onClick={() => AddToCocktailCart(product)}><CiCirclePlus/></span>
                     </div>
                     
                   </div>

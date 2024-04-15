@@ -48,8 +48,8 @@ const Home = () => {
       </div>
 
       <div className="section">
-      <h2>Populära kategorier</h2>
-      <p>Utforska några våra olika kategorier för att hitta recept som passar dina smaker och preferenser.</p>
+      <h2>Stort utbud</h2>
+      <p>Utforska olika kategorier på vår receptsida för att hitta recept som passar dina preferenser </p>
       </div>
 
       <div className="divider"></div>

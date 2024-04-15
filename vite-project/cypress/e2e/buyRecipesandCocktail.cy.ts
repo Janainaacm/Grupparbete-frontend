@@ -4,13 +4,11 @@ describe('BuyRecipesandCocktail', () => {
 
     cy.get('#receptbutton').click()
 
-    cy.contains('Köttbullar').click()
+    cy.get(':nth-child(1) > .recipe-info-container > .recipe-title').click()
 
     cy.get('#addrecipetocart').click()
 
-    cy.get('.btn-success').click()
-
-    cy.get('.btn-danger').click()
+    cy.get('.cocktail-buttons > .buy-button').click()
 
     cy.get('#cartbutton').click()
      for (let i = 0; i < 4; i++) {
