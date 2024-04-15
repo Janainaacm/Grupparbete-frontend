@@ -435,9 +435,15 @@
   color: rgb(0, 0, 0);
 }
 
+.ingredients-list-grid {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 1rem;
+  font-family: sans-serif;
+}
+
 .ingredient-amount {
   grid-column: 1;
-  text-align: right;
 }
 
 .ingredient-name {
@@ -853,15 +859,26 @@
 /*---------------------------------------------------------------------------------------*/
 
 
+.recirc-list-container {
 
+}
+
+.reciric-list-title {
+  
+}
+
+.reciric-list-title {
+  text-align: center;
+  margin-top: 2rem;
+    border-top: 1px solid rgb(236, 236, 236);
+    border-bottom: 1px solid rgb(236, 236, 236);
+    padding: 1rem 0px;
+}
 
 .reciric-list-all-recipes-button-div {
-  background: #eee;
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 5px;
-  
+  margin: 0px 0px 2rem;
 }
 
 .reciric-list-all-recipes-button {
@@ -923,6 +940,119 @@
   background: #fff;
 }
 
+@property --myColor1 {
+  syntax: '<color>';
+  initial-value: rgb(0, 0, 0);
+  inherits: false;
+}
+
+@property --myColor2 {
+  syntax: '<color>';
+  initial-value: rgba(0, 0, 0, 0);
+  inherits: false;
+}
+
+.reciric-list {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgb(236, 236, 236);
+
+}
+
+.reciric-list-ul {
+  display: grid;
+  gap: 0px;
+  grid-template-columns: 1fr;
+  margin: 0px;
+  padding: 0px;
+}
+
+.reciric-list-item {
+  margin-top: 0px;
+  list-style-type: none;
+}
+
+.reciric-list-item:hover {
+  background: none;
+}
+
+.receric-list-title-a {
+  color: rgb(68, 68, 68);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 500px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.receric-list-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit:cover;
+  z-index: -1;
+}
+
+.receric-list-item-image {
+  grid-area: 1 / 1;
+  display: block;
+  transition: --myColor1 1s, --myColor2 2s;
+  overflow: hidden;  
+  background: linear-gradient(to top, var(--myColor1), var(--myColor2));
+}
+
+.receric-list-item-image:hover {
+  --myColor1: rgba(0, 0, 0, 0);
+  --myColor2: rgba(0, 0, 0, 0);
+}
+
+.receric-list-overlay {
+  grid-area: 1 / 1;
+  align-self: end;
+  z-index: 2;
+  max-width: 1600px;
+  text-decoration: none;
+  background: none;
+}
+
+.receric-list-overlay-grid {
+  padding: 0px 3rem 2.5rem;
+}
+
+.receric-list-overlay-title {
+  overflow: hidden;
+  text-transform: none;
+  font-family: FuturaPT, helvetica, sans-serif;
+  font-feature-settings: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  line-break: auto;
+  line-height: 1.16667em;
+  font-size: 24px;
+  font-weight: 600;
+  overflow-wrap: normal;
+  color: rgb(255, 255, 255);
+  margin: 1rem 0px 0rem;
+  text-align: left;
+}
+
+.receric-list-overlay-categories {
+  color: rgb(255, 255, 255);
+  margin: 1rem 0px 0px;
+  text-transform: uppercase;
+  font-family: FuturaPT, helvetica, sans-serif;
+  font-feature-settings: normal;
+  font-style: normal;
+  letter-spacing: 0.153083em;
+  line-break: auto;
+  line-height: 1.33333em;
+  font-size: 12px;
+  font-weight: 600;
+  overflow-wrap: normal;
+  text-align: left;
+}
+
+
 
 
 
@@ -934,6 +1064,20 @@
 
 @media (min-width: 768px) {
 
+  .reciric-list-ul {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .receric-list-overlay-title {
+    max-width: 31.25rem;
+    font-size: 28px;
+    line-height: 1.14286em;
+  }
+
+  .receric-list-overlay {
+    margin: 0px auto;
+    width: 100%;
+  }
 
   .submit-rating-button-div {
     min-width: 10rem;
@@ -1007,6 +1151,12 @@
 }
 
 @media (min-width: 1024px) {
+
+  .reciric-list-ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
   .recipe-details-grid-wrapper {
     grid-template-columns: repeat(8, 1fr);
     --grid-gap: 2rem;
