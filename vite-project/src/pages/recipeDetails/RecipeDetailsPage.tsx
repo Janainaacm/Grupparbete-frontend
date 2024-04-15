@@ -11,6 +11,11 @@ import CocktailRecommendation from "./components/CocktailRecommendation";
 import RatingStars from "./components/RatingStars";
 import { RecipeInterface } from "../../Types";
 import { useCocktailAPIState } from "../../store/CocktailAPIState";
+import { IoIosTimer } from "react-icons/io";
+import Button from "react-bootstrap/esm/Button";
+import Collapse from "react-bootstrap/esm/Collapse";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
+
 
 const RecipeDetails = () => {
   
@@ -21,10 +26,12 @@ const RecipeDetails = () => {
   const navigate = useNavigate();
   const rating = (Math.round(currentRecipe.avgRating * 10) / 10).toFixed(1);
   const [open, setOpen] = useState(false);
+  const [toggleDropDown, setToggleDropDown] = useState(<FaAngleDown />)
 
 
   const handleDropDownFocus = () => {
     setOpen(!open);
+    setToggleDropDown(open ? <FaAngleDown /> : <FaAngleUp />)
   };
   
  useEffect(() => {
@@ -150,14 +157,13 @@ const RecipeDetails = () => {
             <div className="ingredients-container">
               <h3 className="ingredients-title">Ingredienser</h3>
               <div className="ingredients-list-group">
-                {currentRecipe.ingredients.map((ingredient, index) => (
-                  <div key={index} className="ingredients-list-item">
-                    <p className="ingredient-amount">
-                      {ingredient.amount} {ingredient.unit}
-                    </p>
-                    <p className="ingredient-name">{ingredient.name}</p>
-                  </div>
+                <div className="ingredients-list-grid" style={{display: 'grid', gridTemplateColumns: 'max-content 1fr', gap: '1rem', fontFamily: 'sans-serif'}}>
+                {currentRecipe.ingredients.map((ingredient) => (
+                    <><p className="ingredient-amount" style={{textAlign: 'left'}}>
+                    {ingredient.amount} {ingredient.unit}
+                  </p><p className="ingredient-name">{ingredient.name}</p></>
                 ))}
+                </div>
               </div>
             </div>
 
@@ -186,10 +192,10 @@ const RecipeDetails = () => {
                 aria-controls="example-collapse-text"
                 aria-expanded={open}
               >
-                <h3 className="reviews-title">Omdömen <FaAngleDown /></h3>{""}
+                <h3 className="reviews-title">Omdömen {toggleDropDown}</h3>{""}
               </Button>
               <Collapse in={open}>
-                <div id="reviews-inside-collapse">
+                <div id="reviews-inside-collapse-rd">
                   <DisplayReviews recipeID={currentRecipe._id}/>
                 </div>
               </Collapse>

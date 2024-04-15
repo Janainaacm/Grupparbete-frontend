@@ -57,37 +57,11 @@ const PostReview = (props: PostReviewProps) => {
                 <input
                   type="radio"
                   name="ratings-stars"
-                  id="st1"
-                  onClick={() => setChosenRating(1)}
+                  id="st5"
+                  onClick={() => setChosenRating(5)}
                   disabled={isButtonDisabled}
                 />
-                <label htmlFor="st1">
-                  <div className="ratings-star-stroke">
-                    <div className="ratings-star-fill" />
-                  </div>
-                </label>
-
-                <input
-                  type="radio"
-                  name="ratings-stars"
-                  id="st2"
-                  onClick={() => setChosenRating(2)}
-                  disabled={isButtonDisabled}
-                />
-                <label htmlFor="st2">
-                  <div className="ratings-star-stroke">
-                    <div className="ratings-star-fill" />
-                  </div>
-                </label>
-
-                <input
-                  type="radio"
-                  name="ratings-stars"
-                  id="st3"
-                  onClick={() => setChosenRating(3)}
-                  disabled={isButtonDisabled}
-                />
-                <label htmlFor="st3">
+                <label htmlFor="st5">
                   <div className="ratings-star-stroke">
                     <div className="ratings-star-fill" />
                   </div>
@@ -109,11 +83,37 @@ const PostReview = (props: PostReviewProps) => {
                 <input
                   type="radio"
                   name="ratings-stars"
-                  id="st5"
-                  onClick={() => setChosenRating(5)}
+                  id="st3"
+                  onClick={() => setChosenRating(3)}
                   disabled={isButtonDisabled}
                 />
-                <label htmlFor="st5">
+                <label htmlFor="st3">
+                  <div className="ratings-star-stroke">
+                    <div className="ratings-star-fill" />
+                  </div>
+                </label>
+
+                <input
+                  type="radio"
+                  name="ratings-stars"
+                  id="st2"
+                  onClick={() => setChosenRating(2)}
+                  disabled={isButtonDisabled}
+                />
+                <label htmlFor="st2">
+                  <div className="ratings-star-stroke">
+                    <div className="ratings-star-fill" />
+                  </div>
+                </label>
+
+                <input
+                  type="radio"
+                  name="ratings-stars"
+                  id="st1"
+                  onClick={() => setChosenRating(1)}
+                  disabled={isButtonDisabled}
+                />
+                <label htmlFor="st1">
                   <div className="ratings-star-stroke">
                     <div className="ratings-star-fill" />
                   </div>
