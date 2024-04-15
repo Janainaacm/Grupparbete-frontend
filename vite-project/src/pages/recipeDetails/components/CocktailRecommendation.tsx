@@ -5,7 +5,8 @@ import { useCocktailCartStateInterface } from "../../../store/CocktailCartState"
 import { Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { CocktailInterface, RecipeInterface } from "../../../Types";
-
+import drink from "../../../assets/images/images.webp";
+import { FaCocktail } from "react-icons/fa";
 
 interface CocktailRecommendationProps {
   recipe: RecipeInterface;
@@ -28,8 +29,20 @@ const CocktailRecommendation = (props: CocktailRecommendationProps) => {
     navigate(`/Cocktails/${cocktailName}`);
   };
 
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      const modal = document.getElementById("modal-cocktail");
+      if (modal && !modal.contains(e.target)) {
+        props.onClose();
+      }
+    };
 
+    document.addEventListener('mousedown', handleOutsideClick);
 
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [props]);
 
   return (
     <>
@@ -58,32 +71,35 @@ const CocktailRecommendation = (props: CocktailRecommendationProps) => {
               src={recommendedListByIngredient[randomCocktailIndex].strDrinkThumb}
               alt={recommendedListByIngredient[randomCocktailIndex].strDrink}
             />
-            <Card.Body>
-              <Card.Title>{recommendedListByIngredient[randomCocktailIndex].strDrink}</Card.Title>
+            <div className="container-cocktail">
+              <h3>{recommendedListByIngredient[randomCocktailIndex].strDrink}</h3>
               {/* <Button style={{marginBottom:"10px"}} variant="primary" onClick={() => seeCocktailDetails(recommendedListByIngredient[0].idDrink)}>Visa detaljer</Button> */}
-              <Button
+              {/* <Button
                 style={{ marginBottom: "10px" }}
                 variant="primary"
                 onClick={() => navigate("/cocktails")}
               >
                 Visa fler cocktails
-              </Button>
-              <Button
-                variant="success"
+              </Button> */}
+              <div className="cocktail-buttons">
+              <span onClick={() => navigate("/cocktails")} style={{fontSize: '2.5rem'}}><FaCocktail/></span>
+              <button
+                className="buy-button"
                 onClick={() =>
                   AddToCocktailCart(recommendedListByIngredient[randomCocktailIndex])
                 }
               >
                 Lägg till varukorg
-              </Button>
-              <Button
+              </button>
+              </div>
+              {/* <Button
                 style={{ marginLeft: "38px" }}
                 variant="danger"
                 onClick={props.onClose}
               >
                 Stäng
-              </Button>
-            </Card.Body>
+              </Button> */}
+            </div>
           </Card>
         </div>
       )}
