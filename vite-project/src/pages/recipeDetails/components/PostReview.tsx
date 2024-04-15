@@ -5,6 +5,7 @@ import { reviewInterface } from "../../../Types";
 interface PostReviewProps {
   recipeId: string;
   recipeName: string;
+  recipeName: string;
 }
 
 const PostReview = (props: PostReviewProps) => {

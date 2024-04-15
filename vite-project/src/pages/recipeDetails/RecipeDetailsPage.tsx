@@ -18,8 +18,6 @@ import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 
 
 const RecipeDetails = () => {
-  
-  const navigate = useNavigate();
   const [recommendation, setRecommendation] = useState(false);
   const { recipeID, currentRecipe, fetchRecipe, fetchReviews } = useAPIState();
   const { fetchCocktails } = useCocktailAPIState();
@@ -202,14 +200,34 @@ const RecipeDetails = () => {
             </div>
           </div>
         </div>
-        <button
-          /* className="btn btn-secondary mt-3" */ onClick={() => navigate(-1)}
-        >
-          Back
-        </button>
       </div>
-    </div>
-  );
+
+      
+
+      <div className="recirc-list-container">
+        <h4 className="reciric-list-title">Mer från Receptkungen</h4>
+        <div className="reciric-list-all-recipes-button-div">
+        <div className="reciric-list-all-recipes-button">
+          <span className="noselect">Alla recept</span>
+        </div>
+        </div>
+        <div className="reciric-list">
+          <ul className="reciric-list-ul">
+            <li className="reciric-list-item">
+              <span className="receric-list-item-image">
+                <img src="" alt="" />
+              </span>
+              <div className="receric-list-overlay">
+                <h4 className="receric-list-overlay-title"></h4>
+                <p className="receric-list-overlay-categories"></p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    
+  </div>
+);
 };
 
 export default RecipeDetails;
