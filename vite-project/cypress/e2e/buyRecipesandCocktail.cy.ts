@@ -8,9 +8,7 @@ describe('BuyRecipesandCocktail', () => {
 
     cy.get('#addrecipetocart').click()
 
-    cy.get('.btn-success').click()
-
-    cy.get('.btn-danger').click()
+    cy.get('.cocktail-buttons > .buy-button').click()
 
     cy.get('#cartbutton').click()
      for (let i = 0; i < 4; i++) {
