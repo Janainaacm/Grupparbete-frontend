@@ -42,32 +42,26 @@ const RecipeDetails = () => {
    const checkCurrentRecipeCategory = () => {
     switch (currentRecipe.categories[0]) {
       case "Kött":
-        console.log("Här va det kött");
         fetchCocktailListByIngredient("orange") // finns
         break;
       case "Fisk":
-        console.log("Här va det Fisk");
         fetchCocktailListByIngredient("lemon") 
         break;
       case "Vego":
-        console.log("Här va det Vego");
         fetchCocktailListByIngredient("lime")
         break;
       case "Kyckling":
-        console.log("Här va det Kyckling");
         fetchCocktailListByIngredient("banana")
         break;
       case "Dessert":
-        console.log("Här va det Dessert");
         fetchCocktailListByIngredient("ice")
         break;
       case "Övrigt":
-        console.log("Här va det Övrigt");
         fetchCocktailListByIngredient("milk") //finns
         break;
      
       default:
-        console.log("Default!!!!!!!!!!!!");
+        console.log("Default!");
         break;
     }
   };
@@ -84,13 +78,6 @@ const RecipeDetails = () => {
 
   return (
     <div>
-      recept:{currentRecipe.title}
-      antal coctails:{recommendedListByIngredient.length}
-      {recommendedListByIngredient.map((object) => 
-        <div>
-          {object.strDrink}
-        </div>
-        )}
       <CocktailRecommendation recipe={currentRecipe} visibility={recommendation} onClose={() => setRecommendation(false)} />
 
       <div className="container mt-5">

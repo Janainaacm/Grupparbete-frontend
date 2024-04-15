@@ -54,11 +54,6 @@ const pickRandomFromList = () => {
             key={recommendedListByIngredient[randomCocktailIndex].idDrink}
             style={{ width: "18rem" }}
           >
-             {recommendedListByIngredient.map((object: CocktailInterface) => 
-            <div>
-              {object.strDrink}
-            </div>
-            )}
             <Card.Img
               onClick={() =>
                 displayCocktailDetails(
