@@ -49,6 +49,11 @@ const DisplayRecipes = (props: DisplayRecipesProps) => {
     setRecipeIDState(recipeId)
     navigate(`/EditRecipe/${recipeName}`);
   };
+  const handleClick = (recipeId: string, recipeName: string) =>{
+    setRecipeIDState(recipeId)
+    navigate(`/Recept/${recipeName}`)
+  }
+  
 
   const handleClickAddRecipe = () => {
     navigate('/AddRecept')
@@ -81,6 +86,7 @@ const DisplayRecipes = (props: DisplayRecipesProps) => {
               </p>
               <h4
                 className="recipe-title"
+                onClick={()=>handleClick(recipe._id, recipe.title)}
               >
                 {recipe.title}
               </h4>
