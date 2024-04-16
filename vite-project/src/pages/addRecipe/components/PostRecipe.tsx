@@ -104,7 +104,6 @@ const PostRecipe = () => {
       </div>
       <div className="add-recipe-time">
         <input
-          value={timeInMins}
           className="add-recipe-time-input"
           type="number"
           onChange={(event) => setTimeInMinutes(event.target.valueAsNumber)}
@@ -153,7 +152,6 @@ const PostRecipe = () => {
 
       <div className="add-recipe-price">
         <input
-          value={price}
           className="add-recipe-price-input"
           type="number"
           onChange={(event) => setPrice(event.target.valueAsNumber)}
