@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useAPIState } from "../../../store/APIState";
 import { useNavigate } from "react-router";
 import { GiTrashCan } from "react-icons/gi";
+import BackToTopButton from "../../../globalComponents/BackToTopButton";
 
 const PostRecipe = () => {
   const { postRecipe } = useAPIState();
@@ -53,12 +54,14 @@ const PostRecipe = () => {
         setCategories("");
         setInstructions("");
         setPrice(0);
+        location.reload();
       } else {
         alert("Error");
       }
     } catch (error) {
       console.log("error: ", error);
     }
+    
   };
 
   const handleIngredientAdd = () => {
