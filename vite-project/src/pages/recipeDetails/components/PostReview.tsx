@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import { useAPIState } from "../../../store/APIState";
-import { reviewInterface } from "../../../Types";
 
 interface PostReviewProps {
   recipeId: string;
   recipeName: string;
-  recipeName: string;
 }
 
 const PostReview = (props: PostReviewProps) => {
-  //const [rating, setRating] = useState<number>();
   const { postReview, postRating } = useAPIState();
   const [name, setName] = useState<string>("");
   const [comment, setComment] = useState<string>("");
@@ -40,10 +37,6 @@ const PostReview = (props: PostReviewProps) => {
     setIsButtonDisabled(true);
     setChosenRating(0);
   };
-
-  //console.log("Rating: ", rating);
-  // console.log("setName: ", name);
-  // console.log("setComment", comment);
 
   return (
     <div className="recipe-rating-review-container">
@@ -122,9 +115,10 @@ const PostReview = (props: PostReviewProps) => {
               </div>
             </div>
           </div>
-          <button 
-          className="submit-rating-button-div"
-          onClick={() => handleRatingButton(chosenRating)}>
+          <button
+            className="submit-rating-button-div"
+            onClick={() => handleRatingButton(chosenRating)}
+          >
             <span className="submit-rating-button">SKICKA</span>
           </button>
         </div>

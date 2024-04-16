@@ -1,98 +1,101 @@
 .add-recipe-button {
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-    background-color: white;
-    text-transform: uppercase;
-    color: #2f2f2f;
-    border: none;
-    border-radius: 0px;
-    margin-bottom: 6px;
-    margin-left: 1.5em;
-    transition: all 0.5s ease-in-out;
-    font-family: "Gill Sans", sans-serif;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 16px;
-    padding-right: 16px;
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 1.3px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  background-color: white;
+  text-transform: uppercase;
+  color: #2f2f2f;
+  border: none;
+  border-radius: 0px;
+  margin-bottom: 6px;
+  margin-left: 1.5em;
+  transition: all 0.5s ease-in-out;
+  font-family: "Gill Sans", sans-serif;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1.3px;
 }
 
 .add-recipe-button:hover {
-    transform: scale(1.1)
+  transform: scale(1.1);
 }
 
 .edit-button {
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-    background-color: white;
-    color: #2f2f2f;
-    border: none;
-    border-radius: 0px;
-    margin-bottom: 6px;
-    margin-left: 1.5em;
-    transition: all 0.5s ease-in-out;
-    font-family: "Gill Sans", sans-serif;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 16px;
-    padding-right: 16px;
-    font-size: 16px;
-    font-weight: 300;
-    letter-spacing: 1.3px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  background-color: white;
+  color: #2f2f2f;
+  border: none;
+  border-radius: 0px;
+  margin-bottom: 6px;
+  margin-left: 1.5em;
+  transition: all 0.5s ease-in-out;
+  font-family: "Gill Sans", sans-serif;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 1.3px;
 }
 
 .edit-button:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
-
 .delete-recipe-button {
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-    background-color: rgb(215, 76, 76);
-    color: #2f2f2f;
-    border: none;
-    border-radius: 0px;
-    margin-bottom: 6px;
-    margin-left: 1.5em;
-    transition: all 0.5s ease-in-out;
-    font-family: "Gill Sans", sans-serif;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 16px;
-    padding-right: 16px;
-    font-size: 16px;
-    font-weight: 300;
-    letter-spacing: 1.3px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  background-color: rgb(215, 76, 76);
+  color: #2f2f2f;
+  border: none;
+  border-radius: 0px;
+  margin-bottom: 6px;
+  margin-left: 1.5em;
+  transition: all 0.5s ease-in-out;
+  font-family: "Gill Sans", sans-serif;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 1.3px;
 }
 
 .delete-recipe-button:hover {
-    background-color: red;
-    transform: scale(1.1);
+  background-color: red;
+  transform: scale(1.1);
 }
 
 .danger-button {
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-    background-color: red;
-    color: #2f2f2f;
-    border: 2px solid black;
-    border-radius: 0px;
-    margin-bottom: 6px;
-    margin-left: 1.5em;
-    transition: all 0.5s ease-in-out;
-    font-family: "Gill Sans", sans-serif;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 16px;
-    padding-right: 16px;
-    font-size: 25px;
-    font-weight: 600;
-    letter-spacing: 1.3px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  background-color: red;
+  color: #2f2f2f;
+  border: 2px solid black;
+  border-radius: 0px;
+  margin-bottom: 6px;
+  margin-left: 1.5em;
+  transition: all 0.5s ease-in-out;
+  font-family: "Gill Sans", sans-serif;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: 1.3px;
 }
 
 .delete-database-div {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   margin-bottom: 3rem;
-   margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3rem;
+  margin-top: 1rem;
 }

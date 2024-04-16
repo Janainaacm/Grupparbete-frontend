@@ -1,13 +1,10 @@
-import DisplayAdminPage from "./components/DisplayAdminPage.tsx"
-import { useNavigate } from "react-router";
+import DisplayAdminPage from "./components/DisplayAdminPage.tsx";
 
-
-const Admin = () =>{
-    return(
-      <div>
-        <DisplayAdminPage/>
-      </div>
-    );
-}
+const Admin = () => {
+  return (
+    <div>
+      <DisplayAdminPage />
+    </div>
+  );
+};
 export default Admin;
-

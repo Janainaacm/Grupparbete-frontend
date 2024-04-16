@@ -1,200 +1,183 @@
-
 .page-title {
-    text-align: center;
-    margin: 3rem;
-}
-
-.title {
-
+  text-align: center;
+  margin: 3rem;
 }
 
 .post-recipe-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .add-recipe-container {
-    margin-bottom: 3rem;
-    margin-left: 2rem;
-    margin-right: 2rem;
+  margin-bottom: 3rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 .add-recipe-title {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .add-recipe-title-input {
-    padding: 0.75rem;
-    border-radius: 50px;
-    border: 5px solid #bfecb5;
+  padding: 0.75rem;
+  border-radius: 50px;
+  border: 5px solid #bfecb5;
 }
 
 .add-recipe-description {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .add-recipe-description-input {
-    padding: 1rem;
-    border-radius: 30px;
-    border: 5px solid #bfecb5;
-    padding-bottom: 4rem;
+  padding: 1rem;
+  border-radius: 30px;
+  border: 5px solid #bfecb5;
+  padding-bottom: 4rem;
 }
 
 .add-recipe-time {
-    width: 33%;
-    margin-bottom: 1rem;
+  width: 33%;
+  margin-bottom: 1rem;
 }
 
 .add-recipe-time-input {
-    padding: 1rem;
-    border-radius: 50px;
-    border: 5px solid #bfecb5;
+  padding: 1rem;
+  border-radius: 50px;
+  border: 5px solid #bfecb5;
 }
 
 .add-recipe-imageURL {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .add-recipe-imageURL-input {
-    padding: 1rem;
-    border-radius: 50px;
-    border: 5px solid #bfecb5;
+  padding: 1rem;
+  border-radius: 50px;
+  border: 5px solid #bfecb5;
 }
 
 .add-recipe-instructions {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .add-recipe-instructions-input {
-    padding: 1rem;
-    border-radius: 30px;
-    border: 5px solid #bfecb5;
-    width: 100%;
+  padding: 1rem;
+  border-radius: 30px;
+  border: 5px solid #bfecb5;
+  width: 100%;
 }
 
 .add-recipe-instructions-input:focus {
-    outline:none;
+  outline: none;
 }
 
 .add-recipe-categories {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .add-recipe-categories-input {
-    padding: 1rem;
-    border-radius: 30px;
-    border: 5px solid #bfecb5;
-    color: gray;
+  padding: 1rem;
+  border-radius: 30px;
+  border: 5px solid #bfecb5;
+  color: gray;
 }
 
 .add-recipe-price {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .add-recipe-price-input {
-    padding: 1rem;
-    border-radius: 30px;
-    border: 5px solid #bfecb5;
-    width: 30%;
-}
-
-.add-recipe-ingredients-container {
-    
-}
-
-.add-recipe-ingredients {
-
+  padding: 1rem;
+  border-radius: 30px;
+  border: 5px solid #bfecb5;
+  width: 30%;
 }
 
 .add-recipe-ingredients-oneline {
-    display: grid;
-    grid-template-columns: 1fr 1fr 3fr 1fr;
-    margin-bottom: 7px;
-    padding-top: 5px;
-    padding-bottom: 7px;
-    padding-left: 15px;
-    padding-right: 15px;
-    border-radius: 30px;
-    border: 5px solid #bfecb5;
+  display: grid;
+  grid-template-columns: 1fr 1fr 3fr 1fr;
+  margin-bottom: 7px;
+  padding-top: 5px;
+  padding-bottom: 7px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 30px;
+  border: 5px solid #bfecb5;
 }
 
 .add-recipe-ingredients-amount {
-    grid-column: 1;
-
+  grid-column: 1;
 }
 
 .add-recipe-ingredients-unit {
-    grid-column: 2;
+  grid-column: 2;
 }
 
 .add-recipe-ingredients-name {
-    grid-column: 3;
+  grid-column: 3;
 }
 
 .add-recipe-remove-ingredient-div {
-    grid-column: 4;
-    text-align: right;
+  grid-column: 4;
+  text-align: right;
 }
 
 .add-recipe-remove-ingredient-button {
-    background: none;
-    padding: none;
-    margin: none;
-    border: none;
-    font-size: 23px;
+  background: none;
+  padding: none;
+  margin: none;
+  border: none;
+  font-size: 23px;
 }
 
 .add-recipe-add-ingredient-div {
-    background: none;
-    text-align: right;
-    margin-right: 10px;
-    margin-top: 10px;
+  background: none;
+  text-align: right;
+  margin-right: 10px;
+  margin-top: 10px;
 }
 
 .add-recipe-add-ingredient-button {
-    background: none;
-    border: 3px solid #bfecb5;
-    box-shadow: none;
-    padding: 5px;
-    padding-left: 8px;
-    padding-right: 8px;
-    color: gray;
+  background: none;
+  border: 3px solid #bfecb5;
+  box-shadow: none;
+  padding: 5px;
+  padding-left: 8px;
+  padding-right: 8px;
+  color: gray;
 }
 
 .add-recipe-button-container {
-    text-align: center;
+  text-align: center;
 }
 
 .add-recipe-btn {
-    border: 5px solid #bfecb5;
-    background: none;
-    font-size: 20px;
-    margin: 2rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    transition: all 0.3s ease-in-out;
-    color: gray;
+  border: 5px solid #bfecb5;
+  background: none;
+  font-size: 20px;
+  margin: 2rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  transition: all 0.3s ease-in-out;
+  color: gray;
 }
 
 .add-recipe-btn:hover {
-    box-shadow: #bfecb5 0px 6px 24px 0px, #bfecb5 0px 0px 0px 1px;
-    transform: scale(1.1);
-    color: black;
+  box-shadow: #bfecb5 0px 6px 24px 0px, #bfecb5 0px 0px 0px 1px;
+  transform: scale(1.1);
+  color: black;
 }
-
 
 .go-back-button {
-    color: gray;
-    background: none;
-    border: 3px solid #bfecb5;
-    box-shadow: none;
-    padding: 5px;
-    padding-left: 8px;
-    padding-right: 8px;
+  color: gray;
+  background: none;
+  border: 3px solid #bfecb5;
+  box-shadow: none;
+  padding: 5px;
+  padding-left: 8px;
+  padding-right: 8px;
 }
-
-

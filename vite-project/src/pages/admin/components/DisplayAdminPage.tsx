@@ -1,27 +1,20 @@
+import "../../recipes/components/DisplayRecipes.css";
+import "./DisplayAdminPage.css";
 import { useNavigate } from "react-router";
 import { useAPIState } from "../../../store/APIState";
 import { useEffect, useState } from "react";
 import { RecipeInterface } from "../../../Types";
-import DeleteButton from "./DeleteRecipeButton";
-import "../../recipes/components/DisplayRecipes.css"
-import { Button } from "react-bootstrap";
-import FilterFunction from "../../recipes/components/FilterFunction"
 import { CiEdit } from "react-icons/ci";
+import DeleteButton from "./DeleteRecipeButton";
+import FilterFunction from "../../recipes/components/FilterFunction";
 import ClearButton from "../components/ClearButton.tsx";
-import "./DisplayAdminPage.css"
 
-interface DisplayRecipesProps {
-  deleteButton?: boolean;
-  editButton?: boolean;
-}
-
-const DisplayRecipes = (props: DisplayRecipesProps) => {
+const DisplayAdminRecipes = () => {
   const {
     recipeList,
     filteredRecipeList,
     setRecipeIDState,
     fetchRecipeList,
-    clearReviewState,
     fetchCategories,
   } = useAPIState();
   const [showRecipes, setShowRecipes] = useState<RecipeInterface[]>([]);
@@ -36,7 +29,6 @@ const DisplayRecipes = (props: DisplayRecipesProps) => {
   }, []);
 
   useEffect(() => {
-    console.log(filteredRecipeList, "b4 anything lol");
     if (filteredRecipeList.length > 0) {
       setShowRecipes(filteredRecipeList);
     } else {
@@ -44,27 +36,29 @@ const DisplayRecipes = (props: DisplayRecipesProps) => {
     }
   }, [recipeList]);
 
-  
   const handleEditClick = (recipeId: string, recipeName: string) => {
-    setRecipeIDState(recipeId)
+    setRecipeIDState(recipeId);
     navigate(`/EditRecipe/${recipeName}`);
   };
-  const handleClick = (recipeId: string, recipeName: string) =>{
-    setRecipeIDState(recipeId)
-    navigate(`/Recept/${recipeName}`)
-  }
-  
+  const handleClick = (recipeId: string, recipeName: string) => {
+    setRecipeIDState(recipeId);
+    navigate(`/Recept/${recipeName}`);
+  };
 
   const handleClickAddRecipe = () => {
-    navigate('/AddRecept')
-}
-
+    navigate("/AddRecept");
+  };
 
   return (
     <div className="container">
       <div className="page-headline">
         <h1 className="page-title">Admin</h1>
-        <button className="add-recipe-button" onClick={() => handleClickAddRecipe()}>Add recipe</button>
+        <button
+          className="add-recipe-button"
+          onClick={() => handleClickAddRecipe()}
+        >
+          Add recipe
+        </button>
       </div>
       <div className="page-filter-function">
         <FilterFunction
@@ -86,21 +80,27 @@ const DisplayRecipes = (props: DisplayRecipesProps) => {
               </p>
               <h4
                 className="recipe-title"
-                onClick={()=>handleClick(recipe._id, recipe.title)}
+                onClick={() => handleClick(recipe._id, recipe.title)}
               >
                 {recipe.title}
               </h4>
               <p className="recipe-description">{recipe.description}</p>
-              <button className="edit-button" onClick={() => handleEditClick(recipe._id, recipe.title)}>Edit recipe<CiEdit /></button>
-              <DeleteButton recipeId={recipe._id}/>
+              <button
+                className="edit-button"
+                onClick={() => handleEditClick(recipe._id, recipe.title)}
+              >
+                Edit recipe
+                <CiEdit />
+              </button>
+              <DeleteButton recipeId={recipe._id} />
             </div>
           </div>
         ))}
       </div>
       <div className="delete-database-div">
-        <ClearButton/>
+        <ClearButton />
       </div>
     </div>
   );
 };
-export default DisplayRecipes;
+export default DisplayAdminRecipes;
