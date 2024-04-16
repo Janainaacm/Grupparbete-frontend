@@ -4,7 +4,7 @@ import BackToTopButton from "../../globalComponents/BackToTopButton";
 const CocktailsPage = () => {
   return (
     <div>
-      <div style={{ textAlign: "center" }}>
+      <div>
         <DisplayAllCocktails />
       </div>
 
