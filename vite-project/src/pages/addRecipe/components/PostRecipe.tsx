@@ -102,6 +102,7 @@ const PostRecipe = () => {
       </div>
       <div className="add-recipe-time">
         <input
+          value={timeInMins}
           className="add-recipe-time-input"
           type="number"
           onChange={(event) => setTimeInMinutes(event.target.valueAsNumber)}
@@ -122,6 +123,7 @@ const PostRecipe = () => {
 
       <div className="add-recipe-instructions">
         <textarea
+          value={instructions}
           className="add-recipe-instructions-input"
           rows={4}
           cols={30}
@@ -133,6 +135,7 @@ const PostRecipe = () => {
 
       <div className="add-recipe-categories">
         <select
+          value={categories}
           className="add-recipe-categories-input"
           onChange={(event) => setCategories(event.target.value)}
         >
@@ -148,6 +151,7 @@ const PostRecipe = () => {
 
       <div className="add-recipe-price">
         <input
+          value={price}
           className="add-recipe-price-input"
           type="number"
           onChange={(event) => setPrice(event.target.valueAsNumber)}
