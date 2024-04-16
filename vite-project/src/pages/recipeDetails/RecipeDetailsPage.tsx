@@ -1,23 +1,31 @@
 import "./RecipeDetailsPage.css";
-import { useLocation,Link, useNavigate } from "react-router-dom";
-import AddToCartButton from "./components/AddToCartButton";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from "react-router-dom";
 import { useAPIState } from "../../store/APIState";
 import { useEffect, useState } from "react";
-import PostReview from "./components/PostReview";
-import DisplayReviews from "./components/DisplayReviews";
-import "bootstrap/dist/css/bootstrap.min.css";
-import CocktailRecommendation from "./components/CocktailRecommendation";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
+import { IoIosTimer } from "react-icons/io";
 import { RecipeInterface } from "../../Types";
 import { useCocktailAPIState } from "../../store/CocktailAPIState";
-import { IoIosTimer } from "react-icons/io";
+import DisplayReviews from "./components/DisplayReviews";
+import PostReview from "./components/PostReview";
+import CocktailRecommendation from "./components/CocktailRecommendation";
 import Button from "react-bootstrap/esm/Button";
 import Collapse from "react-bootstrap/esm/Collapse";
-import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
+import AddToCartButton from "./components/AddToCartButton";
 
 const RecipeDetails = () => {
   const [recommendation, setRecommendation] = useState(false);
-  const { recipeID, currentRecipe, fetchRecipe, fetchReviews, recipeList, setRecipeIDState } = useAPIState();
-  const { fetchCocktails, fetchCocktailListByIngredient } = useCocktailAPIState();
+  const {
+    recipeID,
+    currentRecipe,
+    recipeList,
+    fetchRecipe,
+    fetchReviews,
+    setRecipeIDState,
+  } = useAPIState();
+  const { fetchCocktails, fetchCocktailListByIngredient } =
+    useCocktailAPIState();
   const navigate = useNavigate();
   const rating = (Math.round(currentRecipe.avgRating * 10) / 10).toFixed(1);
   const [open, setOpen] = useState(false);
@@ -32,7 +40,6 @@ const RecipeDetails = () => {
   useEffect(() => {
     const savedRecipeID = localStorage.getItem("recipeID");
     if (savedRecipeID) {
-      console.log("fetching local storage");
       fetchRecipe(savedRecipeID);
       fetchReviews(savedRecipeID);
     } else {
@@ -43,11 +50,10 @@ const RecipeDetails = () => {
     getRecericList();
   }, []);
 
-  //LOGIK
   const checkCurrentRecipeCategory = () => {
     switch (currentRecipe.categories[0]) {
       case "Kött":
-        fetchCocktailListByIngredient("orange"); // finns
+        fetchCocktailListByIngredient("orange");
         break;
       case "Fisk":
         fetchCocktailListByIngredient("lemon");
@@ -62,7 +68,7 @@ const RecipeDetails = () => {
         fetchCocktailListByIngredient("ice");
         break;
       case "Övrigt":
-        fetchCocktailListByIngredient("milk") 
+        fetchCocktailListByIngredient("milk");
         break;
 
       default:
@@ -72,63 +78,68 @@ const RecipeDetails = () => {
   };
 
   function shuffle<T>(array: T[]): T[] {
-    const newArray = [...array]; 
+    const newArray = [...array];
     for (let i = newArray.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [newArray[i], newArray[j]] = [newArray[j], newArray[i]]; 
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
     }
     return newArray;
-}
+  }
 
-const getRecericList = () => {
-  const filteredRecipes = recipeList.filter((item) => item._id !== currentRecipe._id);
-  const shuffledRecipes = shuffle(filteredRecipes).slice(0, 6);
-  setRecericList(shuffledRecipes);
-  console.log(recericList)
-}
+  const getRecericList = () => {
+    const filteredRecipes = recipeList.filter(
+      (item) => item._id !== currentRecipe._id
+    );
+    const shuffledRecipes = shuffle(filteredRecipes).slice(0, 6);
+    setRecericList(shuffledRecipes);
+  };
 
-const chooseFromRecericList = (recipeId: string, recipeName: string) => {
-  setRecipeIDState(recipeId)
-  window.location.reload(); 
-};
-
-
-  // Called from PostReview after posting a review
-  // const handleRefreshReviews = () => {
-  //   setRefreshReviews(state => state +1)
-  // }
+  const chooseFromRecericList = (recipeId: string) => {
+    setRecipeIDState(recipeId);
+    window.location.reload();
+  };
 
   return (
-    
     <div className="recipe-details-container">
-    <div className="recipe-details-header">
-      <div className="recipe-details-header-grid-wrapper">
-        <div className="title-side-header">
-          <div className="title-side-header-content">
-            <div onClick={()=>navigate("/Recept")} className="reciric-list-all-recipes-button">
-              <span className="noselect">RECEPT</span>
+      <div className="recipe-details-header">
+        <div className="recipe-details-header-grid-wrapper">
+          <div className="title-side-header">
+            <div className="title-side-header-content">
+              <div
+                onClick={() => navigate("/Recept")}
+                className="reciric-list-all-recipes-button"
+              >
+                <span className="noselect">RECEPT</span>
+              </div>
+              <CocktailRecommendation
+                recipe={currentRecipe}
+                visibility={recommendation}
+                onClose={() => setRecommendation(false)}
+              />
+              <h1 className="title-header">{currentRecipe.title}</h1>
+              <div className="categories-header-div">
+                <p className="categories-header">
+                  {currentRecipe.categories.join(" | ")}
+                </p>
+                <p className="price-header">{currentRecipe.price} SEK</p>
+              </div>
+              <AddToCartButton
+                recipe={currentRecipe}
+                recommendation={() => setRecommendation(true)}
+                checkCategory={() => checkCurrentRecipeCategory()}
+              />
             </div>
-            <CocktailRecommendation recipe={currentRecipe} visibility={recommendation} onClose={() => setRecommendation(false)} />
-            <h1 className="title-header">{currentRecipe.title}</h1>
-            <div className="categories-header-div">
-              <p className="categories-header">
-                {currentRecipe.categories.join(" | ")}
-              </p>
-              <p className="price-header">{currentRecipe.price} SEK</p>
+          </div>
+          <div className="picture-side-header">
+            <div className="header-img">
+              <img
+                className="content-img"
+                src={currentRecipe.imageUrl}
+                alt={currentRecipe.title}
+              />
             </div>
-              <AddToCartButton recipe={currentRecipe} recommendation={() => setRecommendation(true)} checkCategory={() => checkCurrentRecipeCategory()} />
           </div>
         </div>
-        <div className="picture-side-header">
-          <div className="header-img">
-            <img
-              className="content-img"
-              src={currentRecipe.imageUrl}
-              alt={currentRecipe.title}
-            />
-          </div>
-        </div>
-      </div>
       </div>
 
       <div className="recipe-details-info">
@@ -174,9 +185,7 @@ const chooseFromRecericList = (recipeId: string, recipeName: string) => {
                 <div className="ingredients-list-grid">
                   {currentRecipe.ingredients.map((ingredient) => (
                     <>
-                      <p
-                        className="ingredient-amount"
-                      >
+                      <p className="ingredient-amount">
                         {ingredient.amount} {ingredient.unit}
                       </p>
                       <p className="ingredient-name">{ingredient.name}</p>
@@ -228,27 +237,41 @@ const chooseFromRecericList = (recipeId: string, recipeName: string) => {
       <div className="recirc-list-container">
         <h4 className="reciric-list-title">Mer från Receptkungen</h4>
         <div className="reciric-list-all-recipes-button-div">
-        <div onClick={()=>navigate("/Recept")} className="reciric-list-all-recipes-button">
-          <span className="noselect" >Alla recept</span>
-        </div>
+          <div
+            onClick={() => navigate("/Recept")}
+            className="reciric-list-all-recipes-button"
+          >
+            <span className="noselect">Alla recept</span>
+          </div>
         </div>
         <div className="reciric-list">
           <ul className="reciric-list-ul">
             {recericList.map((item, index) => (
-                <li className="reciric-list-item">
-                  <div onClick={() => chooseFromRecericList(item._id, item.title)} className="receric-list-title-a">
+              <li className="reciric-list-item">
+                <div
+                  onClick={() => chooseFromRecericList(item._id)}
+                  className="receric-list-title-a"
+                >
                   <span className="receric-list-item-image">
-                    <img className="receric-list-img" src={item.imageUrl} alt={item.title} />
+                    <img
+                      className="receric-list-img"
+                      src={item.imageUrl}
+                      alt={item.title}
+                    />
                   </span>
                   <div className="receric-list-overlay">
                     <div className="receric-list-overlay-grid">
-                    <h4 className="receric-list-overlay-title">{item.title}</h4>
-                    <p className="receric-list-overlay-categories">{item.categories.join(" | ")}</p>
+                      <h4 className="receric-list-overlay-title">
+                        {item.title}
+                      </h4>
+                      <p className="receric-list-overlay-categories">
+                        {item.categories.join(" | ")}
+                      </p>
                     </div>
                   </div>
-                  </div>
-                </li>
-              ))}
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

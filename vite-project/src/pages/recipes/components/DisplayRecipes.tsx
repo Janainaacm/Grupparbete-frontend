@@ -1,32 +1,24 @@
+import "../components/DisplayRecipes.css";
 import { useNavigate } from "react-router";
 import { useAPIState } from "../../../store/APIState";
 import { useEffect, useState } from "react";
 import { RecipeInterface } from "../../../Types";
-import FilterFunction from "./FilterFunction";
-import "../components/DisplayRecipes.css"
 import { LiaCartPlusSolid } from "react-icons/lia";
-import { Button } from "react-bootstrap";
 import { useCartState } from "../../../store/CartState";
+import FilterFunction from "./FilterFunction";
 
-interface DisplayRecipesProps {
-  showDeleteButton?: boolean;
-  showEditButton?: boolean;
-}
-
-const DisplayRecipes = (props: DisplayRecipesProps) => {
+const DisplayRecipes = () => {
   const {
     recipeList,
     filteredRecipeList,
     setRecipeIDState,
     fetchRecipeList,
-    clearReviewState,
     fetchCategories,
   } = useAPIState();
-  const { AddToCart } = useCartState()
+  const { AddToCart } = useCartState();
   const [showRecipes, setShowRecipes] = useState<RecipeInterface[]>([]);
   const [headlinetag, setHeadlineTag] = useState("Alla recept");
   const navigate = useNavigate();
-
 
   useEffect(() => {
     if (recipeList.length == 0) {
@@ -36,7 +28,6 @@ const DisplayRecipes = (props: DisplayRecipesProps) => {
   }, []);
 
   useEffect(() => {
-    console.log(filteredRecipeList, "b4 anything lol");
     if (filteredRecipeList.length > 0) {
       setShowRecipes(filteredRecipeList);
     } else {
@@ -45,10 +36,9 @@ const DisplayRecipes = (props: DisplayRecipesProps) => {
   }, [recipeList]);
 
   const handleClick = (recipeId: string, recipeName: string) => {
-    setRecipeIDState(recipeId)
+    setRecipeIDState(recipeId);
     navigate(`/Recept/${recipeName}`);
   };
-  
 
   const handleClickAddToCart = (recipe: RecipeInterface) => {
     AddToCart(recipe);
@@ -87,7 +77,9 @@ const DisplayRecipes = (props: DisplayRecipesProps) => {
               <p className="recipe-description">{recipe.description}</p>
 
               <button className="recipe-card-buy-btn">
-                <LiaCartPlusSolid onClick={() => handleClickAddToCart(recipe)} />
+                <LiaCartPlusSolid
+                  onClick={() => handleClickAddToCart(recipe)}
+                />
               </button>
             </div>
           </div>

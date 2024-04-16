@@ -1,15 +1,13 @@
-import { useEffect, useState } from "react";
-import DisplayRecipes from "./components/DisplayRecipes";
-import { useAPIState } from "../../store/APIState";
 import "./RecipePage.css";
+import DisplayRecipes from "./components/DisplayRecipes";
 import BackToTopButton from "../../globalComponents/BackToTopButton";
 
 const RecipePage = () => {
   
   return (
     <div>
-      <DisplayRecipes showDeleteButton={false} showEditButton={false}/>
-      <BackToTopButton></BackToTopButton>
+      <DisplayRecipes />
+      <BackToTopButton />
     </div>
   );
 }
