@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import { useAPIState } from "../../../store/APIState";
-import { reviewInterface } from "../../../Types";
 
 interface PostReviewProps {
   recipeId: string;
   recipeName: string;
-  recipeName: string;
 }
 
 const PostReview = (props: PostReviewProps) => {
-  //const [rating, setRating] = useState<number>();
   const { postReview, postRating } = useAPIState();
   const [name, setName] = useState<string>("");
   const [comment, setComment] = useState<string>("");
@@ -41,44 +38,90 @@ const PostReview = (props: PostReviewProps) => {
     setChosenRating(0);
   };
 
-  //console.log("Rating: ", rating);
-  // console.log("setName: ", name);
-  // console.log("setComment", comment);
-
   return (
-    <div>
-      <div>
-        {/* buttons for rating*/}
-        <button
-          onClick={() => handleRatingButton(1)}
-          disabled={isButtonDisabled}
-        >
-          1
-        </button>
-        <button
-          onClick={() => handleRatingButton(2)}
-          disabled={isButtonDisabled}
-        >
-          2
-        </button>
-        <button
-          onClick={() => handleRatingButton(3)}
-          disabled={isButtonDisabled}
-        >
-          3
-        </button>
-        <button
-          onClick={() => handleRatingButton(4)}
-          disabled={isButtonDisabled}
-        >
-          4
-        </button>
-        <button
-          onClick={() => handleRatingButton(5)}
-          disabled={isButtonDisabled}
-        >
-          5
-        </button>
+    <div className="recipe-rating-review-container">
+      <div className="recipe-rating-rating-container">
+        <div className="recipe-submit-rating-wrapper">
+          <p className="recipe-submit-rating-title">
+            Hur skulle du betygsätta {props.recipeName}?
+          </p>
+          <div className="recipe-submit-rating-stars-container">
+            <div className="star-ratings-container">
+              <div className="star-ratings-items">
+                <input
+                  type="radio"
+                  name="ratings-stars"
+                  id="st5"
+                  onClick={() => setChosenRating(5)}
+                  disabled={isButtonDisabled}
+                />
+                <label htmlFor="st5">
+                  <div className="ratings-star-stroke">
+                    <div className="ratings-star-fill" />
+                  </div>
+                </label>
+
+                <input
+                  type="radio"
+                  name="ratings-stars"
+                  id="st4"
+                  onClick={() => setChosenRating(4)}
+                  disabled={isButtonDisabled}
+                />
+                <label htmlFor="st4">
+                  <div className="ratings-star-stroke">
+                    <div className="ratings-star-fill" />
+                  </div>
+                </label>
+
+                <input
+                  type="radio"
+                  name="ratings-stars"
+                  id="st3"
+                  onClick={() => setChosenRating(3)}
+                  disabled={isButtonDisabled}
+                />
+                <label htmlFor="st3">
+                  <div className="ratings-star-stroke">
+                    <div className="ratings-star-fill" />
+                  </div>
+                </label>
+
+                <input
+                  type="radio"
+                  name="ratings-stars"
+                  id="st2"
+                  onClick={() => setChosenRating(2)}
+                  disabled={isButtonDisabled}
+                />
+                <label htmlFor="st2">
+                  <div className="ratings-star-stroke">
+                    <div className="ratings-star-fill" />
+                  </div>
+                </label>
+
+                <input
+                  type="radio"
+                  name="ratings-stars"
+                  id="st1"
+                  onClick={() => setChosenRating(1)}
+                  disabled={isButtonDisabled}
+                />
+                <label htmlFor="st1">
+                  <div className="ratings-star-stroke">
+                    <div className="ratings-star-fill" />
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+          <button
+            className="submit-rating-button-div"
+            onClick={() => handleRatingButton(chosenRating)}
+          >
+            <span className="submit-rating-button">SKICKA</span>
+          </button>
+        </div>
       </div>
       <div>
         {/*Input field för name */}

@@ -41,6 +41,7 @@ interface APIState {
   fetchReviews: (recipeId: string) => Promise<void>;
   clearReviewState: () => void;
   setFilteredRecipeList: (filteredList: RecipeInterface[]) => void;
+  
 }
 
 // skapar global state och fyller 'recipes' med samtliga recept i databasen.
@@ -65,11 +66,11 @@ export const useAPIState = create<APIState>((set) => ({
     ingredients: [],
   },
 
-  // setCurrentRecipe: (recipe: RecipeInterface) => {
-  //   set({
-  //     currentRecipe: recipe,
-  //   });
-  // },
+  //  setCurrentRecipe: (recipe: RecipeInterface) => {
+  //    set({
+  //      currentRecipe: recipe,
+  //    });
+  //  },
 
   setRecipeIDState: (recipeID: string) => {
     localStorage.setItem('recipeID', recipeID)

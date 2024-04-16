@@ -8,7 +8,7 @@ const SearchBar = ({ setSearchResults }: { setSearchResults?: any }) => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const { recipeList, setFilteredRecipeList } = useAPIState();
-  
+
   const getSearchResult = () => {
     const filteredList = recipeList.filter((recipe) => {
       const lowerCaseSearch = search.toLowerCase();
@@ -19,7 +19,7 @@ const SearchBar = ({ setSearchResults }: { setSearchResults?: any }) => {
         )
       );
     });
-    
+
     setFilteredRecipeList(filteredList);
     setSearch("");
     navigate("/Recept");

@@ -1,11 +1,10 @@
 import { useEffect } from "react";
-import { useAPIState } from "../../../store/APIState";
 import { useCocktailAPIState } from "../../../store/CocktailAPIState";
 import { useCocktailCartStateInterface } from "../../../store/CocktailCartState";
-import { Button, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { CocktailInterface, RecipeInterface } from "../../../Types";
-import drink from "../../../assets/images/images.webp";
+import { RecipeInterface } from "../../../Types";
+import { FaCocktail } from "react-icons/fa";
 
 interface CocktailRecommendationProps {
   recipe: RecipeInterface;
@@ -15,9 +14,8 @@ interface CocktailRecommendationProps {
 
 const CocktailRecommendation = (props: CocktailRecommendationProps) => {
   const navigate = useNavigate();
-  //const { currentRecipe } = useAPIState();
 
-  const { randomCocktailIndex, recommendedListByIngredient, updateCocktailID, cocktailList } =
+  const { randomCocktailIndex, recommendedListByIngredient, updateCocktailID } =
     useCocktailAPIState();
   const { AddToCocktailCart } = useCocktailCartStateInterface();
 
@@ -29,14 +27,20 @@ const CocktailRecommendation = (props: CocktailRecommendationProps) => {
     navigate(`/Cocktails/${cocktailName}`);
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      const modal = document.getElementById("modal-cocktail");
+      if (modal && !modal.contains(e.target)) {
+        props.onClose();
+      }
+    };
 
+    document.addEventListener("mousedown", handleOutsideClick);
 
-  // LOGIK SLUMPAA FRÅN ARRAY recommendedListByIngredient
-const pickRandomFromList = () => {
-    
-}
-
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [props]);
 
   return (
     <>
@@ -62,35 +66,35 @@ const pickRandomFromList = () => {
                 )
               }
               variant="top"
-              src={recommendedListByIngredient[randomCocktailIndex].strDrinkThumb}
+              src={
+                recommendedListByIngredient[randomCocktailIndex].strDrinkThumb
+              }
               alt={recommendedListByIngredient[randomCocktailIndex].strDrink}
             />
-            <Card.Body>
-              <Card.Title>{recommendedListByIngredient[randomCocktailIndex].strDrink}</Card.Title>
-              {/* <Button style={{marginBottom:"10px"}} variant="primary" onClick={() => seeCocktailDetails(recommendedListByIngredient[0].idDrink)}>Visa detaljer</Button> */}
-              <Button
-                style={{ marginBottom: "10px" }}
-                variant="primary"
-                onClick={() => navigate("/cocktails")}
-              >
-                Visa fler cocktails
-              </Button>
-              <Button
-                variant="success"
-                onClick={() =>
-                  AddToCocktailCart(recommendedListByIngredient[randomCocktailIndex])
-                }
-              >
-                Lägg till varukorg
-              </Button>
-              <Button
-                style={{ marginLeft: "38px" }}
-                variant="danger"
-                onClick={props.onClose}
-              >
-                Stäng
-              </Button>
-            </Card.Body>
+            <div className="container-cocktail">
+              <h3>
+                {recommendedListByIngredient[randomCocktailIndex].strDrink}
+              </h3>
+
+              <div className="cocktail-buttons">
+                <span
+                  onClick={() => navigate("/cocktails")}
+                  style={{ fontSize: "2.5rem" }}
+                >
+                  <FaCocktail />
+                </span>
+                <button
+                  className="buy-button"
+                  onClick={() =>
+                    AddToCocktailCart(
+                      recommendedListByIngredient[randomCocktailIndex]
+                    )
+                  }
+                >
+                  Lägg till varukorg
+                </button>
+              </div>
+            </div>
           </Card>
         </div>
       )}

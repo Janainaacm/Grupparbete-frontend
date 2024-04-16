@@ -1,18 +1,44 @@
-import "./FilterFunction.css";
-import { useState, useEffect } from "react";
-import { useAPIState } from "../../../store/APIState";
+import React, { useEffect, useState } from "react";
+import { useCocktailAPIState } from "../../../store/CocktailAPIState";
 import { CategorieInterface } from "../../../Types";
-import Button from "react-bootstrap/Button";
-import Collapse from "react-bootstrap/Collapse";
+import { Button, Collapse } from "react-bootstrap";
 
-interface FilterFunctionProps {
-  setShowRecipes: any;
-  setHeadlineTag: any;
-}
+const FilterCocktailsFunction = () => {
+  const {
+    cocktailList,
+    cocktailCategories,
+    updateCocktailID,
+    fetchCocktailCategories,
+    fetchCocktails,
+    filterCocktailByCategory,
+  } = useCocktailAPIState();
 
-const FilterFunction = (props: FilterFunctionProps) => {
-  const { recipeList, fetchRecipesByCategoryName, allCategories } =
-    useAPIState();
+  const letterButtons = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "V",
+    "W",
+    "Y",
+    "Z",
+  ];
   let [filteredCategories, setFilteredCategories] = useState<string[]>([]);
   const [open, setOpen] = useState(false);
 
@@ -43,7 +69,7 @@ const FilterFunction = (props: FilterFunctionProps) => {
     try {
       const fetchPromises = filteredCategories.map(async (e) => {
         try {
-          return await fetchRecipesByCategoryName(e);
+          return await filterCocktailByCategory(e);
         } catch (error) {
           console.error("Error fetching recipes by category:", error);
           return [];
@@ -60,9 +86,9 @@ const FilterFunction = (props: FilterFunctionProps) => {
       const distinctArray = flattenedResults.filter((value, index, self) => {
         return index === self.findIndex((obj) => obj._id === value._id);
       });
+      
       if (distinctArray.length > 0) {
         props.setShowRecipes(distinctArray);
-        props.setHeadlineTag(
           "Visar alla recept inom: " + filteredCategories.join(", ")
         );
       } else {
@@ -92,35 +118,27 @@ const FilterFunction = (props: FilterFunctionProps) => {
   };
 
   return (
-    <>
-      <Button
-        id="toggle-filter-button"
+  <>
+      <Button id="toggle-filter-button"
         onClick={() => handleDropDownFocus()}
         aria-controls="example-collapse-text"
         aria-expanded={open}
       >
-        FILTER
+      FILTER
       </Button>
       <Collapse in={open}>
         <div id="filter-inside-collapse">
-          {allCategories.map((item, index) => (
-            <label className="radio-button" key={index}>
-              <input
-                type="radio"
-                name={item.name}
-                onClick={() => handleOnChange(item)}
-                checked={item.selected}
-              />
+        {allCategories.map((item, index) => (
+              <label className="radio-button" key={index}>
+              <input type="radio" name={item.name} onClick={() => handleOnChange(item)} checked={item.selected}/>
               <span>{item.name.toUpperCase()}</span>
             </label>
-          ))}
-          <button id="reset-button" onClick={resetFilter}>
-            ÅTERSTÄLL FILTER
-          </button>
+            ))}
+          <button id="reset-button" onClick={resetFilter} >ÅTERSTÄLL FILTER</button>
         </div>
       </Collapse>
     </>
   );
 };
 
-export default FilterFunction;
+export default FilterCocktailsFunction;

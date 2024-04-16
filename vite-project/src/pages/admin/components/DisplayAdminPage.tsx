@@ -1,13 +1,15 @@
-import "../components/DisplayRecipes.css";
+import "../../recipes/components/DisplayRecipes.css";
+import "./DisplayAdminPage.css";
 import { useNavigate } from "react-router";
 import { useAPIState } from "../../../store/APIState";
 import { useEffect, useState } from "react";
 import { RecipeInterface } from "../../../Types";
-import { LiaCartPlusSolid } from "react-icons/lia";
-import { useCartState } from "../../../store/CartState";
-import FilterFunction from "./FilterFunction";
+import { CiEdit } from "react-icons/ci";
+import DeleteButton from "./DeleteRecipeButton";
+import FilterFunction from "../../recipes/components/FilterFunction";
+import ClearButton from "../components/ClearButton.tsx";
 
-const DisplayRecipes = () => {
+const DisplayAdminRecipes = () => {
   const {
     recipeList,
     filteredRecipeList,
@@ -15,7 +17,6 @@ const DisplayRecipes = () => {
     fetchRecipeList,
     fetchCategories,
   } = useAPIState();
-  const { AddToCart } = useCartState();
   const [showRecipes, setShowRecipes] = useState<RecipeInterface[]>([]);
   const [headlinetag, setHeadlineTag] = useState("Alla recept");
   const navigate = useNavigate();
@@ -35,20 +36,29 @@ const DisplayRecipes = () => {
     }
   }, [recipeList]);
 
+  const handleEditClick = (recipeId: string, recipeName: string) => {
+    setRecipeIDState(recipeId);
+    navigate(`/EditRecipe/${recipeName}`);
+  };
   const handleClick = (recipeId: string, recipeName: string) => {
     setRecipeIDState(recipeId);
     navigate(`/Recept/${recipeName}`);
   };
 
-  const handleClickAddToCart = (recipe: RecipeInterface) => {
-    AddToCart(recipe);
+  const handleClickAddRecipe = () => {
+    navigate("/AddRecept");
   };
 
   return (
     <div className="container">
       <div className="page-headline">
-        <h1 className="page-title">Recept</h1>
-        <p className="page-description">{headlinetag}</p>
+        <h1 className="page-title">Admin</h1>
+        <button
+          className="add-recipe-button"
+          onClick={() => handleClickAddRecipe()}
+        >
+          Add recipe
+        </button>
       </div>
       <div className="page-filter-function">
         <FilterFunction
@@ -75,23 +85,22 @@ const DisplayRecipes = () => {
                 {recipe.title}
               </h4>
               <p className="recipe-description">{recipe.description}</p>
-
-              <button className="recipe-card-buy-btn">
-                <LiaCartPlusSolid
-                  onClick={() => handleClickAddToCart(recipe)}
-                />
+              <button
+                className="edit-button"
+                onClick={() => handleEditClick(recipe._id, recipe.title)}
+              >
+                Edit recipe
+                <CiEdit />
               </button>
+              <DeleteButton recipeId={recipe._id} />
             </div>
           </div>
         ))}
       </div>
-      <div className="page-quote">
-        <p className="quote">
-          "Let food be thy medicine and medicine be thy food." <br /> -
-          Hippocrates
-        </p>
+      <div className="delete-database-div">
+        <ClearButton />
       </div>
     </div>
   );
 };
-export default DisplayRecipes;
+export default DisplayAdminRecipes;

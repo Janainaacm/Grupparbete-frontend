@@ -1,9 +1,9 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import "./EditRecipePage.css";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useAPIState } from "../../store/APIState";
-import { useNavigate, useLocation, useParams } from "react-router-dom";
-import ClearButton from "../admin/components/ClearButton";
-import { RecipeInterface } from "../../Types";
+import { useNavigate } from "react-router-dom";
 import { useEditRecipeState } from "../../store/EditRecipeState";
+import { GiTrashCan } from "react-icons/gi";
 
 const EditRecipe = () => {
   const {
@@ -47,7 +47,6 @@ const EditRecipe = () => {
     getCurrentRecipeToEdit(currentRecipe);
   }, [currentRecipe]);
 
-  // Function to handle form submission
   const handleSubmit = async (
     e: { preventDefault: () => void },
     shouldNavigate: boolean
@@ -58,147 +57,172 @@ const EditRecipe = () => {
       if (shouldNavigate) {
         navigate(-1);
       }
-      //  navigate(-1);
     } catch (error) {
       console.error("Error updating recipe:", error);
     }
   };
 
   return (
-    <div>
-      {/* <div>
-        <p>currentRecipe: </p>
-        {currentRecipe.title}
-        <p>recipeToEdit: </p>
-        {recipeToEdit.title}
-      </div> */}
-      <form onSubmit={handleSubmit}>
+    <div className="edit-recipe-container">
+      <div className="edit-recipe-header">
+        <h1 className="edit-recipe-title">Edit recipe</h1>
+      </div>
+      <div className="edit-recipe-form">
         <div>
           <div>
             <div>
-              <div style={{ display: "flex", alignItems: "center" }}>
+              <div className="edit-recipe-image-container">
                 <img
+                  className="edit-recipe-image"
                   src={recipeToEdit.imageUrl || ""}
                   alt={recipeToEdit.title || ""}
-                  style={{ maxWidth: "200px", maxHeight: "200px" }}
                 />
-                <div style={{ marginLeft: "10px" }}>
-                  <h3>Image URL:</h3>
+                <div className="edit-recipe-image-input-section">
+                  <h3 className="edit-recipe-section-title">Image URL:</h3>
                   <textarea
+                    className="edit-recipe-imageURL-input"
                     name="imageUrl"
                     value={recipeToEdit.imageUrl}
                     onChange={handleInputChange}
-                    style={{ width: "500px", height: "100px" }}
                   />
                 </div>
               </div>
-              <div>
-                <h3>Title:</h3>
+              <div className="edit-recipe-flexdisp">
+                <h3 className="edit-recipe-section-title">Title:</h3>
                 <textarea
+                  className="edit-recipe-title-input"
                   name="title"
                   value={recipeToEdit.title}
                   onChange={handleInputChange}
-                  style={{ marginLeft: "20px" }}
                 />
 
-                <h3>Description:</h3>
+                <h3 className="edit-recipe-section-title">Description:</h3>
                 <textarea
+                  className="edit-recipe-title-input"
                   name="description"
                   value={recipeToEdit.description}
                   onChange={handleInputChange}
-                  style={{ marginLeft: "20px" }}
                 />
 
-                <h3>Time:</h3>
-                <textarea
-                  name="timeInMins"
-                  value={recipeToEdit.timeInMins}
-                  onChange={handleInputChange}
-                  style={{ marginLeft: "20px" }}
-                />
-
-                <h3>Price:</h3>
-                <textarea
-                  name="price"
-                  value={recipeToEdit.price}
-                  onChange={handleInputChange}
-                  style={{ marginLeft: "20px" }}
-                />
-
-                <h3>Categories:</h3>
-                <select
-                  onChange={(e) => handleCategoriesChange(e.target.value)}
-                >
-                  <option value="Select">Select</option>
-                  <option value="Kött">Kött</option>
-                  <option value="Kyckling">Kyckling</option>
-                  <option value="Fisk">Fisk</option>
-                  <option value="Vego">Vego</option>
-                  <option value="Dessert">Dessert</option>
-                  <option value="Sprängmedel">Sprängmedel</option>
-                  <option value="Övrigt">Övrigt</option>
-                </select>
+                <div className="jag-vill-do">
+                  <div className="omfg">
+                    <h3 className="edit-recipe-section-title">Time:</h3>
+                    <textarea
+                      className="edit-recipe-price-input"
+                      name="timeInMins"
+                      value={recipeToEdit.timeInMins}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="omfg">
+                    <h3 className="edit-recipe-section-title">Price:</h3>
+                    <textarea
+                      className="edit-recipe-price-input"
+                      name="price"
+                      value={recipeToEdit.price}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="omfg">
+                    <h3 className="edit-recipe-section-title">Categories:</h3>
+                    <select
+                      className="edit-recipe-price-input"
+                      onChange={(e) => handleCategoriesChange(e.target.value)}
+                    >
+                      <option value="Select">Select</option>
+                      <option value="Kött">Kött</option>
+                      <option value="Kyckling">Kyckling</option>
+                      <option value="Fisk">Fisk</option>
+                      <option value="Vego">Vego</option>
+                      <option value="Dessert">Dessert</option>
+                      <option value="Övrigt">Övrigt</option>
+                    </select>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
           <div>
-            <div>
-              <h3>Instructions:</h3>
-              <ul>
+            <div className="edit-recipe-instructions-container">
+              <h3 className="edit-recipe-section-title">Instructions:</h3>
+              <ul className="edit-recipe-instructions-ul">
                 {recipeToEdit.instructions.map((instruction, index) => (
-                  <li key={index}>
+                  <li className="edit-recipe-instructions-li" key={index}>
                     <textarea
+                      className="edit-recipe-instructions-existing-input"
                       value={instruction}
                       onChange={(e) => {
                         handleInstructionsChange(e, index);
                       }}
                     />
-                    <button onClick={() => deleteInstruction(index)}>
-                      Remove
+                    <button
+                      className="edit-recipe-instructions-remove-button"
+                      onClick={() => deleteInstruction(index)}
+                    >
+                      <GiTrashCan />
                     </button>
                   </li>
                 ))}
-                <li>
+                <li className="edit-recipe-instructions-li">
                   <textarea
+                    className="edit-recipe-instructions-existing-input"
                     placeholder="Enter new instructions..."
                     value={newInstruction}
                     onChange={(e) => setNewInstruction(e.target.value)}
                   />
-                  <button onClick={addNewInstruction}>Add</button>
+
+                  <button
+                    className="edit-recipe-existing-input-add-btn"
+                    onClick={addNewInstruction}
+                  >
+                    Add
+                  </button>
                 </li>
               </ul>
             </div>
-            <p>---------------------------------------------------</p>
-            <div>
-              <h3>Ingredients: (Amount, unit, name)</h3>
-              <ul>
+            <div className="edit-recipe-instructions-container">
+              <h3 className="edit-recipe-section-title">
+                Ingredients: (Amount, unit, name)
+              </h3>
+              <ul className="edit-recipe-instructions-ul">
                 {recipeToEdit.ingredients.map((ingredient, index) => (
-                  <li key={index}>
+                  <li className="edit-recipe-instructions-li" key={index}>
                     <textarea
+                      className="edit-recipe-instructions-existing-input"
                       value={`${ingredient.amount} ${ingredient.unit} ${ingredient.name}`}
                       onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
                         handleIngredientChange(e, index)
                       }
                     />
-                    <button onClick={() => deleteIngrediens(index)}>
-                      Remove
+                    <button
+                      className="edit-recipe-instructions-remove-button"
+                      onClick={() => deleteIngrediens(index)}
+                    >
+                      <GiTrashCan />
                     </button>
                   </li>
                 ))}
-                <li>
+                <li className="edit-recipe-instructions-li">
                   <textarea
+                    className="edit-recipe-instructions-existing-input"
                     placeholder="Enter new ingredient..."
                     value={newIngredient}
                     onChange={(e) => setNewIngredient(e.target.value)}
                   />
-                  <button onClick={addNewIngredient}>Add</button>
+                  <button
+                    className="edit-recipe-existing-input-add-btn"
+                    onClick={addNewIngredient}
+                  >
+                    Add
+                  </button>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-      </form>
+      </div>
       <button
+        className="edit-recipe-submit-button"
         onClick={(e) => {
           setSubmitClicked(true);
           handleSubmit(e, true);
@@ -207,7 +231,11 @@ const EditRecipe = () => {
       >
         Submit
       </button>
-      <button onClick={() => navigate(-1)}>Tillbaka</button>
+      <div className="back-btn">
+        <button className="go-back-button" onClick={() => navigate(-1)}>
+          Tillbaka
+        </button>
+      </div>
     </div>
   );
 };
