@@ -24,6 +24,7 @@ const RecipeDetails = () => {
     fetchReviews,
     setRecipeIDState,
     setRandomRecipeList,
+    fetchRecipeList
   } = useRecipeAPIState();
   const { fetchCocktails, fetchCocktailListByIngredient } =
     useCocktailAPIState();
@@ -39,6 +40,9 @@ const RecipeDetails = () => {
   };
 
   useEffect(() => {
+    fetchRecipeList();
+    fetchCocktails();
+    
     const savedRecipeID = localStorage.getItem("recipeID");
     if (savedRecipeID) {
       fetchRecipe(savedRecipeID);
@@ -47,7 +51,6 @@ const RecipeDetails = () => {
       fetchRecipe(recipeID);
       fetchReviews(recipeID);
     }
-    fetchCocktails();
   }, []);
 
   useEffect(() => {

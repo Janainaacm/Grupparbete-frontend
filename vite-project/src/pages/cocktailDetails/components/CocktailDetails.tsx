@@ -11,14 +11,23 @@ const CocktailDetails = () => {
     cocktailID,
     cocktailList,
     cocktailToRender,
+    randomCocktailList,
+    fetchCocktails,
+    setRandomCocktailList,
     updateCocktailID,
     fetchCocktailByID,
   } = useCocktailAPIState();
-  const { addToCocktailCart: AddToCocktailCart } = useCocktailCartState();
-  const { randomCocktailList, setRandomCocktailList } = useCocktailAPIState();
+  const { addToCocktailCart } = useCocktailCartState();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [toggleDropDown, setToggleDropDown] = useState(<FaAngleDown />);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await fetchCocktails();
+    }
+    fetchData();
+  },[]);
 
   useEffect(() => {
     const savedCocktailID = localStorage.getItem("cocktailID");
@@ -27,7 +36,7 @@ const CocktailDetails = () => {
     } else {
       fetchCocktailByID(cocktailID);
     }
-  }, []);
+  }, [cocktailList]);
 
   useEffect(() => {
     const savedCocktailID = localStorage.getItem("cocktailID");
@@ -92,7 +101,7 @@ const CocktailDetails = () => {
               <div>
                 <button
                   className="submit-rating-button-div"
-                  onClick={() => AddToCocktailCart(cocktailToRender)}
+                  onClick={() => addToCocktailCart(cocktailToRender)}
                 >
                   Add to cart
                 </button>
