@@ -50,8 +50,8 @@ const DisplayAllCocktails = () => {
       /> */}
       </div>
       <div className="recipe-list">
-        {cocktailList.map((item) => (
-          <div className="recipe-box" key={item.idDrink}>
+        {cocktailList.map((item, index) => (
+          <div className="recipe-box" key={index}>
             <img
               className="recipe-card-img"
               src={item.strDrinkThumb}

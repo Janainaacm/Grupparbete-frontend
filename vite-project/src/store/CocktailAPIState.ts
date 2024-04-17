@@ -3,14 +3,14 @@ import { CocktailInterface } from "../Types";
 import { COCKTAIL_API_URL } from "../config";
 import axios from "axios";
 
-
 interface CocktailAPIState {
   cocktailList: CocktailInterface[];
+  randomCocktailList: CocktailInterface[];
   cocktailID: string;
   cocktailToRender: CocktailInterface;
   cocktailCategories: CocktailInterface[];
   filteredCocktailArray: CocktailInterface[];
-  recommendedListByIngredient: CocktailInterface[]
+  recommendedListByIngredient: CocktailInterface[];
   randomCocktailIndex: number;
 
   updateCocktailID: (cocktailID: string) => void;
@@ -20,10 +20,9 @@ interface CocktailAPIState {
   fetchCocktailCategories: () => Promise<void>;
   filterCocktailByCategory: (category: string) => Promise<void>;
   clearFilteredCocktailArray: () => void;
-  fetchCocktailListByIngredient: (ingredient: string) => Promise<void>
+  fetchCocktailListByIngredient: (ingredient: string) => Promise<void>;
+  setRandomCocktailList: (cocktailsToShow: CocktailInterface[]) => void;
 }
-
-
 
 export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
   cocktailList: [],
@@ -32,7 +31,7 @@ export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
   filteredCocktailArray: [],
   recommendedListByIngredient: [],
   randomCocktailIndex: 0,
-
+  randomCocktailList: [],
   cocktailToRender: {
     idDrink: "",
     strDrinkThumb: "",
@@ -75,23 +74,33 @@ export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
     strMeasure15: "",
   },
 
+  setRandomCocktailList: (cocktailsToShow: CocktailInterface[]) => {
+    set({
+      randomCocktailList: cocktailsToShow
+    })
+  },
+  
   fetchCocktailListByIngredient: async (ingredient: string) => {
     try {
-      const response = await axios.get(`${COCKTAIL_API_URL}/filter.php?i=${ingredient}`)
+      const response = await axios.get(
+        `${COCKTAIL_API_URL}/filter.php?i=${ingredient}`
+      );
       if (response.status === 200) {
-        console.log("fetchCocktailListByIngredient SUCCESS")
+        console.log("fetchCocktailListByIngredient SUCCESS");
         set({
           recommendedListByIngredient: response.data.drinks,
-          randomCocktailIndex: Math.floor(Math.random() * response.data.drinks.length),
-        })
+          randomCocktailIndex: Math.floor(
+            Math.random() * response.data.drinks.length
+          ),
+        });
       }
     } catch (error) {
-      console.log("error", error)
+      console.log("error", error);
     }
   },
 
   updateCocktailID: (cocktailID: string) => {
-    localStorage.setItem('cocktailID', cocktailID);
+    localStorage.setItem("cocktailID", cocktailID);
     set({
       cocktailID: cocktailID,
     });
@@ -99,31 +108,32 @@ export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
 
   clearCocktailID: () => {
     set({
-      cocktailID: ""
-    })
+      cocktailID: "",
+    });
   },
 
   fetchCocktails: async () => {
     try {
-      const response = await axios.get(`${COCKTAIL_API_URL}/filter.php?a=Alcoholic`);
+      const response = await axios.get(
+        `${COCKTAIL_API_URL}/filter.php?a=Alcoholic`
+      );
       const response2 = await axios.get(`${COCKTAIL_API_URL}/search.php?f=a`);
       const response7 = await axios.get(`${COCKTAIL_API_URL}/search.php?f=f`);
       const response16 = await axios.get(`${COCKTAIL_API_URL}/search.php?f=o`);
       const response17 = await axios.get(`${COCKTAIL_API_URL}/search.php?f=p`);
       const response18 = await axios.get(`${COCKTAIL_API_URL}/search.php?f=q`);
 
-
       if (response.status === 200) {
         console.log("fetchCockails SUCCSESS");
 
-        const responseAll = []
+        const responseAll = [];
         responseAll.push(
           response.data.drinks,
           response2.data.drinks,
           response7.data.drinks,
           response16.data.drinks,
           response17.data.drinks,
-          response18.data.drinks,
+          response18.data.drinks
         );
 
         const flattenedResponse = responseAll.flatMap((num) => num);
@@ -137,13 +147,11 @@ export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
     }
   },
 
-
   fetchCocktailCategories: async () => {
     try {
       const response = await axios.get(`${COCKTAIL_API_URL}/list.php?c=list`);
 
       if (response.status === 200) {
-
         set({
           cocktailCategories: response.data.drinks,
         });
@@ -151,7 +159,6 @@ export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
     } catch (error) {
       console.log("error", error);
     }
-
   },
 
   filterCocktailByCategory: async (category: string) => {
@@ -159,16 +166,13 @@ export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
       const response = await axios.get(`${COCKTAIL_API_URL}${category}`);
 
       if (response.status === 200) {
-
         set({
           cocktailList: response.data.drinks,
         });
       }
-
     } catch (error) {
       console.log("error", error);
     }
-
   },
 
   clearFilteredCocktailArray: () => {
@@ -194,5 +198,4 @@ export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
       console.log("error", error);
     }
   },
-
 }));
