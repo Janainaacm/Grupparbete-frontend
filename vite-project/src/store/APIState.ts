@@ -16,6 +16,7 @@ import { API_URL } from "../config";
 interface APIState {
   recipeList: RecipeInterface[];
   allCategories: CategorieInterface[];
+  randomRecipeList: RecipeInterface[];
   reviewList: reviewInterface[];
   filteredRecipeList: RecipeInterface[];
   currentRecipe: RecipeInterface;
@@ -41,12 +42,14 @@ interface APIState {
   fetchReviews: (recipeId: string) => Promise<void>;
   clearReviewState: () => void;
   setFilteredRecipeList: (filteredList: RecipeInterface[]) => void;
+  setRandomRecipeList: (recipesToShow: RecipeInterface[]) => void;
   
 }
 
 // skapar global state och fyller 'recipes' med samtliga recept i databasen.
 export const useAPIState = create<APIState>((set) => ({
   recipeList: [],
+  randomRecipeList: [],
   allCategories: [],
   reviewList: [],
   filteredRecipeList: [],
@@ -71,6 +74,13 @@ export const useAPIState = create<APIState>((set) => ({
   //      currentRecipe: recipe,
   //    });
   //  },
+
+
+  setRandomRecipeList: (recipesToShow: RecipeInterface[]) => {
+    set({
+      randomRecipeList: recipesToShow
+    })
+  },
 
   setRecipeIDState: (recipeID: string) => {
     localStorage.setItem('recipeID', recipeID)

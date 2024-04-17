@@ -5,7 +5,6 @@ import { useAPIState } from "../../store/APIState";
 import { useEffect, useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import { IoIosTimer } from "react-icons/io";
-import { RecipeInterface } from "../../Types";
 import { useCocktailAPIState } from "../../store/CocktailAPIState";
 import DisplayReviews from "./components/DisplayReviews";
 import PostReview from "./components/PostReview";
@@ -20,17 +19,19 @@ const RecipeDetails = () => {
     recipeID,
     currentRecipe,
     recipeList,
+    randomRecipeList,
     fetchRecipe,
     fetchReviews,
     setRecipeIDState,
+    setRandomRecipeList,
   } = useAPIState();
   const { fetchCocktails, fetchCocktailListByIngredient } =
     useCocktailAPIState();
   const navigate = useNavigate();
+
   const rating = (Math.round(currentRecipe.avgRating * 10) / 10).toFixed(1);
   const [open, setOpen] = useState(false);
   const [toggleDropDown, setToggleDropDown] = useState(<FaAngleDown />);
-  const [recericList, setRecericList] = useState<RecipeInterface[]>([]);
 
   const handleDropDownFocus = () => {
     setOpen(!open);
@@ -47,8 +48,23 @@ const RecipeDetails = () => {
       fetchReviews(recipeID);
     }
     fetchCocktails();
-    getRecericList();
   }, []);
+
+  useEffect(() => {
+    const savedRecipeID = localStorage.getItem("recipeID");
+    if (savedRecipeID) {
+      fetchRecipe(savedRecipeID);
+      fetchReviews(savedRecipeID);
+    } else {
+      fetchRecipe(recipeID);
+      fetchReviews(recipeID);
+    }
+    fetchCocktails();
+  }, [recipeID]);
+
+  useEffect(() => {
+    excludeCurrentRecipe();
+  }, [currentRecipe]);
 
   const checkCurrentRecipeCategory = () => {
     switch (currentRecipe.categories[0]) {
@@ -86,17 +102,17 @@ const RecipeDetails = () => {
     return newArray;
   }
 
-  const getRecericList = () => {
+  const excludeCurrentRecipe = () => {
     const filteredRecipes = recipeList.filter(
       (item) => item._id !== currentRecipe._id
     );
-    const shuffledRecipes = shuffle(filteredRecipes).slice(0, 6);
-    setRecericList(shuffledRecipes);
+    const recipesToShow = shuffle(filteredRecipes).slice(0, 6);
+    setRandomRecipeList(recipesToShow);
   };
 
-  const chooseFromRecericList = (recipeId: string) => {
+  const linkToRecipe = (recipeId: string, recipeName: string) => {
     setRecipeIDState(recipeId);
-    window.location.reload();
+    navigate(`/Recept/${recipeName}`);
   };
 
   return (
@@ -149,14 +165,12 @@ const RecipeDetails = () => {
               <ul className="recipe-details-top-info-list">
                 <li className="list-items">
                   <div className="stars-box">
-                    <p>
-                      <div
-                        className="stars"
-                        style={{ "--rating": rating }}
-                        aria-label={`Rating of this product is ${rating} out of 5.`}
-                      />{" "}
-                      rating: {rating}
-                    </p>
+                    <div
+                      className="stars"
+                      style={{ "--rating": rating }}
+                      aria-label={`Rating of this product is ${rating} out of 5.`}
+                    />{" "}
+                    rating: {rating}
                   </div>
                 </li>
                 <li className="list-items">
@@ -183,13 +197,13 @@ const RecipeDetails = () => {
               <h3 className="ingredients-title">Ingredienser</h3>
               <div className="ingredients-list-group">
                 <div className="ingredients-list-grid">
-                  {currentRecipe.ingredients.map((ingredient) => (
-                    <>
+                  {currentRecipe.ingredients.map((ingredient, index) => (
+                    <div key={index}>
                       <p className="ingredient-amount">
                         {ingredient.amount} {ingredient.unit}
                       </p>
                       <p className="ingredient-name">{ingredient.name}</p>
-                    </>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -246,10 +260,10 @@ const RecipeDetails = () => {
         </div>
         <div className="reciric-list">
           <ul className="reciric-list-ul">
-            {recericList.map((item, index) => (
-              <li className="reciric-list-item">
+            {randomRecipeList.map((item, index) => (
+              <li key={index} className="reciric-list-item">
                 <div
-                  onClick={() => chooseFromRecericList(item._id)}
+                  onClick={() => linkToRecipe(item._id, item.title)}
                   className="receric-list-title-a"
                 >
                   <span className="receric-list-item-image">
