@@ -14,7 +14,7 @@ const CocktailDetails = () => {
     updateCocktailID,
     fetchCocktailByID,
   } = useCocktailAPIState();
-  const { AddToCocktailCart } = useCocktailCartState();
+  const { addToCocktailCart: AddToCocktailCart } = useCocktailCartState();
   const { randomCocktailList, setRandomCocktailList } = useCocktailAPIState();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);

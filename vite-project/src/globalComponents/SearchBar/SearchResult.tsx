@@ -1,11 +1,11 @@
 import "./SearchResult.css";
 import { useNavigate } from "react-router-dom";
-import { useAPIState } from "../../store/APIState";
+import { useRecipeAPIState } from "../../store/RecipeAPIState";
 import { RecipeInterface } from "../../Types";
 
 const SearchResult = ({ result }) => {
   const navigate = useNavigate();
-  const { setRecipeIDState } = useAPIState();
+  const { setRecipeIDState } = useRecipeAPIState();
 
   const search = (recipe: RecipeInterface) => {
     setRecipeIDState(recipe._id);

@@ -1,26 +1,25 @@
-import { CartInterface } from "../Types";
 import { create } from "zustand";
 import { RecipeInterface } from "../Types";
 
 interface RecipeCartState {
   recipeCart: RecipeInterface[];
 
-  AddToCart: (recipe: RecipeInterface) => void;
-  RemoveFromCart: (recipeIdToRemove: string) => void;
+  addToCart: (recipe: RecipeInterface) => void;
+  removeFromCart: (recipeIdToRemove: string) => void;
   clearCart: () => void;
-  RemoveAllFromCart: (recipeIdToRemove: string) => void;
+  removeAllFromCart: (recipeIdToRemove: string) => void;
 }
 
 export const useRecipeCartState = create<RecipeCartState>((set) => ({
   recipeCart: [],
 
-  AddToCart: (recipe) => {
+  addToCart: (recipe) => {
     set((state) => ({
       recipeCart: [...state.recipeCart, recipe],
     }));
   },
 
-  RemoveFromCart: (recipeIdToRemove) => {
+  removeFromCart: (recipeIdToRemove) => {
     set((state) => {
       const indexToRemove = state.recipeCart.findIndex(
         (recipe) => recipe._id === recipeIdToRemove
@@ -34,9 +33,11 @@ export const useRecipeCartState = create<RecipeCartState>((set) => ({
     });
   },
 
-  RemoveAllFromCart: (recipeIdToRemove) => {
+  removeAllFromCart: (recipeIdToRemove) => {
     set((state) => ({
-      recipeCart: state.recipeCart.filter((recipe) => recipe._id !== recipeIdToRemove),
+      recipeCart: state.recipeCart.filter(
+        (recipe) => recipe._id !== recipeIdToRemove
+      ),
     }));
   },
 

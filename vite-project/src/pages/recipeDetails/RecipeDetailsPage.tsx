@@ -1,7 +1,7 @@
 import "./RecipeDetailsPage.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-import { useAPIState } from "../../store/APIState";
+import { useRecipeAPIState } from "../../store/RecipeAPIState";
 import { useEffect, useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import { IoIosTimer } from "react-icons/io";
@@ -24,7 +24,7 @@ const RecipeDetails = () => {
     fetchReviews,
     setRecipeIDState,
     setRandomRecipeList,
-  } = useAPIState();
+  } = useRecipeAPIState();
   const { fetchCocktails, fetchCocktailListByIngredient } =
     useCocktailAPIState();
   const navigate = useNavigate();

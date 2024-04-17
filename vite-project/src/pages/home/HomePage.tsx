@@ -1,6 +1,6 @@
 import "./HomePage.css";
 import SearchBar from "../../globalComponents/SearchBar/SearchBar.tsx";
-import { useAPIState } from "../../store/APIState.ts";
+import { useRecipeAPIState } from "../../store/RecipeAPIState.ts";
 import { useEffect, useState } from "react";
 import SearchResultsList from "../../globalComponents/SearchBar/SearchResultsList.tsx";
 import Carousel from "./components/Carousel.tsx";
@@ -8,9 +8,9 @@ import { CarouselData } from "../../assets/data/carousel_data.ts";
 import HomeSwiper from "./components/HomeSwiper.tsx";
 
 const Home = () => {
-  const { fetchRecipeList, fetchCategories } = useAPIState();
+  const { fetchRecipeList, fetchCategories } = useRecipeAPIState();
   const [searchResults, setSearchResults] = useState([]);
-  const { recipeList } = useAPIState();
+  const { recipeList } = useRecipeAPIState();
 
   useEffect(() => {
     if (recipeList.length == 0) {

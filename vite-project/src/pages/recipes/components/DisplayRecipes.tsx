@@ -1,6 +1,6 @@
 import "../components/DisplayRecipes.css";
 import { useNavigate } from "react-router";
-import { useAPIState } from "../../../store/APIState";
+import { useRecipeAPIState } from "../../../store/RecipeAPIState";
 import { useEffect, useState } from "react";
 import { RecipeInterface } from "../../../Types";
 import { LiaCartPlusSolid } from "react-icons/lia";
@@ -14,8 +14,8 @@ const DisplayRecipes = () => {
     setRecipeIDState,
     fetchRecipeList,
     fetchCategories,
-  } = useAPIState();
-  const { AddToCart } = useRecipeCartState();
+  } = useRecipeAPIState();
+  const { addToCart: AddToCart } = useRecipeCartState();
   const [showRecipes, setShowRecipes] = useState<RecipeInterface[]>([]);
   const [headlinetag, setHeadlineTag] = useState("Alla recept");
   const navigate = useNavigate();

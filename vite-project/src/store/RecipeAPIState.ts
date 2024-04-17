@@ -1,23 +1,18 @@
-/**
- * Konsultera Nick och Jonas om något behöver ändras
- */
-
-import { create } from "zustand";
 import {
   RecipeInterface,
   CategorieInterface,
-  reviewInterface,
-  ratingInterface,
+  ReviewInterface,
+  RatingInterface,
 } from "../Types";
+import { create } from "zustand";
 import axios from "axios";
 import { API_URL } from "../config";
 
-// interface som definierar struktur och funktionerna för global state
-interface APIState {
+interface RecipeAPIState {
   recipeList: RecipeInterface[];
   allCategories: CategorieInterface[];
   randomRecipeList: RecipeInterface[];
-  reviewList: reviewInterface[];
+  reviewList: ReviewInterface[];
   filteredRecipeList: RecipeInterface[];
   currentRecipe: RecipeInterface;
   recipeID: string;
@@ -43,11 +38,9 @@ interface APIState {
   clearReviewState: () => void;
   setFilteredRecipeList: (filteredList: RecipeInterface[]) => void;
   setRandomRecipeList: (recipesToShow: RecipeInterface[]) => void;
-  
 }
 
-// skapar global state och fyller 'recipes' med samtliga recept i databasen.
-export const useAPIState = create<APIState>((set) => ({
+export const useRecipeAPIState = create<RecipeAPIState>((set) => ({
   recipeList: [],
   randomRecipeList: [],
   allCategories: [],
@@ -69,23 +62,16 @@ export const useAPIState = create<APIState>((set) => ({
     ingredients: [],
   },
 
-  //  setCurrentRecipe: (recipe: RecipeInterface) => {
-  //    set({
-  //      currentRecipe: recipe,
-  //    });
-  //  },
-
-
   setRandomRecipeList: (recipesToShow: RecipeInterface[]) => {
     set({
-      randomRecipeList: recipesToShow
-    })
+      randomRecipeList: recipesToShow,
+    });
   },
 
   setRecipeIDState: (recipeID: string) => {
-    localStorage.setItem('recipeID', recipeID)
+    localStorage.setItem("recipeID", recipeID);
     set({
-      recipeID: recipeID
+      recipeID: recipeID,
     });
   },
 
@@ -102,8 +88,6 @@ export const useAPIState = create<APIState>((set) => ({
         set({
           recipeList: response.data,
         });
-        //console.log(response.data);
-        //console.log("Fetch all recipes");
       }
     } catch (error) {
       console.log("Error fetching recipe list", error);
@@ -119,7 +103,6 @@ export const useAPIState = create<APIState>((set) => ({
         }));
         return response.status;
       } else {
-        console.log("Error posting new recipe");
         return response.status;
       }
     } catch (error) {
@@ -128,12 +111,10 @@ export const useAPIState = create<APIState>((set) => ({
     }
   },
 
- 
   fetchRecipe: async (recipeID: string) => {
     try {
       const response = await axios.get(`${API_URL}/recipes/${recipeID}`);
       if (response.status === 200) {
-        console.log("Success loading recipe");
         set({
           currentRecipe: response.data,
         });
@@ -143,29 +124,11 @@ export const useAPIState = create<APIState>((set) => ({
     }
   },
 
-  // LÅT KOMENTAR VARA!!! JONAS BYGGER OM LITE!!!
-  // fetchRecipe: async (recipeID: string) => {
-  //   try {
-  //     const response = await axios.get(`${API_URL}/recipes/${recipeID}`);
-  //     if (response.status === 200) {
-  //       console.log("Success loading recipe");
-  //       console.log(response.data);
-  //       set({
-  //           currentRecipe: response.data
-  //       });
-  //       return response.data;
-  //     }
-  //   } catch (error) {
-  //     console.log("Error while fetching recipe", error);
-  //   }
-  // },
-
   deleteRecipe: async (recipeId: string) => {
     try {
       const response = await axios.delete(`${API_URL}/recipes/${recipeId}`);
 
       if (response.status === 200) {
-        console.log("successfully deleted ID: ", recipeId);
         set((state) => ({
           recipeList: state.recipeList.filter(
             (recipe) => recipe._id !== recipeId
@@ -177,7 +140,6 @@ export const useAPIState = create<APIState>((set) => ({
     }
   },
 
-  //PATCH - /recipes/{recipeId} - Uppdaterar ett recept
   updateRecipe: async (updatedRecipe: RecipeInterface) => {
     try {
       const response = await axios.patch(
@@ -198,7 +160,7 @@ export const useAPIState = create<APIState>((set) => ({
   },
 
   postRating: async (recipeId, newRating) => {
-    const ratingObject: ratingInterface = { rating: newRating };
+    const ratingObject: RatingInterface = { rating: newRating };
     try {
       const response = await axios.post(
         `${API_URL}/recipes/${recipeId}/ratings`,
@@ -213,7 +175,7 @@ export const useAPIState = create<APIState>((set) => ({
   },
 
   postReview: async (recipeId, name, comment) => {
-    const reviewObject: reviewInterface = { name: name, comment: comment };
+    const reviewObject: ReviewInterface = { name: name, comment: comment };
     try {
       const response = await axios.post(
         `${API_URL}/recipes/${recipeId}/comments`,
@@ -224,7 +186,6 @@ export const useAPIState = create<APIState>((set) => ({
         set((state) => ({
           reviewList: [...state.reviewList, response.data],
         }));
-        //console.log("Sucessfully posted comment");
         alert("Successfully posted comment");
       }
     } catch (error) {
@@ -233,8 +194,6 @@ export const useAPIState = create<APIState>((set) => ({
   },
 
   fetchReviews: async (recipeId) => {
-    //const {reviewList} = useAPIState()
-
     try {
       const response = await axios.get(
         `${API_URL}/recipes/${recipeId}/comments`
@@ -244,16 +203,6 @@ export const useAPIState = create<APIState>((set) => ({
         set({
           reviewList: response.data,
         });
-
-        // set((state) => {
-        //   const currentReviewsLength = state.reviewList.length;
-        //   const fetchedReviewsLength = response.data.length;
-
-        //   if (currentReviewsLength < fetchedReviewsLength) {
-        //     return { reviewList: response.data };
-        //   }
-        //   return {};
-        // });
       }
     } catch (error) {
       console.log("Error fetching comments", error);
@@ -266,31 +215,25 @@ export const useAPIState = create<APIState>((set) => ({
     });
   },
 
-  //GET - /categories - Hämtar alla kategorier
   fetchCategories: async () => {
     try {
       const response = await axios.get(`${API_URL}/categories`);
       if (response.status === 200) {
-        //console.log("success fetching categories");
         set({
           allCategories: response.data,
         });
-        //console.log(response.data);
       }
     } catch (error) {
       console.log("error fetching categories", error);
     }
   },
 
-  //GET - /categories/{categoryName}/recipes - Hämtar alla recept i en viss kategori
   fetchRecipesByCategoryName: async (categoryName: string) => {
     try {
       const response = await axios.get(
         `${API_URL}/categories/${categoryName}/recipes`
       );
       if (response.status === 200) {
-        //console.log("success fetching recipes by category name");
-        //console.log(response.data);
         return response.data;
       }
     } catch (error) {
@@ -298,13 +241,11 @@ export const useAPIState = create<APIState>((set) => ({
     }
   },
 
-  //GET - /clear - Tömmer api:et på all data
   clearDB: async (key: string) => {
     if (key === "ClearThisShitHole") {
       try {
         const response = await axios.get(`${API_URL}/clear`);
         if (response.status === 200) {
-          console.log("successfully cleared database");
           set({
             recipeList: [],
           });

@@ -1,3 +1,4 @@
+
 export interface RecipeInterface {
   _id?: string;
   title: string;
@@ -29,13 +30,13 @@ export interface CategorieInterface {
   selected?: boolean
 }
 
-export interface reviewInterface {
+export interface ReviewInterface {
   name: string;
   comment: string;
   createdAt?: string;
 }
 
-export interface ratingInterface {
+export interface RatingInterface {
   rating: number;
 }
 
@@ -81,5 +82,3 @@ export interface CocktailInterface {
   strMeasure15: string,
 
 };
-
-export interface Cocktail

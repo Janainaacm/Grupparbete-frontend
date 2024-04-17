@@ -76,17 +76,16 @@ export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
 
   setRandomCocktailList: (cocktailsToShow: CocktailInterface[]) => {
     set({
-      randomCocktailList: cocktailsToShow
-    })
+      randomCocktailList: cocktailsToShow,
+    });
   },
-  
+
   fetchCocktailListByIngredient: async (ingredient: string) => {
     try {
       const response = await axios.get(
         `${COCKTAIL_API_URL}/filter.php?i=${ingredient}`
       );
       if (response.status === 200) {
-        console.log("fetchCocktailListByIngredient SUCCESS");
         set({
           recommendedListByIngredient: response.data.drinks,
           randomCocktailIndex: Math.floor(
@@ -124,8 +123,6 @@ export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
       const response18 = await axios.get(`${COCKTAIL_API_URL}/search.php?f=q`);
 
       if (response.status === 200) {
-        console.log("fetchCockails SUCCSESS");
-
         const responseAll = [];
         responseAll.push(
           response.data.drinks,
@@ -188,8 +185,6 @@ export const useCocktailAPIState = create<CocktailAPIState>((set) => ({
       );
 
       if (response.status === 200) {
-        //console.log("fetchCocktailByID SUCCSESS");
-
         set({
           cocktailToRender: response.data.drinks[0],
         });

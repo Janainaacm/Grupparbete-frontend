@@ -1,6 +1,6 @@
 import "./EditRecipePage.css";
 import { ChangeEvent, useEffect, useState } from "react";
-import { useAPIState } from "../../store/APIState";
+import { useRecipeAPIState } from "../../store/RecipeAPIState";
 import { useNavigate } from "react-router-dom";
 import { useEditRecipeState } from "../../store/EditRecipeState";
 import { GiTrashCan } from "react-icons/gi";
@@ -12,7 +12,7 @@ const EditRecipe = () => {
     fetchRecipe,
     updateRecipe,
     fetchCategories,
-  } = useAPIState();
+  } = useRecipeAPIState();
   const {
     recipeToEdit,
     newInstruction,

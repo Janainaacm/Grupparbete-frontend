@@ -3,7 +3,7 @@ import { useCocktailCartState } from "../../../store/CocktailCartState";
 
 const BuyButton = () => {
   const { clearCart } = useRecipeCartState();
-  const { ClearCocktailCart } = useCocktailCartState();
+  const { clearCocktailCart: ClearCocktailCart } = useCocktailCartState();
 
   const handleClick = () => {
     clearCart();
