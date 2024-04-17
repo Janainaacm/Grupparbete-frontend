@@ -20,9 +20,11 @@ const RecipeDetails = () => {
     recipeID,
     currentRecipe,
     recipeList,
+    randomRecipeList,
     fetchRecipe,
     fetchReviews,
     setRecipeIDState,
+    setRandomRecipeList
   } = useAPIState();
   const { fetchCocktails, fetchCocktailListByIngredient } =
     useCocktailAPIState();
@@ -30,8 +32,8 @@ const RecipeDetails = () => {
   const rating = (Math.round(currentRecipe.avgRating * 10) / 10).toFixed(1);
   const [open, setOpen] = useState(false);
   const [toggleDropDown, setToggleDropDown] = useState(<FaAngleDown />);
-  const [recericList, setRecericList] = useState<RecipeInterface[]>([]);
-
+  
+// make GS
   const handleDropDownFocus = () => {
     setOpen(!open);
     setToggleDropDown(open ? <FaAngleDown /> : <FaAngleUp />);
@@ -47,7 +49,7 @@ const RecipeDetails = () => {
       fetchReviews(recipeID);
     }
     fetchCocktails();
-    getRecericList();
+    excludeCurrentRecipe();
   }, []);
 
   const checkCurrentRecipeCategory = () => {
@@ -86,15 +88,16 @@ const RecipeDetails = () => {
     return newArray;
   }
 
-  const getRecericList = () => {
+  const excludeCurrentRecipe = () => {
     const filteredRecipes = recipeList.filter(
       (item) => item._id !== currentRecipe._id
     );
-    const shuffledRecipes = shuffle(filteredRecipes).slice(0, 6);
-    setRecericList(shuffledRecipes);
+    const recipesToShow = shuffle(filteredRecipes).slice(0, 6);
+    
+    setRandomRecipeList(recipesToShow);
   };
 
-  const chooseFromRecericList = (recipeId: string) => {
+  const linkToRecipe = (recipeId: string) => {
     setRecipeIDState(recipeId);
     window.location.reload();
   };
@@ -246,10 +249,10 @@ const RecipeDetails = () => {
         </div>
         <div className="reciric-list">
           <ul className="reciric-list-ul">
-            {recericList.map((item, index) => (
+            {randomRecipeList.map((item, index) => (
               <li className="reciric-list-item">
                 <div
-                  onClick={() => chooseFromRecericList(item._id)}
+                  onClick={() => linkToRecipe(item._id)}
                   className="receric-list-title-a"
                 >
                   <span className="receric-list-item-image">
