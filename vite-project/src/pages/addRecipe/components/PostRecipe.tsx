@@ -53,12 +53,14 @@ const PostRecipe = () => {
         setCategories("");
         setInstructions("");
         setPrice(0);
+        location.reload();
       } else {
         alert("Error");
       }
     } catch (error) {
       console.log("error: ", error);
     }
+    
   };
 
   const handleIngredientAdd = () => {
@@ -122,6 +124,7 @@ const PostRecipe = () => {
 
       <div className="add-recipe-instructions">
         <textarea
+          value={instructions}
           className="add-recipe-instructions-input"
           rows={4}
           cols={30}
@@ -133,6 +136,7 @@ const PostRecipe = () => {
 
       <div className="add-recipe-categories">
         <select
+          value={categories}
           className="add-recipe-categories-input"
           onChange={(event) => setCategories(event.target.value)}
         >
