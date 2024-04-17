@@ -13,6 +13,8 @@ import CocktailRecommendation from "./components/CocktailRecommendation";
 import Button from "react-bootstrap/esm/Button";
 import Collapse from "react-bootstrap/esm/Collapse";
 import AddToCartButton from "./components/AddToCartButton";
+import { useRecipeCartState } from "../../store/RecipeCartState";
+import { useCocktailCartState } from "../../store/CocktailCartState";
 
 const RecipeDetails = () => {
   const [recommendation, setRecommendation] = useState(false);
@@ -29,11 +31,18 @@ const RecipeDetails = () => {
   const { fetchCocktails, fetchCocktailListByIngredient } =
     useCocktailAPIState();
   const navigate = useNavigate();
+  const { recipeCart } = useRecipeCartState()
+  const { cocktailCart } = useCocktailCartState()
+
   const rating = (Math.round(currentRecipe.avgRating * 10) / 10).toFixed(1);
   const [open, setOpen] = useState(false);
   const [toggleDropDown, setToggleDropDown] = useState(<FaAngleDown />);
   
-// make GS
+  useEffect(() => {
+    console.log("RECIPE CART ",recipeCart)
+    console.log("COCKTAIL CART ",cocktailCart)
+  },[])
+
   const handleDropDownFocus = () => {
     setOpen(!open);
     setToggleDropDown(open ? <FaAngleDown /> : <FaAngleUp />);

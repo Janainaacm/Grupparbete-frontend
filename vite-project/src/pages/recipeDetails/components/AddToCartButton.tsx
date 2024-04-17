@@ -1,9 +1,11 @@
 import "../RecipeDetailsPage.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useCartState } from "../../../store/CartState";
+import { useRecipeCartState } from "../../../store/RecipeCartState";
+
+
 
 const AddToCartButton = ({ recipe, recommendation, checkCategory }) => {
-  const addToCart = useCartState((state) => state.AddToCart);
+  const addToCart = useRecipeCartState((state) => state.AddToCart);
 
   const handleClick = () => {
     addToCart(recipe);

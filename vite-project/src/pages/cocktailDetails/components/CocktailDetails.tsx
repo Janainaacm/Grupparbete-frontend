@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCocktailCartStateInterface } from "../../../store/CocktailCartState";
+import { useCocktailCartState } from "../../../store/CocktailCartState";
 import { useCocktailAPIState } from "../../../store/CocktailAPIState";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Card, Collapse } from "react-bootstrap";
@@ -13,7 +13,7 @@ import PostReview from "../../recipeDetails/components/PostReview";
 const CocktailDetails = () => {
   const { cocktailID, cocktailList, updateCocktailID, cocktailToRender, fetchCocktailByID } =
     useCocktailAPIState();
-  const { AddToCocktailCart } = useCocktailCartStateInterface();
+  const { AddToCocktailCart } = useCocktailCartState();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [toggleDropDown, setToggleDropDown] = useState(<FaAngleDown />);

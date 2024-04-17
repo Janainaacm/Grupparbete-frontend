@@ -3,10 +3,12 @@ import { useState, useRef, useEffect } from "react";
 import { Overlay, Row, Col, Button, Badge } from "react-bootstrap";
 import cartLogo from "../../../assets/images/shopping-cart.png";
 import ShoppingCart from "./ShoppingCart";
-import { useCartState } from "../../../store/CartState";
-import { useCocktailCartStateInterface } from "../../../store/CocktailCartState";
+import { useRecipeCartState } from "../../../store/RecipeCartState";
+import { useCocktailCartState } from "../../../store/CocktailCartState";
 import { CiCirclePlus } from "react-icons/ci";
 import { CiCircleMinus } from "react-icons/ci";
+import { CocktailInterface, RecipeInterface } from "../../../Types";
+
 
 function Cart() {
   const [showPopover, setShowPopover] = useState(false);
@@ -32,57 +34,57 @@ function Cart() {
 
   const [cart4, setCart4] = useState<RecipeInterface[]>([]);
   const [cocktailCart4, setCocktailCart4] = useState<CocktailInterface[]>([]);
-  const { cart, RemoveFromCart, AddToCart } = useCartState();
-  const { coctailCart, RemoveOneFromCocktailCart, AddToCocktailCart } =
-    useCocktailCartStateInterface();
+  const { recipeCart, RemoveFromCart, AddToCart } = useRecipeCartState();
+  const { cocktailCart, RemoveOneFromCocktailCart, AddToCocktailCart } =
+    useCocktailCartState();
 
   const sortedCart = cart4.sort((a, b) => a.title.localeCompare(b.title));
   const sortedCocktails = cocktailCart4.sort((a, b) =>
     a.strDrink.localeCompare(b.strDrink)
   );
 
-  if (cart.length > cart4.length) {
-    setCart4(cart);
+  if (recipeCart.length > cart4.length) {
+    setCart4(recipeCart);
 
     setShowPopover(true);
 
     function hidePop() {
       setShowPopover(false);
-      setCart4(cart);
+      setCart4(recipeCart);
     }
 
     setTimeout(hidePop, 1000);
   }
 
-  if (cart.length < cart4.length) {
-    setCart4(cart);
+  if (recipeCart.length < cart4.length) {
+    setCart4(recipeCart);
   }
 
   useEffect(() => {
-    if (cart.length == cart4.length) {
+    if (recipeCart.length == cart4.length) {
       setShowPopover(false);
     }
   }, []);
 
-  if (coctailCart.length > cocktailCart4.length) {
-    setCocktailCart4(coctailCart);
+  if (cocktailCart.length > cocktailCart4.length) {
+    setCocktailCart4(cocktailCart);
 
     setShowPopover(true);
 
     function hidePop() {
       setShowPopover(false);
-      setCocktailCart4(coctailCart);
+      setCocktailCart4(cocktailCart);
     }
 
     setTimeout(hidePop, 1000);
   }
 
-  if (coctailCart.length < cocktailCart4.length) {
-    setCocktailCart4(coctailCart);
+  if (cocktailCart.length < cocktailCart4.length) {
+    setCocktailCart4(cocktailCart);
   }
 
   useEffect(() => {
-    if (coctailCart.length == cocktailCart4.length) {
+    if (cocktailCart.length == cocktailCart4.length) {
       setShowPopover(false);
     }
   }, []);
@@ -117,13 +119,13 @@ function Cart() {
               />
               <Badge
                 style={{
-                  display: cart.length + cocktailCart4.length === 0 && "none",
+                  display: recipeCart.length + cocktailCart4.length === 0 && "none",
                   position: "absolute",
                   top: -7,
                   right: 0,
                 }}
               >
-                {cart.length + cocktailCart4.length}
+                {recipeCart.length + cocktailCart4.length}
               </Badge>
             </div>
           </div>
@@ -140,7 +142,7 @@ function Cart() {
           >
             {sortedCart.map((product, index) => {
               // Filtrera cart arrayen för att hitta produkter med samma ID
-              const sameIdProducts = cart.filter((p) => p._id === product._id);
+              const sameIdProducts = recipeCart.filter((p) => p._id === product._id);
 
               // Räkna antalet produkter med samma ID
               const quantity = sameIdProducts.length;
@@ -190,7 +192,7 @@ function Cart() {
 
             {sortedCocktails.map((product, index) => {
               // Filtrera cart arrayen för att hitta produkter med samma ID
-              const sameIdProducts = coctailCart.filter(
+              const sameIdProducts = cocktailCart.filter(
                 (p) => p.idDrink === product.idDrink
               );
 

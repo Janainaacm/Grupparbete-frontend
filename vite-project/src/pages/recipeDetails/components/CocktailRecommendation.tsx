@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useCocktailAPIState } from "../../../store/CocktailAPIState";
-import { useCocktailCartStateInterface } from "../../../store/CocktailCartState";
+import { useCocktailCartState } from "../../../store/CocktailCartState";
 import { Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { RecipeInterface } from "../../../Types";
@@ -17,7 +17,7 @@ const CocktailRecommendation = (props: CocktailRecommendationProps) => {
 
   const { randomCocktailIndex, recommendedListByIngredient, updateCocktailID } =
     useCocktailAPIState();
-  const { AddToCocktailCart } = useCocktailCartStateInterface();
+  const { AddToCocktailCart } = useCocktailCartState();
 
   const displayCocktailDetails = async (
     cocktailID: string,

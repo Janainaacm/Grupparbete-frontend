@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useCocktailAPIState } from "../../../store/CocktailAPIState";
 import { LiaCartPlusSolid } from "react-icons/lia";
 import { CocktailInterface } from "../../../Types";
-import { useCocktailCartStateInterface } from "../../../store/CocktailCartState";
+import { useCocktailCartState } from "../../../store/CocktailCartState";
 
 const DisplayAllCocktails = () => {
   const navigate = useNavigate();
-  const { AddToCocktailCart } = useCocktailCartStateInterface()
+  const { AddToCocktailCart } = useCocktailCartState();
 
   const {
     cocktailList,
@@ -17,8 +17,6 @@ const DisplayAllCocktails = () => {
     fetchCocktails,
     filterCocktailByCategory,
   } = useCocktailAPIState();
-
-
 
   useEffect(() => {
     fetchCocktailCategories();
@@ -32,13 +30,10 @@ const DisplayAllCocktails = () => {
     fetchCocktails();
   }, []);
 
-  const handleClick = async (  cocktailID: string,
-    cocktailName: string
-  ) => {
+  const handleClick = async (cocktailID: string, cocktailName: string) => {
     updateCocktailID(cocktailID);
     navigate(`/Cocktails/${cocktailName}`);
   };
-  
 
   const handleClickAddToCart = (drink: CocktailInterface) => {
     AddToCocktailCart(drink);
@@ -46,42 +41,40 @@ const DisplayAllCocktails = () => {
 
   return (
     <div className="container">
-    <div className="page-headline">
-      <h1 className="page-title">Cocktails</h1>
-    </div>
-    <div className="page-filter-function">
-     {/* <FilterFunction
+      <div className="page-headline">
+        <h1 className="page-title">Cocktails</h1>
+      </div>
+      <div className="page-filter-function">
+        {/* <FilterFunction
         setShowRecipes={setShowRecipes}
       /> */}
-    </div>
-    <div className="recipe-list">
-      {cocktailList.map((item) => (
-        <div className="recipe-box" key={item.idDrink}>
-          <img
-            className="recipe-card-img"
-            src={item.strDrinkThumb}
-            alt={item.strDrink}
-          />
-          <div className="recipe-info-container">
-            <p className="recipe-categories">
-              {item.strCategory}
-            </p>
-            <h4
-              className="recipe-title"
-              onClick={() => handleClick(item.idDrink, item.strDrink)}
-            >
-              {item.strDrink}
-            </h4>
-            <p className="recipe-description">{item.strAlcoholic}</p>
+      </div>
+      <div className="recipe-list">
+        {cocktailList.map((item) => (
+          <div className="recipe-box" key={item.idDrink}>
+            <img
+              className="recipe-card-img"
+              src={item.strDrinkThumb}
+              alt={item.strDrink}
+            />
+            <div className="recipe-info-container">
+              <p className="recipe-categories">{item.strCategory}</p>
+              <h4
+                className="recipe-title"
+                onClick={() => handleClick(item.idDrink, item.strDrink)}
+              >
+                {item.strDrink}
+              </h4>
+              <p className="recipe-description">{item.strAlcoholic}</p>
 
-            <button className="recipe-card-buy-btn">
-              <LiaCartPlusSolid onClick={() => handleClickAddToCart(item)} />
-            </button>
+              <button className="recipe-card-buy-btn">
+                <LiaCartPlusSolid onClick={() => handleClickAddToCart(item)} />
+              </button>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
-  </div>
     // <div>
     //   {/* <div>
     //     <button
@@ -190,5 +183,3 @@ const DisplayAllCocktails = () => {
 };
 
 export default DisplayAllCocktails;
-
-
