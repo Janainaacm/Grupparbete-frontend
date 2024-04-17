@@ -17,7 +17,7 @@ const CocktailRecommendation = (props: CocktailRecommendationProps) => {
 
   const { randomCocktailIndex, recommendedListByIngredient, updateCocktailID } =
     useCocktailAPIState();
-  const { AddToCocktailCart } = useCocktailCartState();
+  const { addToCocktailCart: AddToCocktailCart } = useCocktailCartState();
 
   const displayCocktailDetails = async (
     cocktailID: string,

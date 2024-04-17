@@ -8,7 +8,7 @@ import BuyButton from "./BuyButton";
 import { Card } from "react-bootstrap";
 import { useCocktailAPIState } from "../../../store/CocktailAPIState";
 import { useNavigate } from "react-router-dom";
-import { useAPIState } from "../../../store/APIState";
+import { useRecipeAPIState } from "../../../store/RecipeAPIState";
 import { CiCirclePlus } from "react-icons/ci";
 import { CiCircleMinus } from "react-icons/ci";
 import { MdDeleteForever } from "react-icons/md";
@@ -19,15 +19,15 @@ interface ShoppingCartProps {
 }
 
 const ShoppingCart = ({ visibility, onClose }: ShoppingCartProps) => {
-  const { recipeCart, clearCart, RemoveFromCart, RemoveAllFromCart, AddToCart } =
+  const { recipeCart, clearCart, removeFromCart: RemoveFromCart, removeAllFromCart: RemoveAllFromCart, addToCart: AddToCart } =
     useRecipeCartState();
-  const { setRecipeIDState } = useAPIState();
+  const { setRecipeIDState } = useRecipeAPIState();
 
   const {
     cocktailCart,
-    RemoveOneFromCocktailCart,
-    AddToCocktailCart,
-    RemoveAllFromCocktailCart,
+    removeOneFromCocktailCart: RemoveOneFromCocktailCart,
+    addToCocktailCart: AddToCocktailCart,
+    removeAllFromCocktailCart: RemoveAllFromCocktailCart,
   } = useCocktailCartState();
   const navigate = useNavigate();
   const { updateCocktailID } = useCocktailAPIState();

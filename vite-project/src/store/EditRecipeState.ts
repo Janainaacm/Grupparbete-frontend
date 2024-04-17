@@ -172,11 +172,11 @@ export const useEditRecipeState = create<EditRecipeState>((set) => ({
 
   handleCategoriesChange: (category: string) => {
     set((state) => ({
-        ...state,
-        recipeToEdit: {
-          ...state.recipeToEdit,
-          categories: [category], 
-        },
-      }));
+      ...state,
+      recipeToEdit: {
+        ...state.recipeToEdit,
+        categories: [category],
+      },
+    }));
   },
 }));

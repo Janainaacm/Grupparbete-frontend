@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import "./SearchBar.css";
-import { useAPIState } from "../../store/APIState";
+import { useRecipeAPIState } from "../../store/RecipeAPIState";
 
 const SearchBar = ({ setSearchResults }: { setSearchResults?: any }) => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
-  const { recipeList, setFilteredRecipeList } = useAPIState();
+  const { recipeList, setFilteredRecipeList } = useRecipeAPIState();
 
   const getSearchResult = () => {
     const filteredList = recipeList.filter((recipe) => {

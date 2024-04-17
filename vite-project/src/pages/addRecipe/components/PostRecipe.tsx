@@ -1,11 +1,11 @@
 import { IngredientInterface } from "../../../Types";
 import { useState } from "react";
-import { useAPIState } from "../../../store/APIState";
+import { useRecipeAPIState } from "../../../store/RecipeAPIState";
 import { useNavigate } from "react-router";
 import { GiTrashCan } from "react-icons/gi";
 
 const PostRecipe = () => {
-  const { postRecipe } = useAPIState();
+  const { postRecipe } = useRecipeAPIState();
   const navigate = useNavigate();
 
   const [recipeName, setRecipeName] = useState("");

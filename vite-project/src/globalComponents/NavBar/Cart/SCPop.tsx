@@ -34,8 +34,8 @@ function Cart() {
 
   const [cart4, setCart4] = useState<RecipeInterface[]>([]);
   const [cocktailCart4, setCocktailCart4] = useState<CocktailInterface[]>([]);
-  const { recipeCart, RemoveFromCart, AddToCart } = useRecipeCartState();
-  const { cocktailCart, RemoveOneFromCocktailCart, AddToCocktailCart } =
+  const { recipeCart, removeFromCart: RemoveFromCart, addToCart: AddToCart } = useRecipeCartState();
+  const { cocktailCart, removeOneFromCocktailCart: RemoveOneFromCocktailCart, addToCocktailCart: AddToCocktailCart } =
     useCocktailCartState();
 
   const sortedCart = cart4.sort((a, b) => a.title.localeCompare(b.title));

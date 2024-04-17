@@ -5,7 +5,7 @@ import { useRecipeCartState } from "../../../store/RecipeCartState";
 
 
 const AddToCartButton = ({ recipe, recommendation, checkCategory }) => {
-  const addToCart = useRecipeCartState((state) => state.AddToCart);
+  const addToCart = useRecipeCartState((state) => state.addToCart);
 
   const handleClick = () => {
     addToCart(recipe);
