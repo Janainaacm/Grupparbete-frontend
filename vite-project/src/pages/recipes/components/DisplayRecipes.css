@@ -1,11 +1,7 @@
-
-
 .container {
     display: block;
     width: 100%;
 }
-
-
 
 .page-headline {
     display: block;
@@ -43,7 +39,6 @@
     letter-spacing: 1.3px;
 }
 
-
 .recipe-list {
    
         --grid-gap: 1rem;
@@ -59,7 +54,6 @@
 
 .recipe-box {
     align-items: center;
-    cursor: pointer;
     border-bottom: 1px solid #b0b0b0;
     --border-bottom-color__token-name:
     border: none;
@@ -78,7 +72,6 @@
         display: grid;
         grid-template-areas: "image content";
         grid-template-columns: repeat(2, 1fr);
-        cursor: pointer;
         border-bottom: 1px solid #b0b0b0;
         --border-bottom-color__token-name:
         border: none;
@@ -99,8 +92,6 @@
     }
 }
 
-
-
 .recipe-card-img {
     width: -webkit-fill-available;
     height: 250px;
@@ -114,7 +105,6 @@
     margin-bottom: 20px;
 }
 
-
 .recipe-categories {
     font-family: Futura;
     margin: 0px 0px 3px;
@@ -126,6 +116,7 @@
 }
 
 .recipe-title {
+    cursor: pointer;
     font-family: Futura;
     margin: 0px 0px 16px;
     color: #000;
@@ -159,8 +150,8 @@
 }
 
 .recipe-card-buy-btn:hover {
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;  
-  }
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;    
+}
 
 .page-quote {
     display: flex;
@@ -176,9 +167,9 @@
     padding: 80px 32px;
     position: relative;
     text-align: center;
-  }
+}
   
-  .quote::before {
+.quote::before {
     position: absolute;
     content: '“';
     font-family: 'Noto Sans JP', sans-serif;
@@ -186,9 +177,9 @@
     color: gray;
     top: 0;
     left: 16px;
-  }
+}
   
-  .quote::after {
+.quote::after {
     position: absolute;
     content: '”';
     font-family: 'Noto Sans JP', sans-serif;
@@ -196,8 +187,7 @@
     color: gray;
     bottom: -10px;
     right: 16px;
-  }
-
+}
 
 .deletebtn {
     padding: 2px;

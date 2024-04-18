@@ -1,8 +1,8 @@
-import { useAPIState } from "../../../store/APIState";
+import { useRecipeAPIState } from "../../../store/RecipeAPIState";
 import { GiTrashCan } from "react-icons/gi";
 
 const DeleteButton = ({ recipeId }) => {
-  const { deleteRecipe } = useAPIState();
+  const { deleteRecipe } = useRecipeAPIState();
 
   const handleClick = async () => {
     try {

@@ -4,11 +4,8 @@ import BackToTopButton from "../../globalComponents/BackToTopButton";
 const CocktailsPage = () => {
   return (
     <div>
-      <div>
-        <DisplayAllCocktails />
-      </div>
-
-      <BackToTopButton></BackToTopButton>
+      <DisplayAllCocktails />
+      <BackToTopButton />
     </div>
   );
 };

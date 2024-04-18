@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Card } from "react-bootstrap";
 import { RecipeInterface } from "../../../Types";
 import { Pagination, EffectCoverflow, Autoplay } from "swiper/modules";
-import { useAPIState } from "../../../store/APIState";
+import { useRecipeAPIState } from "../../../store/RecipeAPIState";
 import { useNavigate } from "react-router-dom";
 
 interface HomeSwiperProps {
@@ -14,7 +14,7 @@ interface HomeSwiperProps {
 const HomeSwiper = (props: HomeSwiperProps) => {
   const navigate = useNavigate();
 
-  const { setRecipeIDState } = useAPIState();
+  const { setRecipeIDState } = useRecipeAPIState();
 
   const handleClick = (recipeId: string, recipeName: string) => {
     setRecipeIDState(recipeId);

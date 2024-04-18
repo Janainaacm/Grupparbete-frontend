@@ -1,6 +1,6 @@
 import "./FilterFunction.css";
 import { useState, useEffect } from "react";
-import { useAPIState } from "../../../store/APIState";
+import { useRecipeAPIState } from "../../../store/RecipeAPIState";
 import { CategorieInterface } from "../../../Types";
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
@@ -12,7 +12,7 @@ interface FilterFunctionProps {
 
 const FilterFunction = (props: FilterFunctionProps) => {
   const { recipeList, fetchRecipesByCategoryName, allCategories } =
-    useAPIState();
+    useRecipeAPIState();
   let [filteredCategories, setFilteredCategories] = useState<string[]>([]);
   const [open, setOpen] = useState(false);
 

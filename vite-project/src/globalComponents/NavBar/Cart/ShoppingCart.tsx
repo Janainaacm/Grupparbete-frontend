@@ -1,14 +1,14 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./ShoppingCart.css";
 import { CgCloseR } from "react-icons/cg";
-import { useCartState } from "../../../store/CartState";
+import { useRecipeCartState } from "../../../store/RecipeCartState";
 import { RecipeInterface, CocktailInterface } from "../../../Types";
-import { useCocktailCartStateInterface } from "../../../store/CocktailCartState";
+import { useCocktailCartState } from "../../../store/CocktailCartState";
 import BuyButton from "./BuyButton";
 import { Card } from "react-bootstrap";
 import { useCocktailAPIState } from "../../../store/CocktailAPIState";
 import { useNavigate } from "react-router-dom";
-import { useAPIState } from "../../../store/APIState";
+import { useRecipeAPIState } from "../../../store/RecipeAPIState";
 import { CiCirclePlus } from "react-icons/ci";
 import { CiCircleMinus } from "react-icons/ci";
 import { MdDeleteForever } from "react-icons/md";
@@ -19,25 +19,25 @@ interface ShoppingCartProps {
 }
 
 const ShoppingCart = ({ visibility, onClose }: ShoppingCartProps) => {
-  const { cart, clearCart, RemoveFromCart, RemoveAllFromCart, AddToCart } =
-    useCartState();
-  const { setRecipeIDState } = useAPIState();
+  const { recipeCart, clearCart, removeFromCart: RemoveFromCart, removeAllFromCart: RemoveAllFromCart, addToCart: AddToCart } =
+    useRecipeCartState();
+  const { setRecipeIDState } = useRecipeAPIState();
 
   const {
-    coctailCart,
-    RemoveOneFromCocktailCart,
-    AddToCocktailCart,
-    RemoveAllFromCocktailCart,
-  } = useCocktailCartStateInterface();
+    cocktailCart,
+    removeOneFromCocktailCart: RemoveOneFromCocktailCart,
+    addToCocktailCart: AddToCocktailCart,
+    removeAllFromCocktailCart: RemoveAllFromCocktailCart,
+  } = useCocktailCartState();
   const navigate = useNavigate();
   const { updateCocktailID } = useCocktailAPIState();
 
-  const sortedProducts = cart.sort((a, b) => a.title.localeCompare(b.title));
-  const sortedCocktails = coctailCart.sort((a, b) =>
+  const sortedRecipes = recipeCart.sort((a, b) => a.title.localeCompare(b.title));
+  const sortedCocktails = cocktailCart.sort((a, b) =>
     a.strDrink.localeCompare(b.strDrink)
   );
 
-  const sum = cart.reduce((n, { price }) => n + price, 0);
+  const sum = recipeCart.reduce((n, { price }) => n + price, 0);
 
   const displayCocktailDetails = async (
     cocktailID: string,
@@ -80,13 +80,13 @@ const ShoppingCart = ({ visibility, onClose }: ShoppingCartProps) => {
           className="cart-products"
           style={{ display: "flex", flexDirection: "column" }}
         >
-          {sortedProducts.length + sortedCocktails.length === 0 && (
+          {sortedRecipes.length + sortedCocktails.length === 0 && (
             <span className="empty-text">Inget här :(</span>
           )}
 
           <div className="product-container">
-            {sortedProducts.map((product: RecipeInterface, index: number) => {
-              const sameIdProducts = sortedProducts.filter(
+            {sortedRecipes.map((product: RecipeInterface, index: number) => {
+              const sameIdProducts = sortedRecipes.filter(
                 (p: RecipeInterface) => p._id === product._id
               );
 
@@ -94,7 +94,7 @@ const ShoppingCart = ({ visibility, onClose }: ShoppingCartProps) => {
 
               if (
                 index ===
-                sortedProducts.findIndex(
+                sortedRecipes.findIndex(
                   (p: RecipeInterface) => p._id === product._id
                 )
               ) {
@@ -227,7 +227,7 @@ const ShoppingCart = ({ visibility, onClose }: ShoppingCartProps) => {
         </div>
 
         <div className="content-container">
-          {sortedProducts.length + sortedCocktails.length > 0 && (
+          {sortedRecipes.length + sortedCocktails.length > 0 && (
             <div className="checkout-clear">
               <h3>Totalt pris: {sum + " Sek"}</h3>
               <BuyButton />

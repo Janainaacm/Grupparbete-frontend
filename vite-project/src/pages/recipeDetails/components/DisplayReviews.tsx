@@ -1,8 +1,8 @@
-import { useAPIState } from "../../../store/APIState";
+import { useRecipeAPIState } from "../../../store/RecipeAPIState";
 import "./DisplayReviews.css";
 
 const DisplayReviews = () => {
-  const { reviewList } = useAPIState();
+  const { reviewList } = useRecipeAPIState();
 
   return (
     <div className="reviews-list-container">

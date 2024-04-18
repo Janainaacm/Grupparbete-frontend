@@ -1,9 +1,9 @@
-import { useCartState } from "../../../store/CartState";
-import { useCocktailCartStateInterface } from "../../../store/CocktailCartState";
+import { useRecipeCartState } from "../../../store/RecipeCartState";
+import { useCocktailCartState } from "../../../store/CocktailCartState";
 
 const BuyButton = () => {
-  const { clearCart } = useCartState();
-  const { ClearCocktailCart } = useCocktailCartStateInterface();
+  const { clearCart } = useRecipeCartState();
+  const { clearCocktailCart: ClearCocktailCart } = useCocktailCartState();
 
   const handleClick = () => {
     clearCart();
