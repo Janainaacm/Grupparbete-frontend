@@ -7,7 +7,12 @@ import { LiaCartPlusSolid } from "react-icons/lia";
 import { useRecipeCartState } from "../../../store/RecipeCartState";
 import FilterFunction from "./FilterFunction";
 
-const DisplayRecipes = () => {
+
+interface DisplayRecipesProps {
+  tag: string;
+}
+const DisplayRecipes = (props: DisplayRecipesProps) => {
+  
   const {
     recipeList,
     filteredRecipeList,
@@ -16,6 +21,7 @@ const DisplayRecipes = () => {
     fetchCategories,
   } = useRecipeAPIState();
   const { addToCart: AddToCart } = useRecipeCartState();
+  const [showRecipesSearch, setShowRecipesSearch] = useState(filteredRecipeList);
   const [showRecipes, setShowRecipes] = useState<RecipeInterface[]>([]);
   const [headlinetag, setHeadlineTag] = useState("Alla recept");
   const navigate = useNavigate();
@@ -27,14 +33,6 @@ const DisplayRecipes = () => {
     fetchCategories();
   }, []);
 
-  useEffect(() => {
-    if (filteredRecipeList.length > 0) {
-      setShowRecipes(filteredRecipeList);
-    } else {
-      setShowRecipes(recipeList);
-    }
-  }, [recipeList]);
-
   const handleClick = (recipeId: string, recipeName: string) => {
     setRecipeIDState(recipeId);
     navigate(`/Recept/${recipeName}`);
@@ -44,6 +42,21 @@ const DisplayRecipes = () => {
     AddToCart(recipe);
   };
 
+  const chooseList = () => {
+
+    if (recipeList.length == 0) {
+      fetchRecipeList();
+    }
+    
+    if (showRecipesSearch.length > 0) {
+      return showRecipesSearch;
+    } else {
+      return recipeList;
+    }
+  }
+
+
+
   return (
     <div className="container">
       <div className="page-headline">
@@ -52,12 +65,13 @@ const DisplayRecipes = () => {
       </div>
       <div className="page-filter-function">
         <FilterFunction
-          setShowRecipes={setShowRecipes}
+          searchResult={chooseList()}
+          setShowRecipes={setShowRecipesSearch}
           setHeadlineTag={setHeadlineTag}
         />
       </div>
       <div className="recipe-list">
-        {showRecipes.map((recipe) => (
+        {chooseList().map((recipe) => (
           <div className="recipe-box" key={recipe._id}>
             <img
               className="recipe-card-img"

@@ -22,7 +22,7 @@ const SearchBar = ({ setSearchResults }: { setSearchResults?: any }) => {
 
     setFilteredRecipeList(filteredList);
     setSearch("");
-    navigate("/Recept");
+    navigate("/Recept", {state: search});
   };
 
   const fetchData = (value: string) => {

@@ -1,13 +1,14 @@
 import "./FilterFunction.css";
 import { useState, useEffect } from "react";
 import { useRecipeAPIState } from "../../../store/RecipeAPIState";
-import { CategorieInterface } from "../../../Types";
+import { CategorieInterface, RecipeInterface } from "../../../Types";
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
 
 interface FilterFunctionProps {
   setShowRecipes: any;
   setHeadlineTag: any;
+  searchResult: RecipeInterface[]
 }
 
 const FilterFunction = (props: FilterFunctionProps) => {
@@ -81,7 +82,7 @@ const FilterFunction = (props: FilterFunctionProps) => {
   };
 
   const resetLists = () => {
-    props.setShowRecipes(recipeList);
+    props.setShowRecipes(props.searchResult);
     props.setHeadlineTag("Alla recept");
   };
 
