@@ -23,6 +23,6 @@ export const CarouselData = [
   },
   {
     image: matkasse,
-    title: "Färdiga matkassar",
+    title: "Färska produkter",
   },
 ];

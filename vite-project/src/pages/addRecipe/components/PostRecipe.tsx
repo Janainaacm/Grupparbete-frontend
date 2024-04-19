@@ -14,7 +14,7 @@ const PostRecipe = () => {
   const [imageURL, setImageURL] = useState("");
   const [price, setPrice] = useState(Number);
 
-  const [categories, setCategories] = useState("");
+  const [categories, setCategories] = useState("Övrigt");
   const [instructions, setInstructions] = useState("");
 
   const [ingredient, setIngredient] = useState<IngredientInterface[]>([
@@ -138,15 +138,14 @@ const PostRecipe = () => {
         <select
           value={categories}
           className="add-recipe-categories-input"
-          onChange={(event) => setCategories(event.target.value)}
-        >
-          <option>Välj Kategori</option>
+          onChange={(event) => setCategories(event.target.value)}         
+        >          
+          <option value="Övrigt">Övrigt</option>          
           <option value="Kött">Kött</option>
           <option value="Kyckling">Kyckling</option>
           <option value="Fisk">Fisk</option>
           <option value="Vego">Vego</option>
           <option value="Dessert">Dessert</option>
-          <option value="Övrigt">Övrigt</option>
         </select>
       </div>
 

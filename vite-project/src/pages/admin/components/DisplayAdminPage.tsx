@@ -60,11 +60,7 @@ const DisplayAdminRecipes = () => {
           Add recipe
         </button>
       </div>
-      <div className="page-filter-function">
-        <FilterFunction
-          setShowRecipes={setShowRecipes}
-          setHeadlineTag={setHeadlineTag}
-        />
+      <div className="page-filter-function">    
       </div>
       <div className="recipe-list">
         {showRecipes.map((recipe) => (

@@ -1,19 +1,20 @@
 import "./FilterFunction.css";
 import { useState, useEffect } from "react";
 import { useRecipeAPIState } from "../../../store/RecipeAPIState";
-import { CategorieInterface } from "../../../Types";
+import { CategorieInterface, RecipeInterface } from "../../../Types";
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
 
 interface FilterFunctionProps {
   setShowRecipes: any;
   setHeadlineTag: any;
+  searchResult: RecipeInterface[]
 }
 
 const FilterFunction = (props: FilterFunctionProps) => {
   const { recipeList, fetchRecipesByCategoryName, allCategories } =
     useRecipeAPIState();
-  let [filteredCategories, setFilteredCategories] = useState<string[]>([]);
+  const [filteredCategories, setFilteredCategories] = useState<string[]>([]);
   const [open, setOpen] = useState(false);
 
   const handleDropDownFocus = () => {
@@ -76,12 +77,13 @@ const FilterFunction = (props: FilterFunctionProps) => {
   const resetFilter = () => {
     props.setShowRecipes(recipeList);
     props.setHeadlineTag("Alla recept");
+    setFilteredCategories([])
     setOpen(false);
     resetClick();
   };
 
   const resetLists = () => {
-    props.setShowRecipes(recipeList);
+    props.setShowRecipes(props.searchResult);
     props.setHeadlineTag("Alla recept");
   };
 
