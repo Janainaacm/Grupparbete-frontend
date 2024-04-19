@@ -104,8 +104,8 @@ const EditRecipe = () => {
                   onChange={handleInputChange}
                 />
 
-                <div className="jag-vill-do">
-                  <div className="omfg">
+                <div className="edit-recipe-section-row">
+                  <div className="edit-recipe-section-adj">
                     <h3 className="edit-recipe-section-title">Time:</h3>
                     <textarea
                       className="edit-recipe-price-input"
@@ -114,7 +114,7 @@ const EditRecipe = () => {
                       onChange={handleInputChange}
                     />
                   </div>
-                  <div className="omfg">
+                  <div className="edit-recipe-section-adj">
                     <h3 className="edit-recipe-section-title">Price:</h3>
                     <textarea
                       className="edit-recipe-price-input"
@@ -123,7 +123,7 @@ const EditRecipe = () => {
                       onChange={handleInputChange}
                     />
                   </div>
-                  <div className="omfg">
+                  <div className="edit-recipe-section-adj">
                     <h3 className="edit-recipe-section-title">Categories:</h3>
                     <select
                       className="edit-recipe-price-input"
