@@ -14,7 +14,7 @@ interface FilterFunctionProps {
 const FilterFunction = (props: FilterFunctionProps) => {
   const { recipeList, fetchRecipesByCategoryName, allCategories } =
     useRecipeAPIState();
-  let [filteredCategories, setFilteredCategories] = useState<string[]>([]);
+  const [filteredCategories, setFilteredCategories] = useState<string[]>([]);
   const [open, setOpen] = useState(false);
 
   const handleDropDownFocus = () => {
@@ -77,6 +77,7 @@ const FilterFunction = (props: FilterFunctionProps) => {
   const resetFilter = () => {
     props.setShowRecipes(recipeList);
     props.setHeadlineTag("Alla recept");
+    setFilteredCategories([])
     setOpen(false);
     resetClick();
   };
