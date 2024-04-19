@@ -107,7 +107,7 @@ export const useAPIState = create<APIState>((set) => ({
         set((state) => ({
           recipeList: [...state.recipeList, response.data],
         }));
-        return response.status;
+        return response.data;
       } else {
         console.log("Error posting new recipe");
         return response.status;

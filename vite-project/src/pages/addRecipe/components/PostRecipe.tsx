@@ -1,11 +1,11 @@
 import { IngredientInterface } from "../../../Types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAPIState } from "../../../store/APIState";
 import { useNavigate } from "react-router";
 import { GiTrashCan } from "react-icons/gi";
 
 const PostRecipe = () => {
-  const { postRecipe } = useAPIState();
+  const { postRecipe, setRecipeIDState, fetchRecipeList, recipeList } = useAPIState();
   const navigate = useNavigate();
 
   const [recipeName, setRecipeName] = useState("");
@@ -20,6 +20,21 @@ const PostRecipe = () => {
   const [ingredient, setIngredient] = useState<IngredientInterface[]>([
     { name: "", amount: 0, unit: "" },
   ]);
+
+
+
+  const seeRecipeDetails = async (recipeId: string, recipeName: string) => {
+    
+    setRecipeIDState(recipeId);
+    navigate(`/Recept`);
+
+    function redirectRecipeDetails() {
+      navigate(`/Recept/${recipeName}`);
+    }
+
+    setTimeout(redirectRecipeDetails, 1);
+  };
+
 
   const addRecipe = async () => {
     const categoryArray = categories
@@ -39,10 +54,12 @@ const PostRecipe = () => {
       ingredients: ingredient,
       price: price,
     };
-    try {
-      const response = await postRecipe(newRecipe);
+        console.log("recipeList before post",recipeList)
 
-      if (response === 200) {
+        const response = postRecipe(newRecipe).then((data) => seeRecipeDetails(data._id, data.title) )
+
+        console.log("response",response)
+        console.log("recipeList after post", recipeList)
         alert("Recept tillagt!");
 
         setRecipeName("");
@@ -53,13 +70,23 @@ const PostRecipe = () => {
         setCategories("");
         setInstructions("");
         setPrice(0);
-        location.reload();
-      } else {
-        alert("Error");
-      }
-    } catch (error) {
-      console.log("error: ", error);
-    }
+
+        
+          /* fetchRecipeList */
+        
+
+        /* fetchRecipeList(); */
+
+        /* const delayed = () => {
+
+          console.log("recipeList delayed",recipeList)
+        }
+
+        setTimeout(delayed, 2000) */
+        
+
+        
+        /* location.reload(); */
     
   };
 
