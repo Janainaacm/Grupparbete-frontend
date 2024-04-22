@@ -1,11 +1,11 @@
 import { IngredientInterface } from "../../../Types";
-import { useEffect, useState } from "react";
-import { useAPIState } from "../../../store/APIState";
+import { useState } from "react";
+import { useRecipeAPIState } from "../../../store/RecipeAPIState";
 import { useNavigate } from "react-router";
 import { GiTrashCan } from "react-icons/gi";
 
 const PostRecipe = () => {
-  const { postRecipe, setRecipeIDState, fetchRecipeList, recipeList } = useAPIState();
+  const { postRecipe, setRecipeIDState, recipeList } = useRecipeAPIState();
   const navigate = useNavigate();
 
   const [recipeName, setRecipeName] = useState("");
@@ -24,7 +24,7 @@ const PostRecipe = () => {
 
 
   const seeRecipeDetails = async (recipeId: string, recipeName: string) => {
-    
+
     setRecipeIDState(recipeId);
     navigate(`/Recept`);
 
@@ -54,40 +54,22 @@ const PostRecipe = () => {
       ingredients: ingredient,
       price: price,
     };
-        console.log("recipeList before post",recipeList)
 
-        const response = postRecipe(newRecipe).then((data) => seeRecipeDetails(data._id, data.title) )
 
-        console.log("response",response)
-        console.log("recipeList after post", recipeList)
-        alert("Recept tillagt!");
+    const response = postRecipe(newRecipe).then((data) => seeRecipeDetails(data._id, data.title))
+    alert("Recept tillagt!");
 
-        setRecipeName("");
-        setIngredient([]);
-        setDescription("");
-        setTimeInMinutes(0);
-        setImageURL("");
-        setCategories("");
-        setInstructions("");
-        setPrice(0);
+    setRecipeName("");
+    setIngredient([]);
+    setDescription("");
+    setTimeInMinutes(0);
+    setImageURL("");
+    setCategories("");
+    setInstructions("");
+    setPrice(0);
 
-        
-          /* fetchRecipeList */
-        
+    /* location.reload(); */
 
-        /* fetchRecipeList(); */
-
-        /* const delayed = () => {
-
-          console.log("recipeList delayed",recipeList)
-        }
-
-        setTimeout(delayed, 2000) */
-        
-
-        
-        /* location.reload(); */
-    
   };
 
   const handleIngredientAdd = () => {

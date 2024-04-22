@@ -1,52 +1,51 @@
-import { create } from "zustand"
-import { CocktailInterface } from "../Types"
+import { create } from "zustand";
+import { CocktailInterface } from "../Types";
 
+interface CocktailCartState {
+  cocktailCart: CocktailInterface[];
 
-interface CocktailCartInterface {
-    coctailCart: CocktailInterface[];
-
-    AddToCocktailCart: (cocktail: CocktailInterface) => void
-    RemoveAllFromCocktailCart: (cocktailIdToRemove: string) => void
-    RemoveOneFromCocktailCart: (cocktailIdToRemove: string) => void
-    ClearCocktailCart: () => void
+  addToCocktailCart: (cocktail: CocktailInterface) => void;
+  removeAllFromCocktailCart: (cocktailIdToRemove: string) => void;
+  removeOneFromCocktailCart: (cocktailIdToRemove: string) => void;
+  clearCocktailCart: () => void;
 }
 
-export const useCocktailCartStateInterface = create<CocktailCartInterface>((set) => ({
+export const useCocktailCartState = create<CocktailCartState>((set) => ({
+  cocktailCart: [],
 
-    coctailCart: [],
+  addToCocktailCart: (cocktail) => {
+    set((state) => ({
+      cocktailCart: [...state.cocktailCart, cocktail],
+    }));
+  },
 
-    AddToCocktailCart: (cocktail) => {
-        set((state) => ({
-            coctailCart: [...state.coctailCart, cocktail]
-        }))
-    },
+  removeAllFromCocktailCart: (cocktailIdToRemove) => {
+    set((state) => ({
+      cocktailCart: state.cocktailCart.filter(
+        (cocktail) => cocktail.idDrink !== cocktailIdToRemove
+      ),
+    }));
+  },
 
-    RemoveAllFromCocktailCart: (cocktailIdToRemove) => {
-        set((state) => ({
-            coctailCart: state.coctailCart.filter(cocktail => cocktail.idDrink !== cocktailIdToRemove)
-        }))
-    },
+  removeOneFromCocktailCart(cocktailIdToRemove) {
+    set((state) => {
+      const indexToRemove = state.cocktailCart.findIndex(
+        (cocktail) => cocktail.idDrink === cocktailIdToRemove
+      );
 
-    RemoveOneFromCocktailCart(cocktailIdToRemove) {
-        set((state) => {
+      if (indexToRemove !== -1) {
+        const updatedCart = [...state.cocktailCart];
+        updatedCart.splice(indexToRemove, 1);
 
-            const indexToRemove = state.coctailCart.findIndex(cocktail => cocktail.idDrink === cocktailIdToRemove);
+        return { cocktailCart: updatedCart };
+      }
+      return state;
+    });
+  },
 
-            if (indexToRemove !== -1) {
-                const updatedCart = [...state.coctailCart];
-                updatedCart.splice(indexToRemove, 1);
-
-                return { coctailCart: updatedCart };
-            }
-            return state;
-        })
-
-    },
-
-    ClearCocktailCart: () => {
-        set(() => ({
-            coctailCart: []
-        }))
-    }
-
-}))
+  clearCocktailCart: () => {
+    set(() => ({
+      cocktailCart: [],
+    }));
+  },
+}));

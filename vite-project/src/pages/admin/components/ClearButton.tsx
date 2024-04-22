@@ -1,12 +1,12 @@
 import "./ClearButton.css";
 import { useState } from "react";
-import { useAPIState } from "../../../store/APIState";
+import { useRecipeAPIState } from "../../../store/RecipeAPIState";
 import { IoWarningSharp } from "react-icons/io5";
 
 const ClearButton = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const { clearDB } = useAPIState();
+  const { clearDB } = useRecipeAPIState();
 
   const handleClear = () => {
     setShowPopup(true);

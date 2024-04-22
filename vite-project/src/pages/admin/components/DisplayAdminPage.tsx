@@ -1,7 +1,7 @@
 import "../../recipes/components/DisplayRecipes.css";
 import "./DisplayAdminPage.css";
 import { useNavigate } from "react-router";
-import { useAPIState } from "../../../store/APIState";
+import { useRecipeAPIState } from "../../../store/RecipeAPIState.ts";
 import { useEffect, useState } from "react";
 import { RecipeInterface } from "../../../Types";
 import { CiEdit } from "react-icons/ci";
@@ -16,7 +16,7 @@ const DisplayAdminRecipes = () => {
     setRecipeIDState,
     fetchRecipeList,
     fetchCategories,
-  } = useAPIState();
+  } = useRecipeAPIState();
   const [showRecipes, setShowRecipes] = useState<RecipeInterface[]>([]);
   const [headlinetag, setHeadlineTag] = useState("Alla recept");
   const navigate = useNavigate();
@@ -60,11 +60,7 @@ const DisplayAdminRecipes = () => {
           Add recipe
         </button>
       </div>
-      <div className="page-filter-function">
-        <FilterFunction
-          setShowRecipes={setShowRecipes}
-          setHeadlineTag={setHeadlineTag}
-        />
+      <div className="page-filter-function">    
       </div>
       <div className="recipe-list">
         {showRecipes.map((recipe) => (

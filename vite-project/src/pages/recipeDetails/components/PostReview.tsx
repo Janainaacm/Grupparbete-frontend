@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useAPIState } from "../../../store/APIState";
+import { useRecipeAPIState } from "../../../store/RecipeAPIState";
 
 interface PostReviewProps {
   recipeId: string;
@@ -7,7 +7,7 @@ interface PostReviewProps {
 }
 
 const PostReview = (props: PostReviewProps) => {
-  const { postReview, postRating } = useAPIState();
+  const { postReview, postRating } = useRecipeAPIState();
   const [name, setName] = useState<string>("");
   const [comment, setComment] = useState<string>("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
