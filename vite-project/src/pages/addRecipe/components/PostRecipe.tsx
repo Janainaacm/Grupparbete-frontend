@@ -55,18 +55,38 @@ const PostRecipe = () => {
       price: price,
     };
 
+    const text = "Gå till nya recpeted?"
 
-    const response = postRecipe(newRecipe).then((data) => seeRecipeDetails(data._id, data.title))
-    alert("Recept tillagt!");
+    if (confirm(text) == true) {
+      postRecipe(newRecipe).then((data) => seeRecipeDetails(data._id, data.title));
 
-    setRecipeName("");
-    setIngredient([]);
-    setDescription("");
-    setTimeInMinutes(0);
-    setImageURL("");
-    setCategories("");
-    setInstructions("");
-    setPrice(0);
+      setRecipeName("");
+      setIngredient([{ name: "", amount: 0, unit: "" }]);
+      setDescription("");
+      setTimeInMinutes(0);
+      setImageURL("");
+      setCategories("");
+      setInstructions("");
+      setPrice(0);
+
+    } else {
+
+      postRecipe(newRecipe)/* .then((data) => seeRecipeDetails(data._id, data.title)) */
+      /* alert("Recept tillagt!"); */
+
+      setRecipeName("");
+      setIngredient([{ name: "", amount: 0, unit: "" }]);
+      setDescription("");
+      setTimeInMinutes(0);
+      setImageURL("");
+      setCategories("");
+      setInstructions("");
+      setPrice(0);
+
+    }
+
+
+
 
     /* location.reload(); */
 
